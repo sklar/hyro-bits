@@ -1,23 +1,39 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# Ignored files.
+# @see https://git-scm.com/docs/gitignore
+
+.env
+.env.*
+build
+
+# ##############################################################################
+# Specific patterns
+# ##############################################################################
+
+# cache
+.cache
+.eslintcache
+
+# CI
+.netlify
+
+# IDE
+*.sublime-*
+.history
+.idea
+.vscode/*
+
+# logs
+*.log
+*.log*
 
 # dependencies
-/node_modules
-/.pnp
+node_modules
+.pnp
 .pnp.js
 
-# testing
-/coverage
-
-# production
-/build
-
-# misc
+# OS
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+Thumbs.db
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+# tests
+coverage
