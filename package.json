@@ -11,6 +11,8 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.ts,.jsx,.tsx",
     "start": "react-scripts start",
+    "storybook": "start-storybook -p 6006 -s public",
+    "storybook:build": "build-storybook -s public",
     "test": "react-scripts test"
   },
   "dependencies": {
@@ -28,6 +30,12 @@
     "web-vitals": "^0.2.4"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^6.1.15",
+    "@storybook/addon-essentials": "^6.1.15",
+    "@storybook/addon-links": "^6.1.15",
+    "@storybook/node-logger": "^6.1.15",
+    "@storybook/preset-create-react-app": "^3.1.5",
+    "@storybook/react": "^6.1.15",
     "eslint-plugin-prettier": "^3.3.1",
     "husky": "^4.3.8",
     "lint-staged": "^10.5.3",
@@ -39,7 +47,7 @@
     }
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx,json,md,mdx}": [
+    "src/**/*.{js,jsx,ts,tsx,json}": [
       "prettier --write",
       "eslint --ext .js,.ts,.jsx,.tsx --quiet",
       "git add"

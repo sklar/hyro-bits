@@ -2,8 +2,8 @@
   NODE_VERSION = "15"
 
 [build]
-  publish = "build"
-  command = "yarn build"
+  publish = "storybook-static"
+  command = "yarn storybook:build"
 
 [[redirects]]
   from = "/*"

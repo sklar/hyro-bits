@@ -1,0 +1,4 @@
+# Ignored files.
+# @see https://eslint.org/docs/user-guide/configuring/ignoring-code#the-eslintignore-file
+
+!.storybook
