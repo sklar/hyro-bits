@@ -1,4 +1,11 @@
+import { themes } from '@storybook/theming';
 
 export const parameters = {
-  actions: { argTypesRegex: "^on[A-Z].*" },
-}
+  actions: { argTypesRegex: '^on[A-Z].*' },
+  backgrounds: {
+    default: 'light',
+  },
+  docs: {
+    theme: themes.dark,
+  },
+};
