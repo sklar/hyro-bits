@@ -11,11 +11,13 @@
     "eject": "react-scripts eject",
     "lint": "eslint --ext .js,.ts,.jsx,.tsx",
     "start": "yarn storybook",
-    "storybook": "start-storybook -p 6006 -s public",
-    "storybook:build": "build-storybook -s public",
+    "storybook": "start-storybook -p 6006 -c .storybook -s ./src/assets",
+    "storybook:build": "build-storybook -c .storybook -s ./src/assets",
     "test": "react-scripts test"
   },
   "dependencies": {
+    "@emotion/react": "^11.1.4",
+    "@emotion/styled": "^11.0.0",
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
@@ -36,11 +38,17 @@
     "@storybook/node-logger": "^6.1.15",
     "@storybook/preset-create-react-app": "^3.1.5",
     "@storybook/react": "^6.1.15",
+    "eslint": "^7.19.0",
     "eslint-plugin-prettier": "^3.3.1",
     "husky": "^4.3.8",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",
     "storybook-addon-designs": "^5.4.3"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.0.0",
+    "@emotion/styled": "^11.0.0",
+    "react": "^17.0.0"
   },
   "husky": {
     "hooks": {
@@ -50,8 +58,7 @@
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx,json}": [
       "prettier --write",
-      "eslint --ext .js,.ts,.jsx,.tsx --quiet",
-      "git add"
+      "eslint --ext .js,.ts,.jsx,.tsx --quiet"
     ]
   },
   "browserslist": [
