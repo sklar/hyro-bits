@@ -1,10 +1,13 @@
 import React, { HTMLAttributes, ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { lighten } from 'color2k';
 
 import { Idle as Indicator } from 'components/indicator';
-import { ElementSize, ElementVariant } from 'utils/constants';
+import { colors } from 'theme';
+import { ElementSize, ElementTheme, ElementVariant } from 'utils/constants';
 import { ripple } from 'utils/effects';
+import { Values } from 'utils/types';
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
@@ -43,7 +46,11 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
    * Size
    */
-  size?: `${ElementSize}`;
+  size?: Values<typeof ElementSize>;
+  /**
+   * Theme
+   */
+  theme?: Exclude<Values<typeof ElementTheme>, 'info'>;
   /**
    * Toggle
    */
@@ -51,7 +58,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
    * Variant
    */
-  variant?: `${ElementVariant}`;
+  variant?: Values<typeof ElementVariant>;
 
   /**
    * State: Active
@@ -87,12 +94,13 @@ export const Button: React.FC<ButtonProps> = ({
   round,
   size = 'md',
   text,
+  theme,
   toggle,
   type = 'button',
   variant = 'secondary',
   ...props
 }): JSX.Element => {
-  const delegated = { size, variant, ...props };
+  const delegated = { size, theme, variant, ...props };
   return (
     <Element
       as={href ? 'a' : 'button'}
@@ -101,6 +109,7 @@ export const Button: React.FC<ButtonProps> = ({
       data-effect={effect || null}
       data-icon={(icon && !(text || children) && true) || placement}
       data-round={round || null}
+      data-theme={theme || null}
       data-toggle={toggle || null}
       disabled={isBusy || isDisabled}
       href={href}
@@ -115,10 +124,13 @@ export const Button: React.FC<ButtonProps> = ({
 };
 
 const button = css`
-  --background-color: #eee;
-  --border-color: #eee;
+  --theme-color-1: ${colors.BUTTON_PRIMARY};
+  --theme-color-2: ${lighten(colors.BUTTON_PRIMARY, 0.1)};
+
+  --background-color: ;
+  --border-color: ;
   --border-size: 1px;
-  --color: #0f152e;
+  --color: ;
   --font-family: 'Inter', sans-serif;
   --font-weight: 500;
   --icon-size: 16px;
@@ -169,25 +181,25 @@ const button = css`
 const modification: Record<string, {}> = {};
 
 modification['primary'] = css`
-  --background-color: #004bff;
-  --border-color: #004bff;
-  --color: #fff;
+  --background-color: var(--theme-color-1);
+  --border-color: var(--theme-color-1);
+  --color: ${colors.WHITE};
 `;
 
 modification['secondary'] = css`
-  --background-color: #fff;
-  --border-color: #004bff;
-  --color: #004bff;
+  --background-color: ${colors.WHITE};
+  --border-color: var(--theme-color-1);
+  --color: var(--theme-color-1);
 
   &:disabled:not([data-busy]) {
-    --background-color: #fff;
+    --background-color: ${colors.WHITE};
   }
 `;
 
 modification['tertiary'] = css`
-  --background-color: #eee;
-  --border-color: #eee;
-  --color: #0f152e;
+  --background-color: ${colors.BUTTON_INACTIVE};
+  --border-color: ${colors.BUTTON_INACTIVE};
+  --color: ${colors.TEXT_PRIMARY};
 `;
 
 modification['sm'] = css`
@@ -224,7 +236,7 @@ const Element = styled.button<ButtonProps>`
     cursor: pointer;
 
     &[data-effect] {
-      --effect-color: #004bff;
+      --effect-color: var(--theme-color-1);
 
       &::before {
         ${ripple};
@@ -239,9 +251,9 @@ const Element = styled.button<ButtonProps>`
 
   &[data-active],
   &:not(:disabled, [data-busy]):hover {
-    --background-color: #3370ff;
-    --border-color: #3370ff;
-    --color: #fff;
+    --background-color: var(--theme-color-2);
+    --border-color: var(--theme-color-2);
+    --color: ${colors.WHITE};
   }
 
   &[data-busy] {
@@ -249,8 +261,8 @@ const Element = styled.button<ButtonProps>`
   }
 
   &:disabled:not([data-busy]) {
-    --background-color: #eee;
-    --border-color: #eee;
+    --background-color: ${colors.BUTTON_INACTIVE};
+    --border-color: ${colors.BUTTON_INACTIVE};
     --color: #bcbcbc;
   }
 
@@ -265,5 +277,18 @@ const Element = styled.button<ButtonProps>`
     svg {
       order: 2;
     }
+  }
+
+  &[data-theme='danger'] {
+    --theme-color-1: ${colors.DANGER};
+    --theme-color-2: ${lighten(colors.DANGER, 0.1)};
+  }
+  &[data-theme='success'] {
+    --theme-color-1: ${colors.SUCCESS};
+    --theme-color-2: ${lighten(colors.SUCCESS, 0.1)};
+  }
+  &[data-theme='warning'] {
+    --theme-color-1: ${colors.WARNING};
+    --theme-color-2: ${lighten(colors.WARNING, 0.1)};
   }
 `;

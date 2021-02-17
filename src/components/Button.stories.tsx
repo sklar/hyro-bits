@@ -27,7 +27,14 @@ export default {
     children: {
       control: { type: null },
     },
-    ...mapArgTypes(['effect', 'round', 'size', 'toggle', 'variant'], {
+    ...mapArgTypes(['type'], {
+      control: { type: 'inline-radio' },
+    }),
+    ...mapArgTypes(['effect', 'round', 'toggle'], {
+      table: { category: 'Modifiers' },
+    }),
+    ...mapArgTypes(['size', 'theme', 'variant'], {
+      control: { type: 'inline-radio' },
       table: { category: 'Modifiers' },
     }),
     ...mapArgTypes(['icon'], {
@@ -35,6 +42,7 @@ export default {
       control: { type: null },
     }),
     ...mapArgTypes(['placement'], {
+      control: { type: 'inline-radio' },
       table: { category: 'Icons' },
     }),
     ...mapArgTypes(['isActive', 'isBusy', 'isDisabled'], { table: { category: 'States' } }),

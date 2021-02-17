@@ -8,10 +8,7 @@ module.exports = {
     'storybook-addon-designs',
   ],
 
-  stories: [
-    '../src/components/**/*.stories.mdx',
-    '../src/components/**/*.stories.@(js|jsx|ts|tsx)',
-  ],
+  stories: ['../src/*.stories.mdx', '../src/components/**/*.stories.@(js|jsx|ts|tsx)'],
 
   webpackFinal: async (config, { configType }) => {
     const maxAssetSize = 200 * 1024;

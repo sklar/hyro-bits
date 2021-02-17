@@ -1,0 +1,61 @@
+import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
+import { darken, lighten, toHex } from 'color2k';
+
+import { colors } from 'theme';
+
+<Meta title="Colors" />
+
+# Colors
+
+## Brand colors
+
+<ColorPalette>
+  <ColorItem title="Primary" subtitle="Blue Ribbon" colors={[colors.PRIMARY]} />
+  <ColorItem title="Secondary" subtitle="Blue Dodger" colors={[colors.SECONDARY]} />
+</ColorPalette>
+
+## Accent colors
+
+<ColorPalette>
+  <ColorItem
+    title="Info"
+    subtitle="Blue Dodger"
+    colors={[toHex(darken(colors.INFO, 0.1)), colors.INFO, toHex(lighten(colors.INFO, 0.1))]}
+  />
+  <ColorItem
+    title="Success"
+    subtitle="Green Shumrock"
+    colors={[
+      toHex(darken(colors.SUCCESS, 0.1)),
+      colors.SUCCESS,
+      toHex(lighten(colors.SUCCESS, 0.1)),
+    ]}
+  />
+  <ColorItem
+    title="Warning"
+    subtitle="Orange Buckthorn"
+    colors={[
+      toHex(darken(colors.WARNING, 0.1)),
+      colors.WARNING,
+      toHex(lighten(colors.WARNING, 0.1)),
+    ]}
+  />
+  <ColorItem
+    title="Danger"
+    subtitle="Red Sunset"
+    colors={[toHex(darken(colors.DANGER, 0.1)), colors.DANGER, toHex(lighten(colors.DANGER, 0.1))]}
+  />
+</ColorPalette>
+
+## Token colors
+
+<ColorPalette>
+  <ColorItem title="Background / Primary" subtitle="White" colors={[colors.BACKGROUND_PRIMARY]} />
+  <ColorItem
+    title="Background / Secondary"
+    subtitle="Gray Alabaster"
+    colors={[colors.BACKGROUND_SECONDARY]}
+  />
+  <ColorItem title="Text / Primary" subtitle="Blue Haiti" colors={[colors.TEXT_PRIMARY]} />
+  <ColorItem title="Text / Secondary" subtitle="Blue Manatee" colors={[colors.TEXT_SECONDARY]} />
+</ColorPalette>
