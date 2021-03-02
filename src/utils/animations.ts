@@ -1,4 +1,5 @@
 import { keyframes } from '@emotion/react';
+import { Keyframes } from '@emotion/serialize';
 
 /**
  * Easing.
@@ -14,7 +15,7 @@ export const EASING = {
 /**
  * Fade In.
  */
-export const fadeIn = keyframes`
+export const fadeIn: Keyframes = keyframes`
   0%    { opacity: 0; }
   100%  { opacity: 1; }
 `;

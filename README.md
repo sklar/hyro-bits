@@ -35,3 +35,7 @@ Builds the Storybook as a static web app to the `storybook-static` folder.\
 Your app is ready to be deployed!
 
 See the section about [publishing storybook](https://storybook.js.org/docs/react/workflows/publish-storybook) for more information.
+
+### `yarn compile`
+
+Bundle package with types into `dist` folder with [Rollup](https://rollupjs.org/).

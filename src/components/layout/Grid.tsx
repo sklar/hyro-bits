@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, ReactNode } from 'react';
 import styled from '@emotion/styled';
 
-import { Alignment } from 'utils/types';
+import { Alignment } from '../../utils/types';
 
 export interface GridProps extends HTMLAttributes<HTMLElement> {
   align?: Alignment;

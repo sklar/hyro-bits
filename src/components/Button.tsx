@@ -3,11 +3,10 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { lighten } from 'color2k';
 
-import { Idle as Indicator } from 'components/indicator';
-import { colors } from 'theme';
-import { ElementSize, ElementTheme, ElementVariant } from 'utils/constants';
-import { ripple } from 'utils/effects';
-import { Values } from 'utils/types';
+import { Idle as Indicator } from '../components/indicator';
+import { colors } from '../theme';
+import { ripple } from '../utils/effects';
+import { Size, Theme, Variant } from '../utils/types';
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
@@ -46,11 +45,11 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
    * Size
    */
-  size?: Values<typeof ElementSize>;
+  size?: Size;
   /**
    * Theme
    */
-  theme?: Exclude<Values<typeof ElementTheme>, 'info'>;
+  theme?: Exclude<Theme, 'info'>;
   /**
    * Toggle
    */
@@ -58,7 +57,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
    * Variant
    */
-  variant?: Values<typeof ElementVariant>;
+  variant?: Variant;
 
   /**
    * State: Active

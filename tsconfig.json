@@ -3,6 +3,9 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "src",
+    "declaration": true,
+    "declarationDir": "dist/types",
+    "declarationMap": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
@@ -21,6 +24,9 @@
     "strict": true,
     "target": "es6"
   },
+  "exclude": [
+    "**/*.stories.*"
+  ],
   "include": [
     "src"
   ]

@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, ReactNode } from 'react';
 import styled from '@emotion/styled';
 
-import { FlexAlignment } from 'utils/types';
+import { FlexAlignment } from '../../utils/types';
 
 export interface FlexProps extends HTMLAttributes<HTMLElement> {
   /**

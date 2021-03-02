@@ -2,7 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import styled from '@emotion/styled';
 
-import { mapArgTypes } from 'utils/stories';
+import { mapArgTypes } from '../../utils/stories';
 
 import { Flex as Component, FlexProps } from './Flex';
 

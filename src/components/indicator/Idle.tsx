@@ -2,7 +2,7 @@ import React, { HTMLAttributes } from 'react';
 import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
-import { EASING } from 'utils/animations';
+import { EASING } from '../../utils/animations';
 
 export interface IdleProps extends HTMLAttributes<HTMLElement> {
   /**
