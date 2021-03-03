@@ -1,7 +1,14 @@
 {
-  "name": "hyro-bits",
+  "name": "@sklar/hyro-bits",
   "version": "0.1.0",
   "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sklar/hyro-bits"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com"
+  },
   "module": "dist/index.js",
   "types": "dist/types/index.d.ts",
   "source": "src/index.ts",
@@ -12,12 +19,13 @@
   "scripts": {
     "build": "yarn storybook:build",
     "bump:major": "npm version major -m 'Bump v%s :raised_hands:'",
-    "bump:minor": "npm version minor -m 'Bump v%s :point_up:''",
+    "bump:minor": "npm version minor -m 'Bump v%s :point_up:'",
     "bump:patch": "npm version patch -m 'Bump v%s'",
     "bump": "npm run bump:patch",
     "compile": "yarn clean && rollup -c",
     "clean": "rimraf -rf dist",
     "lint": "eslint --ext .js,.ts,.jsx,.tsx",
+    "prepublish": "yarn compile",
     "start": "yarn storybook",
     "storybook": "start-storybook -p 6006 -c .storybook -s ./src/assets",
     "storybook:build": "build-storybook -c .storybook -s ./src/assets",
