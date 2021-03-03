@@ -1,7 +1,5 @@
 # Hyro Bits [![Netlify Status](https://api.netlify.com/api/v1/badges/12dc96bb-b265-43f8-a631-906c22495fff/deploy-status)](https://app.netlify.com/sites/hyro-bits-bd1db7/deploys)
 
-![node](https://img.shields.io/badge/node-15.x.x-7FC100.svg?style=flat-square)
-
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and extended with [Storybook](https://storybook.js.org/docs/react/get-started/introduction).
 
 ### Table of Contents

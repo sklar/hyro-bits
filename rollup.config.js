@@ -13,5 +13,13 @@ export default {
     format: 'esm',
     sourcemap: true,
   },
-  plugins: [typescript(), filesize()],
+  plugins: [
+    typescript({
+      declaration: true,
+      declarationDir: 'dist/types',
+      declarationMap: true,
+      rootDir: 'src',
+    }),
+    filesize(),
+  ],
 };
