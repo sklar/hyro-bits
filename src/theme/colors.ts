@@ -1,3 +1,5 @@
+import { desaturate, lighten } from 'color2k';
+
 type Color = Record<string, string>;
 
 /**
@@ -5,32 +7,38 @@ type Color = Record<string, string>;
  * @see http://veli.ee/colorpedia/
  */
 const palette = {
-  black: '#000000',
+  //
+  black: '#000000', // hsl(0, 0%, 0%)
+  //
   blue: {
-    dodger: '#3370ff', // hsl(222deg 100% 60%)
-    haiti: '#0f152e',
-    manatee: '#878a98',
-    ribbon: '#004bff', // hsl(222deg 100% 50%)
-    zumthor: '#eef5ff',
+    haiti: '#0f152e', // hsl(228, 51%, 12%) – text
+    hawkes: '#ecf1fe', // hsl(223, 90%, 96%) – secondary
+    ribbon: '#004bff', // +hsl(222, 100%, 50%) – primary
+    wistful: '#a3acd6', // hsl(229, 38%, 74%)
   },
+  //
   current: 'currentColor',
+  //
   gray: {
-    alabaster: '#f8f8f8',
-    alto: '#d0d0d0',
-    dusty: '#979797',
-    gallery: '#eeeeee',
+    porcelain: '#f6f7f8', // hsl(210, 12%, 97%) – backgrounds
+    botticelli: '#dbe4ee', // hsl(212, 36%, 90%) – dividers and strokes
   },
+  //
   green: {
-    shamrock: '#27d388',
+    caribbean: '#07d094', // hsl(162, 93%, 42%)
   },
+  //
   orange: {
-    buckthorn: '#f79824',
+    amber: '#ffbe0b', // hsl(44, 100%, 52%)
   },
+  //
   red: {
-    sunset: '#fc4444',
+    radical: '#ff3b58', // hsl(351, 100%, 62%)
   },
+  //
   transparent: 'transparent',
-  white: '#ffffff',
+  //
+  white: '#ffffff', // hsl(0, 0%, 100%)
 };
 
 /**
@@ -38,10 +46,10 @@ const palette = {
  */
 const accents = ((c): Color => {
   return {
-    DANGER: c.red.sunset,
-    INFO: c.blue.dodger,
-    SUCCESS: c.green.shamrock,
-    WARNING: c.orange.buckthorn,
+    DANGER: c.red.radical,
+    NOTICE: lighten(c.blue.ribbon, 0.06),
+    SUCCESS: c.green.caribbean,
+    WARNING: c.orange.amber,
   };
 })(palette);
 
@@ -58,13 +66,14 @@ const accents = ((c): Color => {
 const tokens = ((c): Color => {
   return {
     PRIMARY: c.blue.ribbon,
-    SECONDARY: c.blue.dodger,
+    SECONDARY: c.blue.hawkes,
+    TERTIARY: lighten(desaturate(c.blue.ribbon, 0.85), 0.25),
     BACKGROUND_PRIMARY: c.white,
-    BACKGROUND_SECONDARY: c.gray.alabaster,
+    BACKGROUND_SECONDARY: c.gray.porcelain,
     BUTTON_PRIMARY: c.blue.ribbon,
-    BUTTON_INACTIVE: c.gray.gallery,
+    BUTTON_INACTIVE: lighten(desaturate(c.blue.ribbon, 0.74), 0.35),
     TEXT_PRIMARY: c.blue.haiti,
-    TEXT_SECONDARY: c.blue.manatee,
+    TEXT_SECONDARY: c.blue.hawkes,
   };
 })(palette);
 

@@ -10,40 +10,33 @@ import { colors } from 'theme';
 ## Brand colors
 
 <ColorPalette>
-  <ColorItem title="Primary" subtitle="Blue Ribbon" colors={[colors.PRIMARY]} />
-  <ColorItem title="Secondary" subtitle="Blue Dodger" colors={[colors.SECONDARY]} />
+  <ColorItem title="Primary" subtitle="Ribbon Blue" colors={[colors.PRIMARY]} />
+  <ColorItem title="Secondary" subtitle="Hawkes Blue" colors={[colors.SECONDARY]} />
+  <ColorItem title="Tertiary" subtitle="Cadet Blue (Primary derivative)" colors={[toHex(colors.TERTIARY)]} />
 </ColorPalette>
 
 ## Accent colors
 
 <ColorPalette>
   <ColorItem
-    title="Info"
-    subtitle="Blue Dodger"
-    colors={[toHex(darken(colors.INFO, 0.1)), colors.INFO, toHex(lighten(colors.INFO, 0.1))]}
+    title="Notice"
+    subtitle="Ribbon Blue (Primary derivative)"
+    colors={[toHex(colors.NOTICE)]}
   />
   <ColorItem
     title="Success"
-    subtitle="Green Shumrock"
-    colors={[
-      toHex(darken(colors.SUCCESS, 0.1)),
-      colors.SUCCESS,
-      toHex(lighten(colors.SUCCESS, 0.1)),
-    ]}
+    subtitle="Caribbean Green"
+    colors={[colors.SUCCESS]}
   />
   <ColorItem
     title="Warning"
-    subtitle="Orange Buckthorn"
-    colors={[
-      toHex(darken(colors.WARNING, 0.1)),
-      colors.WARNING,
-      toHex(lighten(colors.WARNING, 0.1)),
-    ]}
+    subtitle="Amber Orange"
+    colors={[colors.WARNING]}
   />
   <ColorItem
     title="Danger"
-    subtitle="Red Sunset"
-    colors={[toHex(darken(colors.DANGER, 0.1)), colors.DANGER, toHex(lighten(colors.DANGER, 0.1))]}
+    subtitle="Radical Red"
+    colors={[colors.DANGER]}
   />
 </ColorPalette>
 
@@ -53,9 +46,9 @@ import { colors } from 'theme';
   <ColorItem title="Background / Primary" subtitle="White" colors={[colors.BACKGROUND_PRIMARY]} />
   <ColorItem
     title="Background / Secondary"
-    subtitle="Gray Alabaster"
+    subtitle="Porcelain Gray"
     colors={[colors.BACKGROUND_SECONDARY]}
   />
-  <ColorItem title="Text / Primary" subtitle="Blue Haiti" colors={[colors.TEXT_PRIMARY]} />
-  <ColorItem title="Text / Secondary" subtitle="Blue Manatee" colors={[colors.TEXT_SECONDARY]} />
+  <ColorItem title="Text / Primary" subtitle="Haiti Blue" colors={[colors.TEXT_PRIMARY]} />
+  <ColorItem title="Text / Secondary" subtitle="Hawkes Blue" colors={[colors.TEXT_SECONDARY]} />
 </ColorPalette>

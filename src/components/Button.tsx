@@ -49,7 +49,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
    * Theme
    */
-  theme?: Exclude<Theme, 'info'>;
+  theme?: Exclude<Theme, 'notice'>;
   /**
    * Toggle
    */

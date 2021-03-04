@@ -5,7 +5,7 @@ export const ElementSize = {
 } as const;
 
 export const ElementTheme = {
-  INFO: 'info',
+  NOTICE: 'notice',
   SUCCESS: 'success',
   WARNING: 'warning',
   DANGER: 'danger',
