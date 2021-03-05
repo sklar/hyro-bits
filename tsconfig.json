@@ -21,10 +21,7 @@
     "strict": true,
     "target": "es6"
   },
-  "exclude": [
-    "**/*.stories.*"
-  ],
   "include": [
-    "src"
+    "src",
   ]
 }
