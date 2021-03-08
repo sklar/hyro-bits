@@ -8,7 +8,7 @@ export default {
   external: [...Object.keys(pkg.peerDependencies), 'react/jsx-runtime'],
   input: pkg.source,
   output: {
-    banner: '/** Hyro Bits v' + pkg.version + ' */\n',
+    banner: '/** Components v' + pkg.version + ' */\n',
     dir: 'dist',
     format: 'esm',
     sourcemap: true,

@@ -6,6 +6,6 @@ import pkg from '../package.json';
 addons.setConfig({
   theme: {
     ...themes.dark,
-    brandTitle: `Hyro Bits v${pkg.version}`,
+    brandTitle: `Components v${pkg.version}`,
   },
 });
