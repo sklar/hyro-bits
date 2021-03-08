@@ -1,5 +1,3 @@
-import { desaturate, lighten } from 'color2k';
-
 type Color = Record<string, string>;
 
 /**
@@ -8,37 +6,41 @@ type Color = Record<string, string>;
  */
 const palette = {
   //
-  black: '#000000', // hsl(0, 0%, 0%)
+  black: '#000000',
   //
   blue: {
-    haiti: '#0f152e', // hsl(228, 51%, 12%) – text
-    hawkes: '#ecf1fe', // hsl(223, 90%, 96%) – secondary
-    ribbon: '#004bff', // +hsl(222, 100%, 50%) – primary
-    wistful: '#a3acd6', // hsl(229, 38%, 74%)
+    dodger: '#3370ff', // focus
+    haiti: '#0f152e', // text
+    hawkes: '#ecf1fe', // secondary
+    ribbon: '#004bff', // primary
+    ribbon1: '#1d61ff', // notice
+    science: '#0041dd', // pressed
   },
   //
   current: 'currentColor',
   //
   gray: {
-    porcelain: '#f6f7f8', // hsl(210, 12%, 97%) – backgrounds
-    botticelli: '#dbe4ee', // hsl(212, 36%, 90%) – dividers and strokes
+    cadet: '#b4bac8', // tertiary
+    geyser: '#ced4e2', // disabled
+    porcelain: '#f6f7f8', // backgrounds
+    botticelli: '#dbe4ee', // dividers and strokes
   },
   //
   green: {
-    caribbean: '#07d094', // hsl(162, 93%, 42%)
+    caribbean: '#07d094', // success
   },
   //
   orange: {
-    amber: '#ffbe0b', // hsl(44, 100%, 52%)
+    amber: '#ffbe0b', // warning
   },
   //
   red: {
-    radical: '#ff3b58', // hsl(351, 100%, 62%)
+    radical: '#ff3b58', // error
   },
   //
   transparent: 'transparent',
   //
-  white: '#ffffff', // hsl(0, 0%, 100%)
+  white: '#ffffff',
 };
 
 /**
@@ -47,7 +49,7 @@ const palette = {
 const accents = ((c): Color => {
   return {
     DANGER: c.red.radical,
-    NOTICE: lighten(c.blue.ribbon, 0.06),
+    NOTICE: c.blue.ribbon1,
     SUCCESS: c.green.caribbean,
     WARNING: c.orange.amber,
   };
@@ -67,11 +69,15 @@ const tokens = ((c): Color => {
   return {
     PRIMARY: c.blue.ribbon,
     SECONDARY: c.blue.hawkes,
-    TERTIARY: lighten(desaturate(c.blue.ribbon, 0.85), 0.25),
+    TERTIARY: c.gray.cadet,
     BACKGROUND_PRIMARY: c.white,
     BACKGROUND_SECONDARY: c.gray.porcelain,
-    BUTTON_PRIMARY: c.blue.ribbon,
-    BUTTON_INACTIVE: lighten(desaturate(c.blue.ribbon, 0.74), 0.35),
+    ELEMENT_PRIMARY: c.blue.ribbon,
+    ELEMENT_SECONDARY: c.blue.hawkes,
+    ELEMENT_TERTIARY: c.gray.cadet,
+    ELEMENT_ACTIVE: c.blue.science,
+    ELEMENT_DISABLED: c.gray.geyser,
+    ELEMENT_FOCUS: c.blue.dodger,
     TEXT_PRIMARY: c.blue.haiti,
     TEXT_SECONDARY: c.blue.hawkes,
   };

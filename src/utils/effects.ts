@@ -1,5 +1,5 @@
 import { css } from '@emotion/react';
-import { EASING } from 'utils/animations';
+import { EASING } from './animations';
 
 /**
  * Ripple effect.

@@ -1,12 +1,10 @@
 import React, { HTMLAttributes, ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { lighten } from 'color2k';
 
 import { Idle as Indicator } from '../components/indicator';
 import { colors } from '../theme';
-import { ripple } from '../utils/effects';
-import { Size, Theme, Variant } from '../utils/types';
+import { Variant } from '../utils/types';
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
@@ -27,10 +25,6 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   type?: 'button' | 'reset' | 'submit';
 
   /**
-   * Effect
-   */
-  effect?: boolean;
-  /**
    * Icon
    */
   icon?: ReactElement;
@@ -39,17 +33,9 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
    */
   placement?: 'left' | 'right';
   /**
-   * Round
-   */
-  round?: boolean;
-  /**
-   * Size
-   */
-  size?: Size;
-  /**
    * Theme
    */
-  theme?: Exclude<Theme, 'notice'>;
+  // theme?: Exclude<Theme, 'notice'>;
   /**
    * Toggle
    */
@@ -57,7 +43,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
    * Variant
    */
-  variant?: Variant;
+  variant?: Variant | 'ghost';
 
   /**
    * State: Active
@@ -83,32 +69,28 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
  */
 export const Button: React.FC<ButtonProps> = ({
   children,
-  effect = true,
   href,
   icon,
   isActive,
   isBusy,
   isDisabled,
-  placement = 'left',
-  round,
-  size = 'md',
+  placement,
   text,
-  theme,
+  // theme,
   toggle,
   type = 'button',
   variant = 'secondary',
   ...props
 }): JSX.Element => {
-  const delegated = { size, theme, variant, ...props };
+  // const delegated = { theme, variant, ...props };
+  const delegated = { variant, ...props };
   return (
     <Element
       as={href ? 'a' : 'button'}
       data-active={isActive || null}
       data-busy={isBusy || null}
-      data-effect={effect || null}
       data-icon={(icon && !(text || children) && true) || placement}
-      data-round={round || null}
-      data-theme={theme || null}
+      // data-theme={theme || null}
       data-toggle={toggle || null}
       disabled={isBusy || isDisabled}
       href={href}
@@ -123,25 +105,28 @@ export const Button: React.FC<ButtonProps> = ({
 };
 
 const button = css`
-  --theme-color-1: ${colors.BUTTON_PRIMARY};
-  --theme-color-2: ${lighten(colors.BUTTON_PRIMARY, 0.1)};
-
   --background-color: ;
   --border-color: ;
   --border-size: 1px;
+  --box-shadow: ;
   --color: ;
   --font-family: 'Inter', sans-serif;
-  --font-weight: 500;
+  --font-size: 14px;
+  --font-weight: 600;
+  --gap: 8px;
+  --icon-offset: 4px;
   --icon-size: 16px;
-  --radius: 4px;
-
-  --set-icon: 0;
-  --use-effect: 0;
+  --icon-rotation: 0;
+  --icon-transform: ;
+  --indent: 14px;
+  --radius: 6px;
+  --size: 32px;
 
   align-items: center;
   background-color: var(--background-color);
   border: var(--border-size) solid var(--border-color);
   border-radius: var(--radius);
+  box-shadow: 0 0 0 3px var(--box-shadow);
   box-sizing: border-box;
   color: var(--color);
   display: inline-flex;
@@ -151,8 +136,10 @@ const button = css`
   gap: var(--gap);
   height: var(--size);
   justify-content: center;
+  letter-spacing: -0.01em;
   line-height: var(--size);
   margin: 0;
+  min-width: var(--size);
   overflow: hidden;
   outline: 0;
   padding: 0 var(--indent);
@@ -172,122 +159,116 @@ const button = css`
     transition-duration: 0.3s;
     transition-property: transform;
     transition-timing-function: ease-in-out;
-    transform: rotateX(calc(var(--set-icon) * 180deg));
+    transform: var(--icon-transform);
     will-change: transform;
   }
 `;
 
+/**
+ * Note that [data-hover] and [data-pressed] are here only to help
+ * better illustrate `:hover` and `:active` state in the dedicated story.
+ */
+
 const modification: Record<string, {}> = {};
 
 modification['primary'] = css`
-  --background-color: var(--theme-color-1);
-  --border-color: var(--theme-color-1);
+  --background-color: ${colors.ELEMENT_PRIMARY};
+  --border-color: ${colors.ELEMENT_PRIMARY};
   --color: ${colors.WHITE};
+
+  &:is(:active, [data-pressed]):not(:disabled, [data-busy]) {
+    --box-shadow: ${colors.ELEMENT_SECONDARY};
+  }
+  &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]):not(:disabled, [data-busy]) {
+    --background-color: ${colors.ELEMENT_ACTIVE};
+    --border-color: ${colors.ELEMENT_ACTIVE};
+  }
 `;
 
 modification['secondary'] = css`
-  --background-color: ${colors.WHITE};
-  --border-color: var(--theme-color-1);
-  --color: var(--theme-color-1);
+  --background-color: ${colors.ELEMENT_SECONDARY};
+  --border-color: ${colors.ELEMENT_SECONDARY};
+  --color: ${colors.TEXT_PRIMARY};
 
+  &:is(:active, [data-pressed]):not(:disabled, [data-busy]) {
+    --box-shadow: #f6f8fd;
+  }
+  &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]):not(:disabled, [data-busy]) {
+    --background-color: #d8e1fc;
+    --border-color: #d8e1fc;
+    --color: ${colors.ELEMENT_PRIMARY};
+  }
   &:disabled:not([data-busy]) {
-    --background-color: ${colors.WHITE};
+    --color: ${colors.WHITE};
   }
 `;
 
 modification['tertiary'] = css`
-  --background-color: ${colors.BUTTON_INACTIVE};
-  --border-color: ${colors.BUTTON_INACTIVE};
-  --color: ${colors.TEXT_PRIMARY};
+  --background-color: ${colors.ELEMENT_TERTIARY};
+  --border-color: ${colors.ELEMENT_TERTIARY};
+  --color: ${colors.WHITE};
 `;
 
-modification['sm'] = css`
-  --font-size: 10px;
-  --gap: 3px;
-  --indent: 8px;
-  --size: 23px;
-`;
-modification['md'] = css`
-  --font-size: 12px;
-  --gap: 5px;
-  --indent: 10px;
-  --size: 30px;
-`;
-modification['lg'] = css`
-  --font-size: 13px;
-  --gap: 8px;
-  --indent: 12px;
-  --size: 36px;
+modification['ghost'] = css`
+  --background-color: ${colors.TRANSPARENT};
+  --border-color: ${colors.TRANSPARENT};
+  --color: ${colors.TEXT_PRIMARY};
+
+  &:is(:active, [data-active], [data-pressed]):not(:disabled, [data-busy]) {
+    --color: ${colors.ELEMENT_PRIMARY};
+  }
+  &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]):not(:disabled, [data-busy]) {
+    --background-color: ${colors.ELEMENT_SECONDARY};
+    --border-color: ${colors.ELEMENT_SECONDARY};
+  }
+  &:disabled:not([data-busy]) {
+    --background-color: ${colors.TRANSPARENT};
+    --border-color: ${colors.TRANSPARENT};
+    --color: ${colors.ELEMENT_DISABLED};
+  }
 `;
 
 const Element = styled.button<ButtonProps>`
   ${button};
 
-  &[data-round] {
-    --radius: 100px;
-  }
-
-  &[data-toggle][data-active] {
-    --set-icon: 1;
-  }
-
   &:not(:disabled, [data-busy]) {
     cursor: pointer;
-
-    &[data-effect] {
-      --effect-color: var(--theme-color-1);
-
-      &::before {
-        ${ripple};
-        z-index: -1;
-      }
-    }
-  }
-
-  &:active {
-    --use-effect: 1;
-  }
-
-  &[data-active],
-  &:not(:disabled, [data-busy]):hover {
-    --background-color: var(--theme-color-2);
-    --border-color: var(--theme-color-2);
-    --color: ${colors.WHITE};
   }
 
   &[data-busy] {
     color: transparent;
   }
 
-  &:disabled:not([data-busy]) {
-    --background-color: ${colors.BUTTON_INACTIVE};
-    --border-color: ${colors.BUTTON_INACTIVE};
-    --color: #bcbcbc;
+  &[data-toggle] {
+    --icon-transform: rotateX(calc(var(--icon-rotation) * 180deg)) rotateZ(90deg);
+
+    &[data-active] {
+      --icon-rotation: 1;
+    }
   }
 
-  ${({ size }) => size && modification[size]};
+  &:disabled:not([data-busy]) {
+    --background-color: ${colors.ELEMENT_DISABLED};
+    --border-color: ${colors.ELEMENT_DISABLED};
+  }
+
   ${({ variant }) => variant && modification[variant]};
 
   &[data-icon='true'] {
     padding: 0;
     width: var(--size);
   }
+  &[data-icon='left'] {
+    padding-left: calc(var(--indent) - var(--icon-offset));
+  }
   &[data-icon='right'] {
+    padding-right: calc(var(--indent) - var(--icon-offset));
     svg {
       order: 2;
     }
   }
 
-  &[data-theme='danger'] {
-    --theme-color-1: ${colors.DANGER};
-    --theme-color-2: ${lighten(colors.DANGER, 0.1)};
-  }
-  &[data-theme='success'] {
-    --theme-color-1: ${colors.SUCCESS};
-    --theme-color-2: ${lighten(colors.SUCCESS, 0.1)};
-  }
-  &[data-theme='warning'] {
-    --theme-color-1: ${colors.WARNING};
-    --theme-color-2: ${lighten(colors.WARNING, 0.1)};
-  }
+  /* &[data-theme='danger'] {}
+  &[data-theme='success'] {}
+  &[data-theme='warning'] {} */
 `;

@@ -1,7 +1,5 @@
 import { Meta, ColorPalette, ColorItem } from '@storybook/addon-docs/blocks';
-import { darken, lighten, toHex } from 'color2k';
-
-import { colors } from 'theme';
+import { colors } from './theme';
 
 <Meta title="Colors" />
 
@@ -12,7 +10,7 @@ import { colors } from 'theme';
 <ColorPalette>
   <ColorItem title="Primary" subtitle="Ribbon Blue" colors={[colors.PRIMARY]} />
   <ColorItem title="Secondary" subtitle="Hawkes Blue" colors={[colors.SECONDARY]} />
-  <ColorItem title="Tertiary" subtitle="Cadet Blue (Primary derivative)" colors={[toHex(colors.TERTIARY)]} />
+  <ColorItem title="Tertiary" subtitle="Cadet Blue (Primary derivative)" colors={[colors.TERTIARY]} />
 </ColorPalette>
 
 ## Accent colors
@@ -21,7 +19,7 @@ import { colors } from 'theme';
   <ColorItem
     title="Notice"
     subtitle="Ribbon Blue (Primary derivative)"
-    colors={[toHex(colors.NOTICE)]}
+    colors={[colors.NOTICE]}
   />
   <ColorItem
     title="Success"

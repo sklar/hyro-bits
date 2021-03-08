@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import styled from '@emotion/styled';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { withDesign } from 'storybook-addon-designs';
 
@@ -7,17 +8,21 @@ import { mapArgTypes } from '../utils/stories';
 
 import { Button, ButtonProps } from './Button';
 
-import { ReactComponent as IconChevron } from 'assets/images/16/chevron.svg';
-import { ReactComponent as IconEdit } from 'assets/images/16/edit.svg';
-import { ReactComponent as IconPlus } from 'assets/images/16/plus-alt.svg';
-import { ReactComponent as IconShare } from 'assets/images/16/share.svg';
+import { ReactComponent as IconChevron } from '../assets/images/16/chevron.svg';
+import { ReactComponent as IconFlash } from '../assets/images/16/flash.svg';
 
 export default {
   title: 'Components/Button',
   component: Button,
   decorators: [
     (Story) => (
-      <Grid align="center" columns="repeat(4, 1fr)" gap="1em" justify="start">
+      <Grid align="center" columns="repeat(6, 1fr)" gap="1em" justify="start">
+        <Legend>default</Legend>
+        <Legend>hover</Legend>
+        <Legend>pressed</Legend>
+        <Legend>active</Legend>
+        <Legend>busy</Legend>
+        <Legend>disabled</Legend>
         <Story />
       </Grid>
     ),
@@ -30,10 +35,10 @@ export default {
     ...mapArgTypes(['type'], {
       control: { type: 'inline-radio' },
     }),
-    ...mapArgTypes(['effect', 'round', 'toggle'], {
+    ...mapArgTypes(['toggle'], {
       table: { category: 'Modifiers' },
     }),
-    ...mapArgTypes(['size', 'theme', 'variant'], {
+    ...mapArgTypes(['variant'], {
       control: { type: 'inline-radio' },
       table: { category: 'Modifiers' },
     }),
@@ -52,73 +57,34 @@ export default {
 
 const Template: Story<ButtonProps> = (args) => (
   <>
-    <Button {...args} size="sm" />
-    <Button {...args} size="sm" isActive />
-    <Button {...args} size="sm" isBusy />
-    <Button {...args} size="sm" isDisabled />
-
     <Button {...args} />
+    <Button {...args} data-hover />
+    <Button {...args} data-pressed />
     <Button {...args} isActive />
     <Button {...args} isBusy />
     <Button {...args} isDisabled />
-
-    <Button {...args} size="lg" />
-    <Button {...args} size="lg" isActive />
-    <Button {...args} size="lg" isBusy />
-    <Button {...args} size="lg" isDisabled />
   </>
 );
 
 const TemplateIcon: Story<ButtonProps> = (args) => (
   <>
-    <Button icon={<IconEdit />} {...args} size="sm" />
-    <Button icon={<IconEdit />} {...args} size="sm" isActive />
-    <Button icon={<IconEdit />} {...args} size="sm" isBusy />
-    <Button icon={<IconEdit />} {...args} size="sm" isDisabled />
-
-    <Button icon={<IconEdit />} {...args} />
-    <Button icon={<IconEdit />} {...args} isActive />
-    <Button icon={<IconEdit />} {...args} isBusy />
-    <Button icon={<IconEdit />} {...args} isDisabled />
-
-    <Button icon={<IconEdit />} {...args} size="lg" />
-    <Button icon={<IconEdit />} {...args} size="lg" isActive />
-    <Button icon={<IconEdit />} {...args} size="lg" isBusy />
-    <Button icon={<IconEdit />} {...args} size="lg" isDisabled />
-
-    <Button icon={<IconShare />} {...args} round size="sm" />
-    <Button icon={<IconShare />} {...args} round size="sm" isActive />
-    <Button icon={<IconShare />} {...args} round size="sm" isBusy />
-    <Button icon={<IconShare />} {...args} round size="sm" isDisabled />
-
-    <Button icon={<IconShare />} {...args} round />
-    <Button icon={<IconShare />} {...args} round isActive />
-    <Button icon={<IconShare />} {...args} round isBusy />
-    <Button icon={<IconShare />} {...args} round isDisabled />
-
-    <Button icon={<IconShare />} {...args} round size="lg" />
-    <Button icon={<IconShare />} {...args} round size="lg" isActive />
-    <Button icon={<IconShare />} {...args} round size="lg" isBusy />
-    <Button icon={<IconShare />} {...args} round size="lg" isDisabled />
+    <Button icon={<IconFlash />} {...args} />
+    <Button icon={<IconFlash />} {...args} data-hover />
+    <Button icon={<IconFlash />} {...args} data-pressed />
+    <Button icon={<IconFlash />} {...args} isActive />
+    <Button icon={<IconFlash />} {...args} isBusy />
+    <Button icon={<IconFlash />} {...args} isDisabled />
   </>
 );
 
 const TemplateIconWithText: Story<ButtonProps> = (args) => (
   <>
-    <Button icon={<IconPlus />} {...args} size="sm" />
-    <Button icon={<IconPlus />} {...args} size="sm" isActive />
-    <Button icon={<IconPlus />} {...args} size="sm" isBusy />
-    <Button icon={<IconPlus />} {...args} size="sm" isDisabled />
-
-    <Button icon={<IconPlus />} {...args} />
-    <Button icon={<IconPlus />} {...args} isActive />
-    <Button icon={<IconPlus />} {...args} isBusy />
-    <Button icon={<IconPlus />} {...args} isDisabled />
-
-    <Button icon={<IconPlus />} {...args} size="lg" />
-    <Button icon={<IconPlus />} {...args} size="lg" isActive />
-    <Button icon={<IconPlus />} {...args} size="lg" isBusy />
-    <Button icon={<IconPlus />} {...args} size="lg" isDisabled />
+    <Button icon={<IconFlash />} {...args} />
+    <Button icon={<IconFlash />} {...args} data-hover />
+    <Button icon={<IconFlash />} {...args} data-pressed />
+    <Button icon={<IconFlash />} {...args} isActive />
+    <Button icon={<IconFlash />} {...args} isBusy />
+    <Button icon={<IconFlash />} {...args} isDisabled />
   </>
 );
 
@@ -131,38 +97,19 @@ const TemplateToggle: Story<ButtonProps> = (args) => {
         icon={<IconChevron />}
         {...args}
         placement="right"
-        size="sm"
         isActive={active}
         onClick={() => setActive(!active)}
       />
       <Button
+        data-hover
         icon={<IconChevron />}
         {...args}
         placement="right"
-        size="sm"
-        onClick={() => setActive(!active)}
-        isActive
-      />
-      <Button
-        icon={<IconChevron />}
-        {...args}
-        placement="right"
-        size="sm"
         isActive={active}
         onClick={() => setActive(!active)}
-        isBusy
       />
       <Button
-        icon={<IconChevron />}
-        {...args}
-        placement="right"
-        size="sm"
-        isActive={active}
-        onClick={() => setActive(!active)}
-        isDisabled
-      />
-
-      <Button
+        data-pressed
         icon={<IconChevron />}
         {...args}
         placement="right"
@@ -188,41 +135,6 @@ const TemplateToggle: Story<ButtonProps> = (args) => {
         icon={<IconChevron />}
         {...args}
         placement="right"
-        isActive={active}
-        onClick={() => setActive(!active)}
-        isDisabled
-      />
-
-      <Button
-        icon={<IconChevron />}
-        {...args}
-        placement="right"
-        size="lg"
-        isActive={active}
-        onClick={() => setActive(!active)}
-      />
-      <Button
-        icon={<IconChevron />}
-        {...args}
-        placement="right"
-        size="lg"
-        onClick={() => setActive(!active)}
-        isActive
-      />
-      <Button
-        icon={<IconChevron />}
-        {...args}
-        placement="right"
-        size="lg"
-        isActive={active}
-        onClick={() => setActive(!active)}
-        isBusy
-      />
-      <Button
-        icon={<IconChevron />}
-        {...args}
-        placement="right"
-        size="lg"
         isActive={active}
         onClick={() => setActive(!active)}
         isDisabled
@@ -231,18 +143,60 @@ const TemplateToggle: Story<ButtonProps> = (args) => {
   );
 };
 
+const TemplateOverview: Story<ButtonProps> = (args) => (
+  <>
+    <Template {...args} />
+    <Template {...args} text="Primary" variant="primary" />
+    <TemplateIconWithText
+      {...args}
+      icon={<IconFlash />}
+      placement="left"
+      text="Primary"
+      variant="primary"
+    />
+    <TemplateIcon {...args} icon={<IconFlash />} text="" variant="primary" />
+    <Template {...args} text="Secondary" variant="secondary" />
+    <TemplateIconWithText
+      {...args}
+      icon={<IconFlash />}
+      placement="left"
+      text="Secondary"
+      variant="secondary"
+    />
+    <TemplateIcon {...args} icon={<IconFlash />} text="" variant="secondary" />
+    <Template {...args} text="Tertiary" variant="tertiary" />
+    <TemplateIconWithText
+      {...args}
+      icon={<IconFlash />}
+      placement="left"
+      text="Tertiary"
+      variant="tertiary"
+    />
+    <TemplateIcon {...args} icon={<IconFlash />} text="" variant="tertiary" />
+    <Template {...args} text="Ghost" variant="ghost" />
+    <TemplateIconWithText
+      {...args}
+      icon={<IconFlash />}
+      placement="left"
+      text="Ghost"
+      variant="ghost"
+    />
+    <TemplateIcon {...args} icon={<IconFlash />} text="" variant="ghost" />
+  </>
+);
+
 const params = {
   design: {
     type: 'figma',
-    url: 'https://www.figma.com/file/SeJtckGsmgF2x29utXQhPJ/Design-System?node-id=309%3A556',
+    url: 'https://www.figma.com/file/YgguhjSFNweP8so3tHTq7l/New-Design-System-Copy?node-id=12%3A50',
   },
 };
 
-export const Basic = Template.bind({});
-Basic.args = {
+export const Overview = TemplateOverview.bind({});
+Overview.args = {
   text: 'Button',
 };
-Basic.parameters = { ...params };
+Overview.parameters = { ...params };
 
 export const Primary = Template.bind({});
 Primary.args = {
@@ -265,6 +219,13 @@ Tertiary.args = {
 };
 Tertiary.parameters = { ...params };
 
+export const Ghost = Template.bind({});
+Ghost.args = {
+  text: 'Button',
+  variant: 'ghost',
+};
+Ghost.parameters = { ...params };
+
 export const Icon = TemplateIcon.bind({});
 Icon.args = {};
 Icon.parameters = { ...params };
@@ -283,3 +244,9 @@ Toggle.args = {
   toggle: true,
 };
 Toggle.parameters = { ...params };
+
+const Legend = styled.small`
+  color: hsl(0 0% 50%);
+  font-size: 0.8rem;
+  padding-left: 1ch;
+`;
