@@ -227,7 +227,9 @@ Ghost.args = {
 Ghost.parameters = { ...params };
 
 export const Icon = TemplateIcon.bind({});
-Icon.args = {};
+Icon.args = {
+  variant: 'ghost',
+};
 Icon.parameters = { ...params };
 
 export const IconWithText = TemplateIconWithText.bind({});
