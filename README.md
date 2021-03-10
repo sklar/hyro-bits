@@ -73,7 +73,15 @@ yarn compile
 
  ### 🚧 Installing package
 
-Follow the [Github Packages instructions](https://docs.github.com/en/packages/guides/configuring-npm-for-use-with-github-packages#installing-a-package) and don't forget to install peer dependencies.
+Follow the [Github Packages instructions](https://docs.github.com/en/packages/guides/configuring-npm-for-use-with-github-packages#installing-a-package).
+
+TL;DR add `npmrc` with the access token in a project root.
+
+```
+//npm.pkg.github.com/:_authToken=7dc4e9ea1a76c7186d9fbe3b1460ea04ae5143f6
+@purplenl:registry=https://npm.pkg.github.com
+```
+
 
 ### 🚧 Invalid Hook Call Warning
 
