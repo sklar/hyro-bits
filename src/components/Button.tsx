@@ -52,15 +52,15 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
    * State: Active
    */
-  isActive?: boolean;
+  active?: boolean;
   /**
    * State: Busy
    */
-  isBusy?: boolean;
+  busy?: boolean;
   /**
    * State: Disabled
    */
-  isDisabled?: boolean;
+  disabled?: boolean;
 
   /**
    * Event: Click
@@ -72,12 +72,12 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
  * Primary UI component for user interaction
  */
 export const Button: React.FC<ButtonProps> = ({
+  active,
+  busy,
   children,
+  disabled,
   href,
   icon,
-  isActive,
-  isBusy,
-  isDisabled,
   placement,
   round,
   text,
@@ -92,20 +92,20 @@ export const Button: React.FC<ButtonProps> = ({
   return (
     <Element
       as={href ? 'a' : 'button'}
-      data-active={isActive || null}
-      data-busy={isBusy || null}
+      data-active={active || null}
+      data-busy={busy || null}
       data-icon={(icon && !(text || children) && true) || placement}
       data-round={round || null}
       // data-theme={theme || null}
       data-toggle={toggle || null}
-      disabled={isBusy || isDisabled}
+      disabled={busy || disabled}
       href={href}
       type={type}
       {...delegated}
     >
       {icon && icon}
       {text ? text : children}
-      {isBusy && <Indicator style={{ position: 'absolute' }} />}
+      {busy && <Indicator style={{ position: 'absolute' }} />}
     </Element>
   );
 };
