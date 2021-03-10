@@ -3,10 +3,9 @@ import styled from '@emotion/styled';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { withDesign } from 'storybook-addon-designs';
 
-import { Grid } from '../components/layout/Grid';
 import { mapArgTypes } from '../utils/stories';
-
 import { Button, ButtonProps } from './Button';
+import { Flex, Grid } from './layout';
 
 import { ReactComponent as IconChevron } from '../assets/images/16/chevron.svg';
 import { ReactComponent as IconFlash } from '../assets/images/16/flash.svg';
@@ -35,7 +34,7 @@ export default {
     ...mapArgTypes(['type'], {
       control: { type: 'inline-radio' },
     }),
-    ...mapArgTypes(['toggle'], {
+    ...mapArgTypes(['round', 'toggle'], {
       table: { category: 'Modifiers' },
     }),
     ...mapArgTypes(['variant'], {
@@ -68,12 +67,30 @@ const Template: Story<ButtonProps> = (args) => (
 
 const TemplateIcon: Story<ButtonProps> = (args) => (
   <>
-    <Button icon={<IconFlash />} {...args} />
-    <Button icon={<IconFlash />} {...args} data-hover />
-    <Button icon={<IconFlash />} {...args} data-pressed />
-    <Button icon={<IconFlash />} {...args} isActive />
-    <Button icon={<IconFlash />} {...args} isBusy />
-    <Button icon={<IconFlash />} {...args} isDisabled />
+    <Flex gap="8px">
+      <Button icon={<IconFlash />} {...args} />
+      <Button icon={<IconFlash />} {...args} round />
+    </Flex>
+    <Flex gap="8px">
+      <Button icon={<IconFlash />} {...args} data-hover />
+      <Button icon={<IconFlash />} {...args} data-hover round />
+    </Flex>
+    <Flex gap="8px">
+      <Button icon={<IconFlash />} {...args} data-pressed />
+      <Button icon={<IconFlash />} {...args} data-pressed round />
+    </Flex>
+    <Flex gap="8px">
+      <Button icon={<IconFlash />} {...args} isActive />
+      <Button icon={<IconFlash />} {...args} isActive round />
+    </Flex>
+    <Flex gap="8px">
+      <Button icon={<IconFlash />} {...args} isBusy />
+      <Button icon={<IconFlash />} {...args} isBusy round />
+    </Flex>
+    <Flex gap="8px">
+      <Button icon={<IconFlash />} {...args} isDisabled />
+      <Button icon={<IconFlash />} {...args} isDisabled round />
+    </Flex>
   </>
 );
 

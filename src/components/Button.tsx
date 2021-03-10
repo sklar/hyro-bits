@@ -33,6 +33,10 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
    */
   placement?: 'left' | 'right';
   /**
+   * Round
+   */
+  round?: boolean;
+  /**
    * Theme
    */
   // theme?: Exclude<Theme, 'notice'>;
@@ -75,6 +79,7 @@ export const Button: React.FC<ButtonProps> = ({
   isBusy,
   isDisabled,
   placement,
+  round,
   text,
   // theme,
   toggle,
@@ -90,6 +95,7 @@ export const Button: React.FC<ButtonProps> = ({
       data-active={isActive || null}
       data-busy={isBusy || null}
       data-icon={(icon && !(text || children) && true) || placement}
+      data-round={round || null}
       // data-theme={theme || null}
       data-toggle={toggle || null}
       disabled={isBusy || isDisabled}
@@ -230,6 +236,10 @@ modification['ghost'] = css`
 
 const Element = styled.button<ButtonProps>`
   ${button};
+
+  &[data-round] {
+    --radius: 1000px;
+  }
 
   &:not(:disabled, [data-busy]) {
     cursor: pointer;
