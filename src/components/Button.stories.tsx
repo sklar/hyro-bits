@@ -190,15 +190,6 @@ const TemplateOverview: Story<ButtonProps> = (args) => (
       variant="tertiary"
     />
     <TemplateIcon {...args} icon={<IconFlash />} text="" variant="tertiary" />
-    <Template {...args} text="Ghost" variant="ghost" />
-    <TemplateIconWithText
-      {...args}
-      icon={<IconFlash />}
-      placement="left"
-      text="Ghost"
-      variant="ghost"
-    />
-    <TemplateIcon {...args} icon={<IconFlash />} text="" variant="ghost" />
   </>
 );
 
@@ -236,16 +227,9 @@ Tertiary.args = {
 };
 Tertiary.parameters = { ...params };
 
-export const Ghost = Template.bind({});
-Ghost.args = {
-  text: 'Button',
-  variant: 'ghost',
-};
-Ghost.parameters = { ...params };
-
 export const Icon = TemplateIcon.bind({});
 Icon.args = {
-  variant: 'ghost',
+  variant: 'tertiary',
 };
 Icon.parameters = { ...params };
 

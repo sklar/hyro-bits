@@ -47,7 +47,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
    * Variant
    */
-  variant?: Variant | 'ghost';
+  variant?: Variant;
 
   /**
    * State: Active
@@ -210,12 +210,6 @@ modification['secondary'] = css`
 `;
 
 modification['tertiary'] = css`
-  --background-color: ${colors.ELEMENT_TERTIARY};
-  --border-color: ${colors.ELEMENT_TERTIARY};
-  --color: ${colors.WHITE};
-`;
-
-modification['ghost'] = css`
   --background-color: ${colors.TRANSPARENT};
   --border-color: ${colors.TRANSPARENT};
   --color: ${colors.TEXT_PRIMARY};
