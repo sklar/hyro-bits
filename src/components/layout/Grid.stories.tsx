@@ -2,7 +2,7 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import styled from '@emotion/styled';
 
-import { mapArgTypes } from '../../utils/stories';
+import { mapArgTypes } from '../../stories';
 
 import { Grid as Component, GridProps } from './Grid';
 

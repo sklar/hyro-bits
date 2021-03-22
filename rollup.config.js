@@ -28,7 +28,7 @@ export default {
       declaration: true,
       declarationDir: 'dist/types',
       declarationMap: true,
-      exclude: ['**/*.stories.*'],
+      exclude: ['**/*.stories.*', 'stories'],
       rootDir: 'src',
     }),
   ],

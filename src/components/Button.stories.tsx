@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { withDesign } from 'storybook-addon-designs';
 
-import { mapArgTypes } from '../utils/stories';
+import { mapArgTypes } from '../stories';
 import { Button, ButtonProps } from './Button';
 import { Flex, Grid } from './layout';
 

@@ -5,3 +5,5 @@ export const mapArgTypes = (types: string[], args: ArgTypes): ArgTypes => {
     return { ...acc, [value]: args };
   }, {});
 };
+
+export * from './Color';

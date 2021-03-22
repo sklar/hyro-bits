@@ -9,21 +9,26 @@ const palette = {
   black: '#000000',
   //
   blue: {
+    denim: '#184ece', // focus [dark]
     dodger: '#3370ff', // focus
+    ebony: '#1f222f', // background / secondary [dark]
     haiti: '#0f152e', // text
     hawkes: '#ecf1fe', // secondary
     ribbon: '#004bff', // primary
     ribbon1: '#1d61ff', // notice
     science: '#0041dd', // pressed
+    vulcan: '#131620', // background / primary [dark]
   },
   //
   current: 'currentColor',
   //
   gray: {
+    botticelli: '#dbe4ee', // dividers and strokes
     cadet: '#b4bac8', // tertiary
     geyser: '#ced4e2', // disabled
-    porcelain: '#f6f7f8', // backgrounds
-    botticelli: '#dbe4ee', // dividers and strokes
+    porcelain: '#f6f7f8', // background / secondary
+    trout: '#545864', // disabled [dark]
+    waterloo: '#757c91', // tertiary [dark]
   },
   //
   green: {
@@ -40,7 +45,7 @@ const palette = {
   //
   transparent: 'transparent',
   //
-  white: '#ffffff',
+  white: '#ffffff', // background / primary
 };
 
 /**
@@ -80,6 +85,14 @@ const tokens = ((c): Color => {
     ELEMENT_FOCUS: c.blue.dodger,
     TEXT_PRIMARY: c.blue.haiti,
     TEXT_SECONDARY: c.blue.hawkes,
+
+    // Darth Vader
+    DARK_TERTIARY: c.gray.waterloo,
+    DARK_ELEMENT_TERTIARY: c.gray.waterloo,
+    DARK_BACKGROUND_PRIMARY: c.blue.vulcan,
+    DARK_BACKGROUND_SECONDARY: c.blue.ebony,
+    DARK_ELEMENT_DISABLED: c.gray.trout,
+    DARK_ELEMENT_FOCUS: c.blue.denim,
   };
 })(palette);
 
