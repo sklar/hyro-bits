@@ -14,6 +14,7 @@ const palette = {
     ebony: '#1f222f', // background / secondary [dark]
     haiti: '#0f152e', // text
     hawkes: '#ecf1fe', // secondary
+    oxford: '#3f485e', // active aka selection [dark]
     ribbon: '#004bff', // primary
     ribbon1: '#1d61ff', // notice
     science: '#0041dd', // pressed
@@ -91,6 +92,7 @@ const tokens = ((c): Color => {
     DARK_ELEMENT_TERTIARY: c.gray.waterloo,
     DARK_BACKGROUND_PRIMARY: c.blue.vulcan,
     DARK_BACKGROUND_SECONDARY: c.blue.ebony,
+    DARK_ELEMENT_ACTIVE: c.blue.oxford,
     DARK_ELEMENT_DISABLED: c.gray.trout,
     DARK_ELEMENT_FOCUS: c.blue.denim,
   };

@@ -1,7 +1,7 @@
 import { Meta } from '@storybook/addon-docs/blocks';
 
 import { Flex, Grid } from './components/layout';
-import { Color } from './stories';
+import { Color, Divider } from './stories';
 import { colors } from './theme';
 
 <Meta title="Colors" />
@@ -11,44 +11,39 @@ import { colors } from './theme';
 
 ## Brand
 
-<Grid block gap="24px">
-  <Flex gap="24px" wrap style={{ margin: '0.25em 0 1em'}}>
-    <Color
-      title="Primary"
-      subtitle="Ribbon Blue"
-      token="PRIMARY"
-      value={colors.PRIMARY}
-    />
-    <Color
-      title="Secondary"
-      subtitle="Hawkes Blue"
-      token="SECONDARY"
-      value={colors.SECONDARY}
-    />
-    <Color
-      title="Tertiary"
-      subtitle="Cadet Blue"
-      token="TERTIARY"
-      value={colors.TERTIARY}
-    />
-  </Flex>
+<Flex block gap="24px" wrap style={{ '--size': '12em', margin: '0.25em 0 1em'}}>
+  <Color
+    title="Primary"
+    subtitle="Ribbon Blue"
+    token="PRIMARY"
+    value={colors.PRIMARY}
+  />
+  <Color
+    title="Secondary"
+    subtitle="Hawkes Blue"
+    token="SECONDARY"
+    value={colors.SECONDARY}
+  />
+  <Color
+    title="Tertiary"
+    subtitle="Cadet Blue"
+    token="TERTIARY"
+    value={colors.TERTIARY}
+  />
 
-  [//]: # (Dark)
-  <Flex gap="24px" wrap style={{ margin: '0.25em 0 1em'}}>
-    <Color
-      title="Tertiary"
-      subtitle="Waterloo Gray"
-      token="DARK_TERTIARY"
-      value={colors.DARK_TERTIARY}
-      theme="dark"
-    />
-  </Flex>
-</Grid>
+  <Color
+    title="Tertiary"
+    subtitle="Waterloo Gray"
+    token="DARK_TERTIARY"
+    value={colors.DARK_TERTIARY}
+    theme="dark"
+  />
+</Flex>
 
 
 ## Accent
 
-<Flex gap="24px" wrap style={{ margin: '0.25em 0 1em'}}>
+<Flex gap="24px" wrap style={{ '--size': '12em', margin: '0.25em 0 1em'}}>
   <Color
     title="Notice"
     token="NOTICE"
@@ -78,7 +73,7 @@ import { colors } from './theme';
 
 ## Tokens
 
-<Flex gap="24px" wrap style={{ '--size': '14em', margin: '0.25em 0 1em' }}>
+<Flex gap="24px" wrap style={{ '--size': '12em', margin: '0.25em 0 1em' }}>
   <Color
     title="Background / Primary"
     token="BACKGROUND_PRIMARY"
@@ -91,6 +86,23 @@ import { colors } from './theme';
     subtitle="Porcelain Gray"
     value={colors.BACKGROUND_SECONDARY}
   />
+
+  <Color
+    title="Background / Primary"
+    token="DARK_BACKGROUND_PRIMARY"
+    subtitle="Vulcan Blue"
+    value={colors.DARK_BACKGROUND_PRIMARY}
+    theme="dark"
+  />
+  <Color
+    title="Background / Secondary"
+    token="DARK_BACKGROUND_SECONDARY"
+    subtitle="Ebony Blue"
+    value={colors.DARK_BACKGROUND_SECONDARY}
+    theme="dark"
+  />
+
+  <Divider />
 
   <Color
     title="Element / Primary"
@@ -110,6 +122,17 @@ import { colors } from './theme';
     subtitle="Cadet Blue"
     value={colors.ELEMENT_TERTIARY}
   />
+
+  <Color
+    title="Element / Tertiary"
+    token="DARK_ELEMENT_TERTIARY"
+    subtitle="Waterloo Gray"
+    value={colors.DARK_ELEMENT_TERTIARY}
+    theme="dark"
+  />
+
+  <Divider />
+
   <Color
     title="Element / Active"
     token="ELEMENT_ACTIVE"
@@ -129,45 +152,13 @@ import { colors } from './theme';
     value={colors.ELEMENT_FOCUS}
   />
 
-  <Color
-    title="Text / Primary"
-    token="TEXT_PRIMARY"
-    subtitle="Haiti Blue"
-    value={colors.TEXT_PRIMARY}
-  />
-  <Color
-    title="Text / Secondary"
-    token="TEXT_SECONDARY"
-    subtitle="Hawkes Blue"
-    value={colors.TEXT_SECONDARY}
-  />
-</Flex>
-
-
-
-[//]: # (Dark)
-
-<Flex gap="24px" wrap style={{ '--size': '14em', margin: '2em 0 1em' }}>
-  <Color
-    title="Background / Primary"
-    token="DARK_BACKGROUND_PRIMARY"
-    subtitle="Vulcan Blue"
-    value={colors.DARK_BACKGROUND_PRIMARY}
-    theme="dark"
-  />
-  <Color
-    title="Background / Secondary"
-    token="DARK_BACKGROUND_SECONDARY"
-    subtitle="Ebony Blue"
-    value={colors.DARK_BACKGROUND_SECONDARY}
-    theme="dark"
-  />
+  <Divider />
 
   <Color
-    title="Element / Tertiary"
-    token="DARK_ELEMENT_TERTIARY"
-    subtitle="Waterloo Gray"
-    value={colors.DARK_ELEMENT_TERTIARY}
+    title="Element / Active"
+    token="DARK_ELEMENT_ACTIVE"
+    subtitle="Oxford Blue"
+    value={colors.DARK_ELEMENT_ACTIVE}
     theme="dark"
   />
   <Color
@@ -183,5 +174,20 @@ import { colors } from './theme';
     subtitle="Denim Blue"
     value={colors.DARK_ELEMENT_FOCUS}
     theme="dark"
+  />
+
+  <Divider />
+
+  <Color
+    title="Text / Primary"
+    token="TEXT_PRIMARY"
+    subtitle="Haiti Blue"
+    value={colors.TEXT_PRIMARY}
+  />
+  <Color
+    title="Text / Secondary"
+    token="TEXT_SECONDARY"
+    subtitle="Hawkes Blue"
+    value={colors.TEXT_SECONDARY}
   />
 </Flex>

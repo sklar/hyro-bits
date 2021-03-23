@@ -11,6 +11,7 @@ export const ElementTheme = {
   SUCCESS: 'success',
   WARNING: 'warning',
   DANGER: 'danger',
+  DARK: 'dark',
 } as const;
 
 export const ElementVariant = {

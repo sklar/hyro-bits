@@ -35,7 +35,7 @@ export default {
     ...mapArgTypes(['round', 'toggle'], {
       table: { category: 'Modifiers' },
     }),
-    ...mapArgTypes(['variant'], {
+    ...mapArgTypes(['variant', 'theme'], {
       control: { type: 'inline-radio' },
       table: { category: 'Modifiers' },
     }),
@@ -89,6 +89,31 @@ const TemplateIcon: Story<ButtonProps> = (args) => (
       <Button icon={<Icon name="Flash" />} {...args} disabled />
       <Button icon={<Icon name="Flash" />} {...args} disabled round />
     </Flex>
+
+    <Flex gap="8px">
+      <Button icon={<Icon name="Flash" />} {...args} theme="dark" />
+      <Button icon={<Icon name="Flash" />} {...args} theme="dark" round />
+    </Flex>
+    <Flex gap="8px">
+      <Button icon={<Icon name="Flash" />} {...args} theme="dark" data-hover />
+      <Button icon={<Icon name="Flash" />} {...args} theme="dark" data-hover round />
+    </Flex>
+    <Flex gap="8px">
+      <Button icon={<Icon name="Flash" />} {...args} theme="dark" data-pressed />
+      <Button icon={<Icon name="Flash" />} {...args} theme="dark" data-pressed round />
+    </Flex>
+    <Flex gap="8px">
+      <Button icon={<Icon name="Flash" />} {...args} theme="dark" active />
+      <Button icon={<Icon name="Flash" />} {...args} theme="dark" active round />
+    </Flex>
+    <Flex gap="8px">
+      <Button icon={<Icon name="Flash" />} {...args} theme="dark" busy />
+      <Button icon={<Icon name="Flash" />} {...args} theme="dark" busy round />
+    </Flex>
+    <Flex gap="8px">
+      <Button icon={<Icon name="Flash" />} {...args} theme="dark" disabled />
+      <Button icon={<Icon name="Flash" />} {...args} theme="dark" disabled round />
+    </Flex>
   </>
 );
 
@@ -100,6 +125,13 @@ const TemplateIconWithText: Story<ButtonProps> = (args) => (
     <Button icon={<Icon name="Flash" />} {...args} active />
     <Button icon={<Icon name="Flash" />} {...args} busy />
     <Button icon={<Icon name="Flash" />} {...args} disabled />
+
+    <Button icon={[<Icon name="Flash" />, <Icon name="Trash" />]} {...args} />
+    <Button icon={[<Icon name="Flash" />, <Icon name="Trash" />]} {...args} data-hover />
+    <Button icon={[<Icon name="Flash" />, <Icon name="Trash" />]} {...args} data-pressed />
+    <Button icon={[<Icon name="Flash" />, <Icon name="Trash" />]} {...args} active />
+    <Button icon={[<Icon name="Flash" />, <Icon name="Trash" />]} {...args} busy />
+    <Button icon={[<Icon name="Flash" />, <Icon name="Trash" />]} {...args} disabled />
   </>
 );
 

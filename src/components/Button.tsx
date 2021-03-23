@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 import { Idle as Indicator } from '../components/indicator';
 import { colors } from '../theme';
-import { Variant } from '../utils/types';
+import { Theme, Variant } from '../utils/types';
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
@@ -27,7 +27,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
    * Icon
    */
-  icon?: ReactElement;
+  icon?: ReactElement | ReactElement[];
   /**
    * Icon placement.
    */
@@ -39,7 +39,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
    * Theme
    */
-  // theme?: Exclude<Theme, 'notice'>;
+  theme?: Exclude<Theme, 'notice'>;
   /**
    * Toggle
    */
@@ -81,30 +81,35 @@ export const Button: React.FC<ButtonProps> = ({
   placement,
   round,
   text,
-  // theme,
+  theme,
   toggle,
   type = 'button',
   variant = 'secondary',
   ...props
 }): JSX.Element => {
+  const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
   // const delegated = { theme, variant, ...props };
   const delegated = { variant, ...props };
+
   return (
     <Element
       as={href ? 'a' : 'button'}
       data-active={active || null}
       data-busy={busy || null}
-      data-icon={(icon && !(text || children) && true) || placement}
+      data-icon={
+        (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement
+      }
       data-round={round || null}
-      // data-theme={theme || null}
+      data-theme={theme || null}
       data-toggle={toggle || null}
       disabled={busy || disabled}
       href={href}
       type={type}
       {...delegated}
     >
-      {icon && icon}
+      {leader && leader}
       {text ? text : children}
+      {trailer && trailer}
       {busy && <Indicator style={{ position: 'absolute' }} />}
     </Element>
   );
@@ -226,6 +231,22 @@ modification['tertiary'] = css`
     --border-color: ${colors.TRANSPARENT};
     --color: ${colors.ELEMENT_DISABLED};
   }
+
+  &[data-theme='dark'] {
+    &:is(:active, [data-active], [data-pressed]):not(:disabled, [data-busy]) {
+      --background-color: ${colors.DARK_ELEMENT_FOCUS};
+      --border-color: ${colors.DARK_ELEMENT_FOCUS};
+      --color: ${colors.WHITE};
+    }
+    &:is(:focus, :hover, [data-hover]):not(:disabled, [data-busy]) {
+      --background-color: ${colors.DARK_ELEMENT_ACTIVE};
+      --border-color: ${colors.DARK_ELEMENT_ACTIVE};
+      --color: ${colors.WHITE};
+    }
+    &:disabled:not([data-busy]) {
+      --color: ${colors.DARK_ELEMENT_DISABLED};
+    }
+  }
 `;
 
 const Element = styled.button<ButtonProps>`
@@ -258,20 +279,23 @@ const Element = styled.button<ButtonProps>`
 
   ${({ variant }) => variant && modification[variant]};
 
-  &[data-icon='true'] {
+  &[data-icon='single'] {
     padding: 0;
     width: var(--size);
   }
+  &[data-icon='both'],
   &[data-icon='left'] {
     padding-left: calc(var(--indent) - var(--icon-offset));
   }
+  &[data-icon='both'],
   &[data-icon='right'] {
     padding-right: calc(var(--indent) - var(--icon-offset));
-
-    svg,
-    [data-icon] {
-      order: 2;
-    }
+  }
+  &[data-icon='left'] {
+    flex-direction: row;
+  }
+  &[data-icon='right'] {
+    flex-direction: row-reverse;
   }
 
   /* &[data-theme='danger'] {}

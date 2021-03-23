@@ -82,6 +82,12 @@ TL;DR add `npmrc` with the access token in a project root.
 @purplenl:registry=https://npm.pkg.github.com
 ```
 
+..and install it as dev dependency
+
+```
+yarn add --dev @purplenl/purplex-components
+```
+
 
 ### 🚧 Invalid Hook Call Warning
 
