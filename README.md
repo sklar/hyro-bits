@@ -86,3 +86,19 @@ TL;DR add `npmrc` with the access token in a project root.
 ### 🚧 Invalid Hook Call Warning
 
 Follow the [official workaround](https://reactjs.org/warnings/invalid-hook-call-warning.html#duplicate-react).
+
+TL;DR fire these commands in your Terminal to link your local app and library folders.
+
+```
+library
+➜ yarn
+
+app
+➜ yarn link @purplenl/purplex-components
+
+app/node_modules/react
+➜ yarn link
+
+library
+➜ yarn link react
+```

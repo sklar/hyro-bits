@@ -1,3 +1,4 @@
+import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
 import copy from 'rollup-plugin-copy';
 import filesize from 'rollup-plugin-filesize';
@@ -24,12 +25,12 @@ export default {
       targets: [{ src: 'src/assets/fonts', dest: 'dist' }],
     }),
     filesize(),
+    replace({ delimiters: ['', ''], preventAssignment: true, values: { '../icons': './icons' } }),
     typescript({
       declaration: true,
       declarationDir: 'dist/types',
       declarationMap: true,
-      exclude: ['**/*.stories.*', 'stories'],
-      rootDir: 'src',
+      exclude: ['**/node_modules', '**/.*/', '**/*.stories.*', 'icons', 'react-*'],
     }),
   ],
 };

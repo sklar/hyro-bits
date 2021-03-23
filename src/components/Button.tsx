@@ -267,7 +267,9 @@ const Element = styled.button<ButtonProps>`
   }
   &[data-icon='right'] {
     padding-right: calc(var(--indent) - var(--icon-offset));
-    svg {
+
+    svg,
+    [data-icon] {
       order: 2;
     }
   }

@@ -1,0 +1,9 @@
+export { default as DoorOpen } from './DoorOpen';
+export { default as Grid } from './Grid';
+export { default as Lamp } from './Lamp';
+export { default as Microphone } from './Microphone';
+export { default as ParachuteBox } from './ParachuteBox';
+export { default as Pause } from './Pause';
+export { default as Play } from './Play';
+export { default as Undo } from './Undo';
+export { default as Volume } from './Volume';

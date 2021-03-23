@@ -5,10 +5,8 @@ import { withDesign } from 'storybook-addon-designs';
 
 import { mapArgTypes } from '../stories';
 import { Button, ButtonProps } from './Button';
+import { Icon } from './Icon';
 import { Flex, Grid } from './layout';
-
-import { ReactComponent as IconChevron } from '../assets/images/16/chevron.svg';
-import { ReactComponent as IconFlash } from '../assets/images/16/flash.svg';
 
 export default {
   title: 'Components/Button',
@@ -68,40 +66,40 @@ const Template: Story<ButtonProps> = (args) => (
 const TemplateIcon: Story<ButtonProps> = (args) => (
   <>
     <Flex gap="8px">
-      <Button icon={<IconFlash />} {...args} />
-      <Button icon={<IconFlash />} {...args} round />
+      <Button icon={<Icon name="Flash" />} {...args} />
+      <Button icon={<Icon name="Flash" />} {...args} round />
     </Flex>
     <Flex gap="8px">
-      <Button icon={<IconFlash />} {...args} data-hover />
-      <Button icon={<IconFlash />} {...args} data-hover round />
+      <Button icon={<Icon name="Flash" />} {...args} data-hover />
+      <Button icon={<Icon name="Flash" />} {...args} data-hover round />
     </Flex>
     <Flex gap="8px">
-      <Button icon={<IconFlash />} {...args} data-pressed />
-      <Button icon={<IconFlash />} {...args} data-pressed round />
+      <Button icon={<Icon name="Flash" />} {...args} data-pressed />
+      <Button icon={<Icon name="Flash" />} {...args} data-pressed round />
     </Flex>
     <Flex gap="8px">
-      <Button icon={<IconFlash />} {...args} active />
-      <Button icon={<IconFlash />} {...args} active round />
+      <Button icon={<Icon name="Flash" />} {...args} active />
+      <Button icon={<Icon name="Flash" />} {...args} active round />
     </Flex>
     <Flex gap="8px">
-      <Button icon={<IconFlash />} {...args} busy />
-      <Button icon={<IconFlash />} {...args} busy round />
+      <Button icon={<Icon name="Flash" />} {...args} busy />
+      <Button icon={<Icon name="Flash" />} {...args} busy round />
     </Flex>
     <Flex gap="8px">
-      <Button icon={<IconFlash />} {...args} disabled />
-      <Button icon={<IconFlash />} {...args} disabled round />
+      <Button icon={<Icon name="Flash" />} {...args} disabled />
+      <Button icon={<Icon name="Flash" />} {...args} disabled round />
     </Flex>
   </>
 );
 
 const TemplateIconWithText: Story<ButtonProps> = (args) => (
   <>
-    <Button icon={<IconFlash />} {...args} />
-    <Button icon={<IconFlash />} {...args} data-hover />
-    <Button icon={<IconFlash />} {...args} data-pressed />
-    <Button icon={<IconFlash />} {...args} active />
-    <Button icon={<IconFlash />} {...args} busy />
-    <Button icon={<IconFlash />} {...args} disabled />
+    <Button icon={<Icon name="Flash" />} {...args} />
+    <Button icon={<Icon name="Flash" />} {...args} data-hover />
+    <Button icon={<Icon name="Flash" />} {...args} data-pressed />
+    <Button icon={<Icon name="Flash" />} {...args} active />
+    <Button icon={<Icon name="Flash" />} {...args} busy />
+    <Button icon={<Icon name="Flash" />} {...args} disabled />
   </>
 );
 
@@ -111,7 +109,7 @@ const TemplateToggle: Story<ButtonProps> = (args) => {
   return (
     <>
       <Button
-        icon={<IconChevron />}
+        icon={<Icon name="Chevron" />}
         {...args}
         placement="right"
         active={active}
@@ -119,7 +117,7 @@ const TemplateToggle: Story<ButtonProps> = (args) => {
       />
       <Button
         data-hover
-        icon={<IconChevron />}
+        icon={<Icon name="Chevron" />}
         {...args}
         placement="right"
         active={active}
@@ -127,21 +125,21 @@ const TemplateToggle: Story<ButtonProps> = (args) => {
       />
       <Button
         data-pressed
-        icon={<IconChevron />}
+        icon={<Icon name="Chevron" />}
         {...args}
         placement="right"
         active={active}
         onClick={() => setActive(!active)}
       />
       <Button
-        icon={<IconChevron />}
+        icon={<Icon name="Chevron" />}
         {...args}
         placement="right"
         onClick={() => setActive(!active)}
         active
       />
       <Button
-        icon={<IconChevron />}
+        icon={<Icon name="Chevron" />}
         {...args}
         placement="right"
         active={active}
@@ -149,7 +147,7 @@ const TemplateToggle: Story<ButtonProps> = (args) => {
         busy
       />
       <Button
-        icon={<IconChevron />}
+        icon={<Icon name="Chevron" />}
         {...args}
         placement="right"
         active={active}
@@ -166,30 +164,30 @@ const TemplateOverview: Story<ButtonProps> = (args) => (
     <Template {...args} text="Primary" variant="primary" />
     <TemplateIconWithText
       {...args}
-      icon={<IconFlash />}
+      icon={<Icon name="Flash" />}
       placement="left"
       text="Primary"
       variant="primary"
     />
-    <TemplateIcon {...args} icon={<IconFlash />} text="" variant="primary" />
+    <TemplateIcon {...args} icon={<Icon name="Flash" />} text="" variant="primary" />
     <Template {...args} text="Secondary" variant="secondary" />
     <TemplateIconWithText
       {...args}
-      icon={<IconFlash />}
+      icon={<Icon name="Flash" />}
       placement="left"
       text="Secondary"
       variant="secondary"
     />
-    <TemplateIcon {...args} icon={<IconFlash />} text="" variant="secondary" />
+    <TemplateIcon {...args} icon={<Icon name="Flash" />} text="" variant="secondary" />
     <Template {...args} text="Tertiary" variant="tertiary" />
     <TemplateIconWithText
       {...args}
-      icon={<IconFlash />}
+      icon={<Icon name="Flash" />}
       placement="left"
       text="Tertiary"
       variant="tertiary"
     />
-    <TemplateIcon {...args} icon={<IconFlash />} text="" variant="tertiary" />
+    <TemplateIcon {...args} icon={<Icon name="Flash" />} text="" variant="tertiary" />
   </>
 );
 
@@ -227,11 +225,12 @@ Tertiary.args = {
 };
 Tertiary.parameters = { ...params };
 
-export const Icon = TemplateIcon.bind({});
-Icon.args = {
+export const IconOnly = TemplateIcon.bind({});
+IconOnly.storyName = 'Icon';
+IconOnly.args = {
   variant: 'tertiary',
 };
-Icon.parameters = { ...params };
+IconOnly.parameters = { ...params };
 
 export const IconWithText = TemplateIconWithText.bind({});
 IconWithText.storyName = 'Icon w/ text';

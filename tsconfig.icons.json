@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "noEmit": false
+  },
+  "exclude": [
+    "**/node_modules",
+    "**/.*/",
+    "**/*.stories.*"
+  ],
+  "extends": "./tsconfig.json",
+  "include": ["src/icons"]
+}
