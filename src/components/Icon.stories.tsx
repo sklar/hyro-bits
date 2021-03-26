@@ -3,11 +3,8 @@ import styled from '@emotion/styled';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { withDesign } from 'storybook-addon-designs';
 
-import * as icons16 from '../icons/16';
-import * as icons16m from '../icons/mini';
-import * as icons20 from '../icons/20';
-import * as icons24 from '../icons/24';
-import * as icons32 from '../icons/32';
+import * as iconsBold from '../icons/bold';
+import * as iconsBoldMini from '../icons/mini';
 import { mapArgTypes } from '../stories';
 import { Icon, IconProps } from './Icon';
 import { Flex } from './layout';
@@ -66,20 +63,11 @@ const TemplateTitle: Story<Partial<StoryProps>> = ({ icons, title }) => (
 
 const TemplateOverview: Story<StoryProps> = (args) => (
   <>
-    <TemplateTitle {...Icons16m.args} />
-    <Template {...args} {...Icons16m.args} />
+    <TemplateTitle {...IconsBoldMini.args} />
+    <Template {...args} {...IconsBoldMini.args} />
 
-    <TemplateTitle {...Icons16.args} />
-    <Template {...args} {...Icons16.args} />
-
-    <TemplateTitle {...Icons20.args} />
-    <Template {...args} {...Icons20.args} />
-
-    <TemplateTitle {...Icons24.args} />
-    <Template {...args} {...Icons24.args} />
-
-    <TemplateTitle {...Icons32.args} />
-    <Template {...args} {...Icons32.args} />
+    <TemplateTitle {...IconsBold.args} />
+    <Template {...args} {...IconsBold.args} />
   </>
 );
 
@@ -94,50 +82,22 @@ export const Overview = TemplateOverview.bind({});
 Overview.args = {};
 Overview.parameters = { ...params };
 
-export const Icons16m = Template.bind({});
-Icons16m.storyName = '16 x-small';
-Icons16m.args = {
-  icons: Object.values(icons16m),
+export const IconsBoldMini = Template.bind({});
+IconsBoldMini.storyName = 'Bold Mini';
+IconsBoldMini.args = {
+  icons: Object.values(iconsBoldMini),
   size: 'xs',
-  title: '16 xs',
+  title: 'Bold Mini',
 };
-Icons16m.parameters = { ...params };
+IconsBoldMini.parameters = { ...params };
 
-export const Icons16 = Template.bind({});
-Icons16.storyName = '16 small';
-Icons16.args = {
-  icons: Object.values(icons16),
-  size: 'sm',
-  title: '16 sm',
+export const IconsBold = Template.bind({});
+IconsBold.storyName = 'Bold';
+IconsBold.args = {
+  icons: Object.values(iconsBold),
+  title: 'Bold',
 };
-Icons16.parameters = { ...params };
-
-export const Icons20 = Template.bind({});
-Icons20.storyName = '20 medium';
-Icons20.args = {
-  icons: Object.values(icons20),
-  size: 'md',
-  title: '20 md',
-};
-Icons20.parameters = { ...params };
-
-export const Icons24 = Template.bind({});
-Icons24.storyName = '24 large';
-Icons24.args = {
-  icons: Object.values(icons24),
-  size: 'lg',
-  title: '24 lg',
-};
-Icons24.parameters = { ...params };
-
-export const Icons32 = Template.bind({});
-Icons32.storyName = '32 x-large';
-Icons32.args = {
-  icons: Object.values(icons32),
-  size: 'xl',
-  title: '32 xl',
-};
-Icons32.parameters = { ...params };
+IconsBold.parameters = { ...params };
 
 const Title = styled.h2`
   align-items: baseline;

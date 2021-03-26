@@ -5,10 +5,10 @@ import { Size } from '../utils/types';
 
 const paths = {
   xs: 'mini',
-  sm: '16',
-  md: '20',
-  lg: '24',
-  xl: '32',
+  sm: 'bold',
+  md: 'bold',
+  lg: 'bold',
+  xl: 'bold',
 };
 
 export interface IconProps extends HTMLAttributes<HTMLElement> {
