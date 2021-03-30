@@ -75,14 +75,19 @@ yarn compile
 
 Follow the [Github Packages instructions](https://docs.github.com/en/packages/guides/configuring-npm-for-use-with-github-packages#installing-a-package).
 
-TL;DR add `npmrc` with the access token in a project root.
+TL;DR Create and add `.npmrc` with the your [personal access token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) (`read:packages`) to your home directory.
 
 ```
-//npm.pkg.github.com/:_authToken=7dc4e9ea1a76c7186d9fbe3b1460ea04ae5143f6
+//npm.pkg.github.com/:_authToken=YOUR_PERSONAL_ACCESS_TOKEN
+```
+
+Create and add `.npmrc` with GPR url to your project root—if it's not there already.
+
+```
 @purplenl:registry=https://npm.pkg.github.com
 ```
 
-..and install it as dev dependency
+And install the package as dev dependency
 
 ```
 yarn add --dev @purplenl/purplex-components

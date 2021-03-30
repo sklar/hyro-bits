@@ -3,7 +3,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { Idle as Indicator } from '../components/indicator';
-import { colors } from '../theme';
+import { button, colors } from '../theme';
 import { Theme, Variant } from '../utils/types';
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
@@ -92,7 +92,7 @@ export const Button: React.FC<ButtonProps> = ({
   const delegated = { variant, ...props };
 
   return (
-    <Element
+    <Container
       as={href ? 'a' : 'button'}
       data-active={active || null}
       data-busy={busy || null}
@@ -110,54 +110,52 @@ export const Button: React.FC<ButtonProps> = ({
       {leader && leader}
       {text ? text : children}
       {trailer && trailer}
-      {busy && <Indicator style={{ position: 'absolute' }} />}
-    </Element>
+      {busy && (
+        <Indicator style={{ ['--color' as string]: 'var(--button-color)', position: 'absolute' }} />
+      )}
+    </Container>
   );
 };
 
-const button = css`
-  --background-color: ;
-  --border-color: ;
-  --border-size: 1px;
-  --box-shadow: ;
-  --color: ;
-  --font-family: 'Inter', sans-serif;
-  --font-size: 14px;
-  --font-weight: 600;
-  --gap: 8px;
-  --icon-offset: 4px;
-  --icon-size: 16px;
-  --icon-rotation: 0;
-  --icon-transform: ;
-  --indent: 14px;
-  --radius: 6px;
-  --size: 32px;
+const base = css`
+  ${button};
+
+  --button-background-color: ;
+  --button-border-color: ;
+  --button-border-size: 1px;
+  --button-box-shadow: ;
+  --button-color: ;
+  --button-font-weight: 600;
+  --button-gap: 8px;
+  --button-icon-offset: 4px;
+  --button-icon-size: 16px;
+  --button-icon-rotation: 0;
+  --button-icon-transform: ;
+  --button-indent: 14px;
+  --button-line-height: var(--button-size);
+  --button-radius: 6px;
+  --button-size: 32px;
 
   align-items: center;
-  background-color: var(--background-color);
-  border: var(--border-size) solid var(--border-color);
-  border-radius: var(--radius);
-  box-shadow: 0 0 0 3px var(--box-shadow);
+  background-color: var(--button-background-color);
+  border: var(--button-border-size) solid var(--button-border-color);
+  border-radius: var(--button-radius);
+  box-shadow: 0 0 0 3px var(--button-box-shadow);
   box-sizing: border-box;
-  color: var(--color);
+  color: var(--button-color);
   display: inline-flex;
-  font-family: var(--font-family);
-  font-size: var(--font-size);
-  font-weight: var(--font-weight);
-  gap: var(--gap);
-  height: var(--size);
+  gap: var(--button-gap);
+  height: var(--button-size);
   justify-content: center;
-  letter-spacing: -0.01em;
-  line-height: var(--size);
   margin: 0;
-  min-width: var(--size);
+  min-width: var(--button-size);
   overflow: hidden;
   outline: 0;
-  padding: 0 var(--indent);
+  padding: 0 var(--button-indent);
   position: relative;
   text-align: center;
   text-decoration: none;
-  transition-duration: 0.3s;
+  transition-duration: 0.2s;
   transition-property: background-color, border-color, color;
   transition-timing-function: ease-in-out;
   user-select: none;
@@ -166,11 +164,11 @@ const button = css`
 
   svg {
     flex-shrink: 0;
-    height: var(--icon-size);
+    height: var(--button-icon-size);
     transition-duration: 0.3s;
     transition-property: transform;
     transition-timing-function: ease-in-out;
-    transform: var(--icon-transform);
+    transform: var(--button-icon-transform);
     will-change: transform;
   }
 `;
@@ -183,77 +181,77 @@ const button = css`
 const modification: Record<string, {}> = {};
 
 modification['primary'] = css`
-  --background-color: ${colors.ELEMENT_PRIMARY};
-  --border-color: ${colors.ELEMENT_PRIMARY};
-  --color: ${colors.WHITE};
+  --button-background-color: ${colors.ELEMENT_PRIMARY};
+  --button-border-color: ${colors.ELEMENT_PRIMARY};
+  --button-color: ${colors.WHITE};
 
   &:is(:active, [data-pressed]):not(:disabled, [data-busy]) {
-    --box-shadow: ${colors.ELEMENT_SECONDARY};
+    --button-box-shadow: ${colors.ELEMENT_SECONDARY};
   }
   &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]):not(:disabled, [data-busy]) {
-    --background-color: ${colors.ELEMENT_ACTIVE};
-    --border-color: ${colors.ELEMENT_ACTIVE};
+    --button-background-color: ${colors.ELEMENT_ACTIVE};
+    --button-border-color: ${colors.ELEMENT_ACTIVE};
   }
 `;
 
 modification['secondary'] = css`
-  --background-color: ${colors.ELEMENT_SECONDARY};
-  --border-color: ${colors.ELEMENT_SECONDARY};
-  --color: ${colors.TEXT_PRIMARY};
+  --button-background-color: ${colors.ELEMENT_SECONDARY};
+  --button-border-color: ${colors.ELEMENT_SECONDARY};
+  --button-color: ${colors.TEXT_PRIMARY};
 
   &:is(:active, [data-pressed]):not(:disabled, [data-busy]) {
-    --box-shadow: #f6f8fd;
+    --button-box-shadow: #f6f8fd;
   }
   &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]):not(:disabled, [data-busy]) {
-    --background-color: #d8e1fc;
-    --border-color: #d8e1fc;
-    --color: ${colors.ELEMENT_PRIMARY};
+    --button-background-color: #d8e1fc;
+    --button-border-color: #d8e1fc;
+    --button-color: ${colors.ELEMENT_PRIMARY};
   }
   &:disabled:not([data-busy]) {
-    --color: ${colors.WHITE};
+    --button-color: ${colors.WHITE};
   }
 `;
 
 modification['tertiary'] = css`
-  --background-color: ${colors.TRANSPARENT};
-  --border-color: ${colors.TRANSPARENT};
-  --color: ${colors.TEXT_PRIMARY};
+  --button-background-color: ${colors.TRANSPARENT};
+  --button-border-color: ${colors.TRANSPARENT};
+  --button-color: ${colors.TEXT_PRIMARY};
 
   &:is(:active, [data-active], [data-pressed]):not(:disabled, [data-busy]) {
-    --color: ${colors.ELEMENT_PRIMARY};
+    --button-color: ${colors.ELEMENT_PRIMARY};
   }
   &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]):not(:disabled, [data-busy]) {
-    --background-color: ${colors.ELEMENT_SECONDARY};
-    --border-color: ${colors.ELEMENT_SECONDARY};
+    --button-background-color: ${colors.ELEMENT_SECONDARY};
+    --button-border-color: ${colors.ELEMENT_SECONDARY};
   }
   &:disabled:not([data-busy]) {
-    --background-color: ${colors.TRANSPARENT};
-    --border-color: ${colors.TRANSPARENT};
-    --color: ${colors.ELEMENT_DISABLED};
+    --button-background-color: ${colors.TRANSPARENT};
+    --button-border-color: ${colors.TRANSPARENT};
+    --button-color: ${colors.ELEMENT_DISABLED};
   }
 
   &[data-theme='dark'] {
     &:is(:active, [data-active], [data-pressed]):not(:disabled, [data-busy]) {
-      --background-color: ${colors.DARK_ELEMENT_FOCUS};
-      --border-color: ${colors.DARK_ELEMENT_FOCUS};
-      --color: ${colors.WHITE};
+      --button-background-color: ${colors.DARK_ELEMENT_FOCUS};
+      --button-border-color: ${colors.DARK_ELEMENT_FOCUS};
+      --button-color: ${colors.WHITE};
     }
     &:is(:focus, :hover, [data-hover]):not(:disabled, [data-busy]) {
-      --background-color: ${colors.DARK_ELEMENT_ACTIVE};
-      --border-color: ${colors.DARK_ELEMENT_ACTIVE};
-      --color: ${colors.WHITE};
+      --button-background-color: ${colors.DARK_ELEMENT_ACTIVE};
+      --button-border-color: ${colors.DARK_ELEMENT_ACTIVE};
+      --button-color: ${colors.WHITE};
     }
     &:disabled:not([data-busy]) {
-      --color: ${colors.DARK_ELEMENT_DISABLED};
+      --button-color: ${colors.DARK_ELEMENT_DISABLED};
     }
   }
 `;
 
-const Element = styled.button<ButtonProps>`
-  ${button};
+const Container = styled.button<ButtonProps>`
+  ${base};
 
   &[data-round] {
-    --radius: 1000px;
+    --button-radius: 1000px;
   }
 
   &:not(:disabled, [data-busy]) {
@@ -265,31 +263,31 @@ const Element = styled.button<ButtonProps>`
   }
 
   &[data-toggle] {
-    --icon-transform: rotateX(calc(var(--icon-rotation) * 180deg)) rotateZ(90deg);
+    --button-icon-transform: rotateX(calc(var(--button-icon-rotation) * 180deg)) rotateZ(90deg);
 
     &[data-active] {
-      --icon-rotation: 1;
+      --button-icon-rotation: 1;
     }
   }
 
   &:disabled:not([data-busy]) {
-    --background-color: ${colors.ELEMENT_DISABLED};
-    --border-color: ${colors.ELEMENT_DISABLED};
+    --button-background-color: ${colors.ELEMENT_DISABLED};
+    --button-border-color: ${colors.ELEMENT_DISABLED};
   }
 
   ${({ variant }) => variant && modification[variant]};
 
   &[data-icon='single'] {
     padding: 0;
-    width: var(--size);
+    width: var(--button-size);
   }
   &[data-icon='both'],
   &[data-icon='left'] {
-    padding-left: calc(var(--indent) - var(--icon-offset));
+    padding-left: calc(var(--button-indent) - var(--button-icon-offset));
   }
   &[data-icon='both'],
   &[data-icon='right'] {
-    padding-right: calc(var(--indent) - var(--icon-offset));
+    padding-right: calc(var(--button-indent) - var(--button-icon-offset));
   }
   &[data-icon='left'] {
     flex-direction: row;

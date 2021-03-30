@@ -25,7 +25,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
 /**
  * Icon wrapper.
  */
-export const Icon: React.FC<IconProps> = ({ name, size = 'sm', ...props }): JSX.Element | null => {
+export const Icon: React.VFC<IconProps> = ({ name, size = 'sm', ...props }): JSX.Element | null => {
   const [Component, setComponent] = useState<React.FC<SVGProps<SVGSVGElement>>>();
 
   useEffect(() => {
@@ -40,16 +40,16 @@ export const Icon: React.FC<IconProps> = ({ name, size = 'sm', ...props }): JSX.
 
   if (!!Component) {
     return (
-      <Element data-icon={name} data-size={size} {...props}>
+      <Container data-icon={name} data-size={size} {...props}>
         {Component}
-      </Element>
+      </Container>
     );
   } else {
     return null;
   }
 };
 
-const Element = styled.span`
+const Container = styled.span`
   --icon-size: ;
 
   display: inline-block;

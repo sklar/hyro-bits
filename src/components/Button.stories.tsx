@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import styled from '@emotion/styled';
 import { Story, Meta } from '@storybook/react/types-6-0';
 import { withDesign } from 'storybook-addon-designs';
 
-import { mapArgTypes } from '../stories';
+import { Legend, mapArgTypes } from '../stories';
 import { Button, ButtonProps } from './Button';
 import { Icon } from './Icon';
 import { Flex, Grid } from './layout';
@@ -25,6 +24,13 @@ export default {
     ),
     withDesign,
   ],
+  parameters: {
+    design: {
+      type: 'figma',
+      url:
+        'https://www.figma.com/file/YgguhjSFNweP8so3tHTq7l/New-Design-System-Copy?node-id=12%3A50',
+    },
+  },
   argTypes: {
     children: {
       control: { type: null },
@@ -223,46 +229,34 @@ const TemplateOverview: Story<ButtonProps> = (args) => (
   </>
 );
 
-const params = {
-  design: {
-    type: 'figma',
-    url: 'https://www.figma.com/file/YgguhjSFNweP8so3tHTq7l/New-Design-System-Copy?node-id=12%3A50',
-  },
-};
-
 export const Overview = TemplateOverview.bind({});
 Overview.args = {
   text: 'Button',
 };
-Overview.parameters = { ...params };
 
 export const Primary = Template.bind({});
 Primary.args = {
   text: 'Button',
   variant: 'primary',
 };
-Primary.parameters = { ...params };
 
 export const Secondary = Template.bind({});
 Secondary.args = {
   text: 'Button',
   variant: 'secondary',
 };
-Secondary.parameters = { ...params };
 
 export const Tertiary = Template.bind({});
 Tertiary.args = {
   text: 'Button',
   variant: 'tertiary',
 };
-Tertiary.parameters = { ...params };
 
 export const IconOnly = TemplateIcon.bind({});
 IconOnly.storyName = 'Icon';
 IconOnly.args = {
   variant: 'tertiary',
 };
-IconOnly.parameters = { ...params };
 
 export const IconWithText = TemplateIconWithText.bind({});
 IconWithText.storyName = 'Icon w/ text';
@@ -270,17 +264,9 @@ IconWithText.args = {
   text: 'Button',
   placement: 'left',
 };
-IconWithText.parameters = { ...params };
 
 export const Toggle = TemplateToggle.bind({});
 Toggle.args = {
   text: 'Button',
   toggle: true,
 };
-Toggle.parameters = { ...params };
-
-const Legend = styled.small`
-  color: hsl(0 0% 50%);
-  font-size: 0.8rem;
-  padding-left: 1ch;
-`;

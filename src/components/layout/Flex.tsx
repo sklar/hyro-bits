@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactNode } from 'react';
+import React, { HTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 
 import { FlexAlignment } from '../../utils/types';
@@ -12,10 +12,6 @@ export interface FlexProps extends HTMLAttributes<HTMLElement> {
    * Block or inline
    */
   block?: boolean;
-  /**
-   * Children
-   */
-  children?: ReactNode;
   /**
    * Direction (default is `row`)
    */
@@ -39,8 +35,7 @@ export interface FlexProps extends HTMLAttributes<HTMLElement> {
  */
 export const Flex: React.FC<FlexProps> = ({
   align,
-  block = false,
-  children,
+  block,
   direction,
   gap,
   justify,
@@ -48,14 +43,10 @@ export const Flex: React.FC<FlexProps> = ({
   ...props
 }): JSX.Element => {
   const delegated = { align, block, direction, gap, justify, ...props };
-  return (
-    <Element data-wrap={wrap || null} {...delegated}>
-      {children}
-    </Element>
-  );
+  return <Container data-wrap={wrap || null} {...delegated} />;
 };
 
-const Element = styled.div<FlexProps>`
+const Container = styled.div<FlexProps>`
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'flex' : 'inline-flex'}`};
   ${({ direction }) => direction && direction !== 'row' && `flex-direction: ${direction}`};
@@ -64,9 +55,5 @@ const Element = styled.div<FlexProps>`
 
   &[data-wrap] {
     flex-wrap: wrap;
-  }
-
-  & > * {
-    flex-shrink: 0;
   }
 `;

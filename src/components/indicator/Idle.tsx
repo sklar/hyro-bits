@@ -34,7 +34,7 @@ export interface IdleProps extends HTMLAttributes<HTMLElement> {
 /**
  * Idle indicator.
  */
-export const Idle: React.FC<IdleProps> = ({
+export const Idle: React.VFC<IdleProps> = ({
   color,
   delay = 100,
   duration = 500,
@@ -45,11 +45,11 @@ export const Idle: React.FC<IdleProps> = ({
 }): JSX.Element => {
   const delegated = { color, delay, duration, gap, range, size, ...props };
   return (
-    <Wrapper {...delegated}>
+    <Container {...delegated}>
       <Element />
       <Element />
       <Element />
-    </Wrapper>
+    </Container>
   );
 };
 
@@ -89,7 +89,7 @@ const Element = styled.div`
   }
 `;
 
-const Wrapper = styled.div<IdleProps>`
+const Container = styled.div<IdleProps>`
   ${({ color }) => color && `--color: ${color}`};
   ${({ delay }) => `--delay: ${delay}ms`};
   ${({ duration }) => `--duration: ${duration}ms`};

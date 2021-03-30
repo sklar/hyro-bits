@@ -6,6 +6,7 @@ import { withDesign } from 'storybook-addon-designs';
 import * as iconsBold from '../icons/bold';
 import * as iconsBoldMini from '../icons/mini';
 import { mapArgTypes } from '../stories';
+import { truncate } from '../utils/helpers';
 import { Icon, IconProps } from './Icon';
 import { Flex } from './layout';
 
@@ -122,13 +123,12 @@ const Card = styled.div`
   width: var(--size);
 
   div:nth-of-type(1) {
+    ${truncate};
+
     color: hsl(0 0% 40%);
     font-size: 10px;
-    overflow: hidden;
     padding: 0.5em;
     padding-bottom: 0;
-    text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   div:nth-of-type(2) {

@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactNode } from 'react';
+import React, { HTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 
 import { Alignment } from '../../utils/types';
@@ -6,7 +6,6 @@ import { Alignment } from '../../utils/types';
 export interface GridProps extends HTMLAttributes<HTMLElement> {
   align?: Alignment;
   block?: boolean;
-  children?: ReactNode;
   columns?: string;
   gap?: string;
   justify?: Alignment;
@@ -21,7 +20,6 @@ export interface GridProps extends HTMLAttributes<HTMLElement> {
 export const Grid: React.FC<GridProps> = ({
   align,
   block,
-  children,
   columns,
   gap,
   justify,
@@ -31,10 +29,10 @@ export const Grid: React.FC<GridProps> = ({
   ...props
 }): JSX.Element => {
   const delegated = { align, block, columns, gap, justify, max, min, sizing, ...props };
-  return <Element {...delegated}>{children}</Element>;
+  return <Container {...delegated} />;
 };
 
-const Element = styled.div<GridProps>`
+const Container = styled.div<GridProps>`
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'grid' : 'inline-grid'}`};
   ${({ gap }) => gap && `gap: ${gap}`};
