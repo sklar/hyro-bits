@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 
 import { colors } from './colors';
 
-const base = css`
+export const base = css`
   --color: ${colors.TEXT_PRIMARY};
   --font-family: 'Inter', sans-serif;
   --font-size: ;

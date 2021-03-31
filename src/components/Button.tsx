@@ -107,9 +107,9 @@ export const Button: React.FC<ButtonProps> = ({
       type={type}
       {...delegated}
     >
-      {leader && leader}
+      {leader}
       {text ? text : children}
-      {trailer && trailer}
+      {trailer}
       {busy && (
         <Indicator style={{ ['--color' as string]: 'var(--button-color)', position: 'absolute' }} />
       )}
@@ -141,7 +141,6 @@ const base = css`
   border: var(--button-border-size) solid var(--button-border-color);
   border-radius: var(--button-radius);
   box-shadow: 0 0 0 3px var(--button-box-shadow);
-  box-sizing: border-box;
   color: var(--button-color);
   display: inline-flex;
   gap: var(--button-gap);
