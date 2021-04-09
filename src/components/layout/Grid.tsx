@@ -1,14 +1,14 @@
 import React, { HTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 
-import { Alignment } from '../../utils/types';
+import { AlignmentPrimaryType, AlignmentSecondaryType } from '../../utils/types';
 
 export interface GridProps extends HTMLAttributes<HTMLElement> {
-  align?: Alignment;
+  align?: AlignmentPrimaryType;
   block?: boolean;
   columns?: string;
   gap?: string;
-  justify?: Alignment;
+  justify?: AlignmentSecondaryType;
   max?: string;
   min?: string;
   sizing?: 'auto-fill' | 'auto-fit';

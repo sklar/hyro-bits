@@ -71,7 +71,7 @@ yarn compile
 
 ## Troubleshooting
 
- ### 🚧 Installing
+### 🚧 Installing package
 
 ```
 yarn add --dev purplenl/purplex-components

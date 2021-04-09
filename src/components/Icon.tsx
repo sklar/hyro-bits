@@ -1,7 +1,7 @@
 import React, { HTMLAttributes, SVGProps, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
 
-import { Size } from '../utils/types';
+import { SizeType } from '../utils/types';
 
 const paths = {
   xs: 'mini',
@@ -19,7 +19,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
   /**
    * Size.
    */
-  size?: Size;
+  size?: SizeType;
 }
 
 /**

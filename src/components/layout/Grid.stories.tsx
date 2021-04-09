@@ -3,7 +3,6 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import styled from '@emotion/styled';
 
 import { mapArgTypes } from '../../stories';
-
 import { Grid as Component, GridProps } from './Grid';
 
 export default {
@@ -12,7 +11,8 @@ export default {
   decorators: [],
   argTypes: {
     children: {
-      control: { type: null },
+      control: { disable: true },
+      table: { disable: true },
     },
     ...mapArgTypes(['align', 'justify'], {
       control: { type: 'select' },

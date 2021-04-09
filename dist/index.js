@@ -1,4 +1,4 @@
-/** Components v0.5.0 */
+/** Components v1.0.0 */
 
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { keyframes, css } from '@emotion/react';
@@ -56,7 +56,7 @@ keyframes `
 const Idle = (_a) => {
     var { color, delay = 100, duration = 500, gap = '4px', range = '6px', size = '5px' } = _a, props = __rest(_a, ["color", "delay", "duration", "gap", "range", "size"]);
     const delegated = Object.assign({ color, delay, duration, gap, range, size }, props);
-    return (jsxs(Container$5, Object.assign({}, delegated, { children: [jsx(Element, {}, void 0),
+    return (jsxs(Container$7, Object.assign({}, delegated, { children: [jsx(Element, {}, void 0),
             jsx(Element, {}, void 0),
             jsx(Element, {}, void 0)] }), void 0));
 };
@@ -94,7 +94,7 @@ const Element = styled.div `
     syntax: '<length>';
   }
 `;
-const Container$5 = styled.div `
+const Container$7 = styled.div `
   ${({ color }) => color && `--color: ${color}`};
   ${({ delay }) => `--delay: ${delay}ms`};
   ${({ duration }) => `--duration: ${duration}ms`};
@@ -132,6 +132,7 @@ const palette = {
     gray: {
         botticelli: '#dbe4ee',
         cadet: '#b4bac8',
+        fiord: '#3b4463',
         geyser: '#ced4e2',
         porcelain: '#f6f7f8',
         trout: '#545864',
@@ -187,6 +188,7 @@ const tokens = ((c) => {
         ELEMENT_ACTIVE: c.blue.science,
         ELEMENT_DISABLED: c.gray.geyser,
         ELEMENT_FOCUS: c.blue.dodger,
+        STROKE: c.gray.botticelli,
         TEXT_PRIMARY: c.blue.haiti,
         TEXT_SECONDARY: c.blue.hawkes,
         // Darth Vader
@@ -197,6 +199,7 @@ const tokens = ((c) => {
         DARK_ELEMENT_ACTIVE: c.blue.oxford,
         DARK_ELEMENT_DISABLED: c.gray.trout,
         DARK_ELEMENT_FOCUS: c.blue.denim,
+        DARK_STROKE: c.gray.fiord,
     };
 })(palette);
 const colors = Object.assign(Object.assign({ BLACK: palette.black, CURRENT: palette.current, TRANSPARENT: palette.transparent, WHITE: palette.white }, accents), tokens);
@@ -292,6 +295,118 @@ css `
   --font-weight: 500;
 `;
 
+const Direction = {
+    NONE: 'None',
+    ASCENDING: 'Asc',
+    DESCENDING: 'Desc',
+};
+
+const paths = {
+    xs: 'mini',
+    sm: 'bold',
+    md: 'bold',
+    lg: 'bold',
+    xl: 'bold',
+};
+/**
+ * Icon wrapper.
+ */
+const Icon = (_a) => {
+    var { name, size = 'sm' } = _a, props = __rest(_a, ["name", "size"]);
+    const [Component, setComponent] = useState();
+    useEffect(() => {
+        import(`./icons/${paths[size]}/${name}`)
+            .then((c) => {
+            setComponent(c.default);
+        })
+            .catch((e) => {
+            console.error(`${name} icon not found!`);
+        });
+    }, [name, size]);
+    if (!!Component) {
+        return (jsx(Container$6, Object.assign({ "data-icon": name, "data-size": size }, props, { children: Component }), void 0));
+    }
+    else {
+        return null;
+    }
+};
+const Container$6 = styled.span `
+  --icon-size: ;
+
+  display: inline-block;
+  flex-shrink: 0;
+  height: var(--icon-size);
+  width: var(--icon-size);
+
+  svg {
+    display: block;
+  }
+
+  &[data-size='xs'],
+  &[data-size='sm'] {
+    --icon-size: 16px;
+  }
+  &[data-size='md'] {
+    --icon-size: 20px;
+  }
+  &[data-size='lg'] {
+    --icon-size: 24px;
+  }
+  &[data-size='xl'] {
+    --icon-size: 32px;
+  }
+`;
+
+/**
+ * Order indicator.
+ */
+const Order = (_a) => {
+    var { direction, size = 'xs' } = _a, props = __rest(_a, ["direction", "size"]);
+    return (jsxs(Container$5, Object.assign({ "data-direction": direction }, props, { children: [jsx(Icon, { name: "Sort", size: "xs", "data-size": size || null }, void 0),
+            jsx(Icon, { name: "Sort", size: "xs", "data-size": size || null }, void 0),
+            jsx(Icon, { name: "Sort", size: "xs", "data-size": size || null }, void 0)] }), void 0));
+};
+const Container$5 = styled.div `
+  --opacity-2: 0;
+  --opacity-3: 0;
+  --path: ;
+
+  cursor: pointer;
+  display: inline-grid;
+  place-items: center;
+
+  [data-icon] {
+    color: var(--color);
+
+    &:nth-of-type(1) {
+      --color: ${colors.ELEMENT_TERTIARY};
+    }
+    &:nth-of-type(2),
+    &:nth-of-type(3) {
+      --color: ${colors.ELEMENT_PRIMARY};
+
+      clip-path: polygon(var(--path));
+      position: absolute;
+      transition: opacity 0.4s;
+    }
+    &:nth-of-type(2) {
+      --path: 0% 50%, 100% 50%, 100% 100%, 0% 100%;
+      opacity: var(--opacity-2);
+    }
+    &:nth-of-type(3) {
+      --path: 0% 0%, 100% 0%, 100% 50%, 0% 50%;
+      opacity: var(--opacity-3);
+    }
+  }
+
+  &[data-direction='${Direction.ASCENDING}'] {
+    --opacity-2: 1;
+  }
+  &[data-direction='${Direction.DESCENDING}'] {
+    --opacity-3: 1;
+  }
+`;
+
 /**
  * Primary UI component for user interaction
  */
@@ -313,7 +428,6 @@ const base = css `
   --button-font-weight: 600;
   --button-gap: 8px;
   --button-icon-offset: 4px;
-  --button-icon-size: 16px;
   --button-icon-rotation: 0;
   --button-icon-transform: ;
   --button-indent: 14px;
@@ -346,9 +460,8 @@ const base = css `
   white-space: nowrap;
   z-index: 1;
 
-  svg {
+  [data-icon] {
     flex-shrink: 0;
-    height: var(--button-icon-size);
     transition-duration: 0.3s;
     transition-property: transform;
     transition-timing-function: ease-in-out;
@@ -479,71 +592,15 @@ const Container$4 = styled.button `
   &[data-theme='warning'] {} */
 `;
 
-const paths = {
-    xs: 'mini',
-    sm: 'bold',
-    md: 'bold',
-    lg: 'bold',
-    xl: 'bold',
-};
-/**
- * Icon wrapper.
- */
-const Icon = (_a) => {
-    var { name, size = 'sm' } = _a, props = __rest(_a, ["name", "size"]);
-    const [Component, setComponent] = useState();
-    useEffect(() => {
-        import(`./icons/${paths[size]}/${name}`)
-            .then((c) => {
-            setComponent(c.default);
-        })
-            .catch((e) => {
-            console.error(`${name} icon not found!`);
-        });
-    }, [name, size]);
-    if (!!Component) {
-        return (jsx(Container$3, Object.assign({ "data-icon": name, "data-size": size }, props, { children: Component }), void 0));
-    }
-    else {
-        return null;
-    }
-};
-const Container$3 = styled.span `
-  --icon-size: ;
-
-  display: inline-block;
-  flex-shrink: 0;
-  height: var(--icon-size);
-  width: var(--icon-size);
-
-  svg {
-    display: block;
-  }
-
-  &[data-size='xs'],
-  &[data-size='sm'] {
-    --icon-size: 16px;
-  }
-  &[data-size='md'] {
-    --icon-size: 20px;
-  }
-  &[data-size='lg'] {
-    --icon-size: 24px;
-  }
-  &[data-size='xl'] {
-    --icon-size: 32px;
-  }
-`;
-
 /**
  * Flexbox wrapper.
  */
 const Flex = (_a) => {
     var { align, block, direction, gap, justify, wrap } = _a, props = __rest(_a, ["align", "block", "direction", "gap", "justify", "wrap"]);
     const delegated = Object.assign({ align, block, direction, gap, justify }, props);
-    return jsx(Container$2, Object.assign({ "data-wrap": wrap || null }, delegated), void 0);
+    return jsx(Container$3, Object.assign({ "data-wrap": wrap || null }, delegated), void 0);
 };
-const Container$2 = styled.div `
+const Container$3 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'flex' : 'inline-flex'}`};
   ${({ direction }) => direction && direction !== 'row' && `flex-direction: ${direction}`};
@@ -561,9 +618,9 @@ const Container$2 = styled.div `
 const Grid = (_a) => {
     var { align, block, columns, gap, justify, max = '1fr', min = '0px', sizing = 'auto-fit' } = _a, props = __rest(_a, ["align", "block", "columns", "gap", "justify", "max", "min", "sizing"]);
     const delegated = Object.assign({ align, block, columns, gap, justify, max, min, sizing }, props);
-    return jsx(Container$1, Object.assign({}, delegated), void 0);
+    return jsx(Container$2, Object.assign({}, delegated), void 0);
 };
-const Container$1 = styled.div `
+const Container$2 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'grid' : 'inline-grid'}`};
   ${({ gap }) => gap && `gap: ${gap}`};
@@ -591,9 +648,9 @@ const truncate = css `
  */
 const Text = (_a) => {
     var { as = 'span', clamp, truncate } = _a, props = __rest(_a, ["as", "clamp", "truncate"]);
-    return (jsx(Container, Object.assign({ as: as, "data-as": as, "data-clamp": clamp || null, "data-truncate": truncate || null, style: { ['--lines']: clamp } }, props), void 0));
+    return (jsx(Container$1, Object.assign({ as: as, "data-as": as, "data-clamp": clamp || null, "data-truncate": truncate || null, style: { ['--lines']: clamp } }, props), void 0));
 };
-const Container = styled.span `
+const Container$1 = styled.span `
   &[data-as='h1'] {
     ${h1};
   }
@@ -621,5 +678,228 @@ const Container = styled.span `
   }
 `;
 
-export { Button, Flex, Grid, Icon, Idle, Text };
+/**
+ * Status
+ */
+const Status = (_a) => {
+    var { children, icon, text, theme } = _a, props = __rest(_a, ["children", "icon", "text", "theme"]);
+    const isBeacon = !(text || children);
+    return (jsxs(Container, Object.assign({ "data-beacon": isBeacon || null, "data-theme": theme || null }, props, { children: [icon, jsx(Text, Object.assign({ truncate: true }, { children: text ? text : children }), void 0)] }), void 0));
+};
+const Container = styled.span `
+  ${base$1};
+
+  --status-background-color: #e7ebf2;
+  --status-color: #6a758d;
+  --status-color-primary: #bbc7d8;
+  --status-color-secondary: hsla(211, 36%, 82%, 0.4);
+  --status-font-size: 12px;
+  --status-font-weight: 600;
+  --status-gap: 4px;
+  --status-indent: 8px;
+  --status-line-height: var(--status-size);
+  --status-radius: 6px;
+  --status-size: 24px;
+
+  align-items: center;
+  background-color: var(--status-background-color);
+  border-radius: var(--status-radius);
+  color: var(--status-color);
+  display: inline-flex;
+  font-size: var(--status-font-size);
+  font-weight: var(--status-font-weight);
+  gap: var(--status-gap);
+  height: var(--status-size);
+  padding: 0 var(--status-indent);
+  user-select: none;
+  white-space: nowrap;
+
+  &[data-theme='notice'] {
+    --status-background-color: #d4e5ff;
+    --status-color: ${colors.PRIMARY};
+    --status-color-primary: ${colors.NOTICE};
+    --status-color-secondary: hsla(222, 100%, 56%, 0.4);
+  }
+  &[data-theme='success'] {
+    --status-background-color: #d7efdc;
+    --status-color: #058a40;
+    --status-color-primary: ${colors.SUCCESS};
+    --status-color-secondary: hsla(132, 66%, 70%, 0.4);
+  }
+  &[data-theme='warning'] {
+    --status-background-color: #ffe7b8;
+    --status-color: #b17400;
+    --status-color-primary: ${colors.WARNING};
+    --status-color-secondary: hsla(44, 100%, 52%, 0.4);
+  }
+  &[data-theme='danger'] {
+    --status-background-color: #ffaab6;
+    --status-color: #c1132d;
+    --status-color-primary: ${colors.DANGER};
+    --status-color-secondary: hsla(351, 100%, 62%, 0.4);
+  }
+
+  &[data-beacon] {
+    --status-background-color: transparent;
+    --status-indent: 0;
+    --status-radius: 50%;
+    --status-size: 16px;
+
+    aspect-ratio: 1;
+    display: inline-grid;
+    flex-grow: 0;
+    place-items: center;
+    position: relative;
+
+    &::after,
+    &::before {
+      aspect-ratio: inherit;
+      border-radius: inherit;
+      content: '';
+      display: block;
+      position: absolute;
+    }
+    &::after {
+      background: var(--status-color-primary);
+      height: calc(var(--status-size) / 8 * 3);
+    }
+    &::before {
+      background: var(--status-color-secondary);
+      height: calc(var(--status-size) / 8 * 5);
+    }
+  }
+`;
+
+/**
+ * Table data cell
+ */
+const Td = (_a) => {
+    var { align, justify, size } = _a, props = __rest(_a, ["align", "justify", "size"]);
+    return (jsx(TdContainer, Object.assign({ "data-align": align || null, "data-justify": justify || null }, props), void 0));
+};
+const textAlign = css `
+  &[data-justify='inherit'] {
+    text-align: inherit;
+  }
+  &[data-justify='start'] {
+    text-align: start;
+  }
+  &[data-justify='center'] {
+    text-align: center;
+  }
+  &[data-justify='end'] {
+    text-align: end;
+  }
+`;
+const TdContainer = styled.td `
+  ${textAlign};
+
+  ${({ size }) => size && `width: ${size};`}
+
+  &[data-align='baseline'] {
+    vertical-align: baseline;
+  }
+  &[data-align='bottom'] {
+    vertical-align: bottom;
+  }
+  &[data-align='middle'] {
+    vertical-align: middle;
+  }
+  &[data-align='top'] {
+    vertical-align: top;
+  }
+`;
+/**
+ * Table header cell
+ */
+const Th = (_a) => {
+    var { align, children, direction, icon, justify, onClick, sortable } = _a, props = __rest(_a, ["align", "children", "direction", "icon", "justify", "onClick", "sortable"]);
+    return (jsx(ThContainer, Object.assign({ "data-align": align || null, "data-justify": justify || null }, props, { children: jsxs(Flex, Object.assign({ gap: "4px", "data-sortable": sortable || null, onClick: onClick }, { children: [icon, jsx(Text, Object.assign({ truncate: true }, { children: children }), void 0),
+                sortable && jsx(Order, { direction: direction }, void 0)] }), void 0) }), void 0));
+};
+const ThContainer = styled.th `
+  ${textAlign};
+
+  ${({ size }) => size && `width: ${size};`}
+
+  [data-sortable] {
+    cursor: pointer;
+    user-select: none;
+  }
+  & > div {
+    ${h5};
+  }
+`;
+/**
+ * Table spacer
+ */
+const Spacer = styled.div `
+  background: ${colors.STROKE};
+  border-radius: 1000px;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  width: 2px;
+`;
+/**
+ * Table row
+ */
+const Tr = styled.tr ``;
+/**
+ * Table head
+ */
+const Thead = styled.thead ``;
+/**
+ * Table body
+ */
+const Tbody = styled.tbody ``;
+/**
+ * Table
+ */
+const Table = (_a) => {
+    var { layout } = _a, props = __rest(_a, ["layout"]);
+    return (jsx(TableContainer, Object.assign({ "data-layout": layout || null }, props), void 0));
+};
+const TableContainer = styled.table `
+  ${base$1};
+
+  --background-color: ${colors.WHITE};
+  --font-size: 14px;
+  --font-weight: 600;
+  --indent: 8px;
+  --line-height: 16px;
+
+  background-color: var(--background-color);
+  border-collapse: collapse;
+  border-spacing: 0;
+
+  &[data-layout='fixed'] {
+    table-layout: fixed;
+  }
+
+  ${({ size }) => `width: ${size !== null && size !== void 0 ? size : '100%'};`}
+
+  tr {
+    border-bottom: 1px solid ${colors.STROKE};
+
+    th,
+    td {
+      height: calc(48px - 1px);
+
+      &:first-of-type {
+        padding-left: calc(2 * var(--indent));
+      }
+      &:last-of-type {
+        padding-right: calc(2 * var(--indent));
+      }
+    }
+  }
+
+  th,
+  td {
+    padding: var(--indent);
+    text-align: start;
+  }
+`;
+
+export { Button, Flex, Grid, Icon, Idle, Order, Spacer, Status, Table, Tbody, Td, Text, Th, Thead, Tr };
 //# sourceMappingURL=index.js.map

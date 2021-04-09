@@ -26,6 +26,7 @@ const palette = {
   gray: {
     botticelli: '#dbe4ee', // dividers and strokes
     cadet: '#b4bac8', // tertiary
+    fiord: '#3b4463', // dividers and strokes [dark]
     geyser: '#ced4e2', // disabled
     porcelain: '#f6f7f8', // background / secondary
     trout: '#545864', // disabled [dark]
@@ -84,8 +85,10 @@ const tokens = ((c): Color => {
     ELEMENT_ACTIVE: c.blue.science,
     ELEMENT_DISABLED: c.gray.geyser,
     ELEMENT_FOCUS: c.blue.dodger,
+    STROKE: c.gray.botticelli,
     TEXT_PRIMARY: c.blue.haiti,
     TEXT_SECONDARY: c.blue.hawkes,
+    TEXT_TERTIARY: c.gray.cadet,
 
     // Darth Vader
     DARK_TERTIARY: c.gray.waterloo,
@@ -95,6 +98,7 @@ const tokens = ((c): Color => {
     DARK_ELEMENT_ACTIVE: c.blue.oxford,
     DARK_ELEMENT_DISABLED: c.gray.trout,
     DARK_ELEMENT_FOCUS: c.blue.denim,
+    DARK_STROKE: c.gray.fiord,
   };
 })(palette);
 

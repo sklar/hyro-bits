@@ -1,4 +1,10 @@
-export const ElementSize = {
+export const Direction = {
+  NONE: 'None',
+  ASCENDING: 'Asc',
+  DESCENDING: 'Desc',
+} as const;
+
+export const Size = {
   XSMALL: 'xs',
   SMALL: 'sm',
   MEDIUM: 'md',
@@ -6,7 +12,7 @@ export const ElementSize = {
   XLARGE: 'xl',
 } as const;
 
-export const ElementTheme = {
+export const Theme = {
   NOTICE: 'notice',
   SUCCESS: 'success',
   WARNING: 'warning',
@@ -14,7 +20,7 @@ export const ElementTheme = {
   DARK: 'dark',
 } as const;
 
-export const ElementVariant = {
+export const Variant = {
   PRIMARY: 'primary',
   SECONDARY: 'secondary',
   TERTIARY: 'tertiary',

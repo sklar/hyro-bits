@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, ReactElement, ReactNode } from 'react';
-import { Theme, Variant } from '../utils/types';
+import { ThemeType, VariantType } from '../utils/types';
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
     /**
      * Children
@@ -32,7 +32,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
     /**
      * Theme
      */
-    theme?: Exclude<Theme, 'notice'>;
+    theme?: Exclude<ThemeType, 'notice'>;
     /**
      * Toggle
      */
@@ -40,7 +40,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
     /**
      * Variant
      */
-    variant?: Variant;
+    variant?: VariantType;
     /**
      * State: Active
      */

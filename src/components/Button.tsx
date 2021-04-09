@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 import { Idle as Indicator } from '../components/indicator';
 import { button, colors } from '../theme';
-import { Theme, Variant } from '../utils/types';
+import { ThemeType, VariantType } from '../utils/types';
 
 export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
@@ -39,7 +39,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
    * Theme
    */
-  theme?: Exclude<Theme, 'notice'>;
+  theme?: Exclude<ThemeType, 'notice'>;
   /**
    * Toggle
    */
@@ -47,7 +47,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
   /**
    * Variant
    */
-  variant?: Variant;
+  variant?: VariantType;
 
   /**
    * State: Active
@@ -128,7 +128,6 @@ const base = css`
   --button-font-weight: 600;
   --button-gap: 8px;
   --button-icon-offset: 4px;
-  --button-icon-size: 16px;
   --button-icon-rotation: 0;
   --button-icon-transform: ;
   --button-indent: 14px;
@@ -161,9 +160,8 @@ const base = css`
   white-space: nowrap;
   z-index: 1;
 
-  svg {
+  [data-icon] {
     flex-shrink: 0;
-    height: var(--button-icon-size);
     transition-duration: 0.3s;
     transition-property: transform;
     transition-timing-function: ease-in-out;

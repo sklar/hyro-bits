@@ -9,15 +9,14 @@ import * as TOKENS from './typography';
 export default {
   title: 'Typography',
   decorators: [withDesign],
-} as Meta;
-
-const params = {
-  controls: { hideNoControlsWarning: true },
-  design: {
-    type: 'figma',
-    url: 'https://www.figma.com/file/rEhCUlh0IRFrtoFeIK5kEt/New-Design-System?node-id=12%3A2',
+  parameters: {
+    controls: { hideNoControlsWarning: true },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/rEhCUlh0IRFrtoFeIK5kEt/New-Design-System?node-id=12%3A2',
+    },
   },
-};
+} as Meta;
 
 export const Typography: Story = () => (
   <>
@@ -50,7 +49,6 @@ export const Typography: Story = () => (
     </Flex>
   </>
 );
-Typography.parameters = { ...params };
 
 const Token = styled.span`
   margin: 0;

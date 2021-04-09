@@ -3,10 +3,8 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { withDesign } from 'storybook-addon-designs';
 
 import { Legend } from '../stories/Legend';
-import { Grid } from './layout/Grid';
-import { Status, StatusProps } from './Status';
+import { Grid, Icon, Status, StatusProps } from './index';
 import { mapArgTypes } from '../stories';
-import { Icon } from './Icon';
 
 export default {
   title: 'Components/Status',
@@ -32,8 +30,8 @@ export default {
   },
   argTypes: {
     ...mapArgTypes(['icon'], {
+      control: { disable: true },
       table: { type: { summary: 'ReactElement' } },
-      control: { type: null },
     }),
     ...mapArgTypes(['theme'], {
       control: { type: 'inline-radio' },

@@ -7,8 +7,7 @@ import * as iconsBold from '../icons/bold';
 import * as iconsBoldMini from '../icons/mini';
 import { mapArgTypes } from '../stories';
 import { truncate } from '../utils/helpers';
-import { Icon, IconProps } from './Icon';
-import { Flex } from './layout';
+import { Flex, Icon, IconProps } from './index';
 
 interface StoryProps extends IconProps {
   icons: React.FC[];

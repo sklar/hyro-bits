@@ -2,7 +2,7 @@ import React, { HTMLAttributes, ReactElement } from 'react';
 import styled from '@emotion/styled';
 
 import { base } from '../theme/typography';
-import { Theme } from '../utils/types';
+import { ThemeType } from '../utils/types';
 import { Text } from './Text';
 import { colors } from '../theme';
 
@@ -18,7 +18,7 @@ export interface StatusProps extends HTMLAttributes<HTMLSpanElement> {
   /**
    * Theme
    */
-  theme?: Exclude<Theme, 'dark'>;
+  theme?: Exclude<ThemeType, 'dark'>;
 }
 
 /**

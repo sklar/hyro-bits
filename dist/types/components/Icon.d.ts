@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from 'react';
-import { Size } from '../utils/types';
+import { SizeType } from '../utils/types';
 export interface IconProps extends HTMLAttributes<HTMLElement> {
     /**
      * Name
@@ -8,7 +8,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
     /**
      * Size.
      */
-    size?: Size;
+    size?: SizeType;
 }
 /**
  * Icon wrapper.

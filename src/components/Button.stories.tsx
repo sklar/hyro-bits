@@ -3,9 +3,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 import { withDesign } from 'storybook-addon-designs';
 
 import { Legend, mapArgTypes } from '../stories';
-import { Button, ButtonProps } from './Button';
-import { Icon } from './Icon';
-import { Flex, Grid } from './layout';
+import { Button, ButtonProps, Flex, Grid, Icon } from './index';
 
 export default {
   title: 'Components/Button',
@@ -33,7 +31,8 @@ export default {
   },
   argTypes: {
     children: {
-      control: { type: null },
+      control: { disable: true },
+      table: { disable: true },
     },
     ...mapArgTypes(['type'], {
       control: { type: 'inline-radio' },
@@ -46,8 +45,8 @@ export default {
       table: { category: 'Modifiers' },
     }),
     ...mapArgTypes(['icon'], {
+      control: { disable: true },
       table: { category: 'Icons', type: { summary: 'ReactElement' } },
-      control: { type: null },
     }),
     ...mapArgTypes(['placement'], {
       control: { type: 'inline-radio' },

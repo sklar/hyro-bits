@@ -1,13 +1,17 @@
 import React, { HTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 
-import { FlexAlignment } from '../../utils/types';
+import {
+  AlignmentPrimaryType,
+  AlignmentSecondaryType,
+  AlignmentTertiaryType,
+} from '../../utils/types';
 
 export interface FlexProps extends HTMLAttributes<HTMLElement> {
   /**
    * Alignment, secondary axis
    */
-  align?: FlexAlignment | 'baseline';
+  align?: AlignmentSecondaryType;
   /**
    * Block or inline
    */
@@ -23,7 +27,7 @@ export interface FlexProps extends HTMLAttributes<HTMLElement> {
   /**
    * Alignment, primary axis
    */
-  justify?: FlexAlignment | 'space-between' | 'space-around' | 'space-evenly';
+  justify?: AlignmentPrimaryType | AlignmentTertiaryType;
   /**
    * Wrap (default is `no-wrap`)
    */
