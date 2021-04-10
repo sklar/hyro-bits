@@ -7,5 +7,6 @@ export const mapArgTypes = (types: string[], args: ArgTypes): ArgTypes => {
 };
 
 export * from './Color';
+export * from './Container';
 export * from './Divider';
 export * from './Legend';

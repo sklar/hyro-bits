@@ -6,7 +6,7 @@ import { Idle as Indicator } from '../components/indicator';
 import { button, colors } from '../theme';
 import { ThemeType, VariantType } from '../utils/types';
 
-export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> {
   /**
    * Children
    */
@@ -256,7 +256,7 @@ const Container = styled.button<ButtonProps>`
   }
 
   &[data-busy] {
-    color: transparent;
+    color: ${colors.TRANSPARENT};
   }
 
   &[data-toggle] {

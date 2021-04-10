@@ -6,6 +6,8 @@ import { ThemeType } from '../utils/types';
 import { Text } from './Text';
 import { colors } from '../theme';
 
+export type StatusThemeType = Exclude<ThemeType, 'dark'>;
+
 export interface StatusProps extends HTMLAttributes<HTMLSpanElement> {
   /**
    * Icon
@@ -18,7 +20,7 @@ export interface StatusProps extends HTMLAttributes<HTMLSpanElement> {
   /**
    * Theme
    */
-  theme?: Exclude<ThemeType, 'dark'>;
+  theme?: StatusThemeType;
 }
 
 /**
@@ -94,7 +96,7 @@ const Container = styled.span`
   }
 
   &[data-beacon] {
-    --status-background-color: transparent;
+    --status-background-color: ${colors.TRANSPARENT};
     --status-indent: 0;
     --status-radius: 50%;
     --status-size: 16px;

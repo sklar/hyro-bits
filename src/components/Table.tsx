@@ -31,6 +31,7 @@ interface TdProps extends HTMLAttributes<HTMLTableDataCellElement> {
 export const Td: React.FC<TdProps> = ({ align, justify, size, ...props }): JSX.Element => (
   <TdContainer data-align={align || null} data-justify={justify || null} {...props} />
 );
+
 const textAlign = css`
   &[data-justify='inherit'] {
     text-align: inherit;
@@ -94,7 +95,7 @@ interface ThProps extends HTMLAttributes<HTMLTableHeaderCellElement> {
   /**
    * Event: Click
    */
-  onClick?: (x?: any) => void;
+  onClick?: () => void;
 }
 
 /**
@@ -157,6 +158,7 @@ export interface TrProps extends HTMLAttributes<HTMLTableRowElement> {
 export const Tr: React.FC<TrProps> = ({ mute, ...props }): JSX.Element => (
   <TrContainer data-mute={mute || null} {...props} />
 );
+
 export const TrContainer = styled.tr`
   &[data-mute] {
     td,
@@ -193,6 +195,7 @@ export interface TableProps extends HTMLAttributes<HTMLTableElement> {
 export const Table: React.FC<TableProps> = ({ layout, ...props }): JSX.Element => (
   <TableContainer data-layout={layout || null} {...props} />
 );
+
 const TableContainer = styled.table<TableProps>`
   ${base};
 
@@ -205,6 +208,7 @@ const TableContainer = styled.table<TableProps>`
   background-color: var(--background-color);
   border-collapse: collapse;
   border-spacing: 0;
+  font-variant-numeric: tabular-nums;
 
   &[data-layout='fixed'] {
     table-layout: fixed;

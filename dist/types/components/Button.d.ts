@@ -1,6 +1,6 @@
 import React, { HTMLAttributes, ReactElement, ReactNode } from 'react';
 import { ThemeType, VariantType } from '../utils/types';
-export interface ButtonProps extends HTMLAttributes<HTMLButtonElement> {
+export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> {
     /**
      * Children
      */

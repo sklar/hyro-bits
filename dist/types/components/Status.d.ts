@@ -1,5 +1,6 @@
 import React, { HTMLAttributes, ReactElement } from 'react';
 import { ThemeType } from '../utils/types';
+export declare type StatusThemeType = Exclude<ThemeType, 'dark'>;
 export interface StatusProps extends HTMLAttributes<HTMLSpanElement> {
     /**
      * Icon
@@ -12,7 +13,7 @@ export interface StatusProps extends HTMLAttributes<HTMLSpanElement> {
     /**
      * Theme
      */
-    theme?: Exclude<ThemeType, 'dark'>;
+    theme?: StatusThemeType;
 }
 /**
  * Status

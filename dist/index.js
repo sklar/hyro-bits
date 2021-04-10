@@ -191,6 +191,7 @@ const tokens = ((c) => {
         STROKE: c.gray.botticelli,
         TEXT_PRIMARY: c.blue.haiti,
         TEXT_SECONDARY: c.blue.hawkes,
+        TEXT_TERTIARY: c.gray.cadet,
         // Darth Vader
         DARK_TERTIARY: c.gray.waterloo,
         DARK_ELEMENT_TERTIARY: c.gray.waterloo,
@@ -550,7 +551,7 @@ const Container$4 = styled.button `
   }
 
   &[data-busy] {
-    color: transparent;
+    color: ${colors.TRANSPARENT};
   }
 
   &[data-toggle] {
@@ -740,7 +741,7 @@ const Container = styled.span `
   }
 
   &[data-beacon] {
-    --status-background-color: transparent;
+    --status-background-color: ${colors.TRANSPARENT};
     --status-indent: 0;
     --status-radius: 50%;
     --status-size: 16px;
@@ -768,6 +769,66 @@ const Container = styled.span `
       height: calc(var(--status-size) / 8 * 5);
     }
   }
+`;
+
+/**
+ * Navigation item
+ */
+const NavItem = (_a) => {
+    var { active, icon = jsx(Icon, { name: "Chevron" }, void 0), status, text } = _a, props = __rest(_a, ["active", "icon", "status", "text"]);
+    return (jsxs(NavItemContainer, Object.assign({ "data-active": active || null, "data-status": status || null, type: "button" }, props, { children: [status && jsx(Status, { theme: status || null }, void 0),
+            jsx(Text, Object.assign({ "data-text": true, truncate: true }, { children: text }), void 0), icon] }), void 0));
+};
+const NavItemContainer = styled.button `
+  ${button};
+
+  --nav-item-background-color: #edf1f4;
+  --nav-item-border-color: #c5d5e4;
+  --nav-item-border-size: 1px;
+  --nav-item-color: ;
+  --nav-item-gap: 8px;
+  --nav-item-indent: 8px;
+  --nav-item-size: 56px;
+
+  align-items: center;
+  background-color: var(--nav-item-background-color);
+  border: 0;
+  border-bottom: var(--nav-item-border-size) solid var(--nav-item-border-color);
+  color: var(--nav-item-color);
+  cursor: pointer;
+  display: flex;
+  gap: var(--nav-item-gap);
+  height: var(--nav-item-size);
+  justify-content: space-between;
+  margin: 0;
+  margin-bottom: var(--nav-item-indent);
+  outline: 0;
+  overflow: hidden;
+  padding: 0 var(--nav-item-indent);
+  padding-left: calc(2 * var(--nav-item-indent));
+  text-align: left;
+  transition-duration: 0.2s;
+  transition-property: background-color, color;
+  transition-timing-function: ease-in-out;
+
+  &[data-active] {
+    --nav-item-background-color: ${colors.ELEMENT_FOCUS};
+    --nav-item-color: ${colors.WHITE};
+  }
+  &[data-status] {
+    padding-left: var(--nav-item-indent);
+  }
+
+  [data-text] {
+    flex: 1;
+  }
+`;
+/**
+ * Navigation
+ */
+const Nav = styled.nav `
+  display: flex;
+  flex-direction: column;
 `;
 
 /**
@@ -843,7 +904,18 @@ const Spacer = styled.div `
 /**
  * Table row
  */
-const Tr = styled.tr ``;
+const Tr = (_a) => {
+    var { mute } = _a, props = __rest(_a, ["mute"]);
+    return (jsx(TrContainer, Object.assign({ "data-mute": mute || null }, props), void 0));
+};
+const TrContainer = styled.tr `
+  &[data-mute] {
+    td,
+    th {
+      color: ${colors.TEXT_TERTIARY};
+    }
+  }
+`;
 /**
  * Table head
  */
@@ -901,5 +973,5 @@ const TableContainer = styled.table `
   }
 `;
 
-export { Button, Flex, Grid, Icon, Idle, Order, Spacer, Status, Table, Tbody, Td, Text, Th, Thead, Tr };
+export { Button, Flex, Grid, Icon, Idle, Nav, NavItem, Order, Spacer, Status, Table, Tbody, Td, Text, Th, Thead, Tr, TrContainer };
 //# sourceMappingURL=index.js.map
