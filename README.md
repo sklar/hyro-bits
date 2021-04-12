@@ -86,10 +86,10 @@ TL;DR fire these commands in your Terminal to link your local app and library fo
 
 ```
 library
-➜ yarn
+➜ yarn link
 
 app
-➜ yarn link @purplenl/purplex-components
+➜ yarn link purplex-components
 
 app/node_modules/react
 ➜ yarn link
