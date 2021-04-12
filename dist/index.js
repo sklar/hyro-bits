@@ -943,6 +943,7 @@ const TableContainer = styled.table `
   background-color: var(--background-color);
   border-collapse: collapse;
   border-spacing: 0;
+  font-variant-numeric: tabular-nums;
 
   &[data-layout='fixed'] {
     table-layout: fixed;
