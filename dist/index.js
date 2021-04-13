@@ -1,4 +1,4 @@
-/** Components v1.0.0 */
+/** Components v1.1.0 */
 
 import { jsxs, jsx } from 'react/jsx-runtime';
 import { keyframes, css } from '@emotion/react';
@@ -279,7 +279,7 @@ const button = css `
   --letter-spacing: -0.01em;
   --line-height: calc(16 / 14);
 `;
-css `
+const label = css `
   ${base$1};
 
   --color: #353b56;
@@ -288,7 +288,7 @@ css `
   --letter-spacing: -0.01em;
   --line-height: calc(16 / 14);
 `;
-css `
+const input = css `
   ${base$1};
 
   --font-size: 13px;
@@ -974,5 +974,5 @@ const TableContainer = styled.table `
   }
 `;
 
-export { Button, Flex, Grid, Icon, Idle, Nav, NavItem, Order, Spacer, Status, Table, Tbody, Td, Text, Th, Thead, Tr, TrContainer };
+export { Button, Flex, Grid, Icon, Idle, Nav, NavItem, Order, Spacer, Status, Table, Tbody, Td, Text, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph };
 //# sourceMappingURL=index.js.map
