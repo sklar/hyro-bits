@@ -24,6 +24,7 @@ export { default as Cog } from './Cog';
 export { default as CommentLines } from './CommentLines';
 export { default as Cursor } from './Cursor';
 export { default as Document } from './Document';
+export { default as DoorOpen } from './DoorOpen';
 export { default as EllipsisHorizontal } from './EllipsisHorizontal';
 export { default as EllipsisVertical } from './EllipsisVertical';
 export { default as ExclamationTriangle } from './ExclamationTriangle';
