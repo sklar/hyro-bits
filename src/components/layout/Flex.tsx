@@ -2,6 +2,7 @@ import React, { HTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 
 import {
+  AlignmentFlexboxType,
   AlignmentPrimaryType,
   AlignmentSecondaryType,
   AlignmentTertiaryType,
@@ -11,7 +12,7 @@ export interface FlexProps extends HTMLAttributes<HTMLElement> {
   /**
    * Alignment, secondary axis
    */
-  align?: AlignmentSecondaryType;
+  align?: AlignmentSecondaryType | AlignmentFlexboxType;
   /**
    * Block or inline
    */
@@ -27,7 +28,7 @@ export interface FlexProps extends HTMLAttributes<HTMLElement> {
   /**
    * Alignment, primary axis
    */
-  justify?: AlignmentPrimaryType | AlignmentTertiaryType;
+  justify?: AlignmentPrimaryType | AlignmentTertiaryType | AlignmentFlexboxType;
   /**
    * Wrap (default is `no-wrap`)
    */

@@ -8,6 +8,8 @@ export type AlignmentSecondaryType = 'inherit' | 'normal' | 'baseline' | 'start'
 
 export type AlignmentTertiaryType = 'space-around' | 'space-between' | 'space-evenly';
 
+export type AlignmentFlexboxType = 'flex-start' | 'flex-end';
+
 export type DirectionType = Values<typeof Direction>;
 
 export type SizeType = Values<typeof Size>;
