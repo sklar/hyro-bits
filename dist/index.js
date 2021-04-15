@@ -1,9 +1,8 @@
 /** Components v1.1.0 */
 
-import { jsxs, jsx } from 'react/jsx-runtime';
+import React, { useState, useEffect } from 'react';
 import { keyframes, css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { useState, useEffect } from 'react';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -56,9 +55,10 @@ keyframes `
 const Idle = (_a) => {
     var { color, delay = 100, duration = 500, gap = '4px', range = '6px', size = '5px' } = _a, props = __rest(_a, ["color", "delay", "duration", "gap", "range", "size"]);
     const delegated = Object.assign({ color, delay, duration, gap, range, size }, props);
-    return (jsxs(Container$7, Object.assign({}, delegated, { children: [jsx(Element, {}, void 0),
-            jsx(Element, {}, void 0),
-            jsx(Element, {}, void 0)] }), void 0));
+    return (React.createElement(Container$7, Object.assign({}, delegated),
+        React.createElement(Element, null),
+        React.createElement(Element, null),
+        React.createElement(Element, null)));
 };
 const idle = keyframes `
   0%    { --offset: calc(-0.5 * var(--range)); }
@@ -325,7 +325,7 @@ const Icon = (_a) => {
         });
     }, [name, size]);
     if (!!Component) {
-        return (jsx(Container$6, Object.assign({ "data-icon": name, "data-size": size }, props, { children: Component }), void 0));
+        return (React.createElement(Container$6, Object.assign({ "data-icon": name, "data-size": size }, props), Component));
     }
     else {
         return null;
@@ -363,9 +363,10 @@ const Container$6 = styled.span `
  */
 const Order = (_a) => {
     var { direction, size = 'xs' } = _a, props = __rest(_a, ["direction", "size"]);
-    return (jsxs(Container$5, Object.assign({ "data-direction": direction }, props, { children: [jsx(Icon, { name: "Sort", size: "xs", "data-size": size || null }, void 0),
-            jsx(Icon, { name: "Sort", size: "xs", "data-size": size || null }, void 0),
-            jsx(Icon, { name: "Sort", size: "xs", "data-size": size || null }, void 0)] }), void 0));
+    return (React.createElement(Container$5, Object.assign({ "data-direction": direction }, props),
+        React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null }),
+        React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null }),
+        React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null })));
 };
 const Container$5 = styled.div `
   --opacity-2: 0;
@@ -416,7 +417,11 @@ const Button = (_a) => {
     const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
     // const delegated = { theme, variant, ...props };
     const delegated = Object.assign({ variant }, props);
-    return (jsxs(Container$4, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, type: type }, delegated, { children: [leader, text ? text : children, trailer, busy && (jsx(Idle, { style: { ['--color']: 'var(--button-color)', position: 'absolute' } }, void 0))] }), void 0));
+    return (React.createElement(Container$4, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, type: type }, delegated),
+        leader,
+        text ? text : children,
+        trailer,
+        busy && (React.createElement(Idle, { style: { ['--color']: 'var(--button-color)', position: 'absolute' } }))));
 };
 const base = css `
   ${button};
@@ -599,7 +604,7 @@ const Container$4 = styled.button `
 const Flex = (_a) => {
     var { align, block, direction, gap, justify, wrap } = _a, props = __rest(_a, ["align", "block", "direction", "gap", "justify", "wrap"]);
     const delegated = Object.assign({ align, block, direction, gap, justify }, props);
-    return jsx(Container$3, Object.assign({ "data-wrap": wrap || null }, delegated), void 0);
+    return React.createElement(Container$3, Object.assign({ "data-wrap": wrap || null }, delegated));
 };
 const Container$3 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
@@ -619,7 +624,7 @@ const Container$3 = styled.div `
 const Grid = (_a) => {
     var { align, block, columns, gap, justify, max = '1fr', min = '0px', sizing = 'auto-fit' } = _a, props = __rest(_a, ["align", "block", "columns", "gap", "justify", "max", "min", "sizing"]);
     const delegated = Object.assign({ align, block, columns, gap, justify, max, min, sizing }, props);
-    return jsx(Container$2, Object.assign({}, delegated), void 0);
+    return React.createElement(Container$2, Object.assign({}, delegated));
 };
 const Container$2 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
@@ -649,7 +654,7 @@ const truncate = css `
  */
 const Text = (_a) => {
     var { as = 'span', clamp, truncate } = _a, props = __rest(_a, ["as", "clamp", "truncate"]);
-    return (jsx(Container$1, Object.assign({ as: as, "data-as": as, "data-clamp": clamp || null, "data-truncate": truncate || null, style: { ['--lines']: clamp } }, props), void 0));
+    return (React.createElement(Container$1, Object.assign({ as: as, "data-as": as, "data-clamp": clamp || null, "data-truncate": truncate || null, style: { ['--lines']: clamp } }, props)));
 };
 const Container$1 = styled.span `
   &[data-as='h1'] {
@@ -685,7 +690,9 @@ const Container$1 = styled.span `
 const Status = (_a) => {
     var { children, icon, text, theme } = _a, props = __rest(_a, ["children", "icon", "text", "theme"]);
     const isBeacon = !(text || children);
-    return (jsxs(Container, Object.assign({ "data-beacon": isBeacon || null, "data-theme": theme || null }, props, { children: [icon, jsx(Text, Object.assign({ truncate: true }, { children: text ? text : children }), void 0)] }), void 0));
+    return (React.createElement(Container, Object.assign({ "data-beacon": isBeacon || null, "data-theme": theme || null }, props),
+        icon,
+        React.createElement(Text, { truncate: true }, text ? text : children)));
 };
 const Container = styled.span `
   ${base$1};
@@ -775,9 +782,11 @@ const Container = styled.span `
  * Navigation item
  */
 const NavItem = (_a) => {
-    var { active, icon = jsx(Icon, { name: "Chevron" }, void 0), status, text } = _a, props = __rest(_a, ["active", "icon", "status", "text"]);
-    return (jsxs(NavItemContainer, Object.assign({ "data-active": active || null, "data-status": status || null, type: "button" }, props, { children: [status && jsx(Status, { theme: status || null }, void 0),
-            jsx(Text, Object.assign({ "data-text": true, truncate: true }, { children: text }), void 0), icon] }), void 0));
+    var { active, icon = React.createElement(Icon, { name: "Chevron" }), status, text } = _a, props = __rest(_a, ["active", "icon", "status", "text"]);
+    return (React.createElement(NavItemContainer, Object.assign({ "data-active": active || null, "data-status": status || null, type: "button" }, props),
+        status && React.createElement(Status, { theme: status || null }),
+        React.createElement(Text, { "data-text": true, truncate: true }, text),
+        icon));
 };
 const NavItemContainer = styled.button `
   ${button};
@@ -836,7 +845,7 @@ const Nav = styled.nav `
  */
 const Td = (_a) => {
     var { align, justify, size } = _a, props = __rest(_a, ["align", "justify", "size"]);
-    return (jsx(TdContainer, Object.assign({ "data-align": align || null, "data-justify": justify || null }, props), void 0));
+    return (React.createElement(TdContainer, Object.assign({ "data-align": align || null, "data-justify": justify || null }, props)));
 };
 const textAlign = css `
   &[data-justify='inherit'] {
@@ -875,8 +884,11 @@ const TdContainer = styled.td `
  */
 const Th = (_a) => {
     var { align, children, direction, icon, justify, onClick, sortable } = _a, props = __rest(_a, ["align", "children", "direction", "icon", "justify", "onClick", "sortable"]);
-    return (jsx(ThContainer, Object.assign({ "data-align": align || null, "data-justify": justify || null }, props, { children: jsxs(Flex, Object.assign({ gap: "4px", "data-sortable": sortable || null, onClick: onClick }, { children: [icon, jsx(Text, Object.assign({ truncate: true }, { children: children }), void 0),
-                sortable && jsx(Order, { direction: direction }, void 0)] }), void 0) }), void 0));
+    return (React.createElement(ThContainer, Object.assign({ "data-align": align || null, "data-justify": justify || null }, props),
+        React.createElement(Flex, { gap: "4px", "data-sortable": sortable || null, onClick: onClick },
+            icon,
+            React.createElement(Text, { truncate: true }, children),
+            sortable && React.createElement(Order, { direction: direction }))));
 };
 const ThContainer = styled.th `
   ${textAlign};
@@ -906,7 +918,7 @@ const Spacer = styled.div `
  */
 const Tr = (_a) => {
     var { mute } = _a, props = __rest(_a, ["mute"]);
-    return (jsx(TrContainer, Object.assign({ "data-mute": mute || null }, props), void 0));
+    return (React.createElement(TrContainer, Object.assign({ "data-mute": mute || null }, props)));
 };
 const TrContainer = styled.tr `
   &[data-mute] {
@@ -929,7 +941,7 @@ const Tbody = styled.tbody ``;
  */
 const Table = (_a) => {
     var { layout } = _a, props = __rest(_a, ["layout"]);
-    return (jsx(TableContainer, Object.assign({ "data-layout": layout || null }, props), void 0));
+    return (React.createElement(TableContainer, Object.assign({ "data-layout": layout || null }, props)));
 };
 const TableContainer = styled.table `
   ${base$1};
