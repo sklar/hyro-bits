@@ -602,9 +602,9 @@ const Container$4 = styled.button `
  * Flexbox wrapper.
  */
 const Flex = (_a) => {
-    var { align, block, direction, gap, justify, wrap } = _a, props = __rest(_a, ["align", "block", "direction", "gap", "justify", "wrap"]);
+    var { align, as = 'div', block, direction, gap, justify, wrap } = _a, props = __rest(_a, ["align", "as", "block", "direction", "gap", "justify", "wrap"]);
     const delegated = Object.assign({ align, block, direction, gap, justify }, props);
-    return React.createElement(Container$3, Object.assign({ "data-wrap": wrap || null }, delegated));
+    return React.createElement(Container$3, Object.assign({ as: as, "data-wrap": wrap || null }, delegated));
 };
 const Container$3 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
@@ -622,9 +622,9 @@ const Container$3 = styled.div `
  * Grid wrapper
  */
 const Grid = (_a) => {
-    var { align, block, columns, gap, justify, max = '1fr', min = '0px', sizing = 'auto-fit' } = _a, props = __rest(_a, ["align", "block", "columns", "gap", "justify", "max", "min", "sizing"]);
+    var { align, as = 'div', block, columns, gap, justify, max = '1fr', min = '0px', sizing = 'auto-fit' } = _a, props = __rest(_a, ["align", "as", "block", "columns", "gap", "justify", "max", "min", "sizing"]);
     const delegated = Object.assign({ align, block, columns, gap, justify, max, min, sizing }, props);
-    return React.createElement(Container$2, Object.assign({}, delegated));
+    return React.createElement(Container$2, Object.assign({ as: as }, delegated));
 };
 const Container$2 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};

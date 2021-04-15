@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React, { ElementType, HTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 
 import {
@@ -13,6 +13,10 @@ export interface FlexProps extends HTMLAttributes<HTMLElement> {
    * Alignment, secondary axis
    */
   align?: AlignmentSecondaryType | AlignmentFlexboxType;
+  /**
+   * Render as HTML element
+   */
+  as?: ElementType<any>;
   /**
    * Block or inline
    */
@@ -40,6 +44,7 @@ export interface FlexProps extends HTMLAttributes<HTMLElement> {
  */
 export const Flex: React.FC<FlexProps> = ({
   align,
+  as = 'div',
   block,
   direction,
   gap,
@@ -48,7 +53,7 @@ export const Flex: React.FC<FlexProps> = ({
   ...props
 }): JSX.Element => {
   const delegated = { align, block, direction, gap, justify, ...props };
-  return <Container data-wrap={wrap || null} {...delegated} />;
+  return <Container as={as} data-wrap={wrap || null} {...delegated} />;
 };
 
 const Container = styled.div<FlexProps>`

@@ -1,10 +1,14 @@
-import React, { HTMLAttributes } from 'react';
+import React, { ElementType, HTMLAttributes } from 'react';
 import { AlignmentFlexboxType, AlignmentPrimaryType, AlignmentSecondaryType, AlignmentTertiaryType } from '../../utils/types';
 export interface FlexProps extends HTMLAttributes<HTMLElement> {
     /**
      * Alignment, secondary axis
      */
     align?: AlignmentSecondaryType | AlignmentFlexboxType;
+    /**
+     * Render as HTML element
+     */
+    as?: ElementType<any>;
     /**
      * Block or inline
      */
