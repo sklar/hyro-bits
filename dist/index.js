@@ -1,6 +1,6 @@
 /** Components v1.1.0 */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import { keyframes, css } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -412,17 +412,17 @@ const Container$5 = styled.div `
 /**
  * Primary UI component for user interaction
  */
-const Button = (_a) => {
+const Button = forwardRef((_a, ref) => {
     var { active, busy, children, disabled, href, icon, placement, round, text, theme, toggle, type = 'button', variant = 'secondary' } = _a, props = __rest(_a, ["active", "busy", "children", "disabled", "href", "icon", "placement", "round", "text", "theme", "toggle", "type", "variant"]);
     const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
     // const delegated = { theme, variant, ...props };
     const delegated = Object.assign({ variant }, props);
-    return (React.createElement(Container$4, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, type: type }, delegated),
+    return (React.createElement(Container$4, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: type }, delegated),
         leader,
         text ? text : children,
         trailer,
         busy && (React.createElement(Idle, { style: { ['--color']: 'var(--button-color)', position: 'absolute' } }))));
-};
+});
 const base = css `
   ${button};
 

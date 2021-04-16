@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactElement, ReactNode } from 'react';
+import React, { forwardRef, HTMLAttributes, ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -71,51 +71,59 @@ export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButt
 /**
  * Primary UI component for user interaction
  */
-export const Button: React.FC<ButtonProps> = ({
-  active,
-  busy,
-  children,
-  disabled,
-  href,
-  icon,
-  placement,
-  round,
-  text,
-  theme,
-  toggle,
-  type = 'button',
-  variant = 'secondary',
-  ...props
-}): JSX.Element => {
-  const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
-  // const delegated = { theme, variant, ...props };
-  const delegated = { variant, ...props };
+export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  (
+    {
+      active,
+      busy,
+      children,
+      disabled,
+      href,
+      icon,
+      placement,
+      round,
+      text,
+      theme,
+      toggle,
+      type = 'button',
+      variant = 'secondary',
+      ...props
+    },
+    ref
+  ): JSX.Element => {
+    const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
+    // const delegated = { theme, variant, ...props };
+    const delegated = { variant, ...props };
 
-  return (
-    <Container
-      as={href ? 'a' : 'button'}
-      data-active={active || null}
-      data-busy={busy || null}
-      data-icon={
-        (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement
-      }
-      data-round={round || null}
-      data-theme={theme || null}
-      data-toggle={toggle || null}
-      disabled={busy || disabled}
-      href={href}
-      type={type}
-      {...delegated}
-    >
-      {leader}
-      {text ? text : children}
-      {trailer}
-      {busy && (
-        <Indicator style={{ ['--color' as string]: 'var(--button-color)', position: 'absolute' }} />
-      )}
-    </Container>
-  );
-};
+    return (
+      <Container
+        as={href ? 'a' : 'button'}
+        data-active={active || null}
+        data-busy={busy || null}
+        data-icon={
+          (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement
+        }
+        data-round={round || null}
+        data-theme={theme || null}
+        data-toggle={toggle || null}
+        disabled={busy || disabled}
+        href={href}
+        ref={ref}
+        type={type}
+        {...delegated}
+      >
+        {leader}
+        {text ? text : children}
+        {trailer}
+        {busy && (
+          <Indicator
+            style={{ ['--color' as string]: 'var(--button-color)', position: 'absolute' }}
+          />
+        )}
+      </Container>
+    );
+  }
+);
 
 const base = css`
   ${button};
