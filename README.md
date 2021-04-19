@@ -68,6 +68,23 @@ Bundle package with types into `dist` folder with [Rollup](https://rollupjs.org/
 yarn compile
 ```
 
+### 🍱 Update and Consume library
+
+#### `purplex-components`
+
+1. add/tweak what's needed
+1. run `yarn compile:icons` if adding new icons
+1. run `yarn compile` to update the bundle
+1. create PR (resolve CR feedback and rebase conflicts with the `master` branch)
+1. squash and merge
+
+#### `purplex-awesome-webapp`
+
+Reinstal `purplex-components` to fetch the latest changes from `master` by running:
+```
+yarn add purplenl/purplex-components
+```  
+You can verify it by comparing the commit SHA in with the value used in `yarn.lock`.
 
 ## Troubleshooting
 
