@@ -23,6 +23,7 @@ export { default as Clone } from './Clone';
 export { default as Cog } from './Cog';
 export { default as CommentLines } from './CommentLines';
 export { default as Cursor } from './Cursor';
+export { default as Desert } from './Desert';
 export { default as Document } from './Document';
 export { default as DoorOpen } from './DoorOpen';
 export { default as EllipsisHorizontal } from './EllipsisHorizontal';
