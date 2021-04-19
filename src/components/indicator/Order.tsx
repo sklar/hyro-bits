@@ -36,6 +36,7 @@ const Container = styled.div`
   cursor: pointer;
   display: inline-grid;
   place-items: center;
+  position: relative;
 
   [data-icon] {
     color: var(--color);

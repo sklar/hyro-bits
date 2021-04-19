@@ -134,17 +134,6 @@ const ThContainer = styled.th<ThProps>`
   }
 `;
 
-/**
- * Table spacer
- */
-export const Spacer = styled.div`
-  background: ${colors.STROKE};
-  border-radius: 1000px;
-  margin-bottom: 8px;
-  margin-top: 8px;
-  width: 2px;
-`;
-
 export interface TrProps extends HTMLAttributes<HTMLTableRowElement> {
   /**
    * Muted
@@ -187,19 +176,25 @@ export interface TableProps extends HTMLAttributes<HTMLTableElement> {
    * Size
    */
   size?: string;
+  /**
+   * Sticky header
+   */
+  sticky?: boolean;
 }
 
 /**
  * Table
  */
-export const Table: React.FC<TableProps> = ({ layout, ...props }): JSX.Element => (
-  <TableContainer data-layout={layout || null} {...props} />
+export const Table: React.FC<TableProps> = ({ layout, sticky, ...props }): JSX.Element => (
+  <TableContainer data-layout={layout || null} data-sticky={sticky || null} {...props} />
 );
 
 const TableContainer = styled.table<TableProps>`
   ${base};
 
   --background-color: ${colors.WHITE};
+  --border-color: ${colors.STROKE};
+  --border-size: 1px;
   --font-size: 14px;
   --font-weight: 600;
   --indent: 8px;
@@ -214,10 +209,32 @@ const TableContainer = styled.table<TableProps>`
     table-layout: fixed;
   }
 
+  &[data-sticky] {
+    thead {
+      &,
+      & tr,
+      & th {
+        background: inherit;
+      }
+      th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+
+        &::after {
+          border-bottom: var(--border-size) solid var(--border-color);
+          content: '';
+          inset: auto 0 calc(-1 * var(--border-size)) 0;
+          position: absolute;
+        }
+      }
+    }
+  }
+
   ${({ size }) => `width: ${size ?? '100%'};`}
 
   tr {
-    border-bottom: 1px solid ${colors.STROKE};
+    border-bottom: var(--border-size) solid var(--border-color);
 
     th,
     td {

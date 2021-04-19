@@ -376,6 +376,7 @@ const Container$5 = styled.div `
   cursor: pointer;
   display: inline-grid;
   place-items: center;
+  position: relative;
 
   [data-icon] {
     color: var(--color);
@@ -632,6 +633,18 @@ const Container$2 = styled.div `
   ${({ gap }) => gap && `gap: ${gap}`};
   ${({ justify }) => justify && `justify-items: ${justify}`};
   ${({ columns, max, min, sizing }) => `grid-template-columns: ${columns ? columns : `repeat(${sizing}, minmax(min(100%, ${min}), ${max}))`}`};
+`;
+
+/**
+ * Spacer.
+ */
+const Spacer = styled.span `
+  background: ${colors.STROKE};
+  border-radius: 1000px;
+  display: block;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  width: 2px;
 `;
 
 const clamp = css `
@@ -903,16 +916,6 @@ const ThContainer = styled.th `
   }
 `;
 /**
- * Table spacer
- */
-const Spacer = styled.div `
-  background: ${colors.STROKE};
-  border-radius: 1000px;
-  margin-bottom: 8px;
-  margin-top: 8px;
-  width: 2px;
-`;
-/**
  * Table row
  */
 const Tr = (_a) => {
@@ -939,13 +942,15 @@ const Tbody = styled.tbody ``;
  * Table
  */
 const Table = (_a) => {
-    var { layout } = _a, props = __rest(_a, ["layout"]);
-    return (React.createElement(TableContainer, Object.assign({ "data-layout": layout || null }, props)));
+    var { layout, sticky } = _a, props = __rest(_a, ["layout", "sticky"]);
+    return (React.createElement(TableContainer, Object.assign({ "data-layout": layout || null, "data-sticky": sticky || null }, props)));
 };
 const TableContainer = styled.table `
   ${base$1};
 
   --background-color: ${colors.WHITE};
+  --border-color: ${colors.STROKE};
+  --border-size: 1px;
   --font-size: 14px;
   --font-weight: 600;
   --indent: 8px;
@@ -960,10 +965,32 @@ const TableContainer = styled.table `
     table-layout: fixed;
   }
 
+  &[data-sticky] {
+    thead {
+      &,
+      & tr,
+      & th {
+        background: inherit;
+      }
+      th {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+
+        &::after {
+          border-bottom: var(--border-size) solid var(--border-color);
+          content: '';
+          inset: auto 0 calc(-1 * var(--border-size)) 0;
+          position: absolute;
+        }
+      }
+    }
+  }
+
   ${({ size }) => `width: ${size !== null && size !== void 0 ? size : '100%'};`}
 
   tr {
-    border-bottom: 1px solid ${colors.STROKE};
+    border-bottom: var(--border-size) solid var(--border-color);
 
     th,
     td {

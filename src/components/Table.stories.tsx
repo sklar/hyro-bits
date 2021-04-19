@@ -19,13 +19,21 @@ import {
 } from './index';
 
 import data from '../data/table.json';
-import { ThemeType } from '../utils/types';
 import { useSortableData } from '../hooks/use-sortable-data';
+import { Container } from '../stories';
+import { ThemeType } from '../utils/types';
 
 export default {
   title: 'Components/Table',
   component: Table,
-  decorators: [withDesign],
+  decorators: [
+    (Story) => (
+      <Container resize="vertical">
+        <Story />
+      </Container>
+    ),
+    withDesign,
+  ],
   parameters: {
     controls: { hideNoControlsWarning: true },
     design: {
@@ -56,10 +64,10 @@ interface StoryProps extends TableProps {
   records: Record<string, string>[];
 }
 
-const Template: Story<StoryProps> = ({ layout, records, size }) => {
+const Template: Story<StoryProps> = ({ layout, records, size, sticky }) => {
   const { items, requestSort, sortConfig } = useSortableData(records);
   return (
-    <Table layout={layout} size={size}>
+    <Table layout={layout} size={size} sticky={sticky}>
       <Thead>
         <Tr>
           <Th
