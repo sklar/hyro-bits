@@ -810,7 +810,6 @@ const NavItemContainer = styled.button `
   height: var(--nav-item-size);
   justify-content: space-between;
   margin: 0;
-  margin-bottom: var(--nav-item-indent);
   outline: 0;
   overflow: hidden;
   padding: 0 var(--nav-item-indent);
