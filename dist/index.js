@@ -493,6 +493,20 @@ modification['primary'] = css `
     --button-background-color: ${colors.ELEMENT_ACTIVE};
     --button-border-color: ${colors.ELEMENT_ACTIVE};
   }
+
+  /* TODO: Themed states are not designed */
+  &[data-theme='danger'] {
+    &:is(*, #chucknorris):not(:disabled, [data-busy]) {
+      --button-background-color: ${colors.DANGER};
+      --button-border-color: ${colors.DANGER};
+    }
+  }
+  &[data-theme='success'] {
+    &:is(*, #chucknorris):not(:disabled, [data-busy]) {
+      --button-background-color: ${colors.SUCCESS};
+      --button-border-color: ${colors.SUCCESS};
+    }
+  }
 `;
 modification['secondary'] = css `
   --button-background-color: ${colors.ELEMENT_SECONDARY};
@@ -593,10 +607,6 @@ const Container$4 = styled.button `
   &[data-icon='right'] {
     flex-direction: row-reverse;
   }
-
-  /* &[data-theme='danger'] {}
-  &[data-theme='success'] {}
-  &[data-theme='warning'] {} */
 `;
 
 /**
