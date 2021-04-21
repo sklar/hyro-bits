@@ -22,7 +22,7 @@ export default {
     controls: { hideNoControlsWarning: true },
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/rEhCUlh0IRFrtoFeIK5kEt/New-Design-System?node-id=40%3A722',
+      url: 'https://www.figma.com/file/rEhCUlh0IRFrtoFeIK5kEt/Design-System-2?node-id=500%3A4019',
     },
   },
   argTypes: {

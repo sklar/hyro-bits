@@ -27,6 +27,12 @@ export default {
     ),
     withDesign,
   ],
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/rEhCUlh0IRFrtoFeIK5kEt/Design-System-2?node-id=500%3A6206',
+    },
+  },
   argTypes: {
     ...mapArgTypes(['icons', 'title'], {
       control: { disable: true },
@@ -71,16 +77,8 @@ const TemplateOverview: Story<StoryProps> = (args) => (
   </>
 );
 
-const params = {
-  design: {
-    type: 'figma',
-    url: 'https://www.figma.com/file/rEhCUlh0IRFrtoFeIK5kEt/New-Design-System?node-id=16%3A297',
-  },
-};
-
 export const Overview = TemplateOverview.bind({});
 Overview.args = {};
-Overview.parameters = { ...params };
 
 export const IconsBoldMini = Template.bind({});
 IconsBoldMini.storyName = 'Bold Mini';
@@ -89,7 +87,6 @@ IconsBoldMini.args = {
   size: 'xs',
   title: 'Bold Mini',
 };
-IconsBoldMini.parameters = { ...params };
 
 export const IconsBold = Template.bind({});
 IconsBold.storyName = 'Bold';
@@ -97,7 +94,6 @@ IconsBold.args = {
   icons: Object.values(iconsBold),
   title: 'Bold',
 };
-IconsBold.parameters = { ...params };
 
 const Title = styled.h2`
   align-items: baseline;

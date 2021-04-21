@@ -25,8 +25,7 @@ export default {
   parameters: {
     design: {
       type: 'figma',
-      url:
-        'https://www.figma.com/file/YgguhjSFNweP8so3tHTq7l/New-Design-System-Copy?node-id=12%3A50',
+      url: 'https://www.figma.com/file/rEhCUlh0IRFrtoFeIK5kEt/Design-System-2?node-id=500%3A4019',
     },
   },
   argTypes: {
