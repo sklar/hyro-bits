@@ -101,15 +101,14 @@ const Container = styled.span`
     --status-radius: 50%;
     --status-size: 16px;
 
-    aspect-ratio: 1;
     display: inline-grid;
     flex-grow: 0;
     place-items: center;
     position: relative;
+    width: var(--status-size);
 
     &::after,
     &::before {
-      aspect-ratio: inherit;
       border-radius: inherit;
       content: '';
       display: block;
@@ -118,10 +117,12 @@ const Container = styled.span`
     &::after {
       background: var(--status-color-primary);
       height: calc(var(--status-size) / 8 * 3);
+      width: calc(var(--status-size) / 8 * 3);
     }
     &::before {
       background: var(--status-color-secondary);
       height: calc(var(--status-size) / 8 * 5);
+      width: calc(var(--status-size) / 8 * 5);
     }
   }
 `;
