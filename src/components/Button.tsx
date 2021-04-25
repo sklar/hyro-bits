@@ -37,6 +37,10 @@ export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButt
    */
   round?: boolean;
   /**
+   * Synthetic behaviour to prevent `:active` and `:focus` styles.
+   */
+  synthetic?: boolean;
+  /**
    * Theme
    */
   theme?: Exclude<ThemeType, 'notice'>;
@@ -82,6 +86,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       icon,
       placement,
       round,
+      synthetic,
       text,
       theme,
       toggle,
@@ -92,7 +97,6 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ): JSX.Element => {
     const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
-    // const delegated = { theme, variant, ...props };
     const delegated = { variant, ...props };
 
     return (
@@ -104,6 +108,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
           (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement
         }
         data-round={round || null}
+        data-synthetic={synthetic || null}
         data-theme={theme || null}
         data-toggle={toggle || null}
         disabled={busy || disabled}
@@ -190,10 +195,11 @@ modification['primary'] = css`
   --button-border-color: ${colors.ELEMENT_PRIMARY};
   --button-color: ${colors.WHITE};
 
-  &:is(:active, [data-pressed]):not(:disabled, [data-busy]) {
+  &:is(:active, [data-pressed]):not(:disabled, [data-busy], [data-synthetic]) {
     --button-box-shadow: ${colors.ELEMENT_SECONDARY};
   }
-  &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]):not(:disabled, [data-busy]) {
+  &:is(:active, :focus, [data-pressed]):not(:disabled, [data-busy], [data-synthetic]),
+  &:is(:hover, [data-active], [data-hover]):not(:disabled, [data-busy]) {
     --button-background-color: ${colors.ELEMENT_ACTIVE};
     --button-border-color: ${colors.ELEMENT_ACTIVE};
   }
@@ -218,10 +224,11 @@ modification['secondary'] = css`
   --button-border-color: ${colors.ELEMENT_SECONDARY};
   --button-color: ${colors.TEXT_PRIMARY};
 
-  &:is(:active, [data-pressed]):not(:disabled, [data-busy]) {
+  &:is(:active, [data-pressed]):not(:disabled, [data-busy], [data-synthetic]) {
     --button-box-shadow: #f6f8fd;
   }
-  &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]):not(:disabled, [data-busy]) {
+  &:is(:active, :focus, :hover, [data-pressed]):not(:disabled, [data-busy], [data-synthetic]),
+  &:is(:hover, [data-active], [data-hover]):not(:disabled, [data-busy]) {
     --button-background-color: #d8e1fc;
     --button-border-color: #d8e1fc;
     --button-color: ${colors.ELEMENT_PRIMARY};
@@ -236,10 +243,11 @@ modification['tertiary'] = css`
   --button-border-color: ${colors.TRANSPARENT};
   --button-color: ${colors.TEXT_PRIMARY};
 
-  &:is(:active, [data-active], [data-pressed]):not(:disabled, [data-busy]) {
+  &:is(:active, [data-active], [data-pressed]):not(:disabled, [data-busy], [data-synthetic]) {
     --button-color: ${colors.ELEMENT_PRIMARY};
   }
-  &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]):not(:disabled, [data-busy]) {
+  &:is(:active, :focus, [data-pressed]):not(:disabled, [data-busy], [data-synthetic]),
+  &:is(:hover, [data-active], [data-hover]):not(:disabled, [data-busy]) {
     --button-background-color: ${colors.ELEMENT_SECONDARY};
     --button-border-color: ${colors.ELEMENT_SECONDARY};
   }
@@ -250,12 +258,13 @@ modification['tertiary'] = css`
   }
 
   &[data-theme='dark'] {
-    &:is(:active, [data-active], [data-pressed]):not(:disabled, [data-busy]) {
+    &:is(:active, [data-active], [data-pressed]):not(:disabled, [data-busy], [data-synthetic]) {
       --button-background-color: ${colors.DARK_ELEMENT_FOCUS};
       --button-border-color: ${colors.DARK_ELEMENT_FOCUS};
       --button-color: ${colors.WHITE};
     }
-    &:is(:focus, :hover, [data-hover]):not(:disabled, [data-busy]) {
+    &:is(:focus):not(:disabled, [data-busy], [data-synthetic]),
+    &:is(:hover, [data-hover]):not(:disabled, [data-busy]) {
       --button-background-color: ${colors.DARK_ELEMENT_ACTIVE};
       --button-border-color: ${colors.DARK_ELEMENT_ACTIVE};
       --button-color: ${colors.WHITE};

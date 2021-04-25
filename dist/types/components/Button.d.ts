@@ -30,6 +30,10 @@ export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButt
      */
     round?: boolean;
     /**
+     * Synthetic behaviour to prevent `:active` and `:focus` styles.
+     */
+    synthetic?: boolean;
+    /**
      * Theme
      */
     theme?: Exclude<ThemeType, 'notice'>;
