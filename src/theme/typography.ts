@@ -77,6 +77,8 @@ export const button = css`
   --font-weight: 600;
   --letter-spacing: -0.01em;
   --line-height: calc(16 / 14);
+
+  text-decoration: none;
 `;
 
 export const label = css`

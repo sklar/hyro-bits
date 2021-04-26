@@ -1,5 +1,7 @@
 import { Direction, Size, Theme, Variant } from './constants';
 
+export type PartialBy<T, K extends keyof T> = Omit<T, K> & Partial<Pick<T, K>>;
+
 export type Values<T> = T[keyof T];
 
 export type AlignmentPrimaryType = 'inherit' | 'normal' | 'start' | 'center' | 'end';

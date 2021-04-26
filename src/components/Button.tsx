@@ -1,20 +1,17 @@
-import React, { forwardRef, HTMLAttributes, ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import React, { forwardRef, ReactElement, ReactNode } from 'react';
+import { Link, LinkProps } from 'react-router-dom';
 
 import { Idle as Indicator } from '../components/indicator';
 import { button, colors } from '../theme';
-import { ThemeType, VariantType } from '../utils/types';
+import { PartialBy, ThemeType, VariantType } from '../utils/types';
 
-export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> {
+export interface ButtonProps extends PartialBy<LinkProps, 'to'> {
   /**
    * Children
    */
   children?: ReactNode;
-  /**
-   * Href
-   */
-  href?: string;
   /**
    * Label
    */
@@ -82,13 +79,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       busy,
       children,
       disabled,
-      href,
       icon,
       placement,
       round,
       synthetic,
       text,
       theme,
+      to,
       toggle,
       type = 'button',
       variant = 'secondary',
@@ -101,7 +98,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <Container
-        as={href ? 'a' : 'button'}
+        as={to ? Link : 'button'}
         data-active={active || null}
         data-busy={busy || null}
         data-icon={
@@ -112,9 +109,9 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         data-theme={theme || null}
         data-toggle={toggle || null}
         disabled={busy || disabled}
-        href={href}
         ref={ref}
-        type={type}
+        to={to}
+        type={to ? undefined : type}
         {...delegated}
       >
         {leader}
@@ -275,7 +272,7 @@ modification['tertiary'] = css`
   }
 `;
 
-const Container = styled.button<ButtonProps>`
+const Container = styled.span<ButtonProps>`
   ${base};
 
   &[data-round] {

@@ -1,5 +1,6 @@
+import { Meta, Story } from '@storybook/react/types-6-0';
 import React, { useState } from 'react';
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { withDesign } from 'storybook-addon-designs';
 
 import { Legend, mapArgTypes } from '../stories';
@@ -10,15 +11,17 @@ export default {
   component: Button,
   decorators: [
     (Story) => (
-      <Grid align="center" columns="repeat(6, 1fr)" gap="1em" justify="start">
-        <Legend>default</Legend>
-        <Legend>hover</Legend>
-        <Legend>pressed</Legend>
-        <Legend>active</Legend>
-        <Legend>busy</Legend>
-        <Legend>disabled</Legend>
-        <Story />
-      </Grid>
+      <Router>
+        <Grid align="center" columns="repeat(6, 1fr)" gap="1em" justify="start">
+          <Legend>default</Legend>
+          <Legend>hover</Legend>
+          <Legend>pressed</Legend>
+          <Legend>active</Legend>
+          <Legend>busy</Legend>
+          <Legend>disabled</Legend>
+          <Story />
+        </Grid>
+      </Router>
     ),
     withDesign,
   ],

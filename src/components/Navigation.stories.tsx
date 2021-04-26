@@ -1,5 +1,6 @@
+import { Meta, Story } from '@storybook/react/types-6-0';
 import React, { useState } from 'react';
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { withDesign } from 'storybook-addon-designs';
 
 import data from '../data/navigation.json';
@@ -12,9 +13,11 @@ export default {
   component: NavItem,
   decorators: [
     (Story) => (
-      <Grid columns="repeat(2, 1fr)" gap="24px">
-        <Story />
-      </Grid>
+      <Router>
+        <Grid columns="repeat(2, 1fr)" gap="24px">
+          <Story />
+        </Grid>
+      </Router>
     ),
     withDesign,
   ],
@@ -77,6 +80,7 @@ const Template: Story<StoryProps> = ({
         return (
           <NavItem
             key={index}
+            to=""
             active={active || activeItemIndex === index}
             status={showStatus ? ((storyStatus || theme) as StatusThemeType) : undefined}
             text={text || title}

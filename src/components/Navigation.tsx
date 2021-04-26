@@ -1,12 +1,13 @@
-import React, { HTMLAttributes, ReactElement } from 'react';
 import styled from '@emotion/styled';
+import React, { ReactElement } from 'react';
+import { Link, LinkProps } from 'react-router-dom';
 
 import { button, colors } from '../theme';
 import { Icon } from './Icon';
 import { Status, StatusThemeType } from './Status';
 import { Text } from './Text';
 
-export interface NavItemProps extends HTMLAttributes<HTMLButtonElement> {
+export interface NavItemProps extends LinkProps {
   /**
    * Label
    */
@@ -41,12 +42,7 @@ export const NavItem: React.VFC<NavItemProps> = ({
   text,
   ...props
 }): JSX.Element => (
-  <NavItemContainer
-    data-active={active || null}
-    data-status={status || null}
-    type="button"
-    {...props}
-  >
+  <NavItemContainer data-active={active || null} data-status={status || null} {...props}>
     {status && <Status theme={status || null} />}
     <Text data-text truncate>
       {text}
@@ -55,7 +51,7 @@ export const NavItem: React.VFC<NavItemProps> = ({
   </NavItemContainer>
 );
 
-const NavItemContainer = styled.button`
+const NavItemContainer = styled(Link)`
   ${button};
 
   --nav-item-background-color: #edf1f4;

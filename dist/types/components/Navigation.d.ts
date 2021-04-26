@@ -1,6 +1,7 @@
-import React, { HTMLAttributes, ReactElement } from 'react';
+import React, { ReactElement } from 'react';
+import { LinkProps } from 'react-router-dom';
 import { StatusThemeType } from './Status';
-export interface NavItemProps extends HTMLAttributes<HTMLButtonElement> {
+export interface NavItemProps extends LinkProps {
     /**
      * Label
      */
