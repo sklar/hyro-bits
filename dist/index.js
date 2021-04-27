@@ -2,7 +2,7 @@
 
 import { keyframes, css } from '@emotion/react';
 import styled from '@emotion/styled';
-import React, { useState, useEffect, forwardRef } from 'react';
+import React, { useRef, useEffect, useState, useCallback, forwardRef } from 'react';
 import { Link } from 'react-router-dom';
 
 /*! *****************************************************************************
@@ -30,6 +30,16 @@ function __rest(s, e) {
                 t[p[i]] = s[p[i]];
         }
     return t;
+}
+
+function __awaiter(thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
 }
 
 /**
@@ -305,6 +315,20 @@ const Direction = {
     DESCENDING: 'Desc',
 };
 
+const useEffectWithGuard = (effect) => {
+    const mounted = useRef(false);
+    const guard = () => mounted.current;
+    useEffect(() => {
+        mounted.current = true;
+        return () => {
+            mounted.current = false;
+        };
+    }, []);
+    useEffect(() => {
+        effect(guard);
+    }, [effect]);
+};
+
 const paths = {
     xs: 'mini',
     sm: 'bold',
@@ -318,15 +342,17 @@ const paths = {
 const Icon = (_a) => {
     var { name, size = 'sm' } = _a, props = __rest(_a, ["name", "size"]);
     const [Component, setComponent] = useState();
-    useEffect(() => {
+    const fetchIcon = useCallback((mountGuard) => __awaiter(void 0, void 0, void 0, function* () {
         import(`./icons/${paths[size]}/${name}`)
             .then((c) => {
-            setComponent(c.default);
+            if (mountGuard())
+                setComponent(c.default);
         })
             .catch((e) => {
             console.error(`${name} icon not found!`);
         });
-    }, [name, size]);
+    }), [name, size]);
+    useEffectWithGuard(fetchIcon);
     if (!!Component) {
         return (React.createElement(Container$6, Object.assign({ "data-icon": name, "data-size": size }, props), Component));
     }

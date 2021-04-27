@@ -1,6 +1,7 @@
-import React, { HTMLAttributes, SVGProps, useEffect, useState } from 'react';
 import styled from '@emotion/styled';
+import React, { HTMLAttributes, SVGProps, useCallback, useState } from 'react';
 
+import { useEffectWithGuard } from '../hooks/use-effect-guard';
 import { SizeType } from '../utils/types';
 
 const paths = {
@@ -28,15 +29,19 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
 export const Icon: React.VFC<IconProps> = ({ name, size = 'sm', ...props }): JSX.Element | null => {
   const [Component, setComponent] = useState<React.FC<SVGProps<SVGSVGElement>>>();
 
-  useEffect(() => {
-    import(`../icons/${paths[size]}/${name}`)
-      .then((c) => {
-        setComponent(c.default);
-      })
-      .catch((e) => {
-        console.error(`${name} icon not found!`);
-      });
-  }, [name, size]);
+  const fetchIcon = useCallback(
+    async (mountGuard) => {
+      import(`../icons/${paths[size]}/${name}`)
+        .then((c) => {
+          if (mountGuard()) setComponent(c.default);
+        })
+        .catch((e) => {
+          console.error(`${name} icon not found!`);
+        });
+    },
+    [name, size]
+  );
+  useEffectWithGuard(fetchIcon);
 
   if (!!Component) {
     return (
