@@ -1,11 +1,14 @@
-import React, { ReactElement } from 'react';
-import { LinkProps } from 'react-router-dom';
+import React, { HTMLAttributes, ReactElement } from 'react';
 import { StatusThemeType } from './Status';
-export interface NavItemProps extends LinkProps {
+export interface NavItemProps extends HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> {
     /**
      * Label
      */
     text: string;
+    /**
+     * Href
+     */
+    href?: string;
     /**
      * Icon
      */
@@ -18,15 +21,11 @@ export interface NavItemProps extends LinkProps {
      * State: Active
      */
     active?: boolean;
-    /**
-     * Event: Click
-     */
-    onClick?: <T>(args?: T) => void;
 }
 /**
  * Navigation item
  */
-export declare const NavItem: React.VFC<NavItemProps>;
+export declare const NavItem: React.ForwardRefExoticComponent<NavItemProps & React.RefAttributes<HTMLAnchorElement>>;
 /**
  * Navigation
  */

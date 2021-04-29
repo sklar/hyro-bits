@@ -1,17 +1,20 @@
 import styled from '@emotion/styled';
-import React, { ReactElement } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
+import React, { forwardRef, HTMLAttributes, ReactElement } from 'react';
 
 import { button, colors } from '../theme';
 import { Icon } from './Icon';
 import { Status, StatusThemeType } from './Status';
 import { Text } from './Text';
 
-export interface NavItemProps extends LinkProps {
+export interface NavItemProps extends HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> {
   /**
    * Label
    */
   text: string;
+  /**
+   * Href
+   */
+  href?: string;
   /**
    * Icon
    */
@@ -25,33 +28,32 @@ export interface NavItemProps extends LinkProps {
    * State: Active
    */
   active?: boolean;
-
-  /**
-   * Event: Click
-   */
-  onClick?: <T>(args?: T) => void;
 }
 
 /**
  * Navigation item
  */
-export const NavItem: React.VFC<NavItemProps> = ({
-  active,
-  icon = <Icon name="Chevron" />,
-  status,
-  text,
-  ...props
-}): JSX.Element => (
-  <NavItemContainer data-active={active || null} data-status={status || null} {...props}>
-    {status && <Status theme={status || null} />}
-    <Text data-text truncate>
-      {text}
-    </Text>
-    {icon}
-  </NavItemContainer>
+export const NavItem = forwardRef<HTMLAnchorElement, NavItemProps>(
+  ({ active, href, icon = <Icon name="Chevron" />, status, text, ...props }, ref): JSX.Element => (
+    <NavItemContainer
+      as={href ? 'a' : 'button'}
+      data-active={active || null}
+      data-status={status || null}
+      href={href}
+      ref={ref}
+      type={href ? undefined : 'button'}
+      {...props}
+    >
+      {status && <Status theme={status || null} />}
+      <Text data-text truncate>
+        {text}
+      </Text>
+      {icon}
+    </NavItemContainer>
+  )
 );
 
-const NavItemContainer = styled(Link)`
+const NavItemContainer = styled.a`
   ${button};
 
   --nav-item-background-color: #edf1f4;

@@ -1,11 +1,14 @@
-import React, { ReactElement, ReactNode } from 'react';
-import { LinkProps } from 'react-router-dom';
-import { PartialBy, ThemeType, VariantType } from '../utils/types';
-export interface ButtonProps extends PartialBy<LinkProps, 'to'> {
+import React, { HTMLAttributes, ReactElement, ReactNode } from 'react';
+import { ThemeType, VariantType } from '../utils/types';
+export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> {
     /**
      * Children
      */
     children?: ReactNode;
+    /**
+     * Href
+     */
+    href?: string;
     /**
      * Label
      */

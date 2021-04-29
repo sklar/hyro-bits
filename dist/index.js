@@ -3,7 +3,6 @@
 import { keyframes, css } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { useRef, useEffect, useState, useCallback, forwardRef } from 'react';
-import { Link } from 'react-router-dom';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -443,10 +442,10 @@ const Container$5 = styled.div `
  * Primary UI component for user interaction
  */
 const Button = forwardRef((_a, ref) => {
-    var { active, busy, children, disabled, icon, placement, round, synthetic, text, theme, to, toggle, type = 'button', variant = 'secondary' } = _a, props = __rest(_a, ["active", "busy", "children", "disabled", "icon", "placement", "round", "synthetic", "text", "theme", "to", "toggle", "type", "variant"]);
+    var { active, busy, children, disabled, href, icon, placement, round, synthetic, text, theme, toggle, type = 'button', variant = 'secondary' } = _a, props = __rest(_a, ["active", "busy", "children", "disabled", "href", "icon", "placement", "round", "synthetic", "text", "theme", "toggle", "type", "variant"]);
     const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
     const delegated = Object.assign({ variant }, props);
-    return (React.createElement(Container$4, Object.assign({ as: to ? Link : 'button', "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, ref: ref, to: to, type: to ? undefined : type }, delegated),
+    return (React.createElement(Container$4, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, delegated),
         leader,
         text ? text : children,
         trailer,
@@ -591,7 +590,7 @@ modification['tertiary'] = css `
     }
   }
 `;
-const Container$4 = styled.span `
+const Container$4 = styled.button `
   ${base};
 
   &[data-round] {
@@ -837,14 +836,14 @@ const Container = styled.span `
 /**
  * Navigation item
  */
-const NavItem = (_a) => {
-    var { active, icon = React.createElement(Icon, { name: "Chevron" }), status, text } = _a, props = __rest(_a, ["active", "icon", "status", "text"]);
-    return (React.createElement(NavItemContainer, Object.assign({ "data-active": active || null, "data-status": status || null }, props),
+const NavItem = forwardRef((_a, ref) => {
+    var { active, href, icon = React.createElement(Icon, { name: "Chevron" }), status, text } = _a, props = __rest(_a, ["active", "href", "icon", "status", "text"]);
+    return (React.createElement(NavItemContainer, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-status": status || null, href: href, ref: ref, type: href ? undefined : 'button' }, props),
         status && React.createElement(Status, { theme: status || null }),
         React.createElement(Text, { "data-text": true, truncate: true }, text),
         icon));
-};
-const NavItemContainer = styled(Link) `
+});
+const NavItemContainer = styled.a `
   ${button};
 
   --nav-item-background-color: #edf1f4;
