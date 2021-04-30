@@ -1924,6 +1924,21 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
+"@spicy-hooks/core@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@spicy-hooks/core/-/core-2.0.3.tgz#2405d7e07c15a35c3bf5e46490b90733d01008cc"
+  integrity sha512-O8805ab+PyaFXOEcwSefR6mNxXTOPQIsl1I7BvG9+yXTljCwFQbYEe/0XYmPjuEp2QKv4wk1ZLm67I/5kdqSOw==
+  dependencies:
+    "@spicy-hooks/utils" "2.0.3"
+    tslib "^2.0.1"
+
+"@spicy-hooks/utils@2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@spicy-hooks/utils/-/utils-2.0.3.tgz#c0094cdf6b05387cf3ba6903258f6981830f82e6"
+  integrity sha512-UZch3SZ/E91txtJM0+3+zWFC+ZnAqDoNEv3kGuQWuWRiDUVWBW3m/onERgdWIwlEZKF5bHCSjJaWSqrMtuLL9Q==
+  dependencies:
+    tslib "^2.0.1"
+
 "@storybook/addon-actions@6.1.20", "@storybook/addon-actions@^6.1.20":
   version "6.1.20"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-6.1.20.tgz#a7c5f8d079d309f89b38ac8fb89b0838e63afc43"

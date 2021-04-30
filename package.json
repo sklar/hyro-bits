@@ -38,7 +38,8 @@
   },
   "dependencies": {
     "@emotion/react": "^11.1.5",
-    "@emotion/styled": "^11.1.5"
+    "@emotion/styled": "^11.1.5",
+    "@spicy-hooks/core": "^2.0.3"
   },
   "devDependencies": {
     "@rollup/plugin-replace": "^2.4.1",

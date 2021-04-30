@@ -3,6 +3,7 @@
 import { keyframes, css } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { useRef, useEffect, useState, useCallback, forwardRef } from 'react';
+import { useCombinedRef } from '@spicy-hooks/core';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -65,7 +66,7 @@ keyframes `
 const Idle = (_a) => {
     var { color, delay = 100, duration = 500, gap = '4px', range = '6px', size = '5px' } = _a, props = __rest(_a, ["color", "delay", "duration", "gap", "range", "size"]);
     const delegated = Object.assign({ color, delay, duration, gap, range, size }, props);
-    return (React.createElement(Container$7, Object.assign({}, delegated),
+    return (React.createElement(Container$8, Object.assign({}, delegated),
         React.createElement(Element, null),
         React.createElement(Element, null),
         React.createElement(Element, null)));
@@ -104,7 +105,7 @@ const Element = styled.div `
     syntax: '<length>';
   }
 `;
-const Container$7 = styled.div `
+const Container$8 = styled.div `
   ${({ color }) => color && `--color: ${color}`};
   ${({ delay }) => `--delay: ${delay}ms`};
   ${({ duration }) => `--duration: ${duration}ms`};
@@ -353,13 +354,13 @@ const Icon = (_a) => {
     }), [name, size]);
     useEffectWithGuard(fetchIcon);
     if (!!Component) {
-        return (React.createElement(Container$6, Object.assign({ "data-icon": name, "data-size": size }, props), Component));
+        return (React.createElement(Container$7, Object.assign({ "data-icon": name, "data-size": size }, props), Component));
     }
     else {
         return null;
     }
 };
-const Container$6 = styled.span `
+const Container$7 = styled.span `
   --icon-size: ;
 
   display: inline-block;
@@ -391,12 +392,12 @@ const Container$6 = styled.span `
  */
 const Order = (_a) => {
     var { direction, size = 'xs' } = _a, props = __rest(_a, ["direction", "size"]);
-    return (React.createElement(Container$5, Object.assign({ "data-direction": direction }, props),
+    return (React.createElement(Container$6, Object.assign({ "data-direction": direction }, props),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null }),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null }),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null })));
 };
-const Container$5 = styled.div `
+const Container$6 = styled.div `
   --opacity-2: 0;
   --opacity-3: 0;
   --path: ;
@@ -445,7 +446,7 @@ const Button = forwardRef((_a, ref) => {
     var { active, busy, children, disabled, href, icon, placement, round, synthetic, text, theme, toggle, type = 'button', variant = 'secondary' } = _a, props = __rest(_a, ["active", "busy", "children", "disabled", "href", "icon", "placement", "round", "synthetic", "text", "theme", "toggle", "type", "variant"]);
     const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
     const delegated = Object.assign({ variant }, props);
-    return (React.createElement(Container$4, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, delegated),
+    return (React.createElement(Container$5, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, delegated),
         leader,
         text ? text : children,
         trailer,
@@ -590,7 +591,7 @@ modification['tertiary'] = css `
     }
   }
 `;
-const Container$4 = styled.button `
+const Container$5 = styled.button `
   ${base};
 
   &[data-round] {
@@ -641,6 +642,45 @@ const Container$4 = styled.button `
 `;
 
 /**
+ * Click outside guard
+ * @see https://css-tricks.com/click-outside-detector/
+ */
+const ClickOutsideGuard = forwardRef((_a, ref) => {
+    var { ignore, listen, onClickOutside } = _a, props = __rest(_a, ["ignore", "listen", "onClickOutside"]);
+    const innerRef = useRef(null);
+    const combinedRef = useCombinedRef(ref, innerRef);
+    const onKeyUp = (event) => {
+        if (event.key === 'Escape')
+            onClickOutside();
+        handleEvent(event);
+    };
+    const handleEvent = (event) => {
+        if (innerRef.current && innerRef.current.contains(event.target))
+            return;
+        if (ignore && ignore.contains && ignore.contains(event.target)) {
+            return;
+        }
+        onClickOutside();
+    };
+    useEffect(() => {
+        if (listen && onClickOutside) {
+            document.addEventListener('mousedown', handleEvent, false);
+            document.addEventListener('touchend', handleEvent, false);
+            document.addEventListener('keyup', onKeyUp);
+            return () => {
+                document.removeEventListener('mousedown', handleEvent, false);
+                document.removeEventListener('touchend', handleEvent, false);
+                document.removeEventListener('keyup', onKeyUp);
+            };
+        }
+    });
+    return React.createElement(Container$4, Object.assign({ ref: combinedRef }, props));
+});
+const Container$4 = styled.div `
+  display: contents;
+`;
+
+/**
  * Flexbox wrapper.
  */
 const Flex = (_a) => {
@@ -686,6 +726,176 @@ const Spacer = styled.span `
   margin-bottom: 8px;
   margin-top: 8px;
   width: 2px;
+`;
+
+/**
+ * Context menu
+ */
+const Menu = (_a) => {
+    var { active, justify, padding, size, theme = 'light' } = _a, props = __rest(_a, ["active", "justify", "padding", "size", "theme"]);
+    const delegated = Object.assign({}, props);
+    return (React.createElement(MenuContainer, Object.assign({ "data-active": active || null, "data-justify": justify || null, "data-padding": padding || null, "data-theme": theme || null, style: { ['--size']: size } }, delegated)));
+};
+/**
+ * Note that [data-hover] and [data-pressed] are here only to help
+ * better illustrate `:hover` and `:active` state in the dedicated story.
+ */
+const MenuContainer = styled.section `
+  --background-color: ${colors.WHITE};
+  --border-color: ${colors.WHITE};
+  --border-size: 2px;
+  --box-shadow: #cbcedc;
+  --gap: 4px;
+  --indent: 8px;
+  --radius: 6px;
+  --size: ;
+
+  background-color: var(--background-color);
+  border: var(--border-size) solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: 0 3px 9px var(--box-shadow);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding: calc(1.5 * var(--indent)) var(--indent);
+  position: relative;
+  width: var(--size);
+  z-index: 1;
+
+  &[data-padding] {
+    padding: calc(2 * var(--indent));
+    padding-top: calc(1.5 * var(--indent));
+  }
+
+  &[data-theme='dark'] {
+    --background-color: ${colors.DARK_BACKGROUND_PRIMARY};
+    --border-color: ${colors.DARK_STROKE};
+    --box-shadow: ${colors.BLACK};
+  }
+`;
+
+const MenuDivider = styled.div `
+  --color: ${colors.STROKE};
+  --size: 2px;
+
+  background-color: var(--color);
+  border-radius: 1000px;
+  height: var(--size);
+
+  [data-theme='dark'] & {
+    --color: ${colors.DARK_STROKE};
+  }
+`;
+
+/**
+ * Context menu item
+ */
+const MenuItem = (_a) => {
+    var { active, justify, theme } = _a, props = __rest(_a, ["active", "justify", "theme"]);
+    const delegated = Object.assign({}, props);
+    return (React.createElement(MenuItemContainer, Object.assign({ type: "button", "data-active": active || null, "data-justify": justify || null, "data-theme": theme || null }, delegated)));
+};
+const MenuItemContainer = styled.button `
+  ${button};
+
+  --background-color: ;
+  --color: ;
+  --gap: 8px;
+  --indent: 8px;
+  --radius: 6px;
+  --size: 32px;
+
+  align-items: center;
+  background-color: var(--background-color);
+  border: 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+  display: flex;
+  gap: var(--gap);
+  min-height: var(--size);
+  outline: 0;
+  padding: var(--indent);
+  text-align: left;
+  transition-duration: 0.2s;
+  transition-property: background-color, color;
+  transition-timing-function: ease-in-out;
+
+  &[data-justify],
+  [data-justify] & {
+    justify-content: space-between;
+
+    & > :not([data-icon]) {
+      flex: 1;
+    }
+  }
+
+  .primary,
+  .secondary {
+    transition: color 0.2s;
+  }
+  .primary {
+    color: var(--color, inherit);
+
+    & + .secondary {
+      margin-top: 2px;
+    }
+  }
+  .secondary {
+    ${paragraph};
+    color: var(--color, inherit);
+
+    --color: ${colors.ELEMENT_TERTIARY};
+  }
+
+  &:is(:active, [data-pressed]) {
+    --background-color: ${colors.ELEMENT_SECONDARY};
+    --color: ${colors.ELEMENT_PRIMARY};
+  }
+  &:is(:focus, :hover, [data-hover]) {
+    --background-color: ${colors.ELEMENT_SECONDARY};
+  }
+  &:is([data-active]) {
+    --color: ${colors.ELEMENT_PRIMARY};
+  }
+
+  &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]) {
+    .primary {
+      --color: ${colors.ELEMENT_PRIMARY};
+    }
+    .secondary {
+      --color: ${colors.TEXT_PRIMARY};
+    }
+  }
+
+  [data-theme='dark'] & {
+    --color: ${colors.WHITE};
+
+    &:is(:active, [data-pressed]) {
+      --background-color: ${colors.DARK_ELEMENT_FOCUS};
+    }
+    &:is(:focus, :hover, [data-hover]) {
+      --background-color: ${colors.DARK_ELEMENT_ACTIVE};
+    }
+
+    &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]) {
+      .primary,
+      .secondary {
+        --color: ${colors.WHITE};
+      }
+    }
+  }
+`;
+
+const MenuTitle = styled.h5 `
+  ${h3};
+
+  margin-bottom: 12px;
+  margin-top: 8px;
+
+  [data-theme='dark'] & {
+    --color: ${colors.WHITE};
+  }
 `;
 
 const clamp = css `
@@ -1054,5 +1264,5 @@ const TableContainer = styled.table `
   }
 `;
 
-export { Button, Flex, Grid, Icon, Idle, Nav, NavItem, Order, Spacer, Status, Table, Tbody, Td, Text, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph };
+export { Button, ClickOutsideGuard, Flex, Grid, Icon, Idle, Menu, MenuDivider, MenuItem, MenuTitle, Nav, NavItem, Order, Spacer, Status, Table, Tbody, Td, Text, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph };
 //# sourceMappingURL=index.js.map
