@@ -52,7 +52,6 @@ export default {
       table: { category: 'Icons' },
     }),
     ...mapArgTypes(['active', 'busy', 'disabled'], { table: { category: 'States' } }),
-    ...mapArgTypes(['onClick'], { table: { category: 'Events' } }),
   },
 } as Meta;
 

@@ -57,10 +57,6 @@ export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButt
      * State: Disabled
      */
     disabled?: boolean;
-    /**
-     * Event: Click
-     */
-    onClick?: () => void;
 }
 /**
  * Primary UI component for user interaction
