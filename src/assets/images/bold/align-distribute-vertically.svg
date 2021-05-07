@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+  <path fill="currentColor" fill-rule="evenodd" d="M1.1 14a.9.9 0 0 1 .9-.9h12a.9.9 0 0 1 0 1.8H2a.9.9 0 0 1-.9-.9z" clip-rule="evenodd"/>
+  <path fill="currentColor" fill-rule="evenodd" d="M1.1 2a.9.9 0 0 1 .9-.9h12a.9.9 0 0 1 0 1.8H2a.9.9 0 0 1-.9-.9z" clip-rule="evenodd"/>
+  <rect width="4" height="8" x="4" y="10" fill="currentColor" rx="1" transform="rotate(-90 4 10)"/>
+</svg>

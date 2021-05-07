@@ -1,5 +1,7 @@
 export { default as AlignBottom } from './AlignBottom';
 export { default as AlignCenter } from './AlignCenter';
+export { default as AlignDistributeHorizontally } from './AlignDistributeHorizontally';
+export { default as AlignDistributeVertically } from './AlignDistributeVertically';
 export { default as AlignLeft } from './AlignLeft';
 export { default as AlignMiddle } from './AlignMiddle';
 export { default as AlignRight } from './AlignRight';
@@ -26,6 +28,7 @@ export { default as Cursor } from './Cursor';
 export { default as Desert } from './Desert';
 export { default as Document } from './Document';
 export { default as DoorOpen } from './DoorOpen';
+export { default as Drop } from './Drop';
 export { default as EllipsisHorizontal } from './EllipsisHorizontal';
 export { default as EllipsisVertical } from './EllipsisVertical';
 export { default as ExclamationTriangle } from './ExclamationTriangle';
