@@ -9,9 +9,17 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
      */
     clamp?: number;
     /**
+     * Hyphens
+     */
+    hyphens?: 'manual' | 'auto' | 'none';
+    /**
      * Truuncate text
      */
     truncate?: boolean;
+    /**
+     * Word break
+     */
+    word?: 'normal' | 'break' | 'keep';
 }
 /**
  * Text

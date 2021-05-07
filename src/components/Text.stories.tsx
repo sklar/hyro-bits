@@ -1,12 +1,19 @@
-import React from 'react';
 import styled from '@emotion/styled';
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react/types-6-0';
+import React from 'react';
 
+import { mapArgTypes } from '../stories';
 import { Text as TextCmp, TextProps } from './Text';
 
 export default {
   title: 'Components/Text',
   component: TextCmp,
+  argTypes: {
+    ...mapArgTypes(['as', 'clamp', 'truncate'], {}),
+    ...mapArgTypes(['hyphens', 'word'], {
+      control: { type: 'inline-radio' },
+    }),
+  },
 } as Meta;
 
 const Template: Story<TextProps> = (args) => (
@@ -31,6 +38,9 @@ const Template: Story<TextProps> = (args) => (
       an obvious target. Undoubtedly, it's a tough job, as the mismatched duo will have to put aside
       their grudges, and race against the clock in a non-stop concerto for bullets. Can the hitman's
       bodyguard carry through the most important mission in his career?
+    </TextCmp>
+    <TextCmp {...args}>
+      WithhisreputationintattersafterthepainfullyunsuccessfuldeliveryofadistinguishedJapaneseclienttheformertripleAprotectionagentMichaelBryceisnowreducedtoameresecondclassbodyguardforhiretwoyearsafterthedisgracefulincidentUnderthosecircumstancesBrycewoulddoanythingtoprovehisworthandbeforelongheacceptsanofferfromInterpoltoescorttheinternationalassassinDariusKincaidfromManchestertotheHagueThetaskseemssimpleBryceneedstotransporthimfrompointAtopointB;nevertheless,thetriptotheNetherlandsislongandhazardous,andKincaidastheonlyonewiththegutsandenoughhardevidencetotestifyagainstatyrannicalBelarusiandictatorisanobvioustarget.Undoubtedly,itsatoughjob,asthemismatchedduowillhavetoputasidetheirgrudgesandraceagainsttheclockinanonstopconcertoforbulletsCanthehitmansbodyguardcarrythroughthemostimportantmissioninhiscareer?
     </TextCmp>
   </Wrapper>
 );

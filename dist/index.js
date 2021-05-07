@@ -917,8 +917,8 @@ const truncate = css `
  * Text
  */
 const Text = (_a) => {
-    var { as = 'span', clamp, truncate } = _a, props = __rest(_a, ["as", "clamp", "truncate"]);
-    return (React.createElement(Container$1, Object.assign({ as: as, "data-as": as, "data-clamp": clamp || null, "data-truncate": truncate || null, style: { ['--lines']: clamp } }, props)));
+    var { as = 'span', clamp, hyphens = 'manual', truncate, word = 'normal' } = _a, props = __rest(_a, ["as", "clamp", "hyphens", "truncate", "word"]);
+    return (React.createElement(Container$1, Object.assign({ as: as, "data-as": as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, props)));
 };
 const Container$1 = styled.span `
   &[data-as='h1'] {
@@ -943,8 +943,23 @@ const Container$1 = styled.span `
   &[data-clamp] {
     ${clamp};
   }
+
+  &[data-hyphens='auto'] {
+    hyphens: auto;
+  }
+  &[data-hyphens='none'] {
+    hyphens: none;
+  }
+
   &[data-truncate] {
     ${truncate};
+  }
+
+  &[data-word='break'] {
+    word-break: break-all;
+  }
+  &[data-word='keep'] {
+    word-break: keep-all;
   }
 `;
 
