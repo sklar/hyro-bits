@@ -443,9 +443,9 @@ const Container$6 = styled.div `
  * Primary UI component for user interaction
  */
 const Button = forwardRef((_a, ref) => {
-    var { active, busy, children, disabled, href, icon, placement, round, synthetic, text, theme, toggle, type = 'button', variant = 'secondary' } = _a, props = __rest(_a, ["active", "busy", "children", "disabled", "href", "icon", "placement", "round", "synthetic", "text", "theme", "toggle", "type", "variant"]);
+    var { active, busy, children, disabled, href, icon, placement, round, size = 'md', synthetic, text, theme, toggle, type = 'button', variant = 'secondary' } = _a, props = __rest(_a, ["active", "busy", "children", "disabled", "href", "icon", "placement", "round", "size", "synthetic", "text", "theme", "toggle", "type", "variant"]);
     const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
-    const delegated = Object.assign({ variant }, props);
+    const delegated = Object.assign({ size, variant }, props);
     return (React.createElement(Container$5, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, delegated),
         leader,
         text ? text : children,
@@ -462,13 +462,13 @@ const base = css `
   --button-color: ;
   --button-font-weight: 600;
   --button-gap: 8px;
-  --button-icon-offset: 4px;
+  --button-icon-offset: ;
   --button-icon-rotation: 0;
   --button-icon-transform: ;
-  --button-indent: 14px;
+  --button-indent: ;
   --button-line-height: var(--button-size);
   --button-radius: 6px;
-  --button-size: 32px;
+  --button-size: ;
 
   align-items: center;
   background-color: var(--button-background-color);
@@ -509,6 +509,16 @@ const base = css `
  * better illustrate `:hover` and `:active` state in the dedicated story.
  */
 const modification = {};
+modification['sm'] = css `
+  --button-icon-offset: 0px;
+  --button-indent: 8px;
+  --button-size: 30px;
+`;
+modification['md'] = css `
+  --button-icon-offset: 4px;
+  --button-indent: 14px;
+  --button-size: 32px;
+`;
 modification['primary'] = css `
   --button-background-color: ${colors.ELEMENT_PRIMARY};
   --button-border-color: ${colors.ELEMENT_PRIMARY};
@@ -619,6 +629,7 @@ const Container$5 = styled.button `
     --button-border-color: ${colors.ELEMENT_DISABLED};
   }
 
+  ${({ size }) => size && modification[size]};
   ${({ variant }) => variant && modification[variant]};
 
   &[data-icon='single'] {

@@ -1,5 +1,5 @@
 import React, { HTMLAttributes, ReactElement, ReactNode } from 'react';
-import { ThemeType, VariantType } from '../utils/types';
+import { SizeType, ThemeType, VariantType } from '../utils/types';
 export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> {
     /**
      * Children
@@ -29,6 +29,10 @@ export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButt
      * Round
      */
     round?: boolean;
+    /**
+     * Size
+     */
+    size?: Exclude<SizeType, 'xs' | 'lg' | 'xl'>;
     /**
      * Synthetic behaviour to prevent `:active` and `:focus` styles.
      */

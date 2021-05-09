@@ -4,7 +4,7 @@ import React, { forwardRef, HTMLAttributes, ReactElement, ReactNode } from 'reac
 
 import { Idle as Indicator } from '../components/indicator';
 import { button, colors } from '../theme';
-import { ThemeType, VariantType } from '../utils/types';
+import { SizeType, ThemeType, VariantType } from '../utils/types';
 
 export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> {
   /**
@@ -36,6 +36,10 @@ export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButt
    * Round
    */
   round?: boolean;
+  /**
+   * Size
+   */
+  size?: Exclude<SizeType, 'xs' | 'lg' | 'xl'>;
   /**
    * Synthetic behaviour to prevent `:active` and `:focus` styles.
    */
@@ -81,6 +85,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       icon,
       placement,
       round,
+      size = 'md',
       synthetic,
       text,
       theme,
@@ -92,7 +97,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     ref
   ): JSX.Element => {
     const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
-    const delegated = { variant, ...props };
+    const delegated = { size, variant, ...props };
 
     return (
       <Container
@@ -135,13 +140,13 @@ const base = css`
   --button-color: ;
   --button-font-weight: 600;
   --button-gap: 8px;
-  --button-icon-offset: 4px;
+  --button-icon-offset: ;
   --button-icon-rotation: 0;
   --button-icon-transform: ;
-  --button-indent: 14px;
+  --button-indent: ;
   --button-line-height: var(--button-size);
   --button-radius: 6px;
-  --button-size: 32px;
+  --button-size: ;
 
   align-items: center;
   background-color: var(--button-background-color);
@@ -184,6 +189,18 @@ const base = css`
  */
 
 const modification: Record<string, {}> = {};
+
+modification['sm'] = css`
+  --button-icon-offset: 0px;
+  --button-indent: 8px;
+  --button-size: 30px;
+`;
+
+modification['md'] = css`
+  --button-icon-offset: 4px;
+  --button-indent: 14px;
+  --button-size: 32px;
+`;
 
 modification['primary'] = css`
   --button-background-color: ${colors.ELEMENT_PRIMARY};
@@ -298,6 +315,7 @@ const Container = styled.button<ButtonProps>`
     --button-border-color: ${colors.ELEMENT_DISABLED};
   }
 
+  ${({ size }) => size && modification[size]};
   ${({ variant }) => variant && modification[variant]};
 
   &[data-icon='single'] {

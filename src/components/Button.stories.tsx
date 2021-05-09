@@ -39,7 +39,7 @@ export default {
     ...mapArgTypes(['round', 'synthetic', 'toggle'], {
       table: { category: 'Modifiers' },
     }),
-    ...mapArgTypes(['variant', 'theme'], {
+    ...mapArgTypes(['size', 'variant', 'theme'], {
       control: { type: 'inline-radio' },
       table: { category: 'Modifiers' },
     }),
