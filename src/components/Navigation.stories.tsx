@@ -43,7 +43,6 @@ export default {
     ...mapArgTypes(['active'], {
       table: { category: 'States' },
     }),
-    ...mapArgTypes(['onClick'], { table: { category: 'Events' } }),
   },
 } as Meta;
 

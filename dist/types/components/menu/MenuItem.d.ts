@@ -12,10 +12,6 @@ export interface MenuItemProps extends HTMLAttributes<HTMLButtonElement> {
      * State: Active
      */
     active?: boolean;
-    /**
-     * Event: Click
-     */
-    onClick?: () => void;
 }
 /**
  * Context menu item
