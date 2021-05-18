@@ -16,6 +16,7 @@ export { default as ArrowReplay } from './ArrowReplay';
 export { default as Background } from './Background';
 export { default as Backspace } from './Backspace';
 export { default as Backward } from './Backward';
+export { default as Bars } from './Bars';
 export { default as Book } from './Book';
 export { default as Calendar } from './Calendar';
 export { default as Chevron } from './Chevron';
