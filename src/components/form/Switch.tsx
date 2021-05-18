@@ -109,7 +109,7 @@ const Container = styled.label`
     --switch-border-color: #969cac;
   }
 
-  &:is(:focus-within, :hover, [data-hover]) {
+  &:is(:focus-within, :hover, label:hover *, [data-hover]) {
     --switch-border-color: ${colors.ELEMENT_PRIMARY};
     --switch-color: ${colors.ELEMENT_PRIMARY};
 
