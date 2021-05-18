@@ -1,9 +1,13 @@
-import React, { HTMLAttributes } from 'react';
+import React, { ElementType, HTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 
 import { button, colors, paragraph } from '../../theme';
 
-export interface MenuItemProps extends HTMLAttributes<HTMLButtonElement> {
+export interface MenuItemProps extends HTMLAttributes<HTMLElement> {
+  /**
+   * Render as HTML element
+   */
+  as?: ElementType<any>;
   /**
    * Align along primary axis
    */
@@ -24,6 +28,7 @@ export interface MenuItemProps extends HTMLAttributes<HTMLButtonElement> {
  */
 export const MenuItem: React.FC<MenuItemProps> = ({
   active,
+  as = 'button',
   justify,
   theme,
   ...props
@@ -32,10 +37,11 @@ export const MenuItem: React.FC<MenuItemProps> = ({
 
   return (
     <MenuItemContainer
-      type="button"
+      as={as}
       data-active={active || null}
       data-justify={justify || null}
       data-theme={theme || null}
+      type={as === 'button' ? 'button' : undefined}
       {...delegated}
     />
   );

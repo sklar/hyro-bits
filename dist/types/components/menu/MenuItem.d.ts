@@ -1,5 +1,9 @@
-import React, { HTMLAttributes } from 'react';
-export interface MenuItemProps extends HTMLAttributes<HTMLButtonElement> {
+import React, { ElementType, HTMLAttributes } from 'react';
+export interface MenuItemProps extends HTMLAttributes<HTMLElement> {
+    /**
+     * Render as HTML element
+     */
+    as?: ElementType<any>;
     /**
      * Align along primary axis
      */

@@ -1,4 +1,5 @@
 import { ArgTypes } from '@storybook/react/types-6-0';
+export declare const global: import("@emotion/react").SerializedStyles;
 export declare const mapArgTypes: (types: string[], args: ArgTypes) => ArgTypes;
 export * from './Color';
 export * from './Container';

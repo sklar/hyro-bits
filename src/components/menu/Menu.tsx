@@ -82,6 +82,7 @@ const MenuContainer = styled.section<MenuProps>`
   gap: var(--gap);
   padding: calc(1.5 * var(--indent)) var(--indent);
   position: relative;
+  user-select: none;
   width: var(--size);
   z-index: 1;
 

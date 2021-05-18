@@ -1,17 +1,11 @@
-import React from 'react';
 import styled from '@emotion/styled';
-import { Story, Meta } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react/types-6-0';
+import React from 'react';
 import { withDesign } from 'storybook-addon-designs';
 
 import { Legend, mapArgTypes } from '../../stories';
-import { Icon } from '../Icon';
-import { Flex, Grid } from '../layout';
-import { Text } from '../Text';
-import { Menu, MenuProps } from './Menu';
-import { MenuDivider } from './MenuDivider';
-import { MenuItem } from './MenuItem';
-import { MenuTitle } from './MenuTitle';
-import { Button } from '../Button';
+import { Button, Flex, Grid, Icon, Switch, Text } from '../index';
+import { Menu, MenuDivider, MenuItem, MenuProps, MenuTitle } from './index';
 
 const decorators = [withDesign];
 
@@ -280,6 +274,9 @@ const TemplateOverview: Story<MenuProps> = (args) => (
       <MenuDivider />
       <MenuItem>
         <Text>Another one</Text>
+      </MenuItem>
+      <MenuItem as="span">
+        <Switch label="And here comes a switch" />
       </MenuItem>
       <MenuItem>
         <Text>And one more</Text>
