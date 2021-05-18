@@ -21,6 +21,10 @@ export interface MenuItemProps extends HTMLAttributes<HTMLElement> {
    * State: Active
    */
   active?: boolean;
+  /**
+   * State: Disabled
+   */
+  disabled?: boolean;
 }
 
 /**
@@ -29,6 +33,7 @@ export interface MenuItemProps extends HTMLAttributes<HTMLElement> {
 export const MenuItem: React.FC<MenuItemProps> = ({
   active,
   as = 'button',
+  disabled,
   justify,
   theme,
   ...props
@@ -39,8 +44,10 @@ export const MenuItem: React.FC<MenuItemProps> = ({
     <MenuItemContainer
       as={as}
       data-active={active || null}
+      data-disabled={disabled || null}
       data-justify={justify || null}
       data-theme={theme || null}
+      disabled={as === 'button' ? true : undefined}
       type={as === 'button' ? 'button' : undefined}
       {...delegated}
     />
@@ -119,6 +126,17 @@ const MenuItemContainer = styled.button`
     }
   }
 
+  &:is([data-disabled]) {
+    cursor: default;
+    pointer-events: none;
+
+    &,
+    .primary,
+    .secondary {
+      --color: ${colors.ELEMENT_TERTIARY};
+    }
+  }
+
   [data-theme='dark'] & {
     --color: ${colors.WHITE};
 
@@ -133,6 +151,14 @@ const MenuItemContainer = styled.button`
       .primary,
       .secondary {
         --color: ${colors.WHITE};
+      }
+    }
+
+    &:is([data-disabled]) {
+      &,
+      .primary,
+      .secondary {
+        --color: ${colors.DARK_ELEMENT_TERTIARY};
       }
     }
   }

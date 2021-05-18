@@ -1022,9 +1022,9 @@ const MenuDivider = styled.div `
  * Context menu item
  */
 const MenuItem = (_a) => {
-    var { active, as = 'button', justify, theme } = _a, props = __rest(_a, ["active", "as", "justify", "theme"]);
+    var { active, as = 'button', disabled, justify, theme } = _a, props = __rest(_a, ["active", "as", "disabled", "justify", "theme"]);
     const delegated = Object.assign({}, props);
-    return (React.createElement(MenuItemContainer, Object.assign({ as: as, "data-active": active || null, "data-justify": justify || null, "data-theme": theme || null, type: as === 'button' ? 'button' : undefined }, delegated)));
+    return (React.createElement(MenuItemContainer, Object.assign({ as: as, "data-active": active || null, "data-disabled": disabled || null, "data-justify": justify || null, "data-theme": theme || null, disabled: as === 'button' ? true : undefined, type: as === 'button' ? 'button' : undefined }, delegated)));
 };
 const MenuItemContainer = styled.button `
   ${button};
@@ -1098,6 +1098,17 @@ const MenuItemContainer = styled.button `
     }
   }
 
+  &:is([data-disabled]) {
+    cursor: default;
+    pointer-events: none;
+
+    &,
+    .primary,
+    .secondary {
+      --color: ${colors.ELEMENT_TERTIARY};
+    }
+  }
+
   [data-theme='dark'] & {
     --color: ${colors.WHITE};
 
@@ -1112,6 +1123,14 @@ const MenuItemContainer = styled.button `
       .primary,
       .secondary {
         --color: ${colors.WHITE};
+      }
+    }
+
+    &:is([data-disabled]) {
+      &,
+      .primary,
+      .secondary {
+        --color: ${colors.DARK_ELEMENT_TERTIARY};
       }
     }
   }

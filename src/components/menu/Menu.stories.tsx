@@ -126,6 +126,23 @@ const Template: Story<MenuProps> = (args) => (
         <Text>And one more</Text>
       </MenuItem>
     </Menu>
+    <Menu {...args}>
+      <MenuItem>Text</MenuItem>
+      <MenuItem>
+        <Text truncate>Way loooooooooooooooooooooooooooong Text</Text>
+      </MenuItem>
+      <MenuItem disabled>
+        <Text>Another text</Text>
+        <Icon name="Chevron" />
+      </MenuItem>
+      <MenuDivider />
+      <MenuItem>
+        <Text>Another one</Text>
+      </MenuItem>
+      <MenuItem>
+        <Text>And one more</Text>
+      </MenuItem>
+    </Menu>
   </>
 );
 
@@ -224,6 +241,34 @@ const TemplateAlt: Story<MenuProps> = (args) => (
     </Menu>
     <Menu {...args}>
       <MenuItem active>
+        <Flex align="center" gap="8px" style={{ width: '100%' }}>
+          <Avatar />
+          <div style={{ flex: 1, maxWidth: 'calc(100% - 24px)' }}>
+            <Text as="div" className="primary">
+              Michael Bryce
+            </Text>
+            <Text as="div" className="secondary" truncate>
+              aaa@protection.agent
+            </Text>
+          </div>
+        </Flex>
+      </MenuItem>
+      <MenuItem>
+        <Flex align="center" gap="8px" style={{ width: '100%' }}>
+          <Avatar />
+          <div style={{ flex: 1, maxWidth: 'calc(100% - 24px)' }}>
+            <Text as="div" className="primary">
+              Darius Kincaid
+            </Text>
+            <Text as="div" className="secondary" truncate>
+              international@assassin.badass
+            </Text>
+          </div>
+        </Flex>
+      </MenuItem>
+    </Menu>
+    <Menu {...args}>
+      <MenuItem disabled>
         <Flex align="center" gap="8px" style={{ width: '100%' }}>
           <Avatar />
           <div style={{ flex: 1, maxWidth: 'calc(100% - 24px)' }}>
@@ -384,12 +429,13 @@ Items.args = {
 Items.decorators = [
   ...decorators,
   (Story) => (
-    <Grid align="center" columns="repeat(5, 1fr)" gap="1em" justify="start">
+    <Grid align="center" columns="repeat(6, 1fr)" gap="1em" justify="start">
       <Legend>default</Legend>
       <Legend />
       <Legend>hover</Legend>
       <Legend>pressed</Legend>
       <Legend>active (selected)</Legend>
+      <Legend>disabled</Legend>
       <Story />
     </Grid>
   ),
@@ -402,11 +448,12 @@ ItemsAlt.args = {
 ItemsAlt.decorators = [
   ...decorators,
   (Story) => (
-    <Grid align="center" columns="repeat(4, 1fr)" gap="1em" justify="start">
+    <Grid align="center" columns="repeat(5, 1fr)" gap="1em" justify="start">
       <Legend>default</Legend>
       <Legend>hover</Legend>
       <Legend>pressed</Legend>
       <Legend>active (selected)</Legend>
+      <Legend>disabled</Legend>
       <Story />
     </Grid>
   ),

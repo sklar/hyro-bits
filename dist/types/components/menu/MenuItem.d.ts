@@ -16,6 +16,10 @@ export interface MenuItemProps extends HTMLAttributes<HTMLElement> {
      * State: Active
      */
     active?: boolean;
+    /**
+     * State: Disabled
+     */
+    disabled?: boolean;
 }
 /**
  * Context menu item
