@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import React, { forwardRef, HTMLAttributes } from 'react';
+import React, { ElementType, forwardRef, HTMLAttributes } from 'react';
 
 import { button, colors } from '../../theme';
 import { truncate } from '../../utils/helpers';
@@ -10,6 +10,10 @@ export interface SwitchProps extends HTMLAttributes<HTMLInputElement> {
    * No matter on type, appearance can be chosen manually
    */
   appearance?: 'checkbox' | 'radio' | 'toggle';
+  /**
+   * Render as HTML element
+   */
+  as?: ElementType<any>;
   /**
    * Label
    */
@@ -35,6 +39,7 @@ export interface SwitchProps extends HTMLAttributes<HTMLInputElement> {
 export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
   (
     {
+      as = 'label',
       children,
       disabled,
       label,
@@ -52,6 +57,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     );
     return (
       <Container
+        as={as}
         data-disabled={disabled || null}
         data-label={label || null}
         data-theme={theme || null}

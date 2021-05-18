@@ -35,11 +35,14 @@ export default {
     size: 16,
   },
   argTypes: {
+    ...mapArgTypes(['as', 'label'], {}),
     ...mapArgTypes(['appearance', 'theme', 'type'], {
       control: { type: 'inline-radio' },
+      table: { category: 'Modifiers' },
     }),
     ...mapArgTypes(['size'], {
       control: { type: 'range', min: 16, max: 150, step: 1 },
+      table: { category: 'Modifiers' },
     }),
     ...mapArgTypes(['defaultChecked', 'disabled'], { table: { category: 'States' } }),
   },

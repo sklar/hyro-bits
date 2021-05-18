@@ -1,4 +1,4 @@
-/** Components v1.3.0 */
+/** Components v1.4.0 */
 
 import { keyframes, css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -710,9 +710,9 @@ const truncate = css `
  * Checkbox, Radio button or Toggle switch
  */
 const Switch = forwardRef((_a, ref) => {
-    var { children, disabled, label, theme, type = 'checkbox', appearance = type === 'radio' ? 'radio' : 'checkbox' } = _a, inputProps = __rest(_a, ["children", "disabled", "label", "theme", "type", "appearance"]);
+    var { as = 'label', children, disabled, label, theme, type = 'checkbox', appearance = type === 'radio' ? 'radio' : 'checkbox' } = _a, inputProps = __rest(_a, ["as", "children", "disabled", "label", "theme", "type", "appearance"]);
     const labelProps = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['className', 'data-hover', 'data-qa', 'style'].includes(key)));
-    return (React.createElement(Container$4, Object.assign({ "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null }, labelProps),
+    return (React.createElement(Container$4, Object.assign({ as: as, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null }, labelProps),
         React.createElement("input", Object.assign({ ref: ref, type: type, disabled: disabled }, inputProps)),
         React.createElement(Indicator, { "data-appearance": appearance }),
         children,

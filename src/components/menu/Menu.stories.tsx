@@ -275,8 +275,8 @@ const TemplateOverview: Story<MenuProps> = (args) => (
       <MenuItem>
         <Text>Another one</Text>
       </MenuItem>
-      <MenuItem as="span">
-        <Switch label="And here comes a switch" />
+      <MenuItem as="label">
+        <Switch as="span" label="And here comes a switch" />
       </MenuItem>
       <MenuItem>
         <Text>And one more</Text>

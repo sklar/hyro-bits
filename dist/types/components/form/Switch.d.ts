@@ -1,10 +1,14 @@
-import React, { HTMLAttributes } from 'react';
+import React, { ElementType, HTMLAttributes } from 'react';
 export interface SwitchProps extends HTMLAttributes<HTMLInputElement> {
     /**
      * Appearance (`checkbox` as default)
      * No matter on type, appearance can be chosen manually
      */
     appearance?: 'checkbox' | 'radio' | 'toggle';
+    /**
+     * Render as HTML element
+     */
+    as?: ElementType<any>;
     /**
      * Label
      */
