@@ -47,7 +47,7 @@ export const MenuItem: React.FC<MenuItemProps> = ({
       data-disabled={disabled || null}
       data-justify={justify || null}
       data-theme={theme || null}
-      disabled={as === 'button' ? true : undefined}
+      disabled={as === 'button' ? !!disabled : undefined}
       type={as === 'button' ? 'button' : undefined}
       {...delegated}
     />
