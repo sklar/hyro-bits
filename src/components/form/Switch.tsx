@@ -50,9 +50,9 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     },
     ref
   ): JSX.Element => {
-    const labelProps = Object.fromEntries(
+    const containerProps = Object.fromEntries(
       Object.entries(inputProps).filter(([key]) =>
-        ['className', 'data-hover', 'data-qa', 'style'].includes(key)
+        ['className', 'data-hover', 'style'].includes(key)
       )
     );
     return (
@@ -61,7 +61,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
         data-disabled={disabled || null}
         data-label={label || null}
         data-theme={theme || null}
-        {...labelProps}
+        {...containerProps}
       >
         <input ref={ref} type={type} disabled={disabled} {...inputProps} />
         <Indicator data-appearance={appearance} />

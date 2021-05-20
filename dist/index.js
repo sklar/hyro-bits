@@ -711,8 +711,8 @@ const truncate = css `
  */
 const Switch = forwardRef((_a, ref) => {
     var { as = 'label', children, disabled, label, theme, type = 'checkbox', appearance = type === 'radio' ? 'radio' : 'checkbox' } = _a, inputProps = __rest(_a, ["as", "children", "disabled", "label", "theme", "type", "appearance"]);
-    const labelProps = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['className', 'data-hover', 'data-qa', 'style'].includes(key)));
-    return (React.createElement(Container$4, Object.assign({ as: as, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null }, labelProps),
+    const containerProps = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['className', 'data-hover', 'style'].includes(key)));
+    return (React.createElement(Container$4, Object.assign({ as: as, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null }, containerProps),
         React.createElement("input", Object.assign({ ref: ref, type: type, disabled: disabled }, inputProps)),
         React.createElement(Indicator, { "data-appearance": appearance }),
         children,
