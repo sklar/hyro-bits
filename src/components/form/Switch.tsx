@@ -1,10 +1,10 @@
 import styled from '@emotion/styled';
-import React, { ElementType, forwardRef, HTMLAttributes } from 'react';
+import React, { ElementType, forwardRef, InputHTMLAttributes } from 'react';
 
 import { button, colors } from '../../theme';
 import { truncate } from '../../utils/helpers';
 
-export interface SwitchProps extends HTMLAttributes<HTMLInputElement> {
+export interface SwitchProps extends InputHTMLAttributes<HTMLInputElement> {
   /**
    * Appearance (`checkbox` as default)
    * No matter on type, appearance can be chosen manually

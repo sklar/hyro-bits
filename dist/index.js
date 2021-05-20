@@ -1024,7 +1024,7 @@ const MenuDivider = styled.div `
 const MenuItem = (_a) => {
     var { active, as = 'button', disabled, justify, theme } = _a, props = __rest(_a, ["active", "as", "disabled", "justify", "theme"]);
     const delegated = Object.assign({}, props);
-    return (React.createElement(MenuItemContainer, Object.assign({ as: as, "data-active": active || null, "data-disabled": disabled || null, "data-justify": justify || null, "data-theme": theme || null, disabled: as === 'button' ? true : undefined, type: as === 'button' ? 'button' : undefined }, delegated)));
+    return (React.createElement(MenuItemContainer, Object.assign({ as: as, "data-active": active || null, "data-disabled": disabled || null, "data-justify": justify || null, "data-theme": theme || null, disabled: as === 'button' ? !!disabled : undefined, type: as === 'button' ? 'button' : undefined }, delegated)));
 };
 const MenuItemContainer = styled.button `
   ${button};

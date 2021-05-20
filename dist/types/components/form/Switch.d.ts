@@ -1,5 +1,5 @@
-import React, { ElementType, HTMLAttributes } from 'react';
-export interface SwitchProps extends HTMLAttributes<HTMLInputElement> {
+import React, { ElementType, InputHTMLAttributes } from 'react';
+export interface SwitchProps extends InputHTMLAttributes<HTMLInputElement> {
     /**
      * Appearance (`checkbox` as default)
      * No matter on type, appearance can be chosen manually
