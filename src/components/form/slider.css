@@ -1,0 +1,72 @@
+.purplex-slider {
+  border-radius: 8px;
+  height: 16px;
+  margin: 0 8px;
+  padding: 6px 0;
+  width: calc(100% - 16px);
+}
+
+.purplex-slider.rc-slider-vertical {
+  height: calc(100% - 16px);
+  margin: 8px 0;
+  padding: 0 6px;
+  width: 16px;
+}
+
+.purplex-slider .rc-slider-handle {
+  border-color: var(--slider-color-contrast);
+  height: 16px;
+  margin-top: -6px;
+  transition: border 0.1s linear;
+  width: 16px;
+}
+
+.purplex-slider.rc-slider-vertical .rc-slider-handle {
+  margin-left: -6px;
+}
+
+
+/* Handle */
+.purplex-slider:not([class*="disabled"]) .rc-slider-handle:is(:active, :focus-within, :hover),
+.purplex-slider:not([class*="disabled"]) .rc-slider-handle-dragging {
+  border-color: var(--slider-color);
+  box-shadow: none;
+}
+
+
+/* Track - highlighted area */
+.purplex-slider .rc-slider-track {
+  background-color: var(--slider-color);
+}
+
+.purplex-slider.rc-slider-vertical .rc-slider-track {
+  left: 6px;
+}
+
+.purplex-slider.rc-slider-disabled .rc-slider-track {
+  opacity: 0.2;
+}
+
+
+/* Rail - background */
+.purplex-slider .rc-slider-rail {
+  background-color: var(--slider-color-contrast);
+}
+
+.purplex-slider.rc-slider-disabled .rc-slider-rail {
+  opacity: 0;
+}
+
+
+/* Dots */
+.purplex-slider .rc-slider-dot {
+  border-color: var(--slider-color-contrast);
+}
+
+.purplex-slider .rc-slider-dot-active {
+  border-color: var(--slider-color);
+}
+
+.purplex-slider.rc-slider-disabled .rc-slider-dot {
+  opacity: 0;
+}

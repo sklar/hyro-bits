@@ -4,6 +4,8 @@ import { keyframes, css } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { useRef, useEffect, useState, useCallback, forwardRef } from 'react';
 import { useCombinedRef } from '@spicy-hooks/core';
+import RcSlider, { Range as Range$1 } from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -690,6 +692,23 @@ const ClickOutsideGuard = forwardRef((_a, ref) => {
 const Container$5 = styled.div `
   display: contents;
 `;
+
+/**
+ * Powered by `rc-slider`. For whole API and examples visit https://slider-react-component.vercel.app
+ */
+const Range = (_a) => {
+    var props = __rest(_a, []);
+    return (React.createElement(Range$1, Object.assign({}, props, { className: `purplex-slider${props.className ? ` ${props.className}` : ''}`, style: Object.assign({ ['--slider-color']: colors.ELEMENT_FOCUS, ['--slider-color-contrast']: colors.STROKE }, props.style) })));
+};
+
+/**
+ * Powered by `rc-slider`. For whole API and examples visit https://slider-react-component.vercel.app <br/>
+ * For range slider use `<Range>` component.
+ */
+const Slider = (_a) => {
+    var props = __rest(_a, []);
+    return (React.createElement(RcSlider, Object.assign({}, props, { className: `purplex-slider${props.className ? ` ${props.className}` : ''}`, style: Object.assign({ ['--slider-color']: colors.ELEMENT_FOCUS, ['--slider-color-contrast']: colors.STROKE }, props.style) })));
+};
 
 const clamp = css `
   display: -webkit-box;
@@ -1513,5 +1532,5 @@ const TableContainer = styled.table `
   }
 `;
 
-export { Button, ClickOutsideGuard, Flex, Grid, Icon, Idle, Menu, MenuDivider, MenuItem, MenuTitle, Nav, NavItem, Order, Spacer, Status, Switch, Table, Tbody, Td, Text, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph };
+export { Button, ClickOutsideGuard, Flex, Grid, Icon, Idle, Menu, MenuDivider, MenuItem, MenuTitle, Nav, NavItem, Order, Range, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph };
 //# sourceMappingURL=index.js.map

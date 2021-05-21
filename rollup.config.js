@@ -2,6 +2,7 @@ import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
 import copy from 'rollup-plugin-copy';
 import filesize from 'rollup-plugin-filesize';
+import css from 'rollup-plugin-import-css';
 
 import pkg from './package.json';
 
@@ -24,6 +25,7 @@ export default {
       copyOnce: true,
       targets: [{ src: 'src/assets/fonts', dest: 'dist' }],
     }),
+    css(),
     filesize(),
     replace({ delimiters: ['', ''], preventAssignment: true, values: { '../icons': './icons' } }),
     typescript({
