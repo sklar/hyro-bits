@@ -1,4 +1,4 @@
-/** Components v1.4.0 */
+/** Components v1.5.0 */
 
 import { keyframes, css } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -1315,13 +1315,13 @@ const Container = styled.span `
  * Navigation item
  */
 const NavItem = forwardRef((_a, ref) => {
-    var { active, href, icon = React.createElement(Icon, { name: "Chevron" }), status, text } = _a, props = __rest(_a, ["active", "href", "icon", "status", "text"]);
-    return (React.createElement(NavItemContainer, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-status": status || null, href: href, ref: ref, type: href ? undefined : 'button' }, props),
+    var { active, as = 'button', icon = React.createElement(Icon, { name: "Chevron" }), status, text } = _a, props = __rest(_a, ["active", "as", "icon", "status", "text"]);
+    return (React.createElement(NavItemContainer, Object.assign({ as: as, "data-active": active || null, "data-status": status || null, ref: ref, type: as === 'button' ? 'button' : undefined }, props),
         status && React.createElement(Status, { theme: status || null }),
         React.createElement(Text, { "data-text": true, truncate: true }, text),
         icon));
 });
-const NavItemContainer = styled.a `
+const NavItemContainer = styled.button `
   ${button};
 
   --nav-item-background-color: #edf1f4;
@@ -1363,11 +1363,25 @@ const NavItemContainer = styled.a `
   [data-text] {
     flex: 1;
   }
+
+  [data-theme='dark'] & {
+    --nav-item-background-color: ${colors.DARK_BACKGROUND_SECONDARY};
+    --nav-item-border-color: #4a5066;
+    --nav-item-color: ${colors.WHITE};
+
+    &[data-active] {
+      --nav-item-background-color: ${colors.DARK_ELEMENT_FOCUS};
+    }
+  }
 `;
 /**
- * Navigation
+ * Navigation item
  */
-const Nav = styled.nav `
+const Nav = (_a, ref) => {
+    var { as = 'nav', theme } = _a, props = __rest(_a, ["as", "theme"]);
+    return (React.createElement(NavContainer, Object.assign({ as: as, "data-theme": theme || null }, props)));
+};
+const NavContainer = styled.nav `
   display: flex;
   flex-direction: column;
 `;
@@ -1532,5 +1546,5 @@ const TableContainer = styled.table `
   }
 `;
 
-export { Button, ClickOutsideGuard, Flex, Grid, Icon, Idle, Menu, MenuDivider, MenuItem, MenuTitle, Nav, NavItem, Order, Range, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph };
+export { Button, ClickOutsideGuard, Flex, Grid, Icon, Idle, Menu, MenuDivider, MenuItem, MenuTitle, Nav, NavContainer, NavItem, Order, Range, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph };
 //# sourceMappingURL=index.js.map

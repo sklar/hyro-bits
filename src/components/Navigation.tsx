@@ -1,20 +1,20 @@
 import styled from '@emotion/styled';
-import React, { forwardRef, HTMLAttributes, ReactElement } from 'react';
+import React, { ElementType, forwardRef, HTMLAttributes, ReactElement } from 'react';
 
 import { button, colors } from '../theme';
 import { Icon } from './Icon';
 import { Status, StatusThemeType } from './Status';
 import { Text } from './Text';
 
-export interface NavItemProps extends HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> {
+export interface NavItemProps extends HTMLAttributes<HTMLButtonElement> {
+  /**
+   * Render as HTML element
+   */
+  as?: ElementType<any>;
   /**
    * Label
    */
   text: string;
-  /**
-   * Href
-   */
-  href?: string;
   /**
    * Icon
    */
@@ -33,15 +33,17 @@ export interface NavItemProps extends HTMLAttributes<HTMLAnchorElement | HTMLBut
 /**
  * Navigation item
  */
-export const NavItem = forwardRef<HTMLAnchorElement, NavItemProps>(
-  ({ active, href, icon = <Icon name="Chevron" />, status, text, ...props }, ref): JSX.Element => (
+export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
+  (
+    { active, as = 'button', icon = <Icon name="Chevron" />, status, text, ...props },
+    ref
+  ): JSX.Element => (
     <NavItemContainer
-      as={href ? 'a' : 'button'}
+      as={as}
       data-active={active || null}
       data-status={status || null}
-      href={href}
       ref={ref}
-      type={href ? undefined : 'button'}
+      type={as === 'button' ? 'button' : undefined}
       {...props}
     >
       {status && <Status theme={status || null} />}
@@ -53,7 +55,7 @@ export const NavItem = forwardRef<HTMLAnchorElement, NavItemProps>(
   )
 );
 
-const NavItemContainer = styled.a`
+const NavItemContainer = styled.button`
   ${button};
 
   --nav-item-background-color: #edf1f4;
@@ -95,12 +97,40 @@ const NavItemContainer = styled.a`
   [data-text] {
     flex: 1;
   }
+
+  [data-theme='dark'] & {
+    --nav-item-background-color: ${colors.DARK_BACKGROUND_SECONDARY};
+    --nav-item-border-color: #4a5066;
+    --nav-item-color: ${colors.WHITE};
+
+    &[data-active] {
+      --nav-item-background-color: ${colors.DARK_ELEMENT_FOCUS};
+    }
+  }
 `;
 
 /**
  * Navigation
  */
-export const Nav = styled.nav`
+export interface NavProps extends HTMLAttributes<HTMLDivElement> {
+  /**
+   * Render as HTML element
+   */
+  as?: ElementType<any>;
+  /**
+   * Theme
+   */
+  theme?: 'light' | 'dark';
+}
+
+/**
+ * Navigation item
+ */
+export const Nav: React.FC<NavProps> = ({ as = 'nav', theme, ...props }, ref): JSX.Element => (
+  <NavContainer as={as} data-theme={theme || null} {...props} />
+);
+
+export const NavContainer = styled.nav`
   display: flex;
   flex-direction: column;
 `;

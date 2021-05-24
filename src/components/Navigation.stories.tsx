@@ -25,17 +25,24 @@ export default {
       url: 'https://www.figma.com/file/rEhCUlh0IRFrtoFeIK5kEt/Design-System-2?node-id=500%3A4019',
     },
   },
+  args: {
+    records: [...data.records].map((record) => record.fields),
+  },
   argTypes: {
-    icon: {
-      control: { disable: true },
-    },
-    records: {
+    ...mapArgTypes(['icon', 'records'], {
       control: { disable: true },
       table: { disable: true },
-    },
+    }),
     ...mapArgTypes(['status'], {
       control: {
         options: Object.values(Theme).filter((t) => t !== 'dark'),
+        type: 'inline-radio',
+      },
+      table: { category: 'Modifiers' },
+    }),
+    ...mapArgTypes(['theme'], {
+      control: {
+        options: ['dark', 'light'],
         type: 'inline-radio',
       },
       table: { category: 'Modifiers' },
@@ -59,25 +66,25 @@ const getThemeByStatus = (status: StatusType): string => {
 interface StoryProps extends NavItemProps {
   records: Record<string, string>[];
   showStatus: boolean;
+  theme?: 'light' | 'dark';
 }
 
 const Template: Story<StoryProps> = ({
   active,
-  href,
   records,
   showStatus = true,
   status: storyStatus,
   text,
+  theme,
 }) => {
   const [activeItemIndex, setActiveItemIndex] = useState<number>(0);
   return (
-    <Nav>
+    <Nav theme={theme}>
       {records.map(({ title, status }, index) => {
         const theme = getThemeByStatus(status as StatusType);
         return (
           <NavItem
             key={index}
-            href={href}
             active={active || activeItemIndex === index}
             status={showStatus ? ((storyStatus || theme) as StatusThemeType) : undefined}
             text={text || title}
@@ -101,7 +108,4 @@ const TemplateOverview: Story<StoryProps> = (args) => (
 );
 
 export const NavigationOverview = TemplateOverview.bind({});
-NavigationOverview.args = {
-  records: [...data.records].map((record) => record.fields),
-};
 NavigationOverview.storyName = 'Navigation';
