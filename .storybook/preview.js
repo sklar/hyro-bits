@@ -8,4 +8,9 @@ export const parameters = {
   docs: {
     theme: themes.dark,
   },
+  options: {
+    storySort: {
+      order: ['Colors', 'Components'],
+    },
+  },
 };
