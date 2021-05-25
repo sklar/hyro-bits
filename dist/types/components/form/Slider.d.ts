@@ -1,12 +1,19 @@
-import React from 'react';
 import { SliderProps as RcSliderProps } from 'rc-slider';
-import 'rc-slider/assets/index.css';
-import './slider.css';
+import React from 'react';
 export interface SliderProps extends RcSliderProps {
+    /**
+     * Bleed
+     * Whether to let handle and dots bleed outside the box or keep'em inside.
+     */
+    bleed?: boolean;
+    /**
+     * Theme
+     */
+    theme?: 'light' | 'dark';
 }
 /**
- * Powered by `rc-slider`. For whole API and examples visit https://slider-react-component.vercel.app <br/>
- * For range slider use `<Range>` component.
+ * Styled RC Slider wrapper
+ * @see https://slider.react-component.now.sh/
  */
-export declare const Slider: React.FC<SliderProps>;
+export declare const Slider: React.VFC<SliderProps>;
 //# sourceMappingURL=Slider.d.ts.map

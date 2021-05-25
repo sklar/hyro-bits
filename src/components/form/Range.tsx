@@ -1,22 +1,49 @@
-import React from 'react';
-import { colors } from '../../theme';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { jsx } from '@emotion/react';
 import { Range as RcRange, RangeProps as RcRangeProps } from 'rc-slider';
-import 'rc-slider/assets/index.css';
-import './slider.css';
+import React from 'react';
 
-export interface RangeProps extends RcRangeProps {}
+import { slider, sliderWrapper } from './Slider.styles';
+
+export interface RangeProps extends RcRangeProps {
+  /**
+   * Bleed
+   * Whether to let handle and dots bleed outside the box or keep'em inside.
+   */
+  bleed?: boolean;
+  /**
+   * Theme
+   */
+  theme?: 'light' | 'dark';
+}
 
 /**
- * Powered by `rc-slider`. For whole API and examples visit https://slider-react-component.vercel.app
+ * Styled RC Slider wrapper
+ * @see https://slider.react-component.now.sh/
  */
-export const Range: React.FC<RangeProps> = ({ ...props }): JSX.Element => (
-  <RcRange
-    {...props}
-    className={`purplex-slider${props.className ? ` ${props.className}` : ''}`}
-    style={{
-      ['--slider-color' as string]: colors.ELEMENT_FOCUS,
-      ['--slider-color-contrast' as string]: colors.STROKE,
-      ...props.style,
-    }}
-  />
-);
+export const Range: React.VFC<RangeProps> = ({
+  bleed = true,
+  reverse,
+  theme,
+  vertical,
+  ...rangeProps
+}): JSX.Element => {
+  const containerProps = Object.fromEntries(
+    Object.entries(rangeProps).filter(([key]) =>
+      ['className', 'data-hover', 'data-qa'].includes(key)
+    )
+  );
+  return (
+    <div
+      {...containerProps}
+      css={sliderWrapper}
+      data-bleed={bleed}
+      data-direction={vertical ? 'vertical' : 'horizontal'}
+      data-reverse={reverse || null}
+      data-theme={theme || null}
+    >
+      <RcRange {...rangeProps} css={slider} reverse={reverse} vertical={vertical} />
+    </div>
+  );
+};

@@ -4,10 +4,10 @@ import React, { useMemo } from 'react';
 import { withDesign } from 'storybook-addon-designs';
 
 import { Legend, mapArgTypes } from '../../stories';
-import { Flex, Grid, Slider as Component, SliderProps } from '../index';
+import { Flex, Grid, Range as Component, RangeProps } from '../index';
 
 export default {
-  title: 'Components/Form/Slider',
+  title: 'Components/Form/Range',
   component: Component,
   decorators: [
     (Story) => (
@@ -30,7 +30,7 @@ export default {
   },
   args: {
     bleed: true,
-    defaultValue: 30,
+    defaultValue: [30, 90],
     max: 100,
     min: 0,
     step: 1,
@@ -40,7 +40,10 @@ export default {
       control: { disable: true },
       table: { disable: true },
     }),
-    ...mapArgTypes(['defaultValue', 'min', 'max'], {
+    ...mapArgTypes(['defaultValue'], {
+      control: { type: 'object' },
+    }),
+    ...mapArgTypes(['min', 'max'], {
       control: { type: 'range', min: 0, max: 100, step: 1 },
     }),
     ...mapArgTypes(['step'], {
@@ -54,16 +57,16 @@ export default {
   },
 } as Meta;
 
-interface StoryProps extends SliderProps {
+interface StoryProps extends RangeProps {
   bleed: boolean;
-  defaultValue: number;
+  defaultValue: number[];
   max: number;
   min: number;
   step: number;
-  value: number;
+  value: number[];
 }
 
-const Template: Story<SliderProps> = ({ ...args }) => {
+const Template: Story<RangeProps> = ({ ...args }) => {
   const marks = useMemo(() => {
     return [0, 25, 50, 100].reduce((acc, value) => {
       return { ...acc, [value]: <Mark>{value} °C</Mark> };
@@ -97,7 +100,7 @@ const TemplateOverview: Story<StoryProps> = (args) => (
 );
 
 export const Overview = TemplateOverview.bind({});
-Overview.storyName = 'Slider';
+Overview.storyName = 'Range';
 
 const Mark = styled.span`
   white-space: nowrap;
