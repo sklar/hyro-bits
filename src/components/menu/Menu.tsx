@@ -40,7 +40,7 @@ export const Menu: React.FC<MenuProps> = ({
   justify,
   padding,
   size,
-  theme = 'light',
+  theme,
   ...props
 }): JSX.Element => {
   const delegated = { ...props };
@@ -91,6 +91,7 @@ const MenuContainer = styled.section<MenuProps>`
     padding-top: calc(1.5 * var(--indent));
   }
 
+  [data-theme='dark'] &,
   &[data-theme='dark'] {
     --background-color: ${colors.DARK_BACKGROUND_PRIMARY};
     --border-color: ${colors.DARK_STROKE};

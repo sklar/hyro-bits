@@ -1277,7 +1277,7 @@ const Spacer = styled.span `
  * Context menu
  */
 const Menu = (_a) => {
-    var { active, justify, padding, size, theme = 'light' } = _a, props = __rest(_a, ["active", "justify", "padding", "size", "theme"]);
+    var { active, justify, padding, size, theme } = _a, props = __rest(_a, ["active", "justify", "padding", "size", "theme"]);
     const delegated = Object.assign({}, props);
     return (React.createElement(MenuContainer, Object.assign({ "data-active": active || null, "data-justify": justify || null, "data-padding": padding || null, "data-theme": theme || null, style: { ['--size']: size } }, delegated)));
 };
@@ -1314,6 +1314,7 @@ const MenuContainer = styled.section `
     padding-top: calc(1.5 * var(--indent));
   }
 
+  [data-theme='dark'] &,
   &[data-theme='dark'] {
     --background-color: ${colors.DARK_BACKGROUND_PRIMARY};
     --border-color: ${colors.DARK_STROKE};
