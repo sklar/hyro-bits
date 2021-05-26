@@ -1,5 +1,4 @@
 import { SliderProps as RcSliderProps } from 'rc-slider';
-import React from 'react';
 export interface SliderProps extends RcSliderProps {
     /**
      * Bleed
@@ -15,5 +14,5 @@ export interface SliderProps extends RcSliderProps {
  * Styled RC Slider wrapper
  * @see https://slider.react-component.now.sh/
  */
-export declare const Slider: React.VFC<SliderProps>;
+export declare const Slider: ({ bleed, reverse, theme, vertical, ...sliderProps }: SliderProps) => JSX.Element;
 //# sourceMappingURL=Slider.d.ts.map

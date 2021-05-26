@@ -891,9 +891,11 @@ const slider = css `
   background: none;
   border-radius: var(--slider-border-radius);
   display: flex;
+  height: inherit;
   padding: 0;
   position: relative;
   touch-action: none;
+  width: inherit;
 
   &,
   & * {
@@ -923,13 +925,8 @@ const slider = css `
     ${track};
   }
 
-  [data-direction='horizontal'] & {
-    height: var(--slider-size);
-  }
   [data-direction='vertical'] & {
     flex-direction: column;
-    height: 100%;
-    width: var(--slider-size);
   }
 
   /** State: Disabled */
@@ -966,6 +963,15 @@ const sliderWrapper = css `
 
   --slider-track-color: var(--slider-color-primary);
   --slider-track-size: var(--slider-rail-size);
+
+  &[data-direction='horizontal'] {
+    height: var(--slider-size);
+    width: 100%;
+  }
+  &[data-direction='vertical'] {
+    height: 100%;
+    width: var(--slider-size);
+  }
 
   &[data-bleed='false'] {
     &[data-direction='horizontal'] {

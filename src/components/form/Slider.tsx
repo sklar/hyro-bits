@@ -2,7 +2,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
 import RcSlider, { SliderProps as RcSliderProps } from 'rc-slider';
-import React from 'react';
 
 import { slider, sliderWrapper } from './Slider.styles';
 
@@ -22,13 +21,13 @@ export interface SliderProps extends RcSliderProps {
  * Styled RC Slider wrapper
  * @see https://slider.react-component.now.sh/
  */
-export const Slider: React.VFC<SliderProps> = ({
+export const Slider = ({
   bleed = true,
   reverse,
   theme,
   vertical,
   ...sliderProps
-}): JSX.Element => {
+}: SliderProps): JSX.Element => {
   const containerProps = Object.fromEntries(
     Object.entries(sliderProps).filter(([key]) =>
       ['className', 'data-hover', 'data-qa'].includes(key)

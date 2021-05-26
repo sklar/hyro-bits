@@ -1,5 +1,4 @@
 import { RangeProps as RcRangeProps } from 'rc-slider';
-import React from 'react';
 export interface RangeProps extends RcRangeProps {
     /**
      * Bleed
@@ -15,5 +14,5 @@ export interface RangeProps extends RcRangeProps {
  * Styled RC Slider wrapper
  * @see https://slider.react-component.now.sh/
  */
-export declare const Range: React.VFC<RangeProps>;
+export declare const Range: ({ bleed, reverse, theme, vertical, ...rangeProps }: RangeProps) => JSX.Element;
 //# sourceMappingURL=Range.d.ts.map

@@ -2,7 +2,6 @@
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
 import { Range as RcRange, RangeProps as RcRangeProps } from 'rc-slider';
-import React from 'react';
 
 import { slider, sliderWrapper } from './Slider.styles';
 
@@ -22,13 +21,13 @@ export interface RangeProps extends RcRangeProps {
  * Styled RC Slider wrapper
  * @see https://slider.react-component.now.sh/
  */
-export const Range: React.VFC<RangeProps> = ({
+export const Range = ({
   bleed = true,
   reverse,
   theme,
   vertical,
   ...rangeProps
-}): JSX.Element => {
+}: RangeProps): JSX.Element => {
   const containerProps = Object.fromEntries(
     Object.entries(rangeProps).filter(([key]) =>
       ['className', 'data-hover', 'data-qa'].includes(key)
