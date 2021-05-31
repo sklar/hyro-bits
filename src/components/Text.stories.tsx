@@ -8,8 +8,16 @@ import { Text as TextCmp, TextProps } from './Text';
 export default {
   title: 'Components/Text',
   component: TextCmp,
+  args: {
+    as: 'p',
+    clamp: 10,
+  },
   argTypes: {
-    ...mapArgTypes(['as', 'clamp', 'truncate'], {}),
+    ...mapArgTypes(['as'], {}),
+    ...mapArgTypes(['clamp'], {
+      control: { type: 'range', min: 1, max: 10, step: 1 },
+    }),
+    ...mapArgTypes(['truncate'], {}),
     ...mapArgTypes(['hyphens', 'word'], {
       control: { type: 'inline-radio' },
     }),
@@ -46,9 +54,6 @@ const Template: Story<TextProps> = (args) => (
 );
 
 export const Text = Template.bind({});
-Text.args = {
-  as: 'p',
-};
 
 const Wrapper = styled.div`
   max-width: 80ch;

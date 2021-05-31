@@ -62,7 +62,7 @@ export const Menu: React.FC<MenuProps> = ({
  * better illustrate `:hover` and `:active` state in the dedicated story.
  */
 
-const MenuContainer = styled.section<MenuProps>`
+const MenuContainer = styled.section`
   --background-color: ${colors.WHITE};
   --border-color: ${colors.WHITE};
   --border-size: 2px;

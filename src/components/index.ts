@@ -1,5 +1,6 @@
 export * from './Button';
 export * from './ClickOutsideGuard';
+export * from './Dialog';
 export * from './form';
 export * from './Icon';
 export * from './indicator';

@@ -72,6 +72,8 @@ const Idle = (_a) => {
         React.createElement(Element, null),
         React.createElement(Element, null)));
 };
+// TypeScript warning will be gone after this boi is resolved
+// https://github.com/microsoft/typescript-styled-plugin/issues/137#issuecomment-848930098
 const idle = keyframes `
   0%    { --offset: calc(-0.5 * var(--range)); }
   100%  { --offset: calc(0.5 * var(--range)); }
@@ -693,6 +695,326 @@ const Container$5 = styled.div `
 `;
 
 /**
+ * Flexbox wrapper.
+ */
+const Flex = (_a) => {
+    var { align, as = 'div', block, direction, gap, justify, wrap } = _a, props = __rest(_a, ["align", "as", "block", "direction", "gap", "justify", "wrap"]);
+    const delegated = Object.assign({ align, block, direction, gap, justify }, props);
+    return React.createElement(Container$4, Object.assign({ as: as, "data-wrap": wrap || null }, delegated));
+};
+const Container$4 = styled.div `
+  ${({ align }) => align && `align-items: ${align}`};
+  ${({ block }) => `display: ${block ? 'flex' : 'inline-flex'}`};
+  ${({ direction }) => direction && direction !== 'row' && `flex-direction: ${direction}`};
+  ${({ gap }) => gap && `gap: ${gap}`};
+  ${({ justify }) => justify && `justify-content: ${justify}`};
+
+  &[data-wrap] {
+    flex-wrap: wrap;
+  }
+`;
+
+/**
+ * Grid wrapper
+ */
+const Grid = (_a) => {
+    var { align, as = 'div', block, columns, gap, justify, max = '1fr', min = '0px', sizing = 'auto-fit' } = _a, props = __rest(_a, ["align", "as", "block", "columns", "gap", "justify", "max", "min", "sizing"]);
+    const delegated = Object.assign({ align, block, columns, gap, justify, max, min, sizing }, props);
+    return React.createElement(Container$3, Object.assign({ as: as }, delegated));
+};
+const Container$3 = styled.div `
+  ${({ align }) => align && `align-items: ${align}`};
+  ${({ block }) => `display: ${block ? 'grid' : 'inline-grid'}`};
+  ${({ gap }) => gap && `gap: ${gap}`};
+  ${({ justify }) => justify && `justify-items: ${justify}`};
+  ${({ columns, max, min, sizing }) => `grid-template-columns: ${columns ? columns : `repeat(${sizing}, minmax(min(100%, ${min}), ${max}))`}`};
+`;
+
+/**
+ * Spacer.
+ */
+const Spacer = styled.span `
+  background: ${colors.STROKE};
+  border-radius: 1000px;
+  display: block;
+  margin-bottom: 8px;
+  margin-top: 8px;
+  width: 2px;
+`;
+
+const clamp = css `
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--lines, 1);
+`;
+const truncate = css `
+  display: inline-block;
+  max-width: inherit;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: inherit;
+`;
+
+/**
+ * Text
+ */
+const Text = (_a) => {
+    var { as = 'span', clamp, hyphens = 'manual', truncate, word = 'normal' } = _a, props = __rest(_a, ["as", "clamp", "hyphens", "truncate", "word"]);
+    return (React.createElement(Container$2, Object.assign({ as: as, "data-as": as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, props)));
+};
+const Container$2 = styled.span `
+  &[data-as='h1'] {
+    ${h1};
+  }
+  &[data-as='h2'] {
+    ${h2};
+  }
+  &[data-as='h3'] {
+    ${h3};
+  }
+  &[data-as='h4'] {
+    ${h4};
+  }
+  &[data-as='h5'] {
+    ${h5};
+  }
+  &[data-as='p'] {
+    ${paragraph};
+  }
+
+  &[data-clamp] {
+    ${clamp};
+  }
+
+  &[data-hyphens='auto'] {
+    hyphens: auto;
+  }
+  &[data-hyphens='none'] {
+    hyphens: none;
+  }
+
+  &[data-truncate] {
+    ${truncate};
+  }
+
+  &[data-word='break'] {
+    word-break: break-all;
+  }
+  &[data-word='keep'] {
+    word-break: keep-all;
+  }
+`;
+
+/**
+ * Dialog
+ */
+const Dialog = (_a) => {
+    var { active = false, backdrop = true, bleed = false, children, footer, header, justify = 'flex-end', onClose, rejectable = true, size, theme, title } = _a, props = __rest(_a, ["active", "backdrop", "bleed", "children", "footer", "header", "justify", "onClose", "rejectable", "size", "theme", "title"]);
+    const onKeyUp = useCallback((event) => {
+        if (event.key === 'Escape')
+            onClose();
+    }, [onClose]);
+    useEffect(() => {
+        if (rejectable) {
+            document.addEventListener('keyup', onKeyUp);
+            return () => {
+                document.removeEventListener('keyup', onKeyUp);
+            };
+        }
+    }, [onClose, onKeyUp, rejectable]);
+    return (jsx(DialogWrapper, { "data-active": active || null, "data-bleed": bleed || null, "data-foot": footer ? true : null, "data-head": header || title ? true : null, "data-theme": theme || null },
+        backdrop && jsx(Backdrop, { onClick: rejectable ? onClose : undefined }),
+        jsx(DialogContainer, Object.assign({ style: { ['--dialog-size']: size } }, props),
+            (header || title) && (jsx("header", { css: headerStyle },
+                header,
+                title && (jsx(Text, { as: "h1", clamp: 1 }, title)))),
+            jsx(Body, null, children),
+            footer && (jsx(Flex, { as: "footer", css: footerStyle, justify: justify }, footer)),
+            rejectable && jsx(Control, { onClick: onClose }))));
+};
+// TypeScript warning will be gone after this boi is resolved
+// https://github.com/microsoft/typescript-styled-plugin/issues/137#issuecomment-848930098
+const backdropAnimation = keyframes `
+  0% {
+    --dialog-backdrop-alpha: 0;
+  }
+  100% {
+    --dialog-backdrop-alpha: 0.5;
+  }
+`;
+const dialogAnimation = keyframes `
+  0% {
+    opacity: 0.5;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.0);
+  }
+`;
+const container = css `
+  padding: calc(var(--dialog-indent) * 2) calc(var(--dialog-indent) * 3);
+`;
+const DialogWrapper = styled.div `
+  @property --dialog-backdrop-alpha {
+    inherits: true;
+    initial-value: 0;
+    syntax: '<number>';
+  }
+
+  ${paragraph};
+
+  --dialog-background-color: 0 0% 100%;
+  --dialog-border-color: ${colors.STROKE};
+  --dialog-border-radius: 6px;
+  --dialog-border-size: 1px;
+  --dialog-box-shadow: 0 4px 32px rgba(0, 0, 0, 0.1);
+  --dialog-indent: 8px;
+  --dialog-index: 10;
+  --dialog-size: 600px;
+
+  --dialog-backdrop-aplha: 0;
+  --dialog-backdrop-color: 0 0% 0%;
+
+  --dialog-body-shadow-color: 0 0% 0%;
+
+  display: none;
+  inset: 0;
+  place-items: center;
+  padding: calc(var(--dialog-indent) * 3);
+  position: fixed;
+  user-select: none;
+  z-index: var(--dialog-index);
+
+  &[data-active] {
+    display: grid;
+  }
+`;
+const Backdrop = styled.div `
+  background-color: hsla(var(--dialog-backdrop-color) / var(--dialog-backdrop-alpha));
+  inset: inherit;
+  position: inherit;
+
+  [data-active] & {
+    animation: ${backdropAnimation} 4s ${EASING.easeOutCirc} both;
+  }
+`;
+const DialogContainer = styled.section `
+  background-color: hsl(var(--dialog-background-color));
+  border-radius: var(--dialog-border-radius);
+  box-shadow: var(--dialog-box-shadow);
+  display: inline-grid;
+  grid-template-rows: 1fr;
+  max-height: 80vh;
+  min-height: 200px;
+  padding-bottom: calc(var(--dialog-indent) * 4);
+  padding-top: calc(var(--dialog-indent) * 5);
+  position: relative;
+  width: min(calc(100% - var(--dialog-indent) * 2), var(--dialog-size));
+
+  [data-active] & {
+    animation: ${dialogAnimation} 0.3s ${EASING.easeOutCirc} both;
+  }
+
+  [data-head] & {
+    grid-template-rows: auto 1fr;
+    padding-top: 0;
+  }
+  [data-foot] & {
+    grid-template-rows: 1fr auto;
+    padding-bottom: 0;
+  }
+  [data-head][data-foot] & {
+    grid-template-rows: auto 1fr auto;
+  }
+`;
+/**
+ * Dialog header
+ */
+const headerStyle = css `
+  ${container};
+
+  padding-right: 40px;
+`;
+/**
+ * Dialog body
+ */
+const Body = styled.div `
+  ${container};
+
+  /* Scroll shadows https://css-scroll-shadows.vercel.app */
+  background: linear-gradient(
+      hsl(var(--dialog-background-color)) 33%,
+      hsla(var(--dialog-background-color) / 0)
+    ),
+    linear-gradient(
+        hsla(var(--dialog-background-color) / 0),
+        hsl(var(--dialog-background-color)) 66%
+      )
+      0 100%,
+    radial-gradient(
+      farthest-side at 50% 0,
+      hsla(var(--dialog-body-shadow-color) / 0.125),
+      hsla(var(--dialog-body-shadow-color) / 0)
+    ),
+    radial-gradient(
+        farthest-side at 50% 100%,
+        hsla(var(--dialog-body-shadow-color) / 0.125),
+        hsla(var(--dialog-body-shadow-color) / 0)
+      )
+      0 100%;
+  background-attachment: local, local, scroll, scroll;
+  background-repeat: no-repeat;
+  background-size: 100% 30px, 100% 30px, 100% 10px, 100% 10px;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior-y: none;
+  padding-top: calc(var(--dialog-indent) * 0.5);
+  position: relative;
+  user-select: text;
+  z-index: calc(var(--dialog-index) + 1);
+
+  & > :first-child {
+    margin-top: 0;
+  }
+  & > :last-child {
+    margin-bottom: 0;
+  }
+
+  [data-bleed] & {
+    overflow-y: visible;
+  }
+`;
+/**
+ * Dialog footer
+ */
+const footerStyle = css `
+  ${container};
+
+  border-top: 1px solid var(--dialog-border-color);
+  display: flex;
+  gap: 8px;
+`;
+/**
+ * Dialog control
+ */
+const controlStyle = css `
+  --button-color: ${colors.TEXT_TERTIARY};
+
+  position: absolute;
+  right: calc(var(--dialog-indent) * 2);
+  top: calc(var(--dialog-indent) * 1);
+  z-index: calc(var(--dialog-index) + 1);
+
+  &:is(:hover) {
+    --button-color: ${colors.TEXT_PRIMARY};
+  }
+`;
+const Control = (props) => (jsx(Button, Object.assign({ css: controlStyle, icon: jsx(Icon, { name: "Times" }), round: true, synthetic: true, variant: "tertiary" }, props)));
+
+/**
  * `safeguard` comments mark overrides needed if the original RC Slider styles are linked.
  */
 /** Dot */
@@ -1007,28 +1329,13 @@ const Slider = (_a) => {
         jsx(RcSlider, Object.assign({}, sliderProps, { css: slider, reverse: reverse, vertical: vertical }))));
 };
 
-const clamp = css `
-  display: -webkit-box;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: var(--lines, 1);
-`;
-const truncate = css `
-  display: inline-block;
-  max-width: inherit;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  width: inherit;
-`;
-
 /**
  * Checkbox, Radio button or Toggle switch
  */
 const Switch = forwardRef((_a, ref) => {
     var { as = 'label', children, disabled, label, theme, type = 'checkbox', appearance = type === 'radio' ? 'radio' : 'checkbox' } = _a, inputProps = __rest(_a, ["as", "children", "disabled", "label", "theme", "type", "appearance"]);
     const containerProps = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['className', 'data-hover', 'style'].includes(key)));
-    return (React.createElement(Container$4, Object.assign({ as: as, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null }, containerProps),
+    return (React.createElement(Container$1, Object.assign({ as: as, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null }, containerProps),
         React.createElement("input", Object.assign({ ref: ref, type: type, disabled: disabled }, inputProps)),
         React.createElement(Indicator, { "data-appearance": appearance }),
         children,
@@ -1038,7 +1345,7 @@ const Switch = forwardRef((_a, ref) => {
  * Note that [data-hover] are here only to help
  * better illustrate `:hover` state in the dedicated story.
  */
-const Container$4 = styled.label `
+const Container$1 = styled.label `
   --switch-animation-duration: 0.2s;
   --switch-border-color: ${colors.STROKE};
   --switch-border-size: 1.5px;
@@ -1223,54 +1530,6 @@ const Label = styled.span `
   --color: inherit;
   --font-size: inherit;
   --font-weight: inherit;
-`;
-
-/**
- * Flexbox wrapper.
- */
-const Flex = (_a) => {
-    var { align, as = 'div', block, direction, gap, justify, wrap } = _a, props = __rest(_a, ["align", "as", "block", "direction", "gap", "justify", "wrap"]);
-    const delegated = Object.assign({ align, block, direction, gap, justify }, props);
-    return React.createElement(Container$3, Object.assign({ as: as, "data-wrap": wrap || null }, delegated));
-};
-const Container$3 = styled.div `
-  ${({ align }) => align && `align-items: ${align}`};
-  ${({ block }) => `display: ${block ? 'flex' : 'inline-flex'}`};
-  ${({ direction }) => direction && direction !== 'row' && `flex-direction: ${direction}`};
-  ${({ gap }) => gap && `gap: ${gap}`};
-  ${({ justify }) => justify && `justify-content: ${justify}`};
-
-  &[data-wrap] {
-    flex-wrap: wrap;
-  }
-`;
-
-/**
- * Grid wrapper
- */
-const Grid = (_a) => {
-    var { align, as = 'div', block, columns, gap, justify, max = '1fr', min = '0px', sizing = 'auto-fit' } = _a, props = __rest(_a, ["align", "as", "block", "columns", "gap", "justify", "max", "min", "sizing"]);
-    const delegated = Object.assign({ align, block, columns, gap, justify, max, min, sizing }, props);
-    return React.createElement(Container$2, Object.assign({ as: as }, delegated));
-};
-const Container$2 = styled.div `
-  ${({ align }) => align && `align-items: ${align}`};
-  ${({ block }) => `display: ${block ? 'grid' : 'inline-grid'}`};
-  ${({ gap }) => gap && `gap: ${gap}`};
-  ${({ justify }) => justify && `justify-items: ${justify}`};
-  ${({ columns, max, min, sizing }) => `grid-template-columns: ${columns ? columns : `repeat(${sizing}, minmax(min(100%, ${min}), ${max}))`}`};
-`;
-
-/**
- * Spacer.
- */
-const Spacer = styled.span `
-  background: ${colors.STROKE};
-  border-radius: 1000px;
-  display: block;
-  margin-bottom: 8px;
-  margin-top: 8px;
-  width: 2px;
 `;
 
 /**
@@ -1461,56 +1720,6 @@ const MenuTitle = styled.h5 `
 
   [data-theme='dark'] & {
     --color: ${colors.WHITE};
-  }
-`;
-
-/**
- * Text
- */
-const Text = (_a) => {
-    var { as = 'span', clamp, hyphens = 'manual', truncate, word = 'normal' } = _a, props = __rest(_a, ["as", "clamp", "hyphens", "truncate", "word"]);
-    return (React.createElement(Container$1, Object.assign({ as: as, "data-as": as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, props)));
-};
-const Container$1 = styled.span `
-  &[data-as='h1'] {
-    ${h1};
-  }
-  &[data-as='h2'] {
-    ${h2};
-  }
-  &[data-as='h3'] {
-    ${h3};
-  }
-  &[data-as='h4'] {
-    ${h4};
-  }
-  &[data-as='h5'] {
-    ${h5};
-  }
-  &[data-as='p'] {
-    ${paragraph};
-  }
-
-  &[data-clamp] {
-    ${clamp};
-  }
-
-  &[data-hyphens='auto'] {
-    hyphens: auto;
-  }
-  &[data-hyphens='none'] {
-    hyphens: none;
-  }
-
-  &[data-truncate] {
-    ${truncate};
-  }
-
-  &[data-word='break'] {
-    word-break: break-all;
-  }
-  &[data-word='keep'] {
-    word-break: keep-all;
   }
 `;
 
@@ -1844,5 +2053,5 @@ const TableContainer = styled.table `
   }
 `;
 
-export { Button, ClickOutsideGuard, Flex, Grid, Icon, Idle, Menu, MenuDivider, MenuItem, MenuTitle, Nav, NavContainer, NavItem, Order, Range, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph };
+export { Button, ClickOutsideGuard, Dialog, Flex, Grid, Icon, Idle, Menu, MenuDivider, MenuItem, MenuTitle, Nav, NavContainer, NavItem, Order, Range, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph };
 //# sourceMappingURL=index.js.map

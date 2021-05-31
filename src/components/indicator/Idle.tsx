@@ -53,6 +53,8 @@ export const Idle: React.VFC<IdleProps> = ({
   );
 };
 
+// TypeScript warning will be gone after this boi is resolved
+// https://github.com/microsoft/typescript-styled-plugin/issues/137#issuecomment-848930098
 const idle = keyframes`
   0%    { --offset: calc(-0.5 * var(--range)); }
   100%  { --offset: calc(0.5 * var(--range)); }
