@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import { useArgs } from '@storybook/client-api';
 import { Meta, Story } from '@storybook/react/types-6-0';
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 import { withDesign } from 'storybook-addon-designs';
 
 import { mapArgTypes } from '../stories';
@@ -25,6 +26,9 @@ export default {
     },
   },
   args: {
+    active: true,
+    footer: true,
+    header: true,
     size: 600,
     title: 'Perfume: The Story of a Murderer',
   },
@@ -57,40 +61,27 @@ interface StoryProps extends Omit<DialogProps, 'footer' | 'header' | 'size'> {
   size: number;
 }
 
-const Template: Story<StoryProps> = ({
-  active = true,
-  footer = true,
-  header = true,
-  size,
-  title,
-  ...args
-}) => {
-  const [dialogActive, setDialogActive] = useState<boolean>(active);
-
-  const handleOpen = useCallback(() => {
-    setDialogActive(true);
-  }, [setDialogActive]);
-  const handleClose = useCallback(() => {
-    setDialogActive(false);
-  }, [setDialogActive]);
+const Template: Story<StoryProps> = ({ footer, header, size, title, ...args }) => {
+  const [{ active }, updateArgs] = useArgs();
+  const handleDialog = () => updateArgs({ active: !active });
 
   return (
     <>
-      <Trigger synthetic text="Dialog!" variant="primary" onClick={handleOpen} />
+      <Trigger synthetic text="Dialog!" variant="primary" onClick={handleDialog} />
       <Dialog
         {...args}
-        active={dialogActive}
+        active={active}
         footer={
           footer ? (
             <>
-              <Button text="Cancel" onClick={handleClose} />
+              <Button text="Cancel" onClick={handleDialog} />
               <Button text="Delete" variant="primary" theme="danger" />
             </>
           ) : undefined
         }
         size={`${size}px`}
         title={header && title ? title : undefined}
-        onClose={handleClose}
+        onClose={handleDialog}
       >
         <p>
           Jean-Baptiste Grenouille came into the world unwanted, expected to die, yet born with an
