@@ -109,8 +109,9 @@ export const Dialog: React.FC<DialogProps> = ({
       <DialogContainer style={{ ['--dialog-size' as string]: size }} {...props}>
         {(header || title) && (
           <header css={headerStyle}>
-            {header}
-            {title && (
+            {header ? (
+              header
+            ) : (
               <Text as="h1" clamp={1}>
                 {title}
               </Text>
@@ -197,7 +198,7 @@ const Backdrop = styled.div`
   position: inherit;
 
   [data-active] & {
-    animation: ${backdropAnimation} 4s ${EASING.easeOutCirc} both;
+    animation: ${backdropAnimation} 2s ${EASING.easeOutCirc} both;
   }
 `;
 

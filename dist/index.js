@@ -827,9 +827,7 @@ const Dialog = (_a) => {
     return (jsx(DialogWrapper, { "data-active": active || null, "data-bleed": bleed || null, "data-foot": footer ? true : null, "data-head": header || title ? true : null, "data-theme": theme || null },
         backdrop && jsx(Backdrop, { onClick: rejectable ? onClose : undefined }),
         jsx(DialogContainer, Object.assign({ style: { ['--dialog-size']: size } }, props),
-            (header || title) && (jsx("header", { css: headerStyle },
-                header,
-                title && (jsx(Text, { as: "h1", clamp: 1 }, title)))),
+            (header || title) && (jsx("header", { css: headerStyle }, header ? (header) : (jsx(Text, { as: "h1", clamp: 1 }, title)))),
             jsx(Body, null, children),
             footer && (jsx(Flex, { as: "footer", css: footerStyle, justify: justify }, footer)),
             rejectable && jsx(Control, { onClick: onClose }))));
@@ -898,7 +896,7 @@ const Backdrop = styled.div `
   position: inherit;
 
   [data-active] & {
-    animation: ${backdropAnimation} 4s ${EASING.easeOutCirc} both;
+    animation: ${backdropAnimation} 2s ${EASING.easeOutCirc} both;
   }
 `;
 const DialogContainer = styled.section `
