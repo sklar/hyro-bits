@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 import React, { HTMLAttributes, ReactElement, useCallback, useEffect } from 'react';
 
 import { colors, paragraph } from '../theme';
+import { EMOTION_DISABLE_SSR } from '../utils';
 import { EASING } from '../utils/animations';
 import { AlignmentFlexboxType, AlignmentPrimaryType, AlignmentTertiaryType } from '../utils/types';
 import { Button, ButtonProps } from './Button';
@@ -279,7 +280,7 @@ const Body = styled.div`
   user-select: text;
   z-index: calc(var(--dialog-index) + 1);
 
-  & > :first-child {
+  & > :first-child ${EMOTION_DISABLE_SSR} {
     margin-top: 0;
   }
   & > :last-child {

@@ -1,4 +1,4 @@
-/** Components v1.5.0 */
+/** Components v1.6.0 */
 
 import { keyframes, css, jsx } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -694,6 +694,9 @@ const Container$5 = styled.div `
   display: contents;
 `;
 
+// @see https://github.com/emotion-js/emotion/issues/1105#issuecomment-557726922
+const EMOTION_DISABLE_SSR = '/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */';
+
 /**
  * Flexbox wrapper.
  */
@@ -974,7 +977,7 @@ const Body = styled.div `
   user-select: text;
   z-index: calc(var(--dialog-index) + 1);
 
-  & > :first-child {
+  & > :first-child ${EMOTION_DISABLE_SSR} {
     margin-top: 0;
   }
   & > :last-child {
@@ -2051,5 +2054,5 @@ const TableContainer = styled.table `
   }
 `;
 
-export { Button, ClickOutsideGuard, Dialog, Flex, Grid, Icon, Idle, Menu, MenuDivider, MenuItem, MenuTitle, Nav, NavContainer, NavItem, Order, Range, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph };
+export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Flex, Grid, Icon, Idle, Menu, MenuDivider, MenuItem, MenuTitle, Nav, NavContainer, NavItem, Order, Range, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph };
 //# sourceMappingURL=index.js.map
