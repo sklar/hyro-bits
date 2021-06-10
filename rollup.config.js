@@ -1,6 +1,5 @@
 import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
-import copy from 'rollup-plugin-copy';
 import filesize from 'rollup-plugin-filesize';
 
 import pkg from './package.json';
@@ -16,10 +15,6 @@ export default {
     sourcemap: true,
   },
   plugins: [
-    copy({
-      copyOnce: true,
-      targets: [{ src: 'src/assets/fonts', dest: 'dist' }],
-    }),
     filesize(),
     replace({ delimiters: ['', ''], preventAssignment: true, values: { '../icons': './icons' } }),
     typescript({

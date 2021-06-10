@@ -1,0 +1,7 @@
+# Ignored files.
+# @see https://git-scm.com/docs/gitignore
+
+# Ignore everything inside this directory except the directory itself
+#   as it serves as a target from copying webfonts from `node_modules`.
+*
+!.gitignore
