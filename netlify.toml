@@ -3,7 +3,7 @@
 
 [build]
   publish = "storybook-static"
-  command = "yarn storybook:build"
+  command = "yarn build"
 
 [[redirects]]
   from = "/*"
