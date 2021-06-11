@@ -20,6 +20,10 @@ interface TdProps extends HTMLAttributes<HTMLTableDataCellElement> {
    */
   justify?: AlignmentPrimaryType;
   /**
+   * Numberic
+   */
+  numeric?: 'normal' | 'slashed-zero' | 'tabular-nums';
+  /**
    * Size
    */
   size?: string;
@@ -28,8 +32,19 @@ interface TdProps extends HTMLAttributes<HTMLTableDataCellElement> {
 /**
  * Table data cell
  */
-export const Td: React.FC<TdProps> = ({ align, justify, size, ...props }): JSX.Element => (
-  <TdContainer data-align={align || null} data-justify={justify || null} {...props} />
+export const Td: React.FC<TdProps> = ({
+  align,
+  justify,
+  numeric = 'normal',
+  size,
+  ...props
+}): JSX.Element => (
+  <TdContainer
+    data-align={align || null}
+    data-justify={justify || null}
+    data-numeric={numeric || null}
+    {...props}
+  />
 );
 
 const textAlign = css`
@@ -44,6 +59,13 @@ const textAlign = css`
   }
   &[data-justify='end'] {
     text-align: end;
+  }
+
+  &[data-numeric='slashed-zero'] {
+    font-variant-numeric: slashed-zero;
+  }
+  &[data-numeric='tabular-nums'] {
+    font-variant-numeric: tabular-nums;
   }
 `;
 
@@ -203,7 +225,6 @@ const TableContainer = styled.table<TableProps>`
   background-color: var(--background-color);
   border-collapse: collapse;
   border-spacing: 0;
-  font-variant-numeric: tabular-nums;
 
   &[data-layout='fixed'] {
     table-layout: fixed;

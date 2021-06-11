@@ -1885,8 +1885,8 @@ const NavContainer = styled.nav `
  * Table data cell
  */
 const Td = (_a) => {
-    var { align, justify, size } = _a, props = __rest(_a, ["align", "justify", "size"]);
-    return (React.createElement(TdContainer, Object.assign({ "data-align": align || null, "data-justify": justify || null }, props)));
+    var { align, justify, numeric = 'normal', size } = _a, props = __rest(_a, ["align", "justify", "numeric", "size"]);
+    return (React.createElement(TdContainer, Object.assign({ "data-align": align || null, "data-justify": justify || null, "data-numeric": numeric || null }, props)));
 };
 const textAlign = css `
   &[data-justify='inherit'] {
@@ -1900,6 +1900,13 @@ const textAlign = css `
   }
   &[data-justify='end'] {
     text-align: end;
+  }
+
+  &[data-numeric='slashed-zero'] {
+    font-variant-numeric: slashed-zero;
+  }
+  &[data-numeric='tabular-nums'] {
+    font-variant-numeric: tabular-nums;
   }
 `;
 const TdContainer = styled.td `
@@ -1988,7 +1995,6 @@ const TableContainer = styled.table `
   background-color: var(--background-color);
   border-collapse: collapse;
   border-spacing: 0;
-  font-variant-numeric: tabular-nums;
 
   &[data-layout='fixed'] {
     table-layout: fixed;

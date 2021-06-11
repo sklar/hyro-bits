@@ -11,6 +11,10 @@ interface TdProps extends HTMLAttributes<HTMLTableDataCellElement> {
      */
     justify?: AlignmentPrimaryType;
     /**
+     * Numberic
+     */
+    numeric?: 'normal' | 'slashed-zero' | 'tabular-nums';
+    /**
      * Size
      */
     size?: string;
