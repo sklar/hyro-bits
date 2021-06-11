@@ -39,7 +39,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButt
   /**
    * Size
    */
-  size?: Exclude<SizeType, 'xs' | 'lg' | 'xl'>;
+  size?: Exclude<SizeType, 'xs' | 'xl'>;
   /**
    * Synthetic behaviour to prevent `:active` and `:focus` styles.
    */
@@ -200,6 +200,13 @@ modification['md'] = css`
   --button-icon-offset: 4px;
   --button-indent: 14px;
   --button-size: 32px;
+`;
+
+modification['lg'] = css`
+  --button-icon-offset: 0;
+  --button-indent: 12px;
+  --button-size: 40px;
+  --font-size: 15px;
 `;
 
 modification['primary'] = css`

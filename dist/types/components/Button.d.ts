@@ -32,7 +32,7 @@ export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButt
     /**
      * Size
      */
-    size?: Exclude<SizeType, 'xs' | 'lg' | 'xl'>;
+    size?: Exclude<SizeType, 'xs' | 'xl'>;
     /**
      * Synthetic behaviour to prevent `:active` and `:focus` styles.
      */

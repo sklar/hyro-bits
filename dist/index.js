@@ -522,6 +522,12 @@ modification['md'] = css `
   --button-indent: 14px;
   --button-size: 32px;
 `;
+modification['lg'] = css `
+  --button-icon-offset: 0;
+  --button-indent: 12px;
+  --button-size: 40px;
+  --font-size: 15px;
+`;
 modification['primary'] = css `
   --button-background-color: ${colors.ELEMENT_PRIMARY};
   --button-border-color: ${colors.ELEMENT_PRIMARY};
