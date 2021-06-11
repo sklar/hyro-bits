@@ -765,28 +765,9 @@ const truncate = css `
  */
 const Text = (_a) => {
     var { as = 'span', clamp, hyphens = 'manual', truncate, word = 'normal' } = _a, props = __rest(_a, ["as", "clamp", "hyphens", "truncate", "word"]);
-    return (React.createElement(Container$2, Object.assign({ as: as, "data-as": as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, props)));
+    return (React.createElement(Container$2, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, props)));
 };
 const Container$2 = styled.span `
-  &[data-as='h1'] {
-    ${h1};
-  }
-  &[data-as='h2'] {
-    ${h2};
-  }
-  &[data-as='h3'] {
-    ${h3};
-  }
-  &[data-as='h4'] {
-    ${h4};
-  }
-  &[data-as='h5'] {
-    ${h5};
-  }
-  &[data-as='p'] {
-    ${paragraph};
-  }
-
   &[data-clamp] {
     ${clamp};
   }

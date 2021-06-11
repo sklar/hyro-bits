@@ -1,13 +1,22 @@
+import { Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
 
-import { mapArgTypes } from '../stories';
+import { global, mapArgTypes } from '../stories';
 import { Text as TextCmp, TextProps } from './Text';
 
 export default {
   title: 'Components/Text',
   component: TextCmp,
+  decorators: [
+    (Story) => (
+      <>
+        <Global styles={global} />
+        <Story />
+      </>
+    ),
+  ],
   args: {
     as: 'p',
     clamp: 10,
