@@ -593,6 +593,7 @@ modification['tertiary'] = css `
     --button-color: ${colors.ELEMENT_DISABLED};
   }
 
+  [data-theme='dark'] &,
   &[data-theme='dark'] {
     &:is(:active, [data-active], [data-pressed]):not(:disabled, [data-busy], [data-synthetic]) {
       --button-background-color: ${colors.DARK_ELEMENT_FOCUS};
