@@ -310,7 +310,7 @@ const Container = styled.button<ButtonProps>`
   }
 
   &[data-toggle] {
-    --button-icon-transform: rotateX(calc(var(--button-icon-rotation) * 180deg)) rotateZ(90deg);
+    --button-icon-transform: rotateX(calc(var(--button-icon-rotation) * 180deg));
 
     &[data-active] {
       --button-icon-rotation: 1;

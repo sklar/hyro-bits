@@ -41,7 +41,7 @@ const Template: Story<MenuProps> = (args) => (
       </MenuItem>
       <MenuItem>
         <Text>Another text</Text>
-        <Icon name="Chevron" />
+        <Icon name="ChevronRight" size="xs" />
       </MenuItem>
       <MenuDivider />
       <MenuItem>
@@ -63,7 +63,7 @@ const Template: Story<MenuProps> = (args) => (
       <MenuItem>
         <Icon name="Clone" />
         <Text>Duplicate</Text>
-        <Icon name="Chevron" />
+        <Icon name="ChevronRight" size="xs" />
       </MenuItem>
       <MenuDivider />
       <MenuItem>
@@ -82,7 +82,7 @@ const Template: Story<MenuProps> = (args) => (
       </MenuItem>
       <MenuItem data-hover>
         <Text>Another text</Text>
-        <Icon name="Chevron" />
+        <Icon name="ChevronRight" size="xs" />
       </MenuItem>
       <MenuDivider />
       <MenuItem>
@@ -99,7 +99,7 @@ const Template: Story<MenuProps> = (args) => (
       </MenuItem>
       <MenuItem data-pressed>
         <Text>Another text</Text>
-        <Icon name="Chevron" />
+        <Icon name="ChevronRight" size="xs" />
       </MenuItem>
       <MenuDivider />
       <MenuItem>
@@ -116,7 +116,7 @@ const Template: Story<MenuProps> = (args) => (
       </MenuItem>
       <MenuItem active>
         <Text>Another text</Text>
-        <Icon name="Chevron" />
+        <Icon name="ChevronRight" size="xs" />
       </MenuItem>
       <MenuDivider />
       <MenuItem>
@@ -133,7 +133,7 @@ const Template: Story<MenuProps> = (args) => (
       </MenuItem>
       <MenuItem disabled>
         <Text>Another text</Text>
-        <Icon name="Chevron" />
+        <Icon name="ChevronRight" size="xs" />
       </MenuItem>
       <MenuDivider />
       <MenuItem>
@@ -314,7 +314,7 @@ const TemplateOverview: Story<MenuProps> = (args) => (
       </MenuItem>
       <MenuItem>
         <Text>Another text</Text>
-        <Icon name="Chevron" />
+        <Icon name="ChevronRight" size="xs" />
       </MenuItem>
       <MenuDivider />
       <MenuItem>

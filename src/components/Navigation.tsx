@@ -35,7 +35,14 @@ export interface NavItemProps extends HTMLAttributes<HTMLButtonElement> {
  */
 export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
   (
-    { active, as = 'button', icon = <Icon name="Chevron" />, status, text, ...props },
+    {
+      active,
+      as = 'button',
+      icon = <Icon name="ChevronRight" size="xs" />,
+      status,
+      text,
+      ...props
+    },
     ref
   ): JSX.Element => (
     <NavItemContainer

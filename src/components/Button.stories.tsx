@@ -144,7 +144,7 @@ const TemplateToggle: Story<ButtonProps> = (args) => {
   return (
     <>
       <Button
-        icon={<Icon name="Chevron" />}
+        icon={<Icon name="ChevronDown" size="xs" />}
         {...args}
         placement="right"
         active={active}
@@ -152,7 +152,7 @@ const TemplateToggle: Story<ButtonProps> = (args) => {
       />
       <Button
         data-hover
-        icon={<Icon name="Chevron" />}
+        icon={<Icon name="ChevronDown" size="xs" />}
         {...args}
         placement="right"
         active={active}
@@ -160,21 +160,21 @@ const TemplateToggle: Story<ButtonProps> = (args) => {
       />
       <Button
         data-pressed
-        icon={<Icon name="Chevron" />}
+        icon={<Icon name="ChevronDown" size="xs" />}
         {...args}
         placement="right"
         active={active}
         onClick={() => setActive(!active)}
       />
       <Button
-        icon={<Icon name="Chevron" />}
+        icon={<Icon name="ChevronDown" size="xs" />}
         {...args}
         placement="right"
         onClick={() => setActive(!active)}
         active
       />
       <Button
-        icon={<Icon name="Chevron" />}
+        icon={<Icon name="ChevronDown" size="xs" />}
         {...args}
         placement="right"
         active={active}
@@ -182,7 +182,7 @@ const TemplateToggle: Story<ButtonProps> = (args) => {
         busy
       />
       <Button
-        icon={<Icon name="Chevron" />}
+        icon={<Icon name="ChevronDown" size="xs" />}
         {...args}
         placement="right"
         active={active}

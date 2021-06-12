@@ -626,7 +626,7 @@ const Container$6 = styled.button `
   }
 
   &[data-toggle] {
-    --button-icon-transform: rotateX(calc(var(--button-icon-rotation) * 180deg)) rotateZ(90deg);
+    --button-icon-transform: rotateX(calc(var(--button-icon-rotation) * 180deg));
 
     &[data-active] {
       --button-icon-rotation: 1;
@@ -1810,7 +1810,7 @@ const Container = styled.span `
  * Navigation item
  */
 const NavItem = forwardRef((_a, ref) => {
-    var { active, as = 'button', icon = React.createElement(Icon, { name: "Chevron" }), status, text } = _a, props = __rest(_a, ["active", "as", "icon", "status", "text"]);
+    var { active, as = 'button', icon = React.createElement(Icon, { name: "ChevronRight", size: "xs" }), status, text } = _a, props = __rest(_a, ["active", "as", "icon", "status", "text"]);
     return (React.createElement(NavItemContainer, Object.assign({ as: as, "data-active": active || null, "data-status": status || null, ref: ref, type: as === 'button' ? 'button' : undefined }, props),
         status && React.createElement(Status, { theme: status || null }),
         React.createElement(Text, { "data-text": true, truncate: true }, text),
