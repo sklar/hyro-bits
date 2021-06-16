@@ -106,10 +106,10 @@ export const Dialog: React.FC<DialogProps> = ({
       data-head={header || title ? true : null}
       data-theme={theme || null}
     >
-      {backdrop && <Backdrop onClick={rejectable ? onClose : undefined} />}
+      {backdrop && <Backdrop data-dialog="backdrop" onClick={rejectable ? onClose : undefined} />}
       <DialogContainer style={{ ['--dialog-size' as string]: size }} {...props}>
         {(header || title) && (
-          <header css={headerStyle}>
+          <header css={headerStyle} data-dialog="header">
             {header ? (
               header
             ) : (
@@ -119,13 +119,13 @@ export const Dialog: React.FC<DialogProps> = ({
             )}
           </header>
         )}
-        <Body>{children}</Body>
+        <Body data-dialog="body">{children}</Body>
         {footer && (
-          <Flex as="footer" css={footerStyle} justify={justify}>
+          <Flex as="footer" css={footerStyle} data-dialog="footer" justify={justify}>
             {footer}
           </Flex>
         )}
-        {rejectable && <Control onClick={onClose} />}
+        {rejectable && <Control data-dialog="control" onClick={onClose} />}
       </DialogContainer>
     </DialogWrapper>
   );

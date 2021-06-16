@@ -1,4 +1,4 @@
-/** Components v1.6.0 */
+/** Components v1.7.0 */
 
 import { keyframes, css, jsx } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -816,12 +816,12 @@ const Dialog = (_a) => {
         }
     }, [onClose, onKeyUp, rejectable]);
     return (jsx(DialogWrapper, { "data-active": active || null, "data-bleed": bleed || null, "data-foot": footer ? true : null, "data-head": header || title ? true : null, "data-theme": theme || null },
-        backdrop && jsx(Backdrop, { onClick: rejectable ? onClose : undefined }),
+        backdrop && jsx(Backdrop, { "data-dialog": "backdrop", onClick: rejectable ? onClose : undefined }),
         jsx(DialogContainer, Object.assign({ style: { ['--dialog-size']: size } }, props),
-            (header || title) && (jsx("header", { css: headerStyle }, header ? (header) : (jsx(Text, { as: "h1", clamp: 1 }, title)))),
-            jsx(Body, null, children),
-            footer && (jsx(Flex, { as: "footer", css: footerStyle, justify: justify }, footer)),
-            rejectable && jsx(Control, { onClick: onClose }))));
+            (header || title) && (jsx("header", { css: headerStyle, "data-dialog": "header" }, header ? (header) : (jsx(Text, { as: "h1", clamp: 1 }, title)))),
+            jsx(Body, { "data-dialog": "body" }, children),
+            footer && (jsx(Flex, { as: "footer", css: footerStyle, "data-dialog": "footer", justify: justify }, footer)),
+            rejectable && jsx(Control, { "data-dialog": "control", onClick: onClose }))));
 };
 // TypeScript warning will be gone after this boi is resolved
 // https://github.com/microsoft/typescript-styled-plugin/issues/137#issuecomment-848930098
