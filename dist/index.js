@@ -818,7 +818,7 @@ const Dialog = (_a) => {
     return (jsx(DialogWrapper, { "data-active": active || null, "data-bleed": bleed || null, "data-foot": footer ? true : null, "data-head": header || title ? true : null, "data-theme": theme || null },
         backdrop && jsx(Backdrop, { "data-dialog": "backdrop", onClick: rejectable ? onClose : undefined }),
         jsx(DialogContainer, Object.assign({ style: { ['--dialog-size']: size } }, props),
-            (header || title) && (jsx("header", { css: headerStyle, "data-dialog": "header" }, header ? (header) : (jsx(Text, { as: "h1", clamp: 1 }, title)))),
+            (header || title) && (jsx("header", { css: headerStyle, "data-dialog": "header" }, header ? (header) : (jsx(Text, { as: "h1", clamp: 1, css: titleStyle }, title)))),
             jsx(Body, { "data-dialog": "body" }, children),
             footer && (jsx(Flex, { as: "footer", css: footerStyle, "data-dialog": "footer", justify: justify }, footer)),
             rejectable && jsx(Control, { "data-dialog": "control", onClick: onClose }))));
@@ -926,6 +926,11 @@ const headerStyle = css `
   ${container};
 
   padding-right: 40px;
+`;
+const titleStyle = css `
+  &:is(*, #chucknorris) {
+    ${h1};
+  }
 `;
 /**
  * Dialog body

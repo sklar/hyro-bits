@@ -4,7 +4,7 @@ import { css, jsx, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { HTMLAttributes, ReactElement, useCallback, useEffect } from 'react';
 
-import { colors, paragraph } from '../theme';
+import { colors, h1, paragraph } from '../theme';
 import { EMOTION_DISABLE_SSR } from '../utils';
 import { EASING } from '../utils/animations';
 import { AlignmentFlexboxType, AlignmentPrimaryType, AlignmentTertiaryType } from '../utils/types';
@@ -113,7 +113,7 @@ export const Dialog: React.FC<DialogProps> = ({
             {header ? (
               header
             ) : (
-              <Text as="h1" clamp={1}>
+              <Text as="h1" clamp={1} css={titleStyle}>
                 {title}
               </Text>
             )}
@@ -240,6 +240,12 @@ const headerStyle = css`
   ${container};
 
   padding-right: 40px;
+`;
+
+const titleStyle = css`
+  &:is(*, #chucknorris) {
+    ${h1};
+  }
 `;
 
 /**
