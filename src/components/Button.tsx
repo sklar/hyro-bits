@@ -214,24 +214,24 @@ modification['primary'] = css`
   --button-border-color: ${colors.ELEMENT_PRIMARY};
   --button-color: ${colors.WHITE};
 
-  &:is(:active, [data-pressed]):not(:disabled, [data-busy], [data-synthetic]) {
+  &:is(:active, [data-pressed]):not(:disabled, [data-busy], [data-disabled], [data-synthetic]) {
     --button-box-shadow: ${colors.ELEMENT_SECONDARY};
   }
-  &:is(:active, :focus, [data-pressed]):not(:disabled, [data-busy], [data-synthetic]),
-  &:is(:hover, [data-active], [data-hover]):not(:disabled, [data-busy]) {
+  &:is(:active, :focus, [data-pressed]):not(:disabled, [data-busy], [data-disabled], [data-synthetic]),
+  &:is(:hover, [data-active], [data-hover]):not(:disabled, [data-busy], [data-disabled]) {
     --button-background-color: ${colors.ELEMENT_ACTIVE};
     --button-border-color: ${colors.ELEMENT_ACTIVE};
   }
 
   /* TODO: Themed states are not designed */
   &[data-theme='danger'] {
-    &:is(*, #chucknorris):not(:disabled, [data-busy]) {
+    &:is(*, #chucknorris):not(:disabled, [data-busy], [data-disabled]) {
       --button-background-color: ${colors.DANGER};
       --button-border-color: ${colors.DANGER};
     }
   }
   &[data-theme='success'] {
-    &:is(*, #chucknorris):not(:disabled, [data-busy]) {
+    &:is(*, #chucknorris):not(:disabled, [data-busy], [data-disabled]) {
       --button-background-color: ${colors.SUCCESS};
       --button-border-color: ${colors.SUCCESS};
     }
@@ -243,16 +243,16 @@ modification['secondary'] = css`
   --button-border-color: ${colors.ELEMENT_SECONDARY};
   --button-color: ${colors.TEXT_PRIMARY};
 
-  &:is(:active, [data-pressed]):not(:disabled, [data-busy], [data-synthetic]) {
+  &:is(:active, [data-pressed]):not(:disabled, [data-busy], [data-disabled], [data-synthetic]) {
     --button-box-shadow: #f6f8fd;
   }
-  &:is(:active, :focus, :hover, [data-pressed]):not(:disabled, [data-busy], [data-synthetic]),
-  &:is(:hover, [data-active], [data-hover]):not(:disabled, [data-busy]) {
+  &:is(:active, :focus, :hover, [data-pressed]):not(:disabled, [data-busy], [data-disabled], [data-synthetic]),
+  &:is(:hover, [data-active], [data-hover]):not(:disabled, [data-busy], [data-disabled]) {
     --button-background-color: #d8e1fc;
     --button-border-color: #d8e1fc;
     --button-color: ${colors.ELEMENT_PRIMARY};
   }
-  &:disabled:not([data-busy]) {
+  &:is(:disabled, [data-disabled]):not([data-busy]) {
     --button-color: ${colors.WHITE};
   }
 `;
@@ -262,15 +262,15 @@ modification['tertiary'] = css`
   --button-border-color: ${colors.TRANSPARENT};
   --button-color: ${colors.TEXT_PRIMARY};
 
-  &:is(:active, [data-active], [data-pressed]):not(:disabled, [data-busy], [data-synthetic]) {
+  &:is(:active, [data-active], [data-pressed]):not(:disabled, [data-busy], [data-disabled], [data-synthetic]) {
     --button-color: ${colors.ELEMENT_PRIMARY};
   }
-  &:is(:active, :focus, [data-pressed]):not(:disabled, [data-busy], [data-synthetic]),
-  &:is(:hover, [data-active], [data-hover]):not(:disabled, [data-busy]) {
+  &:is(:active, :focus, [data-pressed]):not(:disabled, [data-busy], [data-disabled], [data-synthetic]),
+  &:is(:hover, [data-active], [data-hover]):not(:disabled, [data-busy], [data-disabled]) {
     --button-background-color: ${colors.ELEMENT_SECONDARY};
     --button-border-color: ${colors.ELEMENT_SECONDARY};
   }
-  &:disabled:not([data-busy]) {
+  &:is(:disabled, [data-disabled]):not([data-busy]) {
     --button-background-color: ${colors.TRANSPARENT};
     --button-border-color: ${colors.TRANSPARENT};
     --button-color: ${colors.ELEMENT_DISABLED};
@@ -278,18 +278,18 @@ modification['tertiary'] = css`
 
   [data-theme='dark'] &,
   &[data-theme='dark'] {
-    &:is(:active, [data-active], [data-pressed]):not(:disabled, [data-busy], [data-synthetic]) {
+    &:is(:active, [data-active], [data-pressed]):not(:disabled, [data-busy], [data-disabled], [data-synthetic]) {
       --button-background-color: ${colors.DARK_ELEMENT_FOCUS};
       --button-border-color: ${colors.DARK_ELEMENT_FOCUS};
       --button-color: ${colors.WHITE};
     }
-    &:is(:focus):not(:disabled, [data-busy], [data-synthetic]),
-    &:is(:hover, [data-hover]):not(:disabled, [data-busy]) {
+    &:is(:focus):not(:disabled, [data-busy], [data-disabled], [data-synthetic]),
+    &:is(:hover, [data-hover]):not(:disabled, [data-busy], [data-disabled]) {
       --button-background-color: ${colors.DARK_ELEMENT_ACTIVE};
       --button-border-color: ${colors.DARK_ELEMENT_ACTIVE};
       --button-color: ${colors.WHITE};
     }
-    &:disabled:not([data-busy]) {
+    &:is(:disabled, [data-disabled]):not([data-busy]) {
       --button-color: ${colors.DARK_ELEMENT_DISABLED};
     }
   }
@@ -302,7 +302,7 @@ const Container = styled.button<ButtonProps>`
     --button-radius: 1000px;
   }
 
-  &:not(:disabled, [data-busy]) {
+  &:not(:disabled, [data-busy], [data-disabled]) {
     cursor: pointer;
   }
 
@@ -318,7 +318,7 @@ const Container = styled.button<ButtonProps>`
     }
   }
 
-  &:disabled:not([data-busy]) {
+  &:is(:disabled, [data-disabled]):not([data-busy]) {
     --button-background-color: ${colors.ELEMENT_DISABLED};
     --button-border-color: ${colors.ELEMENT_DISABLED};
   }
