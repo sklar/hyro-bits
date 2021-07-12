@@ -20,7 +20,11 @@ export default {
     },
   },
   argTypes: {
-    ...mapArgTypes(['justify', 'size'], {
+    ...mapArgTypes(['justify', 'padding'], {
+      table: { category: 'Modifiers' },
+    }),
+    ...mapArgTypes(['size'], {
+      control: { type: 'range', min: 100, max: 400, step: 1 },
       table: { category: 'Modifiers' },
     }),
     ...mapArgTypes(['theme'], {
@@ -28,13 +32,17 @@ export default {
       table: { category: 'Modifiers' },
     }),
     ...mapArgTypes(['active'], { table: { category: 'States' } }),
-    ...mapArgTypes(['onClose'], { table: { category: 'Events' } }),
+    ...mapArgTypes(['onClose'], { control: { disable: true }, table: { disable: true } }),
   },
 } as Meta;
 
-const Template: Story<MenuProps> = (args) => (
+interface StoryProps extends Omit<MenuProps, 'size'> {
+  size: number;
+}
+
+const Template: Story<StoryProps> = ({ size, ...args }) => (
   <>
-    <Menu {...args}>
+    <Menu {...args} size={`${size}px`}>
       <MenuItem>Text</MenuItem>
       <MenuItem>
         <Text truncate>Way loooooooooooooooooooooooooooong Text</Text>
@@ -51,7 +59,7 @@ const Template: Story<MenuProps> = (args) => (
         <Text>And one more</Text>
       </MenuItem>
     </Menu>
-    <Menu {...args}>
+    <Menu {...args} size={`${size}px`}>
       <MenuItem>
         <Icon name="Cog" />
         <Text>Setup</Text>
@@ -75,7 +83,7 @@ const Template: Story<MenuProps> = (args) => (
         <Text>Delete</Text>
       </MenuItem>
     </Menu>
-    <Menu {...args}>
+    <Menu {...args} size={`${size}px`}>
       <MenuItem>Text</MenuItem>
       <MenuItem>
         <Text truncate>Way loooooooooooooooooooooooooooong Text</Text>
@@ -92,7 +100,7 @@ const Template: Story<MenuProps> = (args) => (
         <Text>And one more</Text>
       </MenuItem>
     </Menu>
-    <Menu {...args}>
+    <Menu {...args} size={`${size}px`}>
       <MenuItem>Text</MenuItem>
       <MenuItem>
         <Text truncate>Way loooooooooooooooooooooooooooong Text</Text>
@@ -109,7 +117,7 @@ const Template: Story<MenuProps> = (args) => (
         <Text>And one more</Text>
       </MenuItem>
     </Menu>
-    <Menu {...args}>
+    <Menu {...args} size={`${size}px`}>
       <MenuItem>Text</MenuItem>
       <MenuItem>
         <Text truncate>Way loooooooooooooooooooooooooooong Text</Text>
@@ -126,7 +134,7 @@ const Template: Story<MenuProps> = (args) => (
         <Text>And one more</Text>
       </MenuItem>
     </Menu>
-    <Menu {...args}>
+    <Menu {...args} size={`${size}px`}>
       <MenuItem>Text</MenuItem>
       <MenuItem>
         <Text truncate>Way loooooooooooooooooooooooooooong Text</Text>
@@ -146,16 +154,16 @@ const Template: Story<MenuProps> = (args) => (
   </>
 );
 
-const TemplateItems: Story<MenuProps> = (args) => (
+const TemplateItems: Story<StoryProps> = (args) => (
   <>
     <Template {...args} />
     <Template {...args} theme="dark" />
   </>
 );
 
-const TemplateAlt: Story<MenuProps> = (args) => (
+const TemplateAlt: Story<StoryProps> = ({ size, ...args }) => (
   <>
-    <Menu {...args}>
+    <Menu {...args} size={`${size}px`}>
       <MenuItem>
         <Flex align="center" gap="8px" style={{ width: '100%' }}>
           <Avatar />
@@ -183,7 +191,7 @@ const TemplateAlt: Story<MenuProps> = (args) => (
         </Flex>
       </MenuItem>
     </Menu>
-    <Menu {...args}>
+    <Menu {...args} size={`${size}px`}>
       <MenuItem data-hover>
         <Flex align="center" gap="8px" style={{ width: '100%' }}>
           <Avatar />
@@ -211,7 +219,7 @@ const TemplateAlt: Story<MenuProps> = (args) => (
         </Flex>
       </MenuItem>
     </Menu>
-    <Menu {...args}>
+    <Menu {...args} size={`${size}px`}>
       <MenuItem data-pressed>
         <Flex align="center" gap="8px" style={{ width: '100%' }}>
           <Avatar />
@@ -239,7 +247,7 @@ const TemplateAlt: Story<MenuProps> = (args) => (
         </Flex>
       </MenuItem>
     </Menu>
-    <Menu {...args}>
+    <Menu {...args} size={`${size}px`}>
       <MenuItem active>
         <Flex align="center" gap="8px" style={{ width: '100%' }}>
           <Avatar />
@@ -267,7 +275,7 @@ const TemplateAlt: Story<MenuProps> = (args) => (
         </Flex>
       </MenuItem>
     </Menu>
-    <Menu {...args}>
+    <Menu {...args} size={`${size}px`}>
       <MenuItem disabled>
         <Flex align="center" gap="8px" style={{ width: '100%' }}>
           <Avatar />
@@ -298,14 +306,14 @@ const TemplateAlt: Story<MenuProps> = (args) => (
   </>
 );
 
-const TemplateItemsAlt: Story<MenuProps> = (args) => (
+const TemplateItemsAlt: Story<StoryProps> = (args) => (
   <>
     <TemplateAlt {...args} />
     <TemplateAlt {...args} theme="dark" />
   </>
 );
 
-const TemplateOverview: Story<MenuProps> = (args) => (
+const TemplateOverview: Story<StoryProps> = ({ size, ...args }) => (
   <>
     <Menu {...args} size="148px">
       <MenuItem>Text</MenuItem>
@@ -412,7 +420,9 @@ const TemplateOverview: Story<MenuProps> = (args) => (
 );
 
 export const Overview = TemplateOverview.bind({});
-Overview.args = {};
+Overview.args = {
+  size: Infinity,
+};
 Overview.decorators = [
   ...decorators,
   (Story) => (
@@ -424,7 +434,7 @@ Overview.decorators = [
 
 export const Items = TemplateItems.bind({});
 Items.args = {
-  size: '148px',
+  size: 148,
 };
 Items.decorators = [
   ...decorators,
@@ -443,7 +453,7 @@ Items.decorators = [
 
 export const ItemsAlt = TemplateItemsAlt.bind({});
 ItemsAlt.args = {
-  size: '240px',
+  size: 240,
 };
 ItemsAlt.decorators = [
   ...decorators,

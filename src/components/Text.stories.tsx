@@ -22,7 +22,12 @@ export default {
     clamp: 10,
   },
   argTypes: {
-    ...mapArgTypes(['as'], {}),
+    ...mapArgTypes(['as'], {
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'ElementType<any>' },
+      },
+    }),
     ...mapArgTypes(['clamp'], {
       control: { type: 'range', min: 1, max: 10, step: 1 },
     }),

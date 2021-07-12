@@ -35,7 +35,13 @@ export default {
     size: 16,
   },
   argTypes: {
-    ...mapArgTypes(['as', 'label'], {}),
+    ...mapArgTypes(['as'], {
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'ElementType<any>' },
+      },
+    }),
+    ...mapArgTypes(['label'], { control: { type: 'text' } }),
     ...mapArgTypes(['appearance', 'theme', 'type'], {
       control: { type: 'inline-radio' },
       table: { category: 'Modifiers' },

@@ -31,7 +31,7 @@ export default {
   argTypes: {
     ...mapArgTypes(['icon'], {
       control: { disable: true },
-      table: { type: { summary: 'ReactElement' } },
+      table: { category: 'Modifiers', type: { summary: 'ReactElement' } },
     }),
     ...mapArgTypes(['theme'], {
       control: { type: 'inline-radio' },

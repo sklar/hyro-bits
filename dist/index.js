@@ -2,8 +2,9 @@
 
 import { keyframes, css, jsx } from '@emotion/react';
 import styled from '@emotion/styled';
-import React, { useRef, useEffect, useState, useCallback, forwardRef } from 'react';
-import { useCombinedRef } from '@spicy-hooks/core';
+import React, { useRef, useEffect, useState, useCallback, forwardRef, useMemo, Fragment } from 'react';
+import { useCombinedRef, useDependantState, useUpdatedRef } from '@spicy-hooks/core';
+import { transparentize } from 'color2k';
 import RcSlider, { Range as Range$1 } from 'rc-slider';
 
 /*! *****************************************************************************
@@ -67,10 +68,10 @@ keyframes `
 const Idle = (_a) => {
     var { color, delay = 100, duration = 500, gap = '4px', range = '6px', size = '5px' } = _a, props = __rest(_a, ["color", "delay", "duration", "gap", "range", "size"]);
     const delegated = Object.assign({ color, delay, duration, gap, range, size }, props);
-    return (React.createElement(Container$9, Object.assign({}, delegated),
-        React.createElement(Element, null),
-        React.createElement(Element, null),
-        React.createElement(Element, null)));
+    return (React.createElement(Container$b, Object.assign({}, delegated),
+        React.createElement(Element$2, null),
+        React.createElement(Element$2, null),
+        React.createElement(Element$2, null)));
 };
 // TypeScript warning will be gone after this boi is resolved
 // https://github.com/microsoft/typescript-styled-plugin/issues/137#issuecomment-848930098
@@ -78,7 +79,7 @@ const idle = keyframes `
   0%    { --offset: calc(-0.5 * var(--range)); }
   100%  { --offset: calc(0.5 * var(--range)); }
 `;
-const Element = styled.div `
+const Element$2 = styled.div `
   animation: ${idle} var(--duration) ${EASING.easeInOut} var(--shift) infinite alternate;
   background: var(--color);
   border-radius: 50%;
@@ -108,7 +109,7 @@ const Element = styled.div `
     syntax: '<length>';
   }
 `;
-const Container$9 = styled.div `
+const Container$b = styled.div `
   ${({ color }) => color && `--color: ${color}`};
   ${({ delay }) => `--delay: ${delay}ms`};
   ${({ duration }) => `--duration: ${duration}ms`};
@@ -298,13 +299,12 @@ const button = css `
 const label = css `
   ${base$1};
 
-  --color: #353b56;
   --font-size: 14px;
   --font-weight: 700;
   --letter-spacing: -0.01em;
   --line-height: calc(16 / 14);
 `;
-const input = css `
+const input$2 = css `
   ${base$1};
 
   --font-size: 13px;
@@ -357,13 +357,13 @@ const Icon = (_a) => {
     }), [name, size]);
     useEffectWithGuard(fetchIcon);
     if (!!Component) {
-        return (React.createElement(Container$8, Object.assign({ "data-icon": name, "data-size": size }, props), Component));
+        return (React.createElement(Container$a, Object.assign({ "data-icon": name, "data-size": size }, props), Component));
     }
     else {
         return null;
     }
 };
-const Container$8 = styled.span `
+const Container$a = styled.span `
   --icon-size: ;
 
   display: inline-block;
@@ -395,12 +395,12 @@ const Container$8 = styled.span `
  */
 const Order = (_a) => {
     var { direction, size = 'xs' } = _a, props = __rest(_a, ["direction", "size"]);
-    return (React.createElement(Container$7, Object.assign({ "data-direction": direction }, props),
+    return (React.createElement(Container$9, Object.assign({ "data-direction": direction }, props),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null }),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null }),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null })));
 };
-const Container$7 = styled.div `
+const Container$9 = styled.div `
   --opacity-2: 0;
   --opacity-3: 0;
   --path: ;
@@ -449,7 +449,7 @@ const Button = forwardRef((_a, ref) => {
     var { active, busy, children, disabled, href, icon, placement, round, size = 'md', synthetic, text, theme, toggle, type = 'button', variant = 'secondary' } = _a, props = __rest(_a, ["active", "busy", "children", "disabled", "href", "icon", "placement", "round", "size", "synthetic", "text", "theme", "toggle", "type", "variant"]);
     const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
     const delegated = Object.assign({ size, variant }, props);
-    return (React.createElement(Container$6, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, delegated),
+    return (React.createElement(Container$8, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, delegated),
         leader,
         text ? text : children,
         trailer,
@@ -523,7 +523,7 @@ modification['md'] = css `
   --button-size: 32px;
 `;
 modification['lg'] = css `
-  --button-icon-offset: 0;
+  --button-icon-offset: 0px;
   --button-indent: 12px;
   --button-size: 40px;
   --font-size: 15px;
@@ -611,7 +611,7 @@ modification['tertiary'] = css `
     }
   }
 `;
-const Container$6 = styled.button `
+const Container$8 = styled.button `
   ${base};
 
   &[data-round] {
@@ -695,9 +695,9 @@ const ClickOutsideGuard = forwardRef((_a, ref) => {
             };
         }
     });
-    return React.createElement(Container$5, Object.assign({ ref: combinedRef }, props));
+    return React.createElement(Container$7, Object.assign({ ref: combinedRef }, props));
 });
-const Container$5 = styled.div `
+const Container$7 = styled.div `
   display: contents;
 `;
 
@@ -710,9 +710,9 @@ const EMOTION_DISABLE_SSR = '/* emotion-disable-server-rendering-unsafe-selector
 const Flex = (_a) => {
     var { align, as = 'div', block, direction, gap, justify, wrap } = _a, props = __rest(_a, ["align", "as", "block", "direction", "gap", "justify", "wrap"]);
     const delegated = Object.assign({ align, block, direction, gap, justify }, props);
-    return React.createElement(Container$4, Object.assign({ as: as, "data-wrap": wrap || null }, delegated));
+    return React.createElement(Container$6, Object.assign({ as: as, "data-wrap": wrap || null }, delegated));
 };
-const Container$4 = styled.div `
+const Container$6 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'flex' : 'inline-flex'}`};
   ${({ direction }) => direction && direction !== 'row' && `flex-direction: ${direction}`};
@@ -730,9 +730,9 @@ const Container$4 = styled.div `
 const Grid = (_a) => {
     var { align, as = 'div', block, columns, gap, justify, max = '1fr', min = '0px', sizing = 'auto-fit' } = _a, props = __rest(_a, ["align", "as", "block", "columns", "gap", "justify", "max", "min", "sizing"]);
     const delegated = Object.assign({ align, block, columns, gap, justify, max, min, sizing }, props);
-    return React.createElement(Container$3, Object.assign({ as: as }, delegated));
+    return React.createElement(Container$5, Object.assign({ as: as }, delegated));
 };
-const Container$3 = styled.div `
+const Container$5 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'grid' : 'inline-grid'}`};
   ${({ gap }) => gap && `gap: ${gap}`};
@@ -772,9 +772,9 @@ const truncate = css `
  */
 const Text = (_a) => {
     var { as = 'span', clamp, hyphens = 'manual', truncate, word = 'normal' } = _a, props = __rest(_a, ["as", "clamp", "hyphens", "truncate", "word"]);
-    return (React.createElement(Container$2, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, props)));
+    return (React.createElement(Container$4, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, props)));
 };
-const Container$2 = styled.span `
+const Container$4 = styled.span `
   &[data-clamp] {
     ${clamp};
   }
@@ -843,7 +843,7 @@ const dialogAnimation = keyframes `
     transform: scale(1.0);
   }
 `;
-const container = css `
+const container$1 = css `
   padding: calc(var(--dialog-indent) * 2) calc(var(--dialog-indent) * 3);
 `;
 const DialogWrapper = styled.div `
@@ -923,7 +923,7 @@ const DialogContainer = styled.section `
  * Dialog header
  */
 const headerStyle = css `
-  ${container};
+  ${container$1};
 
   padding-right: 40px;
 `;
@@ -936,7 +936,7 @@ const titleStyle = css `
  * Dialog body
  */
 const Body = styled.div `
-  ${container};
+  ${container$1};
 
   /* Scroll shadows https://css-scroll-shadows.vercel.app */
   background: linear-gradient(
@@ -985,7 +985,7 @@ const Body = styled.div `
  * Dialog footer
  */
 const footerStyle = css `
-  ${container};
+  ${container$1};
 
   border-top: 1px solid var(--dialog-border-color);
   display: flex;
@@ -1007,6 +1007,321 @@ const controlStyle = css `
   }
 `;
 const Control = (props) => (jsx(Button, Object.assign({ css: controlStyle, icon: jsx(Icon, { name: "Times" }), round: true, synthetic: true, variant: "tertiary" }, props)));
+
+/**
+ * Field label
+ */
+const FieldLabel = (props) => (jsx(Flex, Object.assign({ as: "label", css: labelStyle, gap: "4px" }, props)));
+const labelStyle = css `
+  ${label};
+
+  margin-bottom: var(--field-indent);
+`;
+const FieldText = (_a) => {
+    var { secondary } = _a, props = __rest(_a, ["secondary"]);
+    return (jsx(FieldTextContainer, Object.assign({ "data-secondary": secondary || null }, props)));
+};
+const FieldTextContainer = styled.div `
+  ${base$1};
+
+  --font-size: 14px;
+  --font-weight: 500;
+  --letter-spacing: -0.01em;
+  --line-height: calc(18 / 14);
+
+  &[data-secondary] {
+    --color: ${colors.TEXT_TERTIARY};
+    --font-size: 13px;
+    --line-height: calc(16 / 13);
+  }
+`;
+const iconName = (theme) => {
+    const names = {
+        danger: 'TimesCircle',
+        notice: 'MapMarkerInfo',
+        success: 'ThumbsUp',
+    };
+    return names[theme];
+};
+const FieldMessage = (_a) => {
+    var { children, theme = 'danger' } = _a, props = __rest(_a, ["children", "theme"]);
+    return (jsx(Flex, Object.assign({ css: messageStyle, "data-theme": theme || null, gap: "8px" }, props),
+        theme && jsx(Icon, { name: iconName(theme) }),
+        children));
+};
+const messageStyle = css `
+  ${base$1};
+
+  --font-size: 13px;
+  --font-weight: 600;
+  --letter-spacing: -0.01em;
+  --line-height: calc(16 / 13);
+
+  margin-top: var(--field-indent);
+
+  &[data-theme='danger'] {
+    color: ${colors.DANGER};
+  }
+  &[data-theme='notice'] {
+    color: ${colors.NOTICE};
+  }
+  &[data-theme='success'] {
+    color: ${colors.SUCCESS};
+  }
+`;
+const Field = (props) => (jsx(Flex, Object.assign({ css: fieldStyle, direction: "column", gap: "8px" }, props)));
+const fieldStyle = css `
+  --field-indent: 0;
+`;
+
+const container = css `
+  ${input$2};
+
+  --input-background-color: ${colors.WHITE};
+  --input-border-color: ${transparentize('#c8d7fc', 0.6)};
+  --input-border-size: 2px;
+  --input-color: ;
+  --input-gap: 8px;
+  --input-indent: 10px;
+  --input-length: 100%;
+  --input-line-height: var(--input-size);
+  --input-placeholder-color: ${colors.TEXT_TERTIARY};
+  --input-radius: 6px;
+  --input-size: ;
+
+  align-items: center;
+  background-clip: padding-box;
+  background-color: var(--input-background-color);
+  border: var(--input-border-size) solid var(--input-border-color);
+  border-radius: var(--input-radius);
+  color: var(--input-color);
+  display: flex;
+  gap: var(--input-gap);
+  min-height: var(--input-size);
+  justify-content: center;
+  margin: 0;
+  min-width: var(--input-size);
+  outline: 0;
+  padding-inline: var(--input-indent);
+  transition-duration: 0.2s;
+  transition-property: border-color, width;
+  transition-timing-function: ease-in-out;
+  width: var(--input-length);
+  will-change: border-color, width;
+
+  &:is(:active, :focus-within, :hover, [data-active], [data-hover]):not([data-disabled], [data-busy]) {
+    --input-border-color: ${colors.ELEMENT_FOCUS};
+  }
+  &:is([data-invalid]):not([data-disabled], [data-busy]) {
+    --input-border-color: ${colors.DANGER};
+  }
+  &:is([data-disabled], [data-busy]) {
+    --input-color: ${colors.ELEMENT_DISABLED};
+    pointer-events: none;
+  }
+  &:is([data-readonly]) {
+    cursor: pointer;
+  }
+
+  &[data-size='sm'] {
+    --input-size: 30px;
+  }
+  &[data-size='md'] {
+    --input-size: 36px;
+  }
+  &[data-size='lg'] {
+    --font-size: 15px;
+    --input-size: 40px;
+  }
+
+  /* [data-theme='dark'] &,
+  &[data-theme='dark'] {} */
+`;
+const input$1 = css `
+  background-color: ${colors.TRANSPARENT};
+  border: none;
+  color: currentColor;
+  font: inherit;
+  min-width: 0;
+  outline: 0;
+  padding: 0;
+
+  &::placeholder {
+    color: var(--input-placeholder-color);
+  }
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button,
+  &::-webkit-search-cancel-button {
+    appearance: none;
+    display: none;
+  }
+
+  &[readonly] {
+    pointer-events: none;
+  }
+`;
+const affix = css `
+  align-items: center;
+  display: inline-flex;
+  color: ${colors.TEXT_TERTIARY};
+  margin-inline: calc(-0.5 * var(--input-gap));
+`;
+
+/**
+ * Input
+ */
+const Input = forwardRef((_a, ref) => {
+    var { active, affix, as = 'label', busy, disabled, invalid, leader, length, readonly, size = 'md', theme, trailer } = _a, inputProps = __rest(_a, ["active", "affix", "as", "busy", "disabled", "invalid", "leader", "length", "readonly", "size", "theme", "trailer"]);
+    const [prefix, suffix] = Array.isArray(affix) ? affix : [affix];
+    const _b = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['className', 'data-active', 'data-invalid', 'data-hover', 'style'].includes(key))), { style } = _b, containerProps = __rest(_b, ["style"]);
+    return (React.createElement(Container$3, Object.assign({ as: as, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
+        prefix && React.createElement(Prefix, null, prefix),
+        leader,
+        React.createElement(Element$1, Object.assign({ ref: ref, disabled: disabled, readOnly: readonly }, inputProps)),
+        busy && (React.createElement(Idle, { gap: "2px", size: "4px", style: {
+                ['--color']: colors.ELEMENT_PRIMARY,
+            } })),
+        trailer,
+        suffix && React.createElement(Suffix, null, suffix)));
+});
+const Container$3 = styled.label `
+  --gap: 1px;
+
+  ${container};
+
+  button {
+    --button-radius: 4px;
+    --button-size: calc(var(--input-size) - 2 * (var(--input-border-size) + 2 * var(--gap)));
+
+    flex-shrink: 0;
+    margin-right: calc(2 * var(--gap) - 1 * var(--input-indent));
+  }
+`;
+const Element$1 = styled.input `
+  ${input$1};
+  ${truncate};
+`;
+const Prefix = styled.span `
+  ${affix};
+`;
+const Suffix = styled.span `
+  ${affix};
+`;
+
+function parseValue(rawValue, minValue, maxValue) {
+    const value = parseInt(rawValue, 10);
+    if (isNaN(value) || value < minValue || value > maxValue) {
+        return null;
+    }
+    return value;
+}
+function useNumberInput({ format = (arg) => arg, max = Infinity, min = -Infinity, onBlur, onChange, onChangeValue, value, }) {
+    const [interimInputValue, setInterimInputValue] = useDependantState(() => format(value != null ? String(value) : ''), [value]);
+    const valueRef = useUpdatedRef(value);
+    const handleInputBlur = useCallback((event) => {
+        var _a;
+        setInterimInputValue(format(String((_a = valueRef.current) !== null && _a !== void 0 ? _a : '')));
+        onBlur === null || onBlur === void 0 ? void 0 : onBlur(event);
+    }, [format, onBlur, setInterimInputValue, valueRef]);
+    const handleInputChange = useCallback((event) => {
+        const rawValue = event.target.value;
+        setInterimInputValue(rawValue);
+        const value = parseValue(rawValue, min, max);
+        if (value != null) {
+            onChangeValue(value);
+        }
+        onChange === null || onChange === void 0 ? void 0 : onChange(event);
+    }, [max, min, onChange, onChangeValue, setInterimInputValue]);
+    const handleInputFocus = useCallback((event) => {
+        event.target.select();
+    }, []);
+    const handleKeyDown = useCallback((event) => {
+        const { key, target, shiftKey } = event;
+        const value = parseValue(target.value, min, max);
+        if (value == null)
+            return;
+        if (key === 'ArrowDown') {
+            event.preventDefault();
+            onChangeValue(Math.max(shiftKey ? value - 10 : value - 1, min));
+        }
+        if (key === 'ArrowUp') {
+            event.preventDefault();
+            onChangeValue(Math.min(shiftKey ? value + 10 : value + 1, max));
+        }
+    }, [max, min, onChangeValue]);
+    const handleIncrement = useCallback(() => {
+        const value = valueRef.current;
+        if (value == null)
+            return;
+        onChangeValue(Math.min(value + 1, max));
+    }, [max, onChangeValue, valueRef]);
+    const handleDecrement = useCallback(() => {
+        const value = valueRef.current;
+        if (value == null)
+            return;
+        onChangeValue(Math.max(value - 1, min));
+    }, [min, onChangeValue, valueRef]);
+    const isInterimValueValid = useMemo(() => parseValue(interimInputValue, min, max) != null, [
+        interimInputValue,
+        max,
+        min,
+    ]);
+    return {
+        handleDecrement,
+        handleIncrement,
+        handleInputBlur,
+        handleInputChange,
+        handleInputFocus,
+        handleKeyDown,
+        interimInputValue,
+        isInterimValueValid,
+    };
+}
+
+/**
+ * Number input
+ */
+const NumberInput = forwardRef((_a, ref) => {
+    var { controls = false, format, max = Infinity, min = -Infinity, onBlur, onChange, onChangeValue, value } = _a, rest = __rest(_a, ["controls", "format", "max", "min", "onBlur", "onChange", "onChangeValue", "value"]);
+    const { handleDecrement, handleIncrement, handleInputBlur, handleInputChange, handleInputFocus, handleKeyDown, interimInputValue, isInterimValueValid, } = useNumberInput({
+        format,
+        max,
+        min,
+        onBlur,
+        onChange,
+        onChangeValue,
+        value,
+    });
+    return (jsx("div", null,
+        jsx(Input, Object.assign({ ref: ref, value: interimInputValue, min: min, max: max, invalid: !isInterimValueValid, css: input, trailer: jsx(Fragment, null, controls && (jsx(Controls, null,
+                jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: value >= max, onClick: handleIncrement }),
+                jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: value <= min, onClick: handleDecrement })))), onBlur: handleInputBlur, onChange: handleInputChange, onFocus: handleInputFocus, onKeyDown: handleKeyDown }, rest))));
+});
+const input = css `
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+`;
+const Controls = styled.div `
+  --gap: 1px;
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  height: calc(var(--input-size) - 2 * (var(--input-border-size) + 2 * var(--gap)));
+
+  button {
+    --button-radius: 2px;
+
+    border-bottom-right-radius: calc(2 * var(--button-radius));
+    flex: 1;
+    margin-right: calc(2 * var(--gap) - 1 * var(--input-indent));
+
+    &:first-of-type {
+      transform: rotateX(180deg);
+    }
+  }
+`;
 
 /**
  * `safeguard` comments mark overrides needed if the original RC Slider styles are linked.
@@ -1329,7 +1644,7 @@ const Slider = (_a) => {
 const Switch = forwardRef((_a, ref) => {
     var { as = 'label', children, disabled, label, theme, type = 'checkbox', appearance = type === 'radio' ? 'radio' : 'checkbox' } = _a, inputProps = __rest(_a, ["as", "children", "disabled", "label", "theme", "type", "appearance"]);
     const containerProps = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['className', 'data-hover', 'style'].includes(key)));
-    return (React.createElement(Container$1, Object.assign({ as: as, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null }, containerProps),
+    return (React.createElement(Container$2, Object.assign({ as: as, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null }, containerProps),
         React.createElement("input", Object.assign({ ref: ref, type: type, disabled: disabled }, inputProps)),
         React.createElement(Indicator, { "data-appearance": appearance }),
         children,
@@ -1339,7 +1654,7 @@ const Switch = forwardRef((_a, ref) => {
  * Note that [data-hover] are here only to help
  * better illustrate `:hover` state in the dedicated story.
  */
-const Container$1 = styled.label `
+const Container$2 = styled.label `
   --switch-animation-duration: 0.2s;
   --switch-border-color: ${colors.STROKE};
   --switch-border-size: 1.5px;
@@ -1524,6 +1839,48 @@ const Label = styled.span `
   --color: inherit;
   --font-size: inherit;
   --font-weight: inherit;
+`;
+
+/**
+ * Textarea
+ * TODO: Implement auto-grow feature
+ */
+const Textarea = forwardRef((_a, ref) => {
+    var { active, as = 'label', busy, disabled, invalid, length, readonly, resize = 'vertical', theme } = _a, textareaProps = __rest(_a, ["active", "as", "busy", "disabled", "invalid", "length", "readonly", "resize", "theme"]);
+    const _b = Object.fromEntries(Object.entries(textareaProps).filter(([key]) => ['className', 'data-active', 'data-invalid', 'data-hover', 'style'].includes(key))), { style } = _b, containerProps = __rest(_b, ["style"]);
+    return (React.createElement(Container$1, Object.assign({ as: as, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-resize": resize, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
+        React.createElement(Element, Object.assign({ ref: ref, disabled: disabled, readOnly: readonly }, textareaProps)),
+        busy && (React.createElement(Idle, { gap: "2px", size: "4px", "data-indicator": true, style: {
+                ['--color']: colors.ELEMENT_PRIMARY,
+            } }))));
+});
+const Container$1 = styled.label `
+  ${container};
+
+  position: relative;
+  padding-block: calc(0.8 * var(--input-indent));
+
+  [data-indicator] {
+    position: absolute;
+  }
+`;
+const Element = styled.textarea `
+  ${input$1};
+
+  width: 100%;
+
+  [data-resize='both'] & {
+    resize: both;
+  }
+  [data-resize='horizontal'] & {
+    resize: horizontal;
+  }
+  [data-resize='vertical'] & {
+    resize: vertical;
+  }
+  [data-resize='none'] & {
+    resize: none;
+  }
 `;
 
 /**
@@ -2053,5 +2410,5 @@ const TableContainer = styled.table `
   }
 `;
 
-export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Flex, Grid, Icon, Idle, Menu, MenuDivider, MenuItem, MenuTitle, Nav, NavContainer, NavItem, Order, Range, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph };
+export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldText, Flex, Grid, Icon, Idle, Input, Menu, MenuDivider, MenuItem, MenuTitle, Nav, NavContainer, NavItem, NumberInput, Order, Range, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Textarea, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input$2 as input, label, paragraph };
 //# sourceMappingURL=index.js.map

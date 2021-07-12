@@ -23,7 +23,7 @@ export default {
     withDesign,
   ],
   argTypes: {
-    ...mapArgTypes(['size'], {
+    ...mapArgTypes(['direction', 'size'], {
       control: { type: 'inline-radio' },
     }),
   },

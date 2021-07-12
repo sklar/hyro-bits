@@ -14,6 +14,12 @@ export default {
       control: { disable: true },
       table: { disable: true },
     },
+    ...mapArgTypes(['as'], {
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'ElementType<any>' },
+      },
+    }),
     ...mapArgTypes(['align', 'justify'], {
       control: { type: 'select' },
       table: { category: 'Modifiers' },
@@ -21,7 +27,11 @@ export default {
     ...mapArgTypes(['block', 'gap'], {
       table: { category: 'Modifiers' },
     }),
-    ...mapArgTypes(['columns', 'min', 'max', 'sizing'], {
+    ...mapArgTypes(['columns', 'min', 'max'], {
+      table: { category: 'Columns' },
+    }),
+    ...mapArgTypes(['sizing'], {
+      control: { type: 'inline-radio' },
       table: { category: 'Columns' },
     }),
     ...mapArgTypes(['count'], {

@@ -14,7 +14,20 @@ export default {
       control: { disable: true },
       table: { disable: true },
     },
-    ...mapArgTypes(['align', 'justify', 'direction', 'gap', 'block', 'wrap'], {
+    ...mapArgTypes(['as'], {
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'ElementType<any>' },
+      },
+    }),
+    ...mapArgTypes(['align', 'justify'], {
+      table: { category: 'Modifiers' },
+    }),
+    ...mapArgTypes(['direction'], {
+      control: { type: 'inline-radio' },
+      table: { category: 'Modifiers' },
+    }),
+    ...mapArgTypes(['gap', 'block', 'wrap'], {
       table: { category: 'Modifiers' },
     }),
     ...mapArgTypes(['count'], {

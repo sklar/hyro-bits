@@ -203,7 +203,7 @@ modification['md'] = css`
 `;
 
 modification['lg'] = css`
-  --button-icon-offset: 0;
+  --button-icon-offset: 0px;
   --button-indent: 12px;
   --button-size: 40px;
   --font-size: 15px;

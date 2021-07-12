@@ -84,7 +84,6 @@ export const button = css`
 export const label = css`
   ${base};
 
-  --color: #353b56;
   --font-size: 14px;
   --font-weight: 700;
   --letter-spacing: -0.01em;

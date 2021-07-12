@@ -1,7 +1,11 @@
+import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
-import { Story, Meta } from '@storybook/react/types-6-0';
 import { withDesign } from 'storybook-addon-designs';
 
+import data from '../data/table.json';
+import { useSortableData } from '../hooks/use-sortable-data';
+import { Container, mapArgTypes } from '../stories';
+import { ThemeType } from '../utils/types';
 import {
   Button,
   Flex,
@@ -17,11 +21,6 @@ import {
   Thead,
   Tr,
 } from './index';
-
-import data from '../data/table.json';
-import { useSortableData } from '../hooks/use-sortable-data';
-import { Container } from '../stories';
-import { ThemeType } from '../utils/types';
 
 export default {
   title: 'Components/Table',
@@ -42,6 +41,9 @@ export default {
     },
   },
   argTypes: {
+    ...mapArgTypes(['layout'], {
+      control: { type: 'inline-radio' },
+    }),
     records: {
       control: { disable: true },
       table: { disable: true },

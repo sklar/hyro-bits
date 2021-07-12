@@ -29,6 +29,12 @@ export default {
     records: [...data.records].map((record) => record.fields),
   },
   argTypes: {
+    ...mapArgTypes(['as'], {
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'ElementType<any>' },
+      },
+    }),
     ...mapArgTypes(['icon', 'records'], {
       control: { disable: true },
       table: { disable: true },
