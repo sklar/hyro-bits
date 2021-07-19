@@ -28,5 +28,5 @@ export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Context menu
  */
-export declare const Menu: React.FC<MenuProps>;
+export declare const Menu: React.ForwardRefExoticComponent<MenuProps & React.RefAttributes<HTMLDivElement>>;
 //# sourceMappingURL=Menu.d.ts.map

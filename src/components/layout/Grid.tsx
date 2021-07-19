@@ -21,6 +21,10 @@ export interface GridProps extends HTMLAttributes<HTMLElement> {
    */
   columns?: string;
   /**
+   * Flow
+   */
+  flow?: 'row' | 'column' | 'dense' | 'row dense' | 'column dense';
+  /**
    * Gap
    */
   gap?: string;
@@ -50,6 +54,7 @@ export const Grid: React.FC<GridProps> = ({
   as = 'div',
   block,
   columns,
+  flow,
   gap,
   justify,
   max = '1fr',
@@ -64,6 +69,7 @@ export const Grid: React.FC<GridProps> = ({
 const Container = styled.div<GridProps>`
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'grid' : 'inline-grid'}`};
+  ${({ flow }) => flow && `grid-auto-flow: ${flow}`};
   ${({ gap }) => gap && `gap: ${gap}`};
   ${({ justify }) => justify && `justify-items: ${justify}`};
   ${({ columns, max, min, sizing }) =>

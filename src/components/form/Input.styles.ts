@@ -3,7 +3,10 @@ import { transparentize } from 'color2k';
 
 import { colors, input as typography } from '../../theme';
 
-export const container = css`
+/**
+ * Input container
+ */
+export const inputContainer = css`
   ${typography};
 
   --input-background-color: ${colors.WHITE};
@@ -27,7 +30,6 @@ export const container = css`
   display: flex;
   gap: var(--input-gap);
   min-height: var(--input-size);
-  justify-content: center;
   margin: 0;
   min-width: var(--input-size);
   outline: 0;
@@ -67,6 +69,9 @@ export const container = css`
   &[data-theme='dark'] {} */
 `;
 
+/**
+ * Input
+ */
 export const input = css`
   background-color: ${colors.TRANSPARENT};
   border: none;
@@ -92,7 +97,10 @@ export const input = css`
   }
 `;
 
-export const affix = css`
+/**
+ * Input affix
+ */
+export const inputAffix = css`
   align-items: center;
   display: inline-flex;
   color: ${colors.TEXT_TERTIARY};

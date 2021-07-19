@@ -95,10 +95,10 @@ const Container = styled.div<IdleProps>`
   ${({ color }) => color && `--color: ${color}`};
   ${({ delay }) => `--delay: ${delay}ms`};
   ${({ duration }) => `--duration: ${duration}ms`};
+  ${({ gap }) => `--gap: ${gap}`};
   ${({ range }) => `--range: ${range}`};
   ${({ size }) => `--size: ${size}`};
 
   display: inline-flex;
-
-  ${({ gap }) => `gap: ${gap}`};
+  gap: var(--gap);
 `;

@@ -6,6 +6,7 @@ import React, { useRef, useEffect, useState, useCallback, forwardRef, useMemo, F
 import { useCombinedRef, useDependantState, useUpdatedRef } from '@spicy-hooks/core';
 import { transparentize } from 'color2k';
 import RcSlider, { Range as Range$1 } from 'rc-slider';
+import ReactSelect, { components } from 'react-select';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -113,12 +114,12 @@ const Container$b = styled.div `
   ${({ color }) => color && `--color: ${color}`};
   ${({ delay }) => `--delay: ${delay}ms`};
   ${({ duration }) => `--duration: ${duration}ms`};
+  ${({ gap }) => `--gap: ${gap}`};
   ${({ range }) => `--range: ${range}`};
   ${({ size }) => `--size: ${size}`};
 
   display: inline-flex;
-
-  ${({ gap }) => `gap: ${gap}`};
+  gap: var(--gap);
 `;
 
 /**
@@ -728,13 +729,14 @@ const Container$6 = styled.div `
  * Grid wrapper
  */
 const Grid = (_a) => {
-    var { align, as = 'div', block, columns, gap, justify, max = '1fr', min = '0px', sizing = 'auto-fit' } = _a, props = __rest(_a, ["align", "as", "block", "columns", "gap", "justify", "max", "min", "sizing"]);
+    var { align, as = 'div', block, columns, flow, gap, justify, max = '1fr', min = '0px', sizing = 'auto-fit' } = _a, props = __rest(_a, ["align", "as", "block", "columns", "flow", "gap", "justify", "max", "min", "sizing"]);
     const delegated = Object.assign({ align, block, columns, gap, justify, max, min, sizing }, props);
     return React.createElement(Container$5, Object.assign({ as: as }, delegated));
 };
 const Container$5 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'grid' : 'inline-grid'}`};
+  ${({ flow }) => flow && `grid-auto-flow: ${flow}`};
   ${({ gap }) => gap && `gap: ${gap}`};
   ${({ justify }) => justify && `justify-items: ${justify}`};
   ${({ columns, max, min, sizing }) => `grid-template-columns: ${columns ? columns : `repeat(${sizing}, minmax(min(100%, ${min}), ${max}))`}`};
@@ -821,7 +823,7 @@ const Dialog = (_a) => {
             (header || title) && (jsx("header", { css: headerStyle, "data-dialog": "header" }, header ? (header) : (jsx(Text, { as: "h1", clamp: 1, css: titleStyle }, title)))),
             jsx(Body, { "data-dialog": "body" }, children),
             footer && (jsx(Flex, { as: "footer", css: footerStyle, "data-dialog": "footer", justify: justify }, footer)),
-            rejectable && jsx(Control, { "data-dialog": "control", onClick: onClose }))));
+            rejectable && jsx(Control$1, { "data-dialog": "control", onClick: onClose }))));
 };
 // TypeScript warning will be gone after this boi is resolved
 // https://github.com/microsoft/typescript-styled-plugin/issues/137#issuecomment-848930098
@@ -843,7 +845,7 @@ const dialogAnimation = keyframes `
     transform: scale(1.0);
   }
 `;
-const container$1 = css `
+const container = css `
   padding: calc(var(--dialog-indent) * 2) calc(var(--dialog-indent) * 3);
 `;
 const DialogWrapper = styled.div `
@@ -923,7 +925,7 @@ const DialogContainer = styled.section `
  * Dialog header
  */
 const headerStyle = css `
-  ${container$1};
+  ${container};
 
   padding-right: 40px;
 `;
@@ -936,7 +938,7 @@ const titleStyle = css `
  * Dialog body
  */
 const Body = styled.div `
-  ${container$1};
+  ${container};
 
   /* Scroll shadows https://css-scroll-shadows.vercel.app */
   background: linear-gradient(
@@ -985,7 +987,7 @@ const Body = styled.div `
  * Dialog footer
  */
 const footerStyle = css `
-  ${container$1};
+  ${container};
 
   border-top: 1px solid var(--dialog-border-color);
   display: flex;
@@ -994,7 +996,7 @@ const footerStyle = css `
 /**
  * Dialog control
  */
-const controlStyle = css `
+const controlStyle$1 = css `
   --button-color: ${colors.TEXT_TERTIARY};
 
   position: absolute;
@@ -1006,7 +1008,7 @@ const controlStyle = css `
     --button-color: ${colors.TEXT_PRIMARY};
   }
 `;
-const Control = (props) => (jsx(Button, Object.assign({ css: controlStyle, icon: jsx(Icon, { name: "Times" }), round: true, synthetic: true, variant: "tertiary" }, props)));
+const Control$1 = (props) => (jsx(Button, Object.assign({ css: controlStyle$1, icon: jsx(Icon, { name: "Times" }), round: true, synthetic: true, variant: "tertiary" }, props)));
 
 /**
  * Field label
@@ -1045,11 +1047,11 @@ const iconName = (theme) => {
 };
 const FieldMessage = (_a) => {
     var { children, theme = 'danger' } = _a, props = __rest(_a, ["children", "theme"]);
-    return (jsx(Flex, Object.assign({ css: messageStyle, "data-theme": theme || null, gap: "8px" }, props),
+    return (jsx(Flex, Object.assign({ css: messageStyle$1, "data-theme": theme || null, gap: "8px" }, props),
         theme && jsx(Icon, { name: iconName(theme) }),
         children));
 };
-const messageStyle = css `
+const messageStyle$1 = css `
   ${base$1};
 
   --font-size: 13px;
@@ -1074,7 +1076,10 @@ const fieldStyle = css `
   --field-indent: 0;
 `;
 
-const container = css `
+/**
+ * Input container
+ */
+const inputContainer = css `
   ${input$2};
 
   --input-background-color: ${colors.WHITE};
@@ -1098,7 +1103,6 @@ const container = css `
   display: flex;
   gap: var(--input-gap);
   min-height: var(--input-size);
-  justify-content: center;
   margin: 0;
   min-width: var(--input-size);
   outline: 0;
@@ -1137,6 +1141,9 @@ const container = css `
   /* [data-theme='dark'] &,
   &[data-theme='dark'] {} */
 `;
+/**
+ * Input
+ */
 const input$1 = css `
   background-color: ${colors.TRANSPARENT};
   border: none;
@@ -1161,7 +1168,10 @@ const input$1 = css `
     pointer-events: none;
   }
 `;
-const affix = css `
+/**
+ * Input affix
+ */
+const inputAffix = css `
   align-items: center;
   display: inline-flex;
   color: ${colors.TEXT_TERTIARY};
@@ -1171,7 +1181,7 @@ const affix = css `
 /**
  * Input
  */
-const Input = forwardRef((_a, ref) => {
+const Input$1 = forwardRef((_a, ref) => {
     var { active, affix, as = 'label', busy, disabled, invalid, leader, length, readonly, size = 'md', theme, trailer } = _a, inputProps = __rest(_a, ["active", "affix", "as", "busy", "disabled", "invalid", "leader", "length", "readonly", "size", "theme", "trailer"]);
     const [prefix, suffix] = Array.isArray(affix) ? affix : [affix];
     const _b = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['className', 'data-active', 'data-invalid', 'data-hover', 'style'].includes(key))), { style } = _b, containerProps = __rest(_b, ["style"]);
@@ -1188,7 +1198,7 @@ const Input = forwardRef((_a, ref) => {
 const Container$3 = styled.label `
   --gap: 1px;
 
-  ${container};
+  ${inputContainer};
 
   button {
     --button-radius: 4px;
@@ -1203,10 +1213,10 @@ const Element$1 = styled.input `
   ${truncate};
 `;
 const Prefix = styled.span `
-  ${affix};
+  ${inputAffix};
 `;
 const Suffix = styled.span `
-  ${affix};
+  ${inputAffix};
 `;
 
 function parseValue(rawValue, minValue, maxValue) {
@@ -1294,7 +1304,7 @@ const NumberInput = forwardRef((_a, ref) => {
         value,
     });
     return (jsx("div", null,
-        jsx(Input, Object.assign({ ref: ref, value: interimInputValue, min: min, max: max, invalid: !isInterimValueValid, css: input, trailer: jsx(Fragment, null, controls && (jsx(Controls, null,
+        jsx(Input$1, Object.assign({ ref: ref, value: interimInputValue, min: min, max: max, invalid: !isInterimValueValid, css: input, trailer: jsx(Fragment, null, controls && (jsx(Controls, null,
                 jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: value >= max, onClick: handleIncrement }),
                 jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: value <= min, onClick: handleDecrement })))), onBlur: handleInputBlur, onChange: handleInputChange, onFocus: handleInputFocus, onKeyDown: handleKeyDown }, rest))));
 });
@@ -1628,6 +1638,462 @@ const Range = (_a) => {
 };
 
 /**
+ * Menu
+ */
+const menu = css `
+  --background-color: ${colors.WHITE};
+  --border-color: ${colors.WHITE};
+  --border-size: 2px;
+  --box-shadow: #cbcedc;
+  --gap: 4px;
+  --indent: 8px;
+  --radius: 6px;
+  --size: ;
+
+  background-color: var(--background-color);
+  border: var(--border-size) solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: 0 3px 9px var(--box-shadow);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  padding: calc(1.5 * var(--indent)) var(--indent);
+  user-select: none;
+  width: var(--size);
+  z-index: 1;
+
+  &[data-padding] {
+    padding: calc(2 * var(--indent));
+    padding-top: calc(1.5 * var(--indent));
+  }
+
+  [data-theme='dark'] &,
+  &[data-theme='dark'] {
+    --background-color: ${colors.DARK_BACKGROUND_PRIMARY};
+    --border-color: ${colors.DARK_STROKE};
+    --box-shadow: ${colors.BLACK};
+  }
+`;
+/**
+ * Menu group
+ */
+const menuGroup = css `
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+
+  & + & {
+    margin-top: var(--gap);
+  }
+`;
+/**
+ * Menu group title
+ */
+const menuGroupTitle = css `
+  ${h3};
+
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+  padding: var(--indent);
+  padding-bottom: calc(0.5 * var(--indent));
+
+  [data-theme='dark'] & {
+    --color: ${colors.WHITE};
+  }
+`;
+/**
+ * Menu item
+ */
+const menuItem = css `
+  ${button};
+
+  --background-color: ;
+  --color: ;
+  --gap: 8px;
+  --indent: 8px;
+  --radius: 6px;
+  --size: 32px;
+
+  align-items: center;
+  background-color: var(--background-color);
+  border: 0;
+  border-radius: var(--radius);
+  cursor: pointer;
+  display: flex;
+  gap: var(--gap);
+  min-height: var(--size);
+  outline: 0;
+  padding: var(--indent);
+  text-align: left;
+  transition-duration: 0.2s;
+  transition-property: background-color, color;
+  transition-timing-function: ease-in-out;
+
+  &[data-justify],
+  [data-justify] & {
+    justify-content: space-between;
+
+    & > :not([data-icon]) {
+      flex: 1;
+    }
+  }
+
+  .primary,
+  .secondary {
+    transition: color 0.2s;
+  }
+  .primary {
+    color: var(--color, inherit);
+
+    & + .secondary {
+      margin-top: 2px;
+    }
+  }
+  .secondary {
+    ${paragraph};
+    color: var(--color, inherit);
+
+    --color: ${colors.ELEMENT_TERTIARY};
+  }
+
+  [data-menu='group'] & {
+    padding-left: calc(3 * var(--indent));
+  }
+
+  &:is(:active, [data-pressed]) {
+    --background-color: ${colors.ELEMENT_SECONDARY};
+    --color: ${colors.ELEMENT_PRIMARY};
+  }
+  &:is(:focus, :hover, [data-hover]) {
+    --background-color: ${colors.ELEMENT_SECONDARY};
+  }
+  &:is([data-active]) {
+    --color: ${colors.ELEMENT_PRIMARY};
+  }
+
+  &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]) {
+    .primary {
+      --color: ${colors.ELEMENT_PRIMARY};
+    }
+    .secondary {
+      --color: ${colors.TEXT_PRIMARY};
+    }
+  }
+
+  &:is([data-disabled]) {
+    cursor: default;
+    pointer-events: none;
+
+    &,
+    .primary,
+    .secondary {
+      --color: ${colors.ELEMENT_TERTIARY};
+    }
+  }
+
+  [data-theme='dark'] & {
+    --color: ${colors.WHITE};
+
+    &:is(:active, [data-pressed]) {
+      --background-color: ${colors.DARK_ELEMENT_FOCUS};
+    }
+    &:is(:focus, :hover, [data-hover]) {
+      --background-color: ${colors.DARK_ELEMENT_ACTIVE};
+    }
+
+    &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]) {
+      .primary,
+      .secondary {
+        --color: ${colors.WHITE};
+      }
+    }
+
+    &:is([data-disabled]) {
+      &,
+      .primary,
+      .secondary {
+        --color: ${colors.DARK_ELEMENT_TERTIARY};
+      }
+    }
+  }
+`;
+/**
+ * Menu title
+ */
+const menuTitle = css `
+  ${h3};
+
+  margin-bottom: 12px;
+  margin-top: 8px;
+
+  [data-theme='dark'] & {
+    --color: ${colors.WHITE};
+  }
+`;
+/**
+ * Menu divider
+ */
+const menuDivider = css `
+  --color: ${colors.STROKE};
+  --size: 2px;
+
+  background-color: var(--color);
+  border-radius: 1000px;
+  height: var(--size);
+
+  [data-theme='dark'] & {
+    --color: ${colors.DARK_STROKE};
+  }
+`;
+
+/**
+ * Context menu
+ */
+const Menu = forwardRef((_a, ref) => {
+    var { active, justify, padding, size, theme } = _a, props = __rest(_a, ["active", "justify", "padding", "size", "theme"]);
+    const delegated = Object.assign({}, props);
+    return (React.createElement(MenuContainer$1, Object.assign({ "data-active": active || null, "data-justify": justify || null, "data-padding": padding || null, "data-theme": theme || null, ref: ref, style: { ['--size']: size } }, delegated)));
+});
+/**
+ * Note that [data-hover] and [data-pressed] are here only to help
+ * better illustrate `:hover` and `:active` state in the dedicated story.
+ */
+const MenuContainer$1 = styled.section `
+  ${menu};
+`;
+
+const MenuDivider = styled.div `
+  ${menuDivider};
+`;
+
+/** @jsxRuntime classic */
+const MenuGroup = (props) => (jsx("div", Object.assign({ css: menuGroup, "data-menu": "group" }, props)));
+const MenuGroupTitle = styled.h5 `
+  ${menuGroupTitle};
+`;
+
+/**
+ * Context menu item
+ */
+const MenuItem = forwardRef((_a, ref) => {
+    var { active, as = 'button', disabled, justify, theme } = _a, props = __rest(_a, ["active", "as", "disabled", "justify", "theme"]);
+    const delegated = Object.assign({}, props);
+    return (React.createElement(MenuItemContainer, Object.assign({ as: as, "data-active": active || null, "data-disabled": disabled || null, "data-justify": justify || null, "data-theme": theme || null, disabled: as === 'button' ? !!disabled : undefined, ref: ref, type: as === 'button' ? 'button' : undefined }, delegated)));
+});
+const MenuItemContainer = styled.button `
+  ${menuItem};
+`;
+
+const MenuTitle = styled.h5 `
+  ${menuTitle};
+`;
+
+/**
+ * Container
+ */
+const containerStyle = css `
+  position: relative;
+`;
+const SelectContainer = (props) => (jsx(components.SelectContainer, Object.assign({ css: containerStyle }, props)));
+/**
+ * Control
+ */
+const controlStyle = css `
+  ${inputContainer};
+
+  *:is(:hover, [data-active], [data-hover]):not([data-disabled], [data-busy]) > & {
+    --input-border-color: ${colors.ELEMENT_FOCUS};
+  }
+  *:is([data-invalid]):not([data-disabled], [data-busy]) > & {
+    --input-border-color: ${colors.DANGER};
+  }
+  *:is([data-disabled], [data-busy]) > & {
+    --input-color: ${colors.ELEMENT_DISABLED};
+    pointer-events: none;
+  }
+  *:is([data-readonly]) > & {
+    cursor: pointer;
+  }
+
+  [data-size='sm'] > & {
+    --input-size: 30px;
+  }
+  [data-size='md'] > & {
+    --input-size: 36px;
+  }
+  [data-size='lg'] > & {
+    --font-size: 15px;
+    --input-size: 40px;
+  }
+
+  /* [data-theme='dark'] & {} */
+`;
+const Control = (props) => {
+    const { children, selectProps: { active, busy, disabled, helpers, invalid, leader, length, readonly, size = 'md', style, theme, } } = props, rest = __rest(props, ["children", "selectProps"]);
+    return (jsx("div", Object.assign({ "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, helpers),
+        jsx(components.Control, Object.assign({ css: controlStyle }, rest),
+            leader,
+            children)));
+};
+/**
+ * Values
+ */
+const valueContainerStyle = css `
+  align-items: center;
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  gap: 4px;
+  overflow: hidden;
+  padding-block: 4px;
+`;
+const ValueContainer = (props) => (jsx(components.ValueContainer, Object.assign({ css: valueContainerStyle }, props)));
+const multiValueStyle = css `
+  align-items: center;
+  background: ${colors.ELEMENT_FOCUS};
+  border-radius: 6px;
+  color: ${colors.WHITE};
+  cursor: default;
+  display: flex;
+  font-weight: 600;
+  gap: 4px;
+  height: 24px;
+  padding-inline: 8px 4px;
+  user-select: none;
+
+  [data-icon] {
+    cursor: pointer;
+  }
+`;
+const MultiValue = (props) => {
+    const { children, removeProps } = props;
+    return (jsx("div", { css: multiValueStyle },
+        children,
+        jsx(Icon, Object.assign({ name: "Times", size: "xs" }, removeProps))));
+};
+/**
+ * Input
+ */
+const placeholderStyle = css `
+  color: var(--input-placeholder-color);
+  padding-left: 1px;
+  position: absolute;
+`;
+const Placeholder = (props) => (jsx(components.Placeholder, Object.assign({ css: placeholderStyle }, props)));
+const inputStyle = css `
+  word-break: break-all;
+
+  input {
+    ${input$1};
+  }
+`;
+const Input = (props) => jsx(components.Input, Object.assign({ css: inputStyle }, props));
+/**
+ * Indicators
+ */
+const indicatorStyle = css `
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s;
+`;
+const indicatorsContainerStyle = css `
+  align-items: center;
+  display: flex;
+  gap: 8px;
+`;
+const IndicatorsContainer = (props) => (jsx(components.IndicatorsContainer, Object.assign({ css: indicatorsContainerStyle }, props)));
+const ClearIndicator = (props) => {
+    return (jsx(components.ClearIndicator, Object.assign({ css: indicatorStyle }, props),
+        jsx(Icon, { name: "Times", size: "xs" })));
+};
+const DropdownIndicator = (props) => {
+    const { selectProps: { menuIsOpen }, } = props;
+    return (jsx(components.DropdownIndicator, Object.assign({ css: [indicatorStyle, menuIsOpen ? { transform: 'rotateX(180deg)' } : undefined] }, props),
+        jsx(Icon, { name: "ChevronDown", size: "xs" })));
+};
+const loadingIndicatorStyle = css `
+  --color: ${colors.ELEMENT_PRIMARY};
+  --gap: 2px;
+  --range: 4px;
+  --size: 4px;
+`;
+const LoadingIndicator = () => jsx(Idle, { css: loadingIndicatorStyle });
+/**
+ * Menu
+ * TODO: Implement MenuProps
+ */
+const menuStyle = css `
+  --size: 100%;
+
+  position: absolute;
+`;
+const MenuContainer = (props) => {
+    const { cx, innerRef, innerProps } = props, rest = __rest(props, ["cx", "innerRef", "innerProps"]);
+    return jsx(Menu, Object.assign({ css: menuStyle, ref: innerRef }, innerProps, rest));
+};
+const menuListStyle = css `
+  overflow-y: auto;
+  position: relative;
+`;
+const MenuList = (props) => {
+    const { selectProps: { maxMenuHeight } } = props, rest = __rest(props, ["selectProps"]);
+    return jsx(components.MenuList, Object.assign({ css: [menuListStyle, { maxHeight: maxMenuHeight }] }, rest));
+};
+const Option = (props) => {
+    const { cx, innerRef, innerProps, isDisabled, isFocused, isSelected } = props, rest = __rest(props, ["cx", "innerRef", "innerProps", "isDisabled", "isFocused", "isSelected"]);
+    return (jsx(MenuItem, Object.assign({ active: isSelected, as: "div", "data-hover": isFocused || null, disabled: isDisabled, ref: innerRef }, innerProps, rest)));
+};
+/**
+ * Message
+ */
+const messageStyle = css `
+  ${paragraph};
+`;
+const LoadingMessage = (props) => {
+    return jsx(components.LoadingMessage, Object.assign({ css: messageStyle }, props));
+};
+const NoOptionsMessage = (props) => {
+    return jsx(components.NoOptionsMessage, Object.assign({ css: messageStyle }, props));
+};
+/**
+ * Select
+ */
+// Drop default styles
+const styles = new Proxy({}, { get: (target, propKey) => () => { } });
+const Select = forwardRef((props, ref) => {
+    const { active, busy, disabled, invalid, readonly, style } = props, rest = __rest(props, ["active", "busy", "disabled", "invalid", "readonly", "style"]);
+    const helpers = Object.fromEntries(Object.entries(props).filter(([key]) => ['data-hover', 'data-qa'].includes(key)));
+    const selectProps = Object.assign({ active,
+        busy,
+        disabled,
+        helpers,
+        invalid,
+        readonly,
+        style }, rest);
+    return (jsx(ReactSelect, Object.assign({ components: {
+            ClearIndicator,
+            Control,
+            DropdownIndicator,
+            IndicatorsContainer,
+            IndicatorSeparator: () => null,
+            Input,
+            LoadingIndicator,
+            LoadingMessage,
+            Menu: MenuContainer,
+            MenuList,
+            MultiValue,
+            NoOptionsMessage,
+            Option,
+            Placeholder,
+            SelectContainer,
+            ValueContainer,
+        }, isDisabled: readonly || disabled, isLoading: busy, menuIsOpen: active, ref: ref, styles: styles }, selectProps)));
+});
+
+/**
  * Styled RC Slider wrapper
  * @see https://slider.react-component.now.sh/
  */
@@ -1855,7 +2321,7 @@ const Textarea = forwardRef((_a, ref) => {
             } }))));
 });
 const Container$1 = styled.label `
-  ${container};
+  ${inputContainer};
 
   position: relative;
   padding-block: calc(0.8 * var(--input-indent));
@@ -1880,197 +2346,6 @@ const Element = styled.textarea `
   }
   [data-resize='none'] & {
     resize: none;
-  }
-`;
-
-/**
- * Context menu
- */
-const Menu = (_a) => {
-    var { active, justify, padding, size, theme } = _a, props = __rest(_a, ["active", "justify", "padding", "size", "theme"]);
-    const delegated = Object.assign({}, props);
-    return (React.createElement(MenuContainer, Object.assign({ "data-active": active || null, "data-justify": justify || null, "data-padding": padding || null, "data-theme": theme || null, style: { ['--size']: size } }, delegated)));
-};
-/**
- * Note that [data-hover] and [data-pressed] are here only to help
- * better illustrate `:hover` and `:active` state in the dedicated story.
- */
-const MenuContainer = styled.section `
-  --background-color: ${colors.WHITE};
-  --border-color: ${colors.WHITE};
-  --border-size: 2px;
-  --box-shadow: #cbcedc;
-  --gap: 4px;
-  --indent: 8px;
-  --radius: 6px;
-  --size: ;
-
-  background-color: var(--background-color);
-  border: var(--border-size) solid var(--border-color);
-  border-radius: var(--radius);
-  box-shadow: 0 3px 9px var(--box-shadow);
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: var(--gap);
-  padding: calc(1.5 * var(--indent)) var(--indent);
-  position: relative;
-  user-select: none;
-  width: var(--size);
-  z-index: 1;
-
-  &[data-padding] {
-    padding: calc(2 * var(--indent));
-    padding-top: calc(1.5 * var(--indent));
-  }
-
-  [data-theme='dark'] &,
-  &[data-theme='dark'] {
-    --background-color: ${colors.DARK_BACKGROUND_PRIMARY};
-    --border-color: ${colors.DARK_STROKE};
-    --box-shadow: ${colors.BLACK};
-  }
-`;
-
-const MenuDivider = styled.div `
-  --color: ${colors.STROKE};
-  --size: 2px;
-
-  background-color: var(--color);
-  border-radius: 1000px;
-  height: var(--size);
-
-  [data-theme='dark'] & {
-    --color: ${colors.DARK_STROKE};
-  }
-`;
-
-/**
- * Context menu item
- */
-const MenuItem = (_a) => {
-    var { active, as = 'button', disabled, justify, theme } = _a, props = __rest(_a, ["active", "as", "disabled", "justify", "theme"]);
-    const delegated = Object.assign({}, props);
-    return (React.createElement(MenuItemContainer, Object.assign({ as: as, "data-active": active || null, "data-disabled": disabled || null, "data-justify": justify || null, "data-theme": theme || null, disabled: as === 'button' ? !!disabled : undefined, type: as === 'button' ? 'button' : undefined }, delegated)));
-};
-const MenuItemContainer = styled.button `
-  ${button};
-
-  --background-color: ;
-  --color: ;
-  --gap: 8px;
-  --indent: 8px;
-  --radius: 6px;
-  --size: 32px;
-
-  align-items: center;
-  background-color: var(--background-color);
-  border: 0;
-  border-radius: var(--radius);
-  cursor: pointer;
-  display: flex;
-  gap: var(--gap);
-  min-height: var(--size);
-  outline: 0;
-  padding: var(--indent);
-  text-align: left;
-  transition-duration: 0.2s;
-  transition-property: background-color, color;
-  transition-timing-function: ease-in-out;
-
-  &[data-justify],
-  [data-justify] & {
-    justify-content: space-between;
-
-    & > :not([data-icon]) {
-      flex: 1;
-    }
-  }
-
-  .primary,
-  .secondary {
-    transition: color 0.2s;
-  }
-  .primary {
-    color: var(--color, inherit);
-
-    & + .secondary {
-      margin-top: 2px;
-    }
-  }
-  .secondary {
-    ${paragraph};
-    color: var(--color, inherit);
-
-    --color: ${colors.ELEMENT_TERTIARY};
-  }
-
-  &:is(:active, [data-pressed]) {
-    --background-color: ${colors.ELEMENT_SECONDARY};
-    --color: ${colors.ELEMENT_PRIMARY};
-  }
-  &:is(:focus, :hover, [data-hover]) {
-    --background-color: ${colors.ELEMENT_SECONDARY};
-  }
-  &:is([data-active]) {
-    --color: ${colors.ELEMENT_PRIMARY};
-  }
-
-  &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]) {
-    .primary {
-      --color: ${colors.ELEMENT_PRIMARY};
-    }
-    .secondary {
-      --color: ${colors.TEXT_PRIMARY};
-    }
-  }
-
-  &:is([data-disabled]) {
-    cursor: default;
-    pointer-events: none;
-
-    &,
-    .primary,
-    .secondary {
-      --color: ${colors.ELEMENT_TERTIARY};
-    }
-  }
-
-  [data-theme='dark'] & {
-    --color: ${colors.WHITE};
-
-    &:is(:active, [data-pressed]) {
-      --background-color: ${colors.DARK_ELEMENT_FOCUS};
-    }
-    &:is(:focus, :hover, [data-hover]) {
-      --background-color: ${colors.DARK_ELEMENT_ACTIVE};
-    }
-
-    &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]) {
-      .primary,
-      .secondary {
-        --color: ${colors.WHITE};
-      }
-    }
-
-    &:is([data-disabled]) {
-      &,
-      .primary,
-      .secondary {
-        --color: ${colors.DARK_ELEMENT_TERTIARY};
-      }
-    }
-  }
-`;
-
-const MenuTitle = styled.h5 `
-  ${h3};
-
-  margin-bottom: 12px;
-  margin-top: 8px;
-
-  [data-theme='dark'] & {
-    --color: ${colors.WHITE};
   }
 `;
 
@@ -2235,7 +2510,7 @@ const NavItemContainer = styled.button `
 /**
  * Navigation item
  */
-const Nav = (_a, ref) => {
+const Nav = (_a) => {
     var { as = 'nav', theme } = _a, props = __rest(_a, ["as", "theme"]);
     return (React.createElement(NavContainer, Object.assign({ as: as, "data-theme": theme || null }, props)));
 };
@@ -2410,5 +2685,5 @@ const TableContainer = styled.table `
   }
 `;
 
-export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldText, Flex, Grid, Icon, Idle, Input, Menu, MenuDivider, MenuItem, MenuTitle, Nav, NavContainer, NavItem, NumberInput, Order, Range, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Textarea, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input$2 as input, label, paragraph };
+export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldText, Flex, Grid, Icon, Idle, Input$1 as Input, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuTitle, Nav, NavContainer, NavItem, NumberInput, Order, Range, Select, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Textarea, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input$2 as input, label, paragraph };
 //# sourceMappingURL=index.js.map

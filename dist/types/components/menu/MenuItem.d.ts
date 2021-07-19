@@ -24,5 +24,5 @@ export interface MenuItemProps extends HTMLAttributes<HTMLElement> {
 /**
  * Context menu item
  */
-export declare const MenuItem: React.FC<MenuItemProps>;
+export declare const MenuItem: React.ForwardRefExoticComponent<MenuItemProps & React.RefAttributes<HTMLButtonElement>>;
 //# sourceMappingURL=MenuItem.d.ts.map

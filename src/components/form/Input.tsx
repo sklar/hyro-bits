@@ -5,7 +5,7 @@ import { colors } from '../../theme';
 import { truncate } from '../../utils/helpers';
 import { SizeType } from '../../utils/types';
 import { Idle as Indicator } from '../indicator';
-import { affix, container, input } from './Input.styles';
+import { inputAffix, inputContainer, input } from './Input.styles';
 
 export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /**
@@ -124,7 +124,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
 const Container = styled.label`
   --gap: 1px;
 
-  ${container};
+  ${inputContainer};
 
   button {
     --button-radius: 4px;
@@ -141,9 +141,9 @@ const Element = styled.input`
 `;
 
 const Prefix = styled.span`
-  ${affix};
+  ${inputAffix};
 `;
 
 const Suffix = styled.span`
-  ${affix};
+  ${inputAffix};
 `;

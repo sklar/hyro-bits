@@ -5,7 +5,15 @@ import { withDesign } from 'storybook-addon-designs';
 
 import { Legend, mapArgTypes } from '../../stories';
 import { Button, Flex, Grid, Icon, Switch, Text } from '../index';
-import { Menu, MenuDivider, MenuItem, MenuProps, MenuTitle } from './index';
+import {
+  Menu,
+  MenuDivider,
+  MenuGroup,
+  MenuGroupTitle,
+  MenuItem,
+  MenuProps,
+  MenuTitle,
+} from './index';
 
 const decorators = [withDesign];
 
@@ -336,6 +344,33 @@ const TemplateOverview: Story<StoryProps> = ({ size, ...args }) => (
       </MenuItem>
     </Menu>
 
+    <Menu {...args} size="192px">
+      <MenuGroup>
+        <MenuGroupTitle>Group 1</MenuGroupTitle>
+        <MenuItem as="label">
+          <Switch appearance="radio" as="span" label="Option 1.1" name="foo" />
+        </MenuItem>
+        <MenuItem as="label">
+          <Switch appearance="radio" as="span" label="Option 1.2" name="foo" defaultChecked />
+        </MenuItem>
+        <MenuItem as="label">
+          <Switch appearance="radio" as="span" label="Option 1.3" name="foo" />
+        </MenuItem>
+      </MenuGroup>
+      <MenuGroup>
+        <MenuGroupTitle>Group 2</MenuGroupTitle>
+        <MenuItem as="label">
+          <Switch appearance="checkbox" as="span" label="Option 2.1" name="moo" />
+        </MenuItem>
+        <MenuItem as="label">
+          <Switch appearance="checkbox" as="span" label="Option 2.2" name="moo" defaultChecked />
+        </MenuItem>
+        <MenuItem as="label">
+          <Switch appearance="checkbox" as="span" label="Option 2.3" name="moo" />
+        </MenuItem>
+      </MenuGroup>
+    </Menu>
+
     <Flex direction="column" gap="1em">
       <Menu {...args} padding size="300px">
         <MenuTitle>Assign Triggers</MenuTitle>
@@ -426,9 +461,9 @@ Overview.args = {
 Overview.decorators = [
   ...decorators,
   (Story) => (
-    <Grid align="start" columns="repeat(3, auto)" gap="1em" justify="start">
+    <Flex align="start" gap="1em" justify="start" wrap>
       <Story />
-    </Grid>
+    </Flex>
   ),
 ];
 

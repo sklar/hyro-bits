@@ -18,6 +18,10 @@ export interface GridProps extends HTMLAttributes<HTMLElement> {
      */
     columns?: string;
     /**
+     * Flow
+     */
+    flow?: 'row' | 'column' | 'dense' | 'row dense' | 'column dense';
+    /**
      * Gap
      */
     gap?: string;

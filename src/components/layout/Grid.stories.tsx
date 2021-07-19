@@ -20,7 +20,7 @@ export default {
         type: { summary: 'ElementType<any>' },
       },
     }),
-    ...mapArgTypes(['align', 'justify'], {
+    ...mapArgTypes(['align', 'flow', 'justify'], {
       control: { type: 'select' },
       table: { category: 'Modifiers' },
     }),

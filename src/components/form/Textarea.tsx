@@ -3,7 +3,7 @@ import React, { ElementType, forwardRef, TextareaHTMLAttributes } from 'react';
 
 import { colors } from '../../theme';
 import { Idle as Indicator } from '../indicator';
-import { container, input } from './Input.styles';
+import { inputContainer, input } from './Input.styles';
 
 export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   /**
@@ -101,7 +101,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
 );
 
 const Container = styled.label`
-  ${container};
+  ${inputContainer};
 
   position: relative;
   padding-block: calc(0.8 * var(--input-indent));

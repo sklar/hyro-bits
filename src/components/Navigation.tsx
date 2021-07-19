@@ -133,7 +133,7 @@ export interface NavProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Navigation item
  */
-export const Nav: React.FC<NavProps> = ({ as = 'nav', theme, ...props }, ref): JSX.Element => (
+export const Nav: React.FC<NavProps> = ({ as = 'nav', theme, ...props }): JSX.Element => (
   <NavContainer as={as} data-theme={theme || null} {...props} />
 );
 
