@@ -1,4 +1,3 @@
-import replace from '@rollup/plugin-replace';
 import typescript from '@rollup/plugin-typescript';
 import filesize from 'rollup-plugin-filesize';
 
@@ -16,7 +15,6 @@ export default {
   },
   plugins: [
     filesize(),
-    replace({ delimiters: ['', ''], preventAssignment: true, values: { '../icons': './icons' } }),
     typescript({
       declaration: true,
       declarationDir: 'dist/types',

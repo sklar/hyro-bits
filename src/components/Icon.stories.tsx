@@ -7,7 +7,7 @@ import * as iconsBold from '../icons/bold';
 import * as iconsBoldMini from '../icons/mini';
 import { mapArgTypes } from '../stories';
 import { truncate } from '../utils/helpers';
-import { Flex, Icon, IconProps } from './index';
+import { Flex, Icon, IconProps, IconNameType } from './index';
 
 interface StoryProps extends IconProps {
   icons: React.FC[];
@@ -48,7 +48,7 @@ export default {
 const Template: Story<StoryProps> = ({ icons, size }) => (
   <>
     {Object.values(icons).map((icon, index) => {
-      const name = icon.name.replace(ICO_PREFIX, '');
+      const name = icon.name.replace(ICO_PREFIX, '') as IconNameType;
       return (
         <Card key={index}>
           <div>{name}</div>

@@ -1,22 +1,24 @@
 import styled from '@emotion/styled';
-import React, { HTMLAttributes, SVGProps, useCallback, useState } from 'react';
+import React, { HTMLAttributes, SVGProps, useEffect, useState } from 'react';
 
-import { useEffectWithGuard } from '../hooks/use-effect-guard';
+import * as BOLD from '../icons/bold';
+import * as MINI from '../icons/mini';
+import { Size } from '../utils/constants';
 import { SizeType } from '../utils/types';
 
-const paths = {
-  xs: 'mini',
-  sm: 'bold',
-  md: 'bold',
-  lg: 'bold',
-  xl: 'bold',
-};
+type BoldKey = keyof typeof BOLD;
+const isBold = (name: string): name is BoldKey => name in BOLD;
+
+type MiniKey = keyof typeof MINI;
+const isMini = (name: string): name is MiniKey => name in MINI;
+
+export type IconNameType = BoldKey | MiniKey;
 
 export interface IconProps extends HTMLAttributes<HTMLElement> {
   /**
    * Name
    */
-  name: string;
+  name: IconNameType;
   /**
    * Size.
    */
@@ -26,32 +28,24 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
 /**
  * Icon wrapper.
  */
-export const Icon: React.VFC<IconProps> = ({ name, size = 'sm', ...props }): JSX.Element | null => {
+export const Icon: React.VFC<IconProps> = ({ name, size = 'sm', ...props }): JSX.Element => {
   const [Component, setComponent] = useState<React.FC<SVGProps<SVGSVGElement>>>();
 
-  const fetchIcon = useCallback(
-    async (mountGuard) => {
-      import(`../icons/${paths[size]}/${name}`)
-        .then((c) => {
-          if (mountGuard()) setComponent(c.default);
-        })
-        .catch((e) => {
-          console.error(`${name} icon not found!`);
-        });
-    },
-    [name, size]
-  );
-  useEffectWithGuard(fetchIcon);
+  useEffect(() => {
+    if (size === Size.XSMALL && isMini(name)) {
+      setComponent(MINI[name]);
+    } else if (isBold(name)) {
+      setComponent(BOLD[name]);
+    } else {
+      console.error(`${name} icon not found!`);
+    }
+  }, [name, size]);
 
-  if (!!Component) {
-    return (
-      <Container data-icon={name} data-size={size} {...props}>
-        {Component}
-      </Container>
-    );
-  } else {
-    return null;
-  }
+  return (
+    <Container data-icon={name} data-size={size} {...props}>
+      {Component}
+    </Container>
+  );
 };
 
 const Container = styled.span`

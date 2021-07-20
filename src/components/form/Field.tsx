@@ -6,7 +6,7 @@ import React, { HTMLAttributes } from 'react';
 
 import { base, colors, label } from '../../theme';
 import { ThemeType } from '../../utils';
-import { Icon } from '../Icon';
+import { Icon, IconNameType } from '../Icon';
 import { Flex, FlexProps } from '../layout';
 
 /**
@@ -59,7 +59,7 @@ const iconName = (theme: FieldMessageTheme) => {
     notice: 'MapMarkerInfo',
     success: 'ThumbsUp',
   };
-  return names[theme];
+  return names[theme] as IconNameType;
 };
 
 export interface FieldMessageProps extends FlexProps {
