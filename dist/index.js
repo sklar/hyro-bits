@@ -1,12 +1,13 @@
 /** Components v2.0.0 */
 
-import { keyframes, css, jsx } from '@emotion/react';
+import { keyframes, css, jsx, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import React, { createElement, useState, useEffect, forwardRef, useRef, useCallback, useMemo, Fragment } from 'react';
 import { useCombinedRef, useDependantState, useUpdatedRef } from '@spicy-hooks/core';
 import { transparentize } from 'color2k';
 import RcSlider, { Range as Range$1 } from 'rc-slider';
 import ReactSelect, { components } from 'react-select';
+import RcTooltip from 'rc-tooltip';
 
 /*! *****************************************************************************
 Copyright (c) Microsoft Corporation.
@@ -48,7 +49,7 @@ const EASING = {
 /**
  * Fade In.
  */
-keyframes `
+const fadeIn = keyframes `
   0%    { opacity: 0; }
   100%  { opacity: 1; }
 `;
@@ -59,7 +60,7 @@ keyframes `
 const Idle = (_a) => {
     var { color, delay = 100, duration = 500, gap = '4px', range = '6px', size = '5px' } = _a, props = __rest(_a, ["color", "delay", "duration", "gap", "range", "size"]);
     const delegated = Object.assign({ color, delay, duration, gap, range, size }, props);
-    return (React.createElement(Container$b, Object.assign({}, delegated),
+    return (React.createElement(Container$c, Object.assign({}, delegated),
         React.createElement(Element$2, null),
         React.createElement(Element$2, null),
         React.createElement(Element$2, null)));
@@ -100,7 +101,7 @@ const Element$2 = styled.div `
     syntax: '<length>';
   }
 `;
-const Container$b = styled.div `
+const Container$c = styled.div `
   ${({ color }) => color && `--color: ${color}`};
   ${({ delay }) => `--delay: ${delay}ms`};
   ${({ duration }) => `--duration: ${duration}ms`};
@@ -1277,9 +1278,9 @@ const Icon = (_a) => {
             console.error(`${name} icon not found!`);
         }
     }, [name, size]);
-    return (React.createElement(Container$a, Object.assign({ "data-icon": name, "data-size": size }, props), Component));
+    return (React.createElement(Container$b, Object.assign({ "data-icon": name, "data-size": size }, props), Component));
 };
-const Container$a = styled.span `
+const Container$b = styled.span `
   --icon-size: ;
 
   display: inline-block;
@@ -1311,12 +1312,12 @@ const Container$a = styled.span `
  */
 const Order = (_a) => {
     var { direction, size = 'xs' } = _a, props = __rest(_a, ["direction", "size"]);
-    return (React.createElement(Container$9, Object.assign({ "data-direction": direction }, props),
+    return (React.createElement(Container$a, Object.assign({ "data-direction": direction }, props),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null }),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null }),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null })));
 };
-const Container$9 = styled.div `
+const Container$a = styled.div `
   --opacity-2: 0;
   --opacity-3: 0;
   --path: ;
@@ -1365,7 +1366,7 @@ const Button = forwardRef((_a, ref) => {
     var { active, busy, children, disabled, href, icon, placement, round, size = 'md', synthetic, text, theme, toggle, type = 'button', variant = 'secondary' } = _a, props = __rest(_a, ["active", "busy", "children", "disabled", "href", "icon", "placement", "round", "size", "synthetic", "text", "theme", "toggle", "type", "variant"]);
     const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
     const delegated = Object.assign({ size, variant }, props);
-    return (React.createElement(Container$8, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, delegated),
+    return (React.createElement(Container$9, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, delegated),
         leader,
         text ? text : children,
         trailer,
@@ -1527,7 +1528,7 @@ modification['tertiary'] = css `
     }
   }
 `;
-const Container$8 = styled.button `
+const Container$9 = styled.button `
   ${base};
 
   &[data-round] {
@@ -1611,9 +1612,9 @@ const ClickOutsideGuard = forwardRef((_a, ref) => {
             };
         }
     });
-    return React.createElement(Container$7, Object.assign({ ref: combinedRef }, props));
+    return React.createElement(Container$8, Object.assign({ ref: combinedRef }, props));
 });
-const Container$7 = styled.div `
+const Container$8 = styled.div `
   display: contents;
 `;
 
@@ -1626,9 +1627,9 @@ const EMOTION_DISABLE_SSR = '/* emotion-disable-server-rendering-unsafe-selector
 const Flex = (_a) => {
     var { align, as = 'div', block, direction, gap, justify, wrap } = _a, props = __rest(_a, ["align", "as", "block", "direction", "gap", "justify", "wrap"]);
     const delegated = Object.assign({ align, block, direction, gap, justify }, props);
-    return React.createElement(Container$6, Object.assign({ as: as, "data-wrap": wrap || null }, delegated));
+    return React.createElement(Container$7, Object.assign({ as: as, "data-wrap": wrap || null }, delegated));
 };
-const Container$6 = styled.div `
+const Container$7 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'flex' : 'inline-flex'}`};
   ${({ direction }) => direction && direction !== 'row' && `flex-direction: ${direction}`};
@@ -1646,9 +1647,9 @@ const Container$6 = styled.div `
 const Grid = (_a) => {
     var { align, as = 'div', block, columns, flow, gap, justify, max = '1fr', min = '0px', sizing = 'auto-fit' } = _a, props = __rest(_a, ["align", "as", "block", "columns", "flow", "gap", "justify", "max", "min", "sizing"]);
     const delegated = Object.assign({ align, block, columns, gap, justify, max, min, sizing }, props);
-    return React.createElement(Container$5, Object.assign({ as: as }, delegated));
+    return React.createElement(Container$6, Object.assign({ as: as }, delegated));
 };
-const Container$5 = styled.div `
+const Container$6 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'grid' : 'inline-grid'}`};
   ${({ flow }) => flow && `grid-auto-flow: ${flow}`};
@@ -1689,9 +1690,9 @@ const truncate = css `
  */
 const Text = (_a) => {
     var { as = 'span', clamp, hyphens = 'manual', truncate, word = 'normal' } = _a, props = __rest(_a, ["as", "clamp", "hyphens", "truncate", "word"]);
-    return (React.createElement(Container$4, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, props)));
+    return (React.createElement(Container$5, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, props)));
 };
-const Container$4 = styled.span `
+const Container$5 = styled.span `
   &[data-clamp] {
     ${clamp};
   }
@@ -2100,7 +2101,7 @@ const Input$1 = forwardRef((_a, ref) => {
     var { active, affix, as = 'label', busy, disabled, invalid, leader, length, readonly, size = 'md', theme, trailer } = _a, inputProps = __rest(_a, ["active", "affix", "as", "busy", "disabled", "invalid", "leader", "length", "readonly", "size", "theme", "trailer"]);
     const [prefix, suffix] = Array.isArray(affix) ? affix : [affix];
     const _b = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['className', 'data-active', 'data-invalid', 'data-hover', 'style'].includes(key))), { style } = _b, containerProps = __rest(_b, ["style"]);
-    return (React.createElement(Container$3, Object.assign({ as: as, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
+    return (React.createElement(Container$4, Object.assign({ as: as, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
         prefix && React.createElement(Prefix, null, prefix),
         leader,
         React.createElement(Element$1, Object.assign({ ref: ref, disabled: disabled, readOnly: readonly }, inputProps)),
@@ -2110,7 +2111,7 @@ const Input$1 = forwardRef((_a, ref) => {
         trailer,
         suffix && React.createElement(Suffix, null, suffix)));
 });
-const Container$3 = styled.label `
+const Container$4 = styled.label `
   --gap: 1px;
 
   ${inputContainer};
@@ -3025,17 +3026,17 @@ const Slider = (_a) => {
 const Switch = forwardRef((_a, ref) => {
     var { as = 'label', children, disabled, label, theme, type = 'checkbox', appearance = type === 'radio' ? 'radio' : 'checkbox' } = _a, inputProps = __rest(_a, ["as", "children", "disabled", "label", "theme", "type", "appearance"]);
     const containerProps = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['className', 'data-hover', 'style'].includes(key)));
-    return (React.createElement(Container$2, Object.assign({ as: as, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null }, containerProps),
+    return (React.createElement(Container$3, Object.assign({ as: as, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null }, containerProps),
         React.createElement("input", Object.assign({ ref: ref, type: type, disabled: disabled }, inputProps)),
         React.createElement(Indicator, { "data-appearance": appearance }),
         children,
-        label && React.createElement(Label, null, label)));
+        label && React.createElement(Label$1, null, label)));
 });
 /**
  * Note that [data-hover] are here only to help
  * better illustrate `:hover` state in the dedicated story.
  */
-const Container$2 = styled.label `
+const Container$3 = styled.label `
   --switch-animation-duration: 0.2s;
   --switch-border-color: ${colors.STROKE};
   --switch-border-size: 1.5px;
@@ -3213,7 +3214,7 @@ const Indicator = styled.span `
     }
   }
 `;
-const Label = styled.span `
+const Label$1 = styled.span `
   ${button};
   ${truncate};
 
@@ -3229,13 +3230,13 @@ const Label = styled.span `
 const Textarea = forwardRef((_a, ref) => {
     var { active, as = 'label', busy, disabled, invalid, length, readonly, resize = 'vertical', theme } = _a, textareaProps = __rest(_a, ["active", "as", "busy", "disabled", "invalid", "length", "readonly", "resize", "theme"]);
     const _b = Object.fromEntries(Object.entries(textareaProps).filter(([key]) => ['className', 'data-active', 'data-invalid', 'data-hover', 'style'].includes(key))), { style } = _b, containerProps = __rest(_b, ["style"]);
-    return (React.createElement(Container$1, Object.assign({ as: as, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-resize": resize, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
+    return (React.createElement(Container$2, Object.assign({ as: as, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-resize": resize, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
         React.createElement(Element, Object.assign({ ref: ref, disabled: disabled, readOnly: readonly }, textareaProps)),
         busy && (React.createElement(Idle, { gap: "2px", size: "4px", "data-indicator": true, style: {
                 ['--color']: colors.ELEMENT_PRIMARY,
             } }))));
 });
-const Container$1 = styled.label `
+const Container$2 = styled.label `
   ${inputContainer};
 
   position: relative;
@@ -3270,11 +3271,11 @@ const Element = styled.textarea `
 const Status = (_a) => {
     var { children, icon, text, theme } = _a, props = __rest(_a, ["children", "icon", "text", "theme"]);
     const isBeacon = !(text || children);
-    return (React.createElement(Container, Object.assign({ "data-beacon": isBeacon || null, "data-theme": theme || null }, props),
+    return (React.createElement(Container$1, Object.assign({ "data-beacon": isBeacon || null, "data-theme": theme || null }, props),
         icon,
         React.createElement(Text, { truncate: true }, text ? text : children)));
 };
-const Container = styled.span `
+const Container$1 = styled.span `
   ${base$1};
 
   --status-background-color: #e7ebf2;
@@ -3600,5 +3601,141 @@ const TableContainer = styled.table `
   }
 `;
 
-export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldText, Flex, Grid, Icon, Idle, Input$1 as Input, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuTitle, Nav, NavContainer, NavItem, NumberInput, Order, Range, Select, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Textarea, Th, Thead, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input$2 as input, label, paragraph };
+const CLASSNAME = 't00ltip';
+const DELAY_ENTER = 0.4;
+const DELAY_LEAVE = 0.1;
+const SEPARATOR = '+';
+const SUPER_KEY = 'super';
+const SUPER_VALUE = navigator.platform.includes('Mac') ? '⌘' : 'Ctrl';
+/**
+ * Tooltip wrapper.
+ * TOTO: Replace `rc-tooltip` with some lightweight alternative, e.g. popper, tippy or tether.
+ */
+const Tooltip = (_a) => {
+    var { children, delayEnter = DELAY_ENTER, delayLeave = DELAY_LEAVE, disabled, label, placement, shortcut = '', size = '192px' } = _a, props = __rest(_a, ["children", "delayEnter", "delayLeave", "disabled", "label", "placement", "shortcut", "size"]);
+    const shortcuts = useMemo(() => shortcut
+        .split(SEPARATOR)
+        .map((key, i) => React.createElement(Key, { key: i }, key.replace(SUPER_KEY, SUPER_VALUE)))
+        .reduce((acc, key) => {
+        return acc.length === 0 ? [key] : [...acc, React.createElement(Separator, null), key];
+    }, []), [shortcut]);
+    if (disabled) {
+        return React.createElement(React.Fragment, null, children);
+    }
+    return (React.createElement(React.Fragment, null,
+        React.createElement(Global, { styles: globalStyle }),
+        React.createElement(RcTooltip, Object.assign({ arrowContent: React.createElement(Arrow, null), mouseEnterDelay: delayEnter, mouseLeaveDelay: delayLeave, overlay: React.createElement(Container, { style: { ['--size']: size } },
+                label && React.createElement(Label, { "data-label": true }, label),
+                shortcut && React.createElement(Shortcut, null, shortcuts)), placement: placement, prefixCls: CLASSNAME }, props), children)));
+};
+const globalStyle = css `
+  .${CLASSNAME} {
+    --background-color: #020511;
+
+    --arrow-bottom: auto;
+    --arrow-left: auto;
+    --arrow-right: auto;
+    --arrow-size: 16px;
+    --arrow-top: auto;
+    --arrow-translate-x: 0;
+    --arrow-translate-y: 0;
+
+    animation: ${fadeIn} 0.2s 0.1s both;
+    display: block;
+    position: absolute;
+    pointer-events: none;
+    z-index: 1;
+
+    &[class*='hidden'] {
+      display: none;
+    }
+
+    &[class*='bottom'] {
+      --arrow-top: 0;
+      --arrow-translate-y: -2px;
+    }
+    &[class*='bottom'],
+    &[class*='top'] {
+      --arrow-left: 50%;
+      --arrow-translate-x: -50%;
+    }
+    &[class*='top'] {
+      --arrow-bottom: 0;
+      --arrow-translate-y: 2px;
+    }
+    &[class*='left'] {
+      --arrow-right: 0;
+      --arrow-translate-x: 2px;
+    }
+    &[class*='left'],
+    &[class*='right'] {
+      --arrow-top: 50%;
+      --arrow-translate-y: -50%;
+    }
+    &[class*='right'] {
+      --arrow-left: 0;
+      --arrow-translate-x: -2px;
+    }
+  }
+`;
+const Container = styled.div `
+  ${base$1};
+
+  --color: ${colors.WHITE};
+  --font-size: 12px;
+  --font-weight: 600;
+  --line-height: calc(16 / 12);
+
+  background-color: var(--background-color);
+  border-radius: 6px;
+  color: ${colors.WHITE};
+  display: inline-flex;
+  isolation: isolate;
+  max-width: var(--size);
+  padding: 10px;
+`;
+const Arrow = styled.div `
+  background-color: var(--background-color);
+  border-radius: 2px;
+  inset: var(--arrow-top) var(--arrow-right) var(--arrow-bottom) var(--arrow-left);
+  height: var(--arrow-size);
+  position: absolute;
+  transform: translate(var(--arrow-translate-x), var(--arrow-translate-y)) rotate(45deg);
+  width: var(--arrow-size);
+`;
+const Label = styled.span ``;
+const Shortcut = styled.span `
+  align-items: center;
+  display: inline-flex;
+  gap: 4px;
+  margin: -4px;
+
+  [data-label] + & {
+    margin-left: 10px;
+  }
+`;
+const Key = styled.kbd `
+  --arrow-size: 24px;
+
+  background-color: #50525a;
+  border-radius: 4px;
+  display: inline-grid;
+  font-family: inherit;
+  font-weight: 700;
+  height: var(--arrow-size);
+  min-width: var(--arrow-size);
+  padding-inline: 6px;
+  place-items: center;
+  text-transform: capitalize;
+`;
+const Separator = styled.span `
+  --separator-size: 8px;
+
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 8 8'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-width='1.5' d='M4 1v6'/%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-width='1.5' d='M7 4H1'/%3E%3C/svg%3E");
+  display: inline-block;
+  height: var(--separator-size);
+  width: var(--separator-size);
+`;
+
+export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldText, Flex, Grid, Icon, Idle, Input$1 as Input, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuTitle, Nav, NavContainer, NavItem, NumberInput, Order, Range, Select, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Textarea, Th, Thead, Tooltip, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input$2 as input, label, paragraph };
 //# sourceMappingURL=index.js.map

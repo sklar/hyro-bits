@@ -10,3 +10,4 @@ export * from './Navigation';
 export * from './Status';
 export * from './Table';
 export * from './Text';
+export * from './Tooltip';
