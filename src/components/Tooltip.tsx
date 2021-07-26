@@ -69,9 +69,9 @@ export const Tooltip: React.FC<TooltipProps> = ({
     () =>
       shortcut
         .split(SEPARATOR)
-        .map((key, i) => <Key key={i}>{key.replace(SUPER_KEY, SUPER_VALUE)}</Key>)
-        .reduce((acc: JSX.Element[], key) => {
-          return acc.length === 0 ? [key] : [...acc, <Separator />, key];
+        .map((key, i) => <Key key={`key-${i}`}>{key.replace(SUPER_KEY, SUPER_VALUE)}</Key>)
+        .reduce((acc: JSX.Element[], key, i) => {
+          return acc.length === 0 ? [key] : [...acc, <Separator key={`separator-${i}`} />, key];
         }, []),
     [shortcut]
   );

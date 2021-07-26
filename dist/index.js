@@ -3615,9 +3615,9 @@ const Tooltip = (_a) => {
     var { children, delayEnter = DELAY_ENTER, delayLeave = DELAY_LEAVE, disabled, label, placement, shortcut = '', size = '192px' } = _a, props = __rest(_a, ["children", "delayEnter", "delayLeave", "disabled", "label", "placement", "shortcut", "size"]);
     const shortcuts = useMemo(() => shortcut
         .split(SEPARATOR)
-        .map((key, i) => React.createElement(Key, { key: i }, key.replace(SUPER_KEY, SUPER_VALUE)))
-        .reduce((acc, key) => {
-        return acc.length === 0 ? [key] : [...acc, React.createElement(Separator, null), key];
+        .map((key, i) => React.createElement(Key, { key: `key-${i}` }, key.replace(SUPER_KEY, SUPER_VALUE)))
+        .reduce((acc, key, i) => {
+        return acc.length === 0 ? [key] : [...acc, React.createElement(Separator, { key: `separator-${i}` }), key];
     }, []), [shortcut]);
     if (disabled) {
         return React.createElement(React.Fragment, null, children);
