@@ -1,12 +1,16 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import React, { forwardRef, HTMLAttributes, ReactElement, ReactNode } from 'react';
+import React, { ElementType, forwardRef, HTMLAttributes, ReactElement, ReactNode } from 'react';
 
 import { Idle as Indicator } from '../components/indicator';
 import { button, colors } from '../theme';
 import { SizeType, ThemeType, VariantType } from '../utils/types';
 
 export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> {
+  /**
+   * Render as HTML element
+   */
+  as?: ElementType<any>;
   /**
    * Children
    */
@@ -78,6 +82,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       active,
+      as,
       busy,
       children,
       disabled,
@@ -101,7 +106,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
 
     return (
       <Container
-        as={href ? 'a' : 'button'}
+        as={as ?? (href ? 'a' : 'button')}
         data-active={active || null}
         data-busy={busy || null}
         data-icon={
@@ -164,7 +169,6 @@ const base = css`
   outline: 0;
   padding: 0 var(--button-indent);
   position: relative;
-  text-align: center;
   text-decoration: none;
   transition-duration: 0.2s;
   transition-property: background-color, border-color, color;

@@ -106,9 +106,12 @@ const messageStyle = css`
 export interface FieldProps extends FlexProps {}
 
 export const Field: React.FC<FieldProps> = (props): JSX.Element => (
-  <Flex css={fieldStyle} direction="column" gap="8px" {...props} />
+  <Flex block css={fieldStyle} direction="column" gap="8px" {...props} />
 );
 
 const fieldStyle = css`
   --field-indent: 0;
+
+  flex: 1;
+  padding-block: 12px;
 `;

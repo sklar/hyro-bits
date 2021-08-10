@@ -4,6 +4,7 @@ import { css, jsx } from '@emotion/react';
 import { CSSProperties, forwardRef, ReactElement } from 'react';
 import ReactSelect, {
   components,
+  GroupProps,
   GroupTypeBase,
   IndicatorContainerProps,
   IndicatorProps,
@@ -12,14 +13,17 @@ import ReactSelect, {
   NamedProps,
   OptionTypeBase,
   PlaceholderProps,
+  SingleValueProps,
   ValueContainerProps,
 } from 'react-select';
 
 import { colors, paragraph } from '../../theme';
 import { SizeType } from '../../utils';
+import { truncate } from '../../utils/helpers';
 import { Icon } from '../Icon';
 import { Idle } from '../indicator';
 import { Menu, MenuItem } from '../menu';
+import { menuGroup, menuGroupTitle } from '../menu/Menu.styles';
 import { input, inputContainer } from './Input.styles';
 
 /**
@@ -29,9 +33,12 @@ const containerStyle = css`
   position: relative;
 `;
 
-const SelectContainer = (props: any) => (
-  <components.SelectContainer css={containerStyle} {...props} />
-);
+const SelectContainer = (props: any) => {
+  const {
+    selectProps: { style },
+  } = props;
+  return <components.SelectContainer css={[containerStyle, style]} {...props} />;
+};
 
 /**
  * Control
@@ -80,7 +87,6 @@ const Control = (props: any) => {
       length,
       readonly,
       size = 'md',
-      style,
       theme,
     },
     ...rest
@@ -94,10 +100,9 @@ const Control = (props: any) => {
       data-readonly={readonly || null}
       data-size={size}
       data-theme={theme || null}
-      style={{ ['--input-length' as string]: length, ...style }}
       {...helpers}
     >
-      <components.Control css={controlStyle} {...rest}>
+      <components.Control css={[controlStyle, { ['--input-length' as string]: length }]} {...rest}>
         {leader}
         {children}
       </components.Control>
@@ -112,14 +117,27 @@ const valueContainerStyle = css`
   align-items: center;
   display: flex;
   flex: 1;
-  flex-wrap: wrap;
   gap: 4px;
   overflow: hidden;
   padding-block: 4px;
 `;
 
-const ValueContainer = (props: ValueContainerProps<any, any>) => (
-  <components.ValueContainer css={valueContainerStyle} {...props} />
+const ValueContainer = ({
+  selectProps: { isMulti, ...selectProps },
+  ...props
+}: ValueContainerProps<any, any>) => (
+  <components.ValueContainer
+    css={[
+      valueContainerStyle,
+      isMulti
+        ? css`
+            flex-wrap: wrap;
+          `
+        : null,
+    ]}
+    selectProps={selectProps}
+    {...props}
+  />
 );
 
 const multiValueStyle = css`
@@ -132,8 +150,13 @@ const multiValueStyle = css`
   font-weight: 600;
   gap: 4px;
   height: 24px;
+  max-width: 100%;
   padding-inline: 8px 4px;
   user-select: none;
+
+  [data-value] {
+    ${truncate};
+  }
 
   [data-icon] {
     cursor: pointer;
@@ -143,11 +166,18 @@ const MultiValue = (props: MultiValueProps<any, any>) => {
   const { children, removeProps } = props;
   return (
     <div css={multiValueStyle}>
-      {children}
+      <span data-value>{children}</span>
       <Icon name="Times" size="xs" {...removeProps} />
     </div>
   );
 };
+
+const singleValueStyle = css`
+  white-space: nowrap;
+`;
+const SingleValue = (props: SingleValueProps<any, any>) => (
+  <components.SingleValue css={singleValueStyle} {...props} />
+);
 
 /**
  * Input
@@ -229,9 +259,13 @@ const menuStyle = css`
   position: absolute;
 `;
 const MenuContainer = (props: any) => {
-  const { cx, innerRef, innerProps, ...rest } = props;
+  const { cx, innerProps, innerRef, ...rest } = props;
   return <Menu css={menuStyle} ref={innerRef} {...innerProps} {...rest} />;
 };
+
+const Group = (props: GroupProps<any, any>) => <components.Group css={menuGroup} {...props} />;
+
+const GroupHeading = (props: any) => <components.GroupHeading css={menuGroupTitle} {...props} />;
 
 const menuListStyle = css`
   overflow-y: auto;
@@ -246,7 +280,7 @@ const MenuList = (props: any) => {
 };
 
 const Option = (props: any) => {
-  const { cx, innerRef, innerProps, isDisabled, isFocused, isSelected, ...rest } = props;
+  const { cx, innerProps, innerRef, isDisabled, isFocused, isSelected, ...rest } = props;
   return (
     <MenuItem
       active={isSelected}
@@ -278,7 +312,33 @@ const NoOptionsMessage = (props: any) => {
  */
 
 // Drop default styles
-const styles = new Proxy({}, { get: (target, propKey) => () => {} });
+// const noopStyles = new Proxy({}, { get: (target, propKey) => () => {} });
+const noopStyles = [
+  'clearIndicator',
+  'container',
+  'control',
+  'dropdownIndicator',
+  'group',
+  'groupHeading',
+  'indicatorSeparator',
+  'indicatorsContainer',
+  'input',
+  'loadingIndicator',
+  'loadingMessage',
+  'menu',
+  'menuList',
+  'menuPortal',
+  'multiValue',
+  'multiValueLabel',
+  'multiValueRemove',
+  'noOptionsMessage',
+  'option',
+  'placeholder',
+  'singleValue',
+  'valueContainer',
+].reduce((acc, style) => {
+  return { ...acc, [style]: () => {} };
+}, {});
 
 export interface SelectProps
   extends Omit<NamedProps<OptionTypeBase, boolean, GroupTypeBase<any>>, 'theme'> {
@@ -324,7 +384,17 @@ export interface SelectProps
 
 export const Select = forwardRef<HTMLElement, SelectProps>(
   (props, ref): JSX.Element => {
-    const { active, busy, disabled, invalid, readonly, style, ...rest } = props;
+    const {
+      active,
+      busy,
+      components,
+      disabled,
+      invalid,
+      readonly,
+      style,
+      styles: componentStyles,
+      ...rest
+    } = props;
     const helpers = Object.fromEntries(
       Object.entries(props).filter(([key]) => ['data-hover', 'data-qa'].includes(key))
     );
@@ -338,6 +408,10 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
       style,
       ...rest,
     };
+    const customStyles = {
+      ...noopStyles,
+      ...componentStyles,
+    };
 
     return (
       <ReactSelect
@@ -345,6 +419,8 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
           ClearIndicator,
           Control,
           DropdownIndicator,
+          Group,
+          GroupHeading,
           IndicatorsContainer,
           IndicatorSeparator: () => null,
           Input,
@@ -357,13 +433,15 @@ export const Select = forwardRef<HTMLElement, SelectProps>(
           Option,
           Placeholder,
           SelectContainer,
+          SingleValue,
           ValueContainer,
+          ...components,
         }}
         isDisabled={readonly || disabled}
         isLoading={busy}
         menuIsOpen={active}
         ref={ref as any}
-        styles={styles}
+        styles={customStyles}
         {...selectProps}
       />
     );

@@ -1,14 +1,16 @@
 import { ChangeEventHandler, Dispatch, FocusEventHandler, KeyboardEvent } from 'react';
 export interface Options {
+    decimals?: number;
     format?: (arg: string) => string;
     max?: number;
     min?: number;
     onBlur?: FocusEventHandler<HTMLInputElement>;
     onChange?: ChangeEventHandler<HTMLInputElement>;
     onChangeValue: Dispatch<number>;
+    step?: number;
     value?: number;
 }
-export declare function useNumberInput({ format, max, min, onBlur, onChange, onChangeValue, value, }: Options): {
+export declare function useNumberInput({ decimals, format, max, min, onBlur, onChange, onChangeValue, step, value, }: Options): {
     handleDecrement: () => void;
     handleIncrement: () => void;
     handleInputBlur: (event: import("react").FocusEvent<HTMLInputElement>) => void;

@@ -299,9 +299,9 @@ const label = css `
 const input$2 = css `
   ${base$1};
 
-  --font-size: 13px;
-  --line-height: calc(16 / 13);
-  --font-weight: 500;
+  --font-size: 14px;
+  --line-height: calc(16 / 14);
+  --font-weight: 600;
 `;
 
 const Direction = {
@@ -1363,10 +1363,10 @@ const Container$a = styled.div `
  * Primary UI component for user interaction
  */
 const Button = forwardRef((_a, ref) => {
-    var { active, busy, children, disabled, href, icon, placement, round, size = 'md', synthetic, text, theme, toggle, type = 'button', variant = 'secondary' } = _a, props = __rest(_a, ["active", "busy", "children", "disabled", "href", "icon", "placement", "round", "size", "synthetic", "text", "theme", "toggle", "type", "variant"]);
+    var { active, as, busy, children, disabled, href, icon, placement, round, size = 'md', synthetic, text, theme, toggle, type = 'button', variant = 'secondary' } = _a, props = __rest(_a, ["active", "as", "busy", "children", "disabled", "href", "icon", "placement", "round", "size", "synthetic", "text", "theme", "toggle", "type", "variant"]);
     const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
     const delegated = Object.assign({ size, variant }, props);
-    return (React.createElement(Container$9, Object.assign({ as: href ? 'a' : 'button', "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, delegated),
+    return (React.createElement(Container$9, Object.assign({ as: as !== null && as !== void 0 ? as : (href ? 'a' : 'button'), "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, delegated),
         leader,
         text ? text : children,
         trailer,
@@ -1406,7 +1406,6 @@ const base = css `
   outline: 0;
   padding: 0 var(--button-indent);
   position: relative;
-  text-align: center;
   text-decoration: none;
   transition-duration: 0.2s;
   transition-property: background-color, border-color, color;
@@ -1987,9 +1986,12 @@ const messageStyle$1 = css `
     color: ${colors.SUCCESS};
   }
 `;
-const Field = (props) => (jsx(Flex, Object.assign({ css: fieldStyle, direction: "column", gap: "8px" }, props)));
+const Field = (props) => (jsx(Flex, Object.assign({ block: true, css: fieldStyle, direction: "column", gap: "8px" }, props)));
 const fieldStyle = css `
   --field-indent: 0;
+
+  flex: 1;
+  padding-block: 12px;
 `;
 
 /**
@@ -2098,10 +2100,10 @@ const inputAffix = css `
  * Input
  */
 const Input$1 = forwardRef((_a, ref) => {
-    var { active, affix, as = 'label', busy, disabled, invalid, leader, length, readonly, size = 'md', theme, trailer } = _a, inputProps = __rest(_a, ["active", "affix", "as", "busy", "disabled", "invalid", "leader", "length", "readonly", "size", "theme", "trailer"]);
+    var { active, affix, as = 'label', busy, className, disabled, invalid, leader, length, readonly, size = 'md', theme, trailer } = _a, inputProps = __rest(_a, ["active", "affix", "as", "busy", "className", "disabled", "invalid", "leader", "length", "readonly", "size", "theme", "trailer"]);
     const [prefix, suffix] = Array.isArray(affix) ? affix : [affix];
-    const _b = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['className', 'data-active', 'data-invalid', 'data-hover', 'style'].includes(key))), { style } = _b, containerProps = __rest(_b, ["style"]);
-    return (React.createElement(Container$4, Object.assign({ as: as, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
+    const _b = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['data-active', 'data-invalid', 'data-hover', 'style'].includes(key))), { style } = _b, containerProps = __rest(_b, ["style"]);
+    return (React.createElement(Container$4, Object.assign({ as: as, className: className, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
         prefix && React.createElement(Prefix, null, prefix),
         leader,
         React.createElement(Element$1, Object.assign({ ref: ref, disabled: disabled, readOnly: readonly }, inputProps)),
@@ -2135,14 +2137,27 @@ const Suffix = styled.span `
   ${inputAffix};
 `;
 
-function parseValue(rawValue, minValue, maxValue) {
-    const value = parseInt(rawValue, 10);
-    if (isNaN(value) || value < minValue || value > maxValue) {
+function countDecimals(number) {
+    if (Math.floor(number) === number) {
+        return 0;
+    }
+    return number.toString().split('.')[1].length || 0;
+}
+function roundToDecimal(number, decimals) {
+    return Number(number.toFixed(decimals));
+}
+function parseValue(rawValue, minValue, maxValue, decimals) {
+    const value = parseFloat(rawValue);
+    if (isNaN(value)) {
         return null;
     }
-    return value;
+    const roundedValue = roundToDecimal(value, decimals);
+    if (roundedValue < minValue || roundedValue > maxValue || countDecimals(value) > decimals) {
+        return null;
+    }
+    return roundedValue;
 }
-function useNumberInput({ format = (arg) => arg, max = Infinity, min = -Infinity, onBlur, onChange, onChangeValue, value, }) {
+function useNumberInput({ decimals = 0, format = (arg) => arg, max = Infinity, min = -Infinity, onBlur, onChange, onChangeValue, step = 1, value, }) {
     const [interimInputValue, setInterimInputValue] = useDependantState(() => format(value != null ? String(value) : ''), [value]);
     const valueRef = useUpdatedRef(value);
     const handleInputBlur = useCallback((event) => {
@@ -2153,46 +2168,43 @@ function useNumberInput({ format = (arg) => arg, max = Infinity, min = -Infinity
     const handleInputChange = useCallback((event) => {
         const rawValue = event.target.value;
         setInterimInputValue(rawValue);
-        const value = parseValue(rawValue, min, max);
+        const value = parseValue(rawValue, min, max, decimals);
         if (value != null) {
             onChangeValue(value);
         }
         onChange === null || onChange === void 0 ? void 0 : onChange(event);
-    }, [max, min, onChange, onChangeValue, setInterimInputValue]);
+    }, [decimals, max, min, onChange, onChangeValue, setInterimInputValue]);
     const handleInputFocus = useCallback((event) => {
         event.target.select();
     }, []);
     const handleKeyDown = useCallback((event) => {
         const { key, target, shiftKey } = event;
-        const value = parseValue(target.value, min, max);
+        const value = parseValue(target.value, min, max, decimals);
+        const diff = shiftKey ? step * 10 : step;
         if (value == null)
             return;
         if (key === 'ArrowDown') {
             event.preventDefault();
-            onChangeValue(Math.max(shiftKey ? value - 10 : value - 1, min));
+            onChangeValue(roundToDecimal(Math.max(value - diff, min), decimals));
         }
         if (key === 'ArrowUp') {
             event.preventDefault();
-            onChangeValue(Math.min(shiftKey ? value + 10 : value + 1, max));
+            onChangeValue(roundToDecimal(Math.min(value + diff, max), decimals));
         }
-    }, [max, min, onChangeValue]);
+    }, [decimals, max, min, onChangeValue, step]);
     const handleIncrement = useCallback(() => {
         const value = valueRef.current;
         if (value == null)
             return;
-        onChangeValue(Math.min(value + 1, max));
-    }, [max, onChangeValue, valueRef]);
+        onChangeValue(roundToDecimal(Math.min(value + step, max), decimals));
+    }, [decimals, max, onChangeValue, step, valueRef]);
     const handleDecrement = useCallback(() => {
         const value = valueRef.current;
         if (value == null)
             return;
-        onChangeValue(Math.max(value - 1, min));
-    }, [min, onChangeValue, valueRef]);
-    const isInterimValueValid = useMemo(() => parseValue(interimInputValue, min, max) != null, [
-        interimInputValue,
-        max,
-        min,
-    ]);
+        onChangeValue(roundToDecimal(Math.max(value - step, min), decimals));
+    }, [decimals, min, onChangeValue, step, valueRef]);
+    const isInterimValueValid = useMemo(() => parseValue(interimInputValue, min, max, decimals) != null, [decimals, interimInputValue, max, min]);
     return {
         handleDecrement,
         handleIncrement,
@@ -2209,24 +2221,27 @@ function useNumberInput({ format = (arg) => arg, max = Infinity, min = -Infinity
  * Number input
  */
 const NumberInput = forwardRef((_a, ref) => {
-    var { controls = false, format, max = Infinity, min = -Infinity, onBlur, onChange, onChangeValue, value } = _a, rest = __rest(_a, ["controls", "format", "max", "min", "onBlur", "onChange", "onChangeValue", "value"]);
+    var { controls = false, decimals, format, max = Infinity, min = -Infinity, onBlur, onChange, onChangeValue, step, value } = _a, rest = __rest(_a, ["controls", "decimals", "format", "max", "min", "onBlur", "onChange", "onChangeValue", "step", "value"]);
     const { handleDecrement, handleIncrement, handleInputBlur, handleInputChange, handleInputFocus, handleKeyDown, interimInputValue, isInterimValueValid, } = useNumberInput({
+        decimals,
         format,
         max,
         min,
         onBlur,
         onChange,
         onChangeValue,
+        step,
         value,
     });
-    return (jsx("div", null,
-        jsx(Input$1, Object.assign({ ref: ref, value: interimInputValue, min: min, max: max, invalid: !isInterimValueValid, css: input, trailer: jsx(Fragment, null, controls && (jsx(Controls, null,
-                jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: value >= max, onClick: handleIncrement }),
-                jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: value <= min, onClick: handleDecrement })))), onBlur: handleInputBlur, onChange: handleInputChange, onFocus: handleInputFocus, onKeyDown: handleKeyDown }, rest))));
+    return (jsx(Input$1, Object.assign({ ref: ref, type: format ? 'text' : 'number', value: interimInputValue, min: min, max: max, invalid: !isInterimValueValid, css: input, trailer: jsx(Fragment, null, controls && (jsx(Controls, null,
+            jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: value >= max, onClick: handleIncrement }),
+            jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: value <= min, onClick: handleDecrement })))), onBlur: handleInputBlur, onChange: handleInputChange, onFocus: handleInputFocus, onKeyDown: handleKeyDown }, rest)));
 });
 const input = css `
-  font-variant-numeric: tabular-nums;
-  text-align: right;
+  input {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
 `;
 const Controls = styled.div `
   --gap: 1px;
@@ -2682,14 +2697,14 @@ const menuItem = css `
     --background-color: ${colors.ELEMENT_SECONDARY};
     --color: ${colors.ELEMENT_PRIMARY};
   }
-  &:is(:focus, :hover, [data-hover]) {
+  &:is(:focus-visible, :hover, [data-hover]) {
     --background-color: ${colors.ELEMENT_SECONDARY};
   }
   &:is([data-active]) {
     --color: ${colors.ELEMENT_PRIMARY};
   }
 
-  &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]) {
+  &:is(:active, :focus-visible, :hover, [data-active], [data-hover], [data-pressed]) {
     .primary {
       --color: ${colors.ELEMENT_PRIMARY};
     }
@@ -2715,11 +2730,11 @@ const menuItem = css `
     &:is(:active, [data-pressed]) {
       --background-color: ${colors.DARK_ELEMENT_FOCUS};
     }
-    &:is(:focus, :hover, [data-hover]) {
+    &:is(:focus-visible, :hover, [data-hover]) {
       --background-color: ${colors.DARK_ELEMENT_ACTIVE};
     }
 
-    &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]) {
+    &:is(:active, :focus-visible, :hover, [data-active], [data-hover], [data-pressed]) {
       .primary,
       .secondary {
         --color: ${colors.WHITE};
@@ -2812,7 +2827,10 @@ const MenuTitle = styled.h5 `
 const containerStyle = css `
   position: relative;
 `;
-const SelectContainer = (props) => (jsx(components.SelectContainer, Object.assign({ css: containerStyle }, props)));
+const SelectContainer = (props) => {
+    const { selectProps: { style }, } = props;
+    return jsx(components.SelectContainer, Object.assign({ css: [containerStyle, style] }, props));
+};
 /**
  * Control
  */
@@ -2847,9 +2865,9 @@ const controlStyle = css `
   /* [data-theme='dark'] & {} */
 `;
 const Control = (props) => {
-    const { children, selectProps: { active, busy, disabled, helpers, invalid, leader, length, readonly, size = 'md', style, theme, } } = props, rest = __rest(props, ["children", "selectProps"]);
-    return (jsx("div", Object.assign({ "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, helpers),
-        jsx(components.Control, Object.assign({ css: controlStyle }, rest),
+    const { children, selectProps: { active, busy, disabled, helpers, invalid, leader, length, readonly, size = 'md', theme, } } = props, rest = __rest(props, ["children", "selectProps"]);
+    return (jsx("div", Object.assign({ "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null }, helpers),
+        jsx(components.Control, Object.assign({ css: [controlStyle, { ['--input-length']: length }] }, rest),
             leader,
             children)));
 };
@@ -2860,12 +2878,21 @@ const valueContainerStyle = css `
   align-items: center;
   display: flex;
   flex: 1;
-  flex-wrap: wrap;
   gap: 4px;
   overflow: hidden;
   padding-block: 4px;
 `;
-const ValueContainer = (props) => (jsx(components.ValueContainer, Object.assign({ css: valueContainerStyle }, props)));
+const ValueContainer = (_a) => {
+    var _b = _a.selectProps, { isMulti } = _b, selectProps = __rest(_b, ["isMulti"]), props = __rest(_a, ["selectProps"]);
+    return (jsx(components.ValueContainer, Object.assign({ css: [
+            valueContainerStyle,
+            isMulti
+                ? css `
+            flex-wrap: wrap;
+          `
+                : null,
+        ], selectProps: selectProps }, props)));
+};
 const multiValueStyle = css `
   align-items: center;
   background: ${colors.ELEMENT_FOCUS};
@@ -2876,8 +2903,13 @@ const multiValueStyle = css `
   font-weight: 600;
   gap: 4px;
   height: 24px;
+  max-width: 100%;
   padding-inline: 8px 4px;
   user-select: none;
+
+  [data-value] {
+    ${truncate};
+  }
 
   [data-icon] {
     cursor: pointer;
@@ -2886,9 +2918,13 @@ const multiValueStyle = css `
 const MultiValue = (props) => {
     const { children, removeProps } = props;
     return (jsx("div", { css: multiValueStyle },
-        children,
+        jsx("span", { "data-value": true }, children),
         jsx(Icon, Object.assign({ name: "Times", size: "xs" }, removeProps))));
 };
+const singleValueStyle = css `
+  white-space: nowrap;
+`;
+const SingleValue = (props) => (jsx(components.SingleValue, Object.assign({ css: singleValueStyle }, props)));
 /**
  * Input
  */
@@ -2947,9 +2983,11 @@ const menuStyle = css `
   position: absolute;
 `;
 const MenuContainer = (props) => {
-    const { cx, innerRef, innerProps } = props, rest = __rest(props, ["cx", "innerRef", "innerProps"]);
+    const { cx, innerProps, innerRef } = props, rest = __rest(props, ["cx", "innerProps", "innerRef"]);
     return jsx(Menu, Object.assign({ css: menuStyle, ref: innerRef }, innerProps, rest));
 };
+const Group = (props) => jsx(components.Group, Object.assign({ css: menuGroup }, props));
+const GroupHeading = (props) => jsx(components.GroupHeading, Object.assign({ css: menuGroupTitle }, props));
 const menuListStyle = css `
   overflow-y: auto;
   position: relative;
@@ -2959,7 +2997,7 @@ const MenuList = (props) => {
     return jsx(components.MenuList, Object.assign({ css: [menuListStyle, { maxHeight: maxMenuHeight }] }, rest));
 };
 const Option = (props) => {
-    const { cx, innerRef, innerProps, isDisabled, isFocused, isSelected } = props, rest = __rest(props, ["cx", "innerRef", "innerProps", "isDisabled", "isFocused", "isSelected"]);
+    const { cx, innerProps, innerRef, isDisabled, isFocused, isSelected } = props, rest = __rest(props, ["cx", "innerProps", "innerRef", "isDisabled", "isFocused", "isSelected"]);
     return (jsx(MenuItem, Object.assign({ active: isSelected, as: "div", "data-hover": isFocused || null, disabled: isDisabled, ref: innerRef }, innerProps, rest)));
 };
 /**
@@ -2978,9 +3016,35 @@ const NoOptionsMessage = (props) => {
  * Select
  */
 // Drop default styles
-const styles = new Proxy({}, { get: (target, propKey) => () => { } });
+// const noopStyles = new Proxy({}, { get: (target, propKey) => () => {} });
+const noopStyles = [
+    'clearIndicator',
+    'container',
+    'control',
+    'dropdownIndicator',
+    'group',
+    'groupHeading',
+    'indicatorSeparator',
+    'indicatorsContainer',
+    'input',
+    'loadingIndicator',
+    'loadingMessage',
+    'menu',
+    'menuList',
+    'menuPortal',
+    'multiValue',
+    'multiValueLabel',
+    'multiValueRemove',
+    'noOptionsMessage',
+    'option',
+    'placeholder',
+    'singleValue',
+    'valueContainer',
+].reduce((acc, style) => {
+    return Object.assign(Object.assign({}, acc), { [style]: () => { } });
+}, {});
 const Select = forwardRef((props, ref) => {
-    const { active, busy, disabled, invalid, readonly, style } = props, rest = __rest(props, ["active", "busy", "disabled", "invalid", "readonly", "style"]);
+    const { active, busy, components, disabled, invalid, readonly, style, styles: componentStyles } = props, rest = __rest(props, ["active", "busy", "components", "disabled", "invalid", "readonly", "style", "styles"]);
     const helpers = Object.fromEntries(Object.entries(props).filter(([key]) => ['data-hover', 'data-qa'].includes(key)));
     const selectProps = Object.assign({ active,
         busy,
@@ -2989,24 +3053,22 @@ const Select = forwardRef((props, ref) => {
         invalid,
         readonly,
         style }, rest);
-    return (jsx(ReactSelect, Object.assign({ components: {
-            ClearIndicator,
+    const customStyles = Object.assign(Object.assign({}, noopStyles), componentStyles);
+    return (jsx(ReactSelect, Object.assign({ components: Object.assign({ ClearIndicator,
             Control,
             DropdownIndicator,
-            IndicatorsContainer,
-            IndicatorSeparator: () => null,
-            Input,
+            Group,
+            GroupHeading,
+            IndicatorsContainer, IndicatorSeparator: () => null, Input,
             LoadingIndicator,
-            LoadingMessage,
-            Menu: MenuContainer,
-            MenuList,
+            LoadingMessage, Menu: MenuContainer, MenuList,
             MultiValue,
             NoOptionsMessage,
             Option,
             Placeholder,
             SelectContainer,
-            ValueContainer,
-        }, isDisabled: readonly || disabled, isLoading: busy, menuIsOpen: active, ref: ref, styles: styles }, selectProps)));
+            SingleValue,
+            ValueContainer }, components), isDisabled: readonly || disabled, isLoading: busy, menuIsOpen: active, ref: ref, styles: customStyles }, selectProps)));
 });
 
 /**

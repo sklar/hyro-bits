@@ -134,14 +134,14 @@ export const menuItem = css`
     --background-color: ${colors.ELEMENT_SECONDARY};
     --color: ${colors.ELEMENT_PRIMARY};
   }
-  &:is(:focus, :hover, [data-hover]) {
+  &:is(:focus-visible, :hover, [data-hover]) {
     --background-color: ${colors.ELEMENT_SECONDARY};
   }
   &:is([data-active]) {
     --color: ${colors.ELEMENT_PRIMARY};
   }
 
-  &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]) {
+  &:is(:active, :focus-visible, :hover, [data-active], [data-hover], [data-pressed]) {
     .primary {
       --color: ${colors.ELEMENT_PRIMARY};
     }
@@ -167,11 +167,11 @@ export const menuItem = css`
     &:is(:active, [data-pressed]) {
       --background-color: ${colors.DARK_ELEMENT_FOCUS};
     }
-    &:is(:focus, :hover, [data-hover]) {
+    &:is(:focus-visible, :hover, [data-hover]) {
       --background-color: ${colors.DARK_ELEMENT_ACTIVE};
     }
 
-    &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]) {
+    &:is(:active, :focus-visible, :hover, [data-active], [data-hover], [data-pressed]) {
       .primary,
       .secondary {
         --color: ${colors.WHITE};

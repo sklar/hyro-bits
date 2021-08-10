@@ -71,6 +71,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       affix,
       as = 'label',
       busy,
+      className,
       disabled,
       invalid,
       leader,
@@ -86,12 +87,13 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     const [prefix, suffix] = Array.isArray(affix) ? affix : [affix];
     const { style, ...containerProps } = Object.fromEntries(
       Object.entries(inputProps).filter(([key]) =>
-        ['className', 'data-active', 'data-invalid', 'data-hover', 'style'].includes(key)
+        ['data-active', 'data-invalid', 'data-hover', 'style'].includes(key)
       )
     );
     return (
       <Container
         as={as}
+        className={className}
         data-active={active || null}
         data-busy={busy || null}
         data-disabled={disabled || null}

@@ -106,6 +106,7 @@ const Template: Story<NumberInputProps> = (args) => {
 const TemplateOverview: Story<NumberInputProps> = (args) => (
   <>
     <Template {...args} />
+    <Template {...args} affix={['Decimals']} decimals={1} step={0.1} type="number" />
     <Template {...args} affix={[<Icon name="AxisX" size="xs" />]} controls />
     <Template {...args} format={(value) => `${value}%`} />
     <Template {...args} affix={['😵‍💫']} controls format={(value) => `${value}🍺`} />

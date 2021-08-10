@@ -14,6 +14,14 @@ export interface NumberInputProps extends InputProps {
      */
     max?: number;
     /**
+     * Step
+     */
+    step?: number;
+    /**
+     * Decimal places
+     */
+    decimals?: number;
+    /**
      * Format
      */
     format?: (arg: string) => string;

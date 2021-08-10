@@ -1,6 +1,10 @@
-import React, { HTMLAttributes, ReactElement, ReactNode } from 'react';
+import React, { ElementType, HTMLAttributes, ReactElement, ReactNode } from 'react';
 import { SizeType, ThemeType, VariantType } from '../utils/types';
 export interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> {
+    /**
+     * Render as HTML element
+     */
+    as?: ElementType<any>;
     /**
      * Children
      */

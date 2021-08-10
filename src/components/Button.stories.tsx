@@ -33,6 +33,12 @@ export default {
       control: { disable: true },
       table: { disable: true },
     },
+    ...mapArgTypes(['as'], {
+      control: { type: 'text' },
+      table: {
+        type: { summary: 'ElementType<any>' },
+      },
+    }),
     ...mapArgTypes(['type'], {
       control: { type: 'inline-radio' },
     }),

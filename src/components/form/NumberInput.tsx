@@ -22,7 +22,15 @@ export interface NumberInputProps extends InputProps {
    * Max value
    */
   max?: number;
+  /**
+   * Step
+   */
+  step?: number;
 
+  /**
+   * Decimal places
+   */
+  decimals?: number;
   /**
    * Format
    */
@@ -46,12 +54,14 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
   (
     {
       controls = false,
+      decimals,
       format,
       max = Infinity,
       min = -Infinity,
       onBlur,
       onChange,
       onChangeValue,
+      step,
       value,
       ...rest
     },
@@ -67,60 +77,63 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
       interimInputValue,
       isInterimValueValid,
     } = useNumberInput({
+      decimals,
       format,
       max,
       min,
       onBlur,
       onChange,
       onChangeValue,
+      step,
       value,
     });
 
     return (
-      <div>
-        <Input
-          ref={ref}
-          value={interimInputValue}
-          min={min}
-          max={max}
-          invalid={!isInterimValueValid}
-          css={input}
-          trailer={
-            <Fragment>
-              {controls && (
-                <Controls>
-                  <Button
-                    icon={<Icon name="ChevronDown" size="xs" />}
-                    synthetic
-                    tabIndex={-1}
-                    disabled={value >= max}
-                    onClick={handleIncrement}
-                  />
-                  <Button
-                    icon={<Icon name="ChevronDown" size="xs" />}
-                    synthetic
-                    tabIndex={-1}
-                    disabled={value <= min}
-                    onClick={handleDecrement}
-                  />
-                </Controls>
-              )}
-            </Fragment>
-          }
-          onBlur={handleInputBlur}
-          onChange={handleInputChange}
-          onFocus={handleInputFocus}
-          onKeyDown={handleKeyDown}
-          {...rest}
-        />
-      </div>
+      <Input
+        ref={ref}
+        type={format ? 'text' : 'number'}
+        value={interimInputValue}
+        min={min}
+        max={max}
+        invalid={!isInterimValueValid}
+        css={input}
+        trailer={
+          <Fragment>
+            {controls && (
+              <Controls>
+                <Button
+                  icon={<Icon name="ChevronDown" size="xs" />}
+                  synthetic
+                  tabIndex={-1}
+                  disabled={value >= max}
+                  onClick={handleIncrement}
+                />
+                <Button
+                  icon={<Icon name="ChevronDown" size="xs" />}
+                  synthetic
+                  tabIndex={-1}
+                  disabled={value <= min}
+                  onClick={handleDecrement}
+                />
+              </Controls>
+            )}
+          </Fragment>
+        }
+        onBlur={handleInputBlur}
+        onChange={handleInputChange}
+        onFocus={handleInputFocus}
+        onKeyDown={handleKeyDown}
+        {...rest}
+      />
     );
   }
 );
 
 const input = css`
-  font-variant-numeric: tabular-nums;
-  text-align: right;
+  input {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+  }
 `;
 
 const Controls = styled.div`

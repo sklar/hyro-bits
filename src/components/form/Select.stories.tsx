@@ -17,6 +17,30 @@ const options = [
   { value: 'vanilla', label: 'Vanilla' },
 ];
 
+const optionsGrouped = [
+  {
+    label: "Monty Python's Flying Circus",
+    options: [
+      { value: 'Chapman', label: 'Chapman' },
+      { value: 'Cleese', label: 'Cleese' },
+      { value: 'Gilliam', label: 'Gilliam' },
+      { value: 'Idle', label: 'Idle' },
+      { value: 'Jones', label: 'Jones' },
+      { value: 'Palin', label: 'Palin' },
+    ],
+  },
+  {
+    label: 'Rupan Sansei)',
+    options: [
+      { value: 'Lupin', label: 'Arsène Lupin' },
+      { value: 'Jigen', label: 'Daisuke Jigen' },
+      { value: 'Fujiko', label: 'Fujiko Mine' },
+      { value: 'Goemon', label: 'Goemon Ishikawa' },
+      { value: 'Zenigata', label: 'Koichi Zenigata' },
+    ],
+  },
+];
+
 export default {
   title: 'Components/Form/Select',
   component: Component,
@@ -84,9 +108,15 @@ const Template: Story<SelectProps> = (args) => (
 
 const TemplateOverview: Story<SelectProps> = (args) => (
   <>
-    <Template {...args} />
+    <Template {...args} isSearchable={false} />
     <Template {...args} isMulti placeholder="Hold my 🍺🍺🍺" />
     <Template {...args} leader={<Icon name="Clock" />} defaultValue={options[0]} />
+    <Template
+      {...args}
+      isSearchable={false}
+      options={optionsGrouped}
+      placeholder="Hold these 🍻🍻🍻"
+    />
   </>
 );
 

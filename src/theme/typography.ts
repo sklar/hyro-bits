@@ -93,7 +93,7 @@ export const label = css`
 export const input = css`
   ${base};
 
-  --font-size: 13px;
-  --line-height: calc(16 / 13);
-  --font-weight: 500;
+  --font-size: 14px;
+  --line-height: calc(16 / 14);
+  --font-weight: 600;
 `;
