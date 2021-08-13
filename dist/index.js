@@ -1719,7 +1719,7 @@ const Container$5 = styled.span `
  * Dialog
  */
 const Dialog = (_a) => {
-    var { active = false, backdrop = true, bleed = false, children, footer, header, justify = 'flex-end', onClose, rejectable = true, size, theme, title } = _a, props = __rest(_a, ["active", "backdrop", "bleed", "children", "footer", "header", "justify", "onClose", "rejectable", "size", "theme", "title"]);
+    var { active = false, backdrop = true, bleed = false, children, footer, header, index = 10, justify = 'flex-end', onClose, rejectable = true, size, theme, title } = _a, props = __rest(_a, ["active", "backdrop", "bleed", "children", "footer", "header", "index", "justify", "onClose", "rejectable", "size", "theme", "title"]);
     const onKeyUp = useCallback((event) => {
         if (event.key === 'Escape')
             onClose();
@@ -1732,9 +1732,9 @@ const Dialog = (_a) => {
             };
         }
     }, [onClose, onKeyUp, rejectable]);
-    return (jsx(DialogWrapper, { "data-active": active || null, "data-bleed": bleed || null, "data-foot": footer ? true : null, "data-head": header || title ? true : null, "data-theme": theme || null },
+    return (jsx(DialogWrapper, { "data-active": active || null, "data-bleed": bleed || null, "data-foot": footer ? true : null, "data-head": header || title ? true : null, "data-theme": theme || null, style: { ['--dialog-index']: index } },
         backdrop && jsx(Backdrop, { "data-dialog": "backdrop", onClick: rejectable ? onClose : undefined }),
-        jsx(DialogContainer, Object.assign({ style: { ['--dialog-size']: size } }, props),
+        jsx(DialogContainer, Object.assign({}, props, { style: { ['--dialog-size']: size } }),
             (header || title) && (jsx("header", { css: headerStyle, "data-dialog": "header" }, header ? (header) : (jsx(Text, { as: "h1", clamp: 1, css: titleStyle }, title)))),
             jsx(Body, { "data-dialog": "body" }, children),
             footer && (jsx(Flex, { as: "footer", css: footerStyle, "data-dialog": "footer", justify: justify }, footer)),
@@ -1778,7 +1778,7 @@ const DialogWrapper = styled.div `
   --dialog-border-size: 1px;
   --dialog-box-shadow: 0 4px 32px rgba(0, 0, 0, 0.1);
   --dialog-indent: 8px;
-  --dialog-index: 10;
+  --dialog-index: ;
   --dialog-size: 600px;
 
   --dialog-backdrop-aplha: 0;

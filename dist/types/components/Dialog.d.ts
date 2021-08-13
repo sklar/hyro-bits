@@ -10,6 +10,10 @@ export interface DialogProps extends HTMLAttributes<HTMLDivElement> {
      */
     backdrop?: boolean;
     /**
+     * Z-index
+     */
+    index?: number;
+    /**
      * Rejectable
      */
     rejectable?: boolean;

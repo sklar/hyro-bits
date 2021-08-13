@@ -23,6 +23,10 @@ export interface DialogProps extends HTMLAttributes<HTMLDivElement> {
    */
   backdrop?: boolean;
   /**
+   * Z-index
+   */
+  index?: number;
+  /**
    * Rejectable
    */
   rejectable?: boolean;
@@ -74,6 +78,7 @@ export const Dialog: React.FC<DialogProps> = ({
   children,
   footer,
   header,
+  index = 10,
   justify = 'flex-end',
   onClose,
   rejectable = true,
@@ -105,9 +110,10 @@ export const Dialog: React.FC<DialogProps> = ({
       data-foot={footer ? true : null}
       data-head={header || title ? true : null}
       data-theme={theme || null}
+      style={{ ['--dialog-index' as string]: index }}
     >
       {backdrop && <Backdrop data-dialog="backdrop" onClick={rejectable ? onClose : undefined} />}
-      <DialogContainer style={{ ['--dialog-size' as string]: size }} {...props}>
+      <DialogContainer {...props} style={{ ['--dialog-size' as string]: size }}>
         {(header || title) && (
           <header css={headerStyle} data-dialog="header">
             {header ? (
@@ -172,7 +178,7 @@ const DialogWrapper = styled.div`
   --dialog-border-size: 1px;
   --dialog-box-shadow: 0 4px 32px rgba(0, 0, 0, 0.1);
   --dialog-indent: 8px;
-  --dialog-index: 10;
+  --dialog-index: ;
   --dialog-size: 600px;
 
   --dialog-backdrop-aplha: 0;
