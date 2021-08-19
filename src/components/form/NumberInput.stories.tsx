@@ -1,17 +1,26 @@
-import { Global } from '@emotion/react';
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { css, Global, jsx } from '@emotion/react';
 import { Meta, Story } from '@storybook/react/types-6-0';
-import React, { useCallback, useState } from 'react';
+import React, { Fragment, useCallback, useState } from 'react';
 import { withDesign } from 'storybook-addon-designs';
 
 import { global, Legend, mapArgTypes } from '../../stories';
-import { Grid, Icon, NumberInput as Component, NumberInputProps } from '../index';
+import {
+  Flex,
+  Grid,
+  Icon,
+  NumberInput as Component,
+  NumberInputProps,
+  NumberInputStepperProps,
+} from '../index';
 
 export default {
   title: 'Components/Form/Number',
   component: Component,
   decorators: [
     (Story) => (
-      <>
+      <Fragment>
         <Global styles={global} />
         <Grid align="center" columns="repeat(5, 1fr)" gap="1em">
           <Legend>default</Legend>
@@ -21,7 +30,7 @@ export default {
           <Legend>invalid</Legend>
           <Story />
         </Grid>
-      </>
+      </Fragment>
     ),
     withDesign,
   ],
@@ -73,7 +82,7 @@ export default {
       control: { disable: true },
       table: { category: 'Modifiers', type: { summary: 'ReactElement' } },
     }),
-    ...mapArgTypes(['controls'], {
+    ...mapArgTypes(['stepper', 'components'], {
       table: { category: 'Modifiers' },
     }),
     ...mapArgTypes(['active', 'disabled', 'invalid', 'readonly'], {
@@ -93,24 +102,64 @@ const Template: Story<NumberInputProps> = (args) => {
   }, []);
 
   return (
-    <>
+    <Fragment>
       <Component {...args} value={value} onChangeValue={handleChange} />
       <Component {...args} value={value} onChangeValue={handleChange} data-hover />
       <Component {...args} value={value} onChangeValue={handleChange} data-active />
       <Component {...args} value={value} onChangeValue={handleChange} disabled />
       <Component {...args} value={60} onChangeValue={handleChange} />
-    </>
+    </Fragment>
+  );
+};
+
+const emojiStepper = css`
+  font-size: 20px;
+  user-select: none;
+`;
+
+const CustomStepper: React.FC = (props) => {
+  return <Flex align="center" gap="4px" {...props} />;
+};
+
+const CustomIncrementStepper: React.VFC<NumberInputStepperProps> = ({
+  disabled = false,
+  onChange,
+}) => {
+  return (
+    <span css={emojiStepper} onClick={onChange}>
+      {disabled ? '👊' : '👍'}
+    </span>
+  );
+};
+
+const CustomDecrementStepper: React.VFC<NumberInputStepperProps> = ({
+  disabled = false,
+  onChange,
+}) => {
+  return (
+    <span css={emojiStepper} onClick={onChange}>
+      {disabled ? '👊' : '👎'}
+    </span>
   );
 };
 
 const TemplateOverview: Story<NumberInputProps> = (args) => (
-  <>
+  <Fragment>
     <Template {...args} />
     <Template {...args} affix={['Decimals']} decimals={1} step={0.1} type="number" />
-    <Template {...args} affix={[<Icon name="AxisX" size="xs" />]} controls />
+    <Template {...args} affix={[<Icon name="AxisX" size="xs" />]} stepper />
     <Template {...args} format={(value) => `${value}%`} />
-    <Template {...args} affix={['😵‍💫']} controls format={(value) => `${value}🍺`} />
-  </>
+    <Template {...args} affix={['😵‍💫']} stepper format={(value) => `${value}🍺`} />
+    <Template
+      {...args}
+      components={{
+        Stepper: CustomStepper,
+        IncrementStepper: CustomIncrementStepper,
+        DecrementStepper: CustomDecrementStepper,
+      }}
+      stepper
+    />
+  </Fragment>
 );
 
 export const Number = TemplateOverview.bind({});

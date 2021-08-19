@@ -11,14 +11,7 @@ import { Button } from './index';
 export default {
   title: 'Components/Dialog',
   component: Dialog,
-  decorators: [
-    (Story) => (
-      <Wrapper>
-        <Story />
-      </Wrapper>
-    ),
-    withDesign,
-  ],
+  decorators: [(Story) => <Story />, withDesign],
   parameters: {
     design: {
       type: 'figma',
@@ -71,7 +64,7 @@ const Template: Story<StoryProps> = ({ footer, header, size, title, ...args }) =
 
   return (
     <>
-      <Trigger synthetic text="Dialog!" variant="primary" onClick={handleDialog} />
+      <Trigger synthetic text="Talk to me!" variant="primary" size="lg" onClick={handleDialog} />
       <Dialog
         {...args}
         active={active}
@@ -110,19 +103,6 @@ const Template: Story<StoryProps> = ({ footer, header, size, title, ...args }) =
 
 export const DialogOverview = Template.bind({});
 DialogOverview.storyName = 'Dialog';
-
-const Wrapper = styled.div`
-  [class*='preview'] & {
-    background: url('https://source.unsplash.com/nD9tEn63suc/1000') center / cover no-repeat;
-      center / cover no-repeat;
-    height: 55vh;
-    position: relative;
-
-    & > div {
-      position: absolute;
-    }
-  }
-`;
 
 const Trigger = styled(Button)`
   left: 50%;

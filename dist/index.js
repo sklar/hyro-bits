@@ -2217,11 +2217,20 @@ function useNumberInput({ decimals = 0, format = (arg) => arg, max = Infinity, m
     };
 }
 
+const Stepper = (props) => jsx(StepperContainer, Object.assign({ "data-stepper": true }, props));
+const IncrementStepper = ({ disabled = false, onChange }) => (jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: disabled, onClick: onChange }));
+const DecrementStepper = ({ disabled = false, onChange }) => (jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: disabled, onClick: onChange }));
+const Components = {
+    Stepper,
+    IncrementStepper,
+    DecrementStepper,
+};
 /**
  * Number input
  */
 const NumberInput = forwardRef((_a, ref) => {
-    var { controls = false, decimals, format, max = Infinity, min = -Infinity, onBlur, onChange, onChangeValue, step, value } = _a, rest = __rest(_a, ["controls", "decimals", "format", "max", "min", "onBlur", "onChange", "onChangeValue", "step", "value"]);
+    var { decimals, format, max = Infinity, min = -Infinity, onBlur, onChange, onChangeValue, step, stepper = false, value } = _a, rest = __rest(_a, ["decimals", "format", "max", "min", "onBlur", "onChange", "onChangeValue", "step", "stepper", "value"]);
+    const components = Object.assign(Object.assign({}, Components), rest.components);
     const { handleDecrement, handleIncrement, handleInputBlur, handleInputChange, handleInputFocus, handleKeyDown, interimInputValue, isInterimValueValid, } = useNumberInput({
         decimals,
         format,
@@ -2233,9 +2242,10 @@ const NumberInput = forwardRef((_a, ref) => {
         step,
         value,
     });
-    return (jsx(Input$1, Object.assign({ ref: ref, type: format ? 'text' : 'number', value: interimInputValue, min: min, max: max, invalid: !isInterimValueValid, css: input, trailer: jsx(Fragment, null, controls && (jsx(Controls, null,
-            jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: value >= max, onClick: handleIncrement }),
-            jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: value <= min, onClick: handleDecrement })))), onBlur: handleInputBlur, onChange: handleInputChange, onFocus: handleInputFocus, onKeyDown: handleKeyDown }, rest)));
+    return (jsx("div", null,
+        jsx(Input$1, Object.assign({}, rest, { ref: ref, type: format ? 'text' : 'number', value: interimInputValue, min: min, max: max, invalid: !isInterimValueValid, css: input, trailer: jsx(Fragment, null, stepper && (jsx(components.Stepper, null,
+                jsx(components.IncrementStepper, { disabled: value >= max, onChange: handleIncrement }),
+                jsx(components.DecrementStepper, { disabled: value <= min, onChange: handleDecrement })))), onBlur: handleInputBlur, onChange: handleInputChange, onFocus: handleInputFocus, onKeyDown: handleKeyDown }))));
 });
 const input = css `
   input {
@@ -2243,7 +2253,7 @@ const input = css `
     text-align: right;
   }
 `;
-const Controls = styled.div `
+const StepperContainer = styled.div `
   --gap: 1px;
 
   display: flex;

@@ -9,6 +9,39 @@ import { Icon } from '../Icon';
 import { Input, InputProps } from './Input';
 import { useNumberInput } from './use-number-input';
 
+export interface NumberInputStepperProps {
+  disabled?: boolean;
+  onChange: () => void;
+}
+
+const Stepper: React.FC = (props) => <StepperContainer data-stepper {...props} />;
+
+const IncrementStepper: React.VFC<NumberInputStepperProps> = ({ disabled = false, onChange }) => (
+  <Button
+    icon={<Icon name="ChevronDown" size="xs" />}
+    synthetic
+    tabIndex={-1}
+    disabled={disabled}
+    onClick={onChange}
+  />
+);
+
+const DecrementStepper: React.VFC<NumberInputStepperProps> = ({ disabled = false, onChange }) => (
+  <Button
+    icon={<Icon name="ChevronDown" size="xs" />}
+    synthetic
+    tabIndex={-1}
+    disabled={disabled}
+    onClick={onChange}
+  />
+);
+
+const Components = {
+  Stepper,
+  IncrementStepper,
+  DecrementStepper,
+};
+
 export interface NumberInputProps extends InputProps {
   /**
    * Value
@@ -37,9 +70,14 @@ export interface NumberInputProps extends InputProps {
   format?: (arg: string) => string;
 
   /**
-   * Controls
+   * Stepper
    */
-  controls?: boolean;
+  stepper?: boolean;
+
+  /**
+   * Custom omponents
+   */
+  components?: Partial<typeof Components>;
 
   /**
    * Event: Change value
@@ -53,7 +91,6 @@ export interface NumberInputProps extends InputProps {
 export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
   (
     {
-      controls = false,
       decimals,
       format,
       max = Infinity,
@@ -62,11 +99,16 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
       onChange,
       onChangeValue,
       step,
+      stepper = false,
       value,
       ...rest
     },
     ref
   ): JSX.Element => {
+    const components = {
+      ...Components,
+      ...rest.components,
+    };
     const {
       handleDecrement,
       handleIncrement,
@@ -89,42 +131,32 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
     });
 
     return (
-      <Input
-        ref={ref}
-        type={format ? 'text' : 'number'}
-        value={interimInputValue}
-        min={min}
-        max={max}
-        invalid={!isInterimValueValid}
-        css={input}
-        trailer={
-          <Fragment>
-            {controls && (
-              <Controls>
-                <Button
-                  icon={<Icon name="ChevronDown" size="xs" />}
-                  synthetic
-                  tabIndex={-1}
-                  disabled={value >= max}
-                  onClick={handleIncrement}
-                />
-                <Button
-                  icon={<Icon name="ChevronDown" size="xs" />}
-                  synthetic
-                  tabIndex={-1}
-                  disabled={value <= min}
-                  onClick={handleDecrement}
-                />
-              </Controls>
-            )}
-          </Fragment>
-        }
-        onBlur={handleInputBlur}
-        onChange={handleInputChange}
-        onFocus={handleInputFocus}
-        onKeyDown={handleKeyDown}
-        {...rest}
-      />
+      <div>
+        <Input
+          {...rest}
+          ref={ref}
+          type={format ? 'text' : 'number'}
+          value={interimInputValue}
+          min={min}
+          max={max}
+          invalid={!isInterimValueValid}
+          css={input}
+          trailer={
+            <Fragment>
+              {stepper && (
+                <components.Stepper>
+                  <components.IncrementStepper disabled={value >= max} onChange={handleIncrement} />
+                  <components.DecrementStepper disabled={value <= min} onChange={handleDecrement} />
+                </components.Stepper>
+              )}
+            </Fragment>
+          }
+          onBlur={handleInputBlur}
+          onChange={handleInputChange}
+          onFocus={handleInputFocus}
+          onKeyDown={handleKeyDown}
+        />
+      </div>
     );
   }
 );
@@ -136,7 +168,7 @@ const input = css`
   }
 `;
 
-const Controls = styled.div`
+const StepperContainer = styled.div`
   --gap: 1px;
 
   display: flex;
