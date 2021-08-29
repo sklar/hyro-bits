@@ -10,5 +10,6 @@ export * from './Navigation';
 export * from './Status';
 export * from './Table';
 export * from './Text';
+export * from './Toast';
 export * from './Tooltip';
 //# sourceMappingURL=index.d.ts.map

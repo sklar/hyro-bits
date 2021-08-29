@@ -60,7 +60,7 @@ const fadeIn = keyframes `
 const Idle = (_a) => {
     var { color, delay = 100, duration = 500, gap = '4px', range = '6px', size = '5px' } = _a, props = __rest(_a, ["color", "delay", "duration", "gap", "range", "size"]);
     const delegated = Object.assign({ color, delay, duration, gap, range, size }, props);
-    return (React.createElement(Container$c, Object.assign({}, delegated),
+    return (React.createElement(Container$d, Object.assign({}, delegated),
         React.createElement(Element$2, null),
         React.createElement(Element$2, null),
         React.createElement(Element$2, null)));
@@ -101,7 +101,7 @@ const Element$2 = styled.div `
     syntax: '<length>';
   }
 `;
-const Container$c = styled.div `
+const Container$d = styled.div `
   ${({ color }) => color && `--color: ${color}`};
   ${({ delay }) => `--delay: ${delay}ms`};
   ${({ duration }) => `--duration: ${duration}ms`};
@@ -802,9 +802,7 @@ function SvgThumbsUp() {
 
 function SvgTimesCircle$1() {
     return (createElement("svg", { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 16 16" },
-        createElement("circle", { cx: 8, cy: 8, r: 8, fill: "currentColor" }),
-        createElement("path", { fill: "#fff", fillRule: "evenodd", d: "M11.417 4.583a1 1 0 010 1.414l-5.42 5.42a1 1 0 01-1.414-1.414l5.42-5.42a1 1 0 011.414 0z", clipRule: "evenodd" }),
-        createElement("path", { fill: "#fff", fillRule: "evenodd", d: "M11.417 11.417a1 1 0 01-1.414 0l-5.42-5.42a1 1 0 011.414-1.414l5.42 5.42a1 1 0 010 1.414z", clipRule: "evenodd" })));
+        createElement("path", { fill: "currentColor", fillRule: "evenodd", d: "M8 16A8 8 0 108 0a8 8 0 000 16zm3.417-11.417a1 1 0 010 1.414L9.414 8l2.003 2.003a1 1 0 01-1.414 1.414L8 9.414l-2.003 2.003a1 1 0 01-1.414-1.414L6.586 8 4.583 5.997a1 1 0 111.414-1.414L8 6.586l2.003-2.003a1 1 0 011.414 0z", clipRule: "evenodd" })));
 }
 
 function SvgTimes$1() {
@@ -1278,9 +1276,9 @@ const Icon = (_a) => {
             console.error(`${name} icon not found!`);
         }
     }, [name, size]);
-    return (React.createElement(Container$b, Object.assign({ "data-icon": name, "data-size": size }, props), Component));
+    return (React.createElement(Container$c, Object.assign({ "data-icon": name, "data-size": size }, props), Component));
 };
-const Container$b = styled.span `
+const Container$c = styled.span `
   --icon-size: ;
 
   display: inline-block;
@@ -1312,12 +1310,12 @@ const Container$b = styled.span `
  */
 const Order = (_a) => {
     var { direction, size = 'xs' } = _a, props = __rest(_a, ["direction", "size"]);
-    return (React.createElement(Container$a, Object.assign({ "data-direction": direction }, props),
+    return (React.createElement(Container$b, Object.assign({ "data-direction": direction }, props),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null }),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null }),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null })));
 };
-const Container$a = styled.div `
+const Container$b = styled.div `
   --opacity-2: 0;
   --opacity-3: 0;
   --path: ;
@@ -1366,7 +1364,7 @@ const Button = forwardRef((_a, ref) => {
     var { active, as, busy, children, disabled, href, icon, placement, round, size = 'md', synthetic, text, theme, toggle, type = 'button', variant = 'secondary' } = _a, props = __rest(_a, ["active", "as", "busy", "children", "disabled", "href", "icon", "placement", "round", "size", "synthetic", "text", "theme", "toggle", "type", "variant"]);
     const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
     const delegated = Object.assign({ size, variant }, props);
-    return (React.createElement(Container$9, Object.assign({ as: as !== null && as !== void 0 ? as : (href ? 'a' : 'button'), "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, delegated),
+    return (React.createElement(Container$a, Object.assign({ as: as !== null && as !== void 0 ? as : (href ? 'a' : 'button'), "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, delegated),
         leader,
         text ? text : children,
         trailer,
@@ -1527,7 +1525,7 @@ modification['tertiary'] = css `
     }
   }
 `;
-const Container$9 = styled.button `
+const Container$a = styled.button `
   ${base};
 
   &[data-round] {
@@ -1611,9 +1609,9 @@ const ClickOutsideGuard = forwardRef((_a, ref) => {
             };
         }
     });
-    return React.createElement(Container$8, Object.assign({ ref: combinedRef }, props));
+    return React.createElement(Container$9, Object.assign({ ref: combinedRef }, props));
 });
-const Container$8 = styled.div `
+const Container$9 = styled.div `
   display: contents;
 `;
 
@@ -1626,9 +1624,9 @@ const EMOTION_DISABLE_SSR = '/* emotion-disable-server-rendering-unsafe-selector
 const Flex = (_a) => {
     var { align, as = 'div', block, direction, gap, justify, wrap } = _a, props = __rest(_a, ["align", "as", "block", "direction", "gap", "justify", "wrap"]);
     const delegated = Object.assign({ align, block, direction, gap, justify }, props);
-    return React.createElement(Container$7, Object.assign({ as: as, "data-wrap": wrap || null }, delegated));
+    return React.createElement(Container$8, Object.assign({ as: as, "data-wrap": wrap || null }, delegated));
 };
-const Container$7 = styled.div `
+const Container$8 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'flex' : 'inline-flex'}`};
   ${({ direction }) => direction && direction !== 'row' && `flex-direction: ${direction}`};
@@ -1646,9 +1644,9 @@ const Container$7 = styled.div `
 const Grid = (_a) => {
     var { align, as = 'div', block, columns, flow, gap, justify, max = '1fr', min = '0px', sizing = 'auto-fit' } = _a, props = __rest(_a, ["align", "as", "block", "columns", "flow", "gap", "justify", "max", "min", "sizing"]);
     const delegated = Object.assign({ align, block, columns, gap, justify, max, min, sizing }, props);
-    return React.createElement(Container$6, Object.assign({ as: as }, delegated));
+    return React.createElement(Container$7, Object.assign({ as: as }, delegated));
 };
-const Container$6 = styled.div `
+const Container$7 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'grid' : 'inline-grid'}`};
   ${({ flow }) => flow && `grid-auto-flow: ${flow}`};
@@ -1689,9 +1687,9 @@ const truncate = css `
  */
 const Text = (_a) => {
     var { as = 'span', clamp, hyphens = 'manual', truncate, word = 'normal' } = _a, props = __rest(_a, ["as", "clamp", "hyphens", "truncate", "word"]);
-    return (React.createElement(Container$5, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, props)));
+    return (React.createElement(Container$6, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, props)));
 };
-const Container$5 = styled.span `
+const Container$6 = styled.span `
   &[data-clamp] {
     ${clamp};
   }
@@ -1736,7 +1734,7 @@ const Dialog = (_a) => {
         backdrop && jsx(Backdrop, { "data-dialog": "backdrop", onClick: rejectable ? onClose : undefined }),
         jsx(DialogContainer, Object.assign({}, props, { style: { ['--dialog-size']: size } }),
             (header || title) && (jsx("header", { css: headerStyle, "data-dialog": "header" }, header ? (header) : (jsx(Text, { as: "h1", clamp: 1, css: titleStyle }, title)))),
-            jsx(Body, { "data-dialog": "body" }, children),
+            jsx(Body$1, { "data-dialog": "body" }, children),
             footer && (jsx(Flex, { as: "footer", css: footerStyle, "data-dialog": "footer", justify: justify }, footer)),
             rejectable && jsx(Control$1, { "data-dialog": "control", onClick: onClose }))));
 };
@@ -1852,7 +1850,7 @@ const titleStyle = css `
 /**
  * Dialog body
  */
-const Body = styled.div `
+const Body$1 = styled.div `
   ${container};
 
   /* Scroll shadows https://css-scroll-shadows.vercel.app */
@@ -1952,7 +1950,7 @@ const FieldTextContainer = styled.div `
     --line-height: calc(16 / 13);
   }
 `;
-const iconName = (theme) => {
+const iconName$1 = (theme) => {
     const names = {
         danger: 'TimesCircle',
         notice: 'MapMarkerInfo',
@@ -1963,7 +1961,7 @@ const iconName = (theme) => {
 const FieldMessage = (_a) => {
     var { children, theme = 'danger' } = _a, props = __rest(_a, ["children", "theme"]);
     return (jsx(Flex, Object.assign({ css: messageStyle$1, "data-theme": theme || null, gap: "8px" }, props),
-        theme && jsx(Icon, { name: iconName(theme) }),
+        theme && jsx(Icon, { name: iconName$1(theme) }),
         children));
 };
 const messageStyle$1 = css `
@@ -2103,7 +2101,7 @@ const Input$1 = forwardRef((_a, ref) => {
     var { active, affix, as = 'label', busy, className, disabled, invalid, leader, length, readonly, size = 'md', theme, trailer } = _a, inputProps = __rest(_a, ["active", "affix", "as", "busy", "className", "disabled", "invalid", "leader", "length", "readonly", "size", "theme", "trailer"]);
     const [prefix, suffix] = Array.isArray(affix) ? affix : [affix];
     const _b = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['data-active', 'data-invalid', 'data-hover', 'style'].includes(key))), { style } = _b, containerProps = __rest(_b, ["style"]);
-    return (React.createElement(Container$4, Object.assign({ as: as, className: className, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
+    return (React.createElement(Container$5, Object.assign({ as: as, className: className, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
         prefix && React.createElement(Prefix, null, prefix),
         leader,
         React.createElement(Element$1, Object.assign({ ref: ref, disabled: disabled, readOnly: readonly }, inputProps)),
@@ -2113,7 +2111,7 @@ const Input$1 = forwardRef((_a, ref) => {
         trailer,
         suffix && React.createElement(Suffix, null, suffix)));
 });
-const Container$4 = styled.label `
+const Container$5 = styled.label `
   --gap: 1px;
 
   ${inputContainer};
@@ -3098,7 +3096,7 @@ const Slider = (_a) => {
 const Switch = forwardRef((_a, ref) => {
     var { as = 'label', children, disabled, label, theme, type = 'checkbox', appearance = type === 'radio' ? 'radio' : 'checkbox' } = _a, inputProps = __rest(_a, ["as", "children", "disabled", "label", "theme", "type", "appearance"]);
     const containerProps = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['className', 'data-hover', 'style'].includes(key)));
-    return (React.createElement(Container$3, Object.assign({ as: as, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null }, containerProps),
+    return (React.createElement(Container$4, Object.assign({ as: as, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null }, containerProps),
         React.createElement("input", Object.assign({ ref: ref, type: type, disabled: disabled }, inputProps)),
         React.createElement(Indicator, { "data-appearance": appearance }),
         children,
@@ -3108,7 +3106,7 @@ const Switch = forwardRef((_a, ref) => {
  * Note that [data-hover] are here only to help
  * better illustrate `:hover` state in the dedicated story.
  */
-const Container$3 = styled.label `
+const Container$4 = styled.label `
   --switch-animation-duration: 0.2s;
   --switch-border-color: ${colors.STROKE};
   --switch-border-size: 1.5px;
@@ -3302,13 +3300,13 @@ const Label$1 = styled.span `
 const Textarea = forwardRef((_a, ref) => {
     var { active, as = 'label', busy, disabled, invalid, length, readonly, resize = 'vertical', theme } = _a, textareaProps = __rest(_a, ["active", "as", "busy", "disabled", "invalid", "length", "readonly", "resize", "theme"]);
     const _b = Object.fromEntries(Object.entries(textareaProps).filter(([key]) => ['className', 'data-active', 'data-invalid', 'data-hover', 'style'].includes(key))), { style } = _b, containerProps = __rest(_b, ["style"]);
-    return (React.createElement(Container$2, Object.assign({ as: as, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-resize": resize, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
+    return (React.createElement(Container$3, Object.assign({ as: as, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-resize": resize, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
         React.createElement(Element, Object.assign({ ref: ref, disabled: disabled, readOnly: readonly }, textareaProps)),
         busy && (React.createElement(Idle, { gap: "2px", size: "4px", "data-indicator": true, style: {
                 ['--color']: colors.ELEMENT_PRIMARY,
             } }))));
 });
-const Container$2 = styled.label `
+const Container$3 = styled.label `
   ${inputContainer};
 
   position: relative;
@@ -3343,11 +3341,11 @@ const Element = styled.textarea `
 const Status = (_a) => {
     var { children, icon, text, theme } = _a, props = __rest(_a, ["children", "icon", "text", "theme"]);
     const isBeacon = !(text || children);
-    return (React.createElement(Container$1, Object.assign({ "data-beacon": isBeacon || null, "data-theme": theme || null }, props),
+    return (React.createElement(Container$2, Object.assign({ "data-beacon": isBeacon || null, "data-theme": theme || null }, props),
         icon,
         React.createElement(Text, { truncate: true }, text ? text : children)));
 };
-const Container$1 = styled.span `
+const Container$2 = styled.span `
   ${base$1};
 
   --status-background-color: #e7ebf2;
@@ -3673,6 +3671,115 @@ const TableContainer = styled.table `
   }
 `;
 
+const iconName = (theme) => {
+    const names = {
+        danger: 'TimesCircle',
+        notice: 'MapMarkerInfo',
+        success: 'ThumbsUp',
+        warning: 'ExclamationTriangle',
+    };
+    return names[theme];
+};
+/**
+ * Toast
+ */
+const Toast = (_a) => {
+    var { button = false, children, closeable = false, icon = true, onClick, size, style, text, theme = 'notice', title, variant = 'toast' } = _a, props = __rest(_a, ["button", "children", "closeable", "icon", "onClick", "size", "style", "text", "theme", "title", "variant"]);
+    return (React.createElement(Container$1, Object.assign({}, props, { "data-clickable": closeable || null, "data-theme": theme || null, "data-variant": variant || null, onClick: closeable && onClick ? onClick : undefined, style: Object.assign(Object.assign({}, style), { ['--toast-size']: size }) }),
+        icon && React.createElement(Icon, { name: iconName(theme), size: "md", "data-toast": "icon" }),
+        children ? (children) : (React.createElement(Body, null,
+            title && React.createElement(Title, null, title),
+            React.createElement(Text, { clamp: title ? 2 : 3 }, text))),
+        button && (React.createElement(Button, { icon: React.createElement(Icon, { name: "TimesCircle" }), round: true, variant: "tertiary", tabIndex: -1, "data-toast": "button", onClick: !closeable && onClick ? onClick : undefined }))));
+};
+const Container$1 = styled.div `
+  ${base$1};
+
+  --font-size: 14px;
+  --font-weight: 600;
+  --line-height: calc(19 / 14);
+
+  --toast-background-color: ;
+  --toast-box-shadow: ;
+  --toast-color: ;
+  --toast-color-accent: ;
+  --toast-gap: 16px;
+  --toast-indent: 8px;
+  --toast-radius: 6px;
+  --toast-size: auto;
+
+  align-items: center;
+  background-color: var(--toast-background-color);
+  border-radius: var(--toast-radius);
+  box-shadow: var(--toast-box-shadow);
+  color: var(--toast-color);
+  display: inline-flex;
+  gap: var(--toast-gap);
+  justify-content: space-between;
+  max-width: min(100%, 480px);
+  min-height: 48px;
+  min-width: 240px;
+  width: var(--toast-size);
+  padding: calc(3 / 2 * var(--toast-indent)) calc(2 * var(--toast-indent));
+  user-select: none;
+
+  [data-toast='button'] {
+    mix-blend-mode: multiply;
+    opacity: 0.3;
+    margin-left: calc(-0.5 * var(--toast-gap));
+    transition: opacity 0.2s;
+
+    &:is(*, #chucknorris) {
+      --button-background-color: ${colors.TRANSPARENT};
+      --button-border-color: ${colors.TRANSPARENT};
+    }
+    &:is(:focus, :hover) {
+      opacity: 0.8;
+    }
+  }
+
+  &[data-theme='notice'] {
+    --toast-color-accent: ${colors.NOTICE};
+  }
+  &[data-theme='success'] {
+    --toast-color-accent: ${colors.SUCCESS};
+  }
+  &[data-theme='warning'] {
+    --toast-color-accent: ${colors.WARNING};
+  }
+  &[data-theme='danger'] {
+    --toast-color-accent: ${colors.DANGER};
+  }
+
+  &[data-variant='toast'] {
+    --toast-background-color: var(--toast-color-accent);
+    --toast-box-shadow: 0 3px 29px rgba(0, 0, 0, 0.1);
+    --toast-color: ${colors.WHITE};
+  }
+
+  &[data-variant='snackbar'] {
+    --toast-background-color: ${colors.WHITE};
+    --toast-box-shadow: 0 3px 9px #cbcedc;
+
+    [data-toast='icon'] {
+      color: var(--toast-color-accent);
+    }
+  }
+
+  &[data-clickable] {
+    cursor: pointer;
+  }
+`;
+const Body = styled.div `
+  flex: 1;
+`;
+const Title = styled.h6 `
+  ${h2};
+
+  color: inherit;
+  white-space: nowrap;
+`;
+
 const CLASSNAME = 't00ltip';
 const DELAY_ENTER = 0.4;
 const DELAY_LEAVE = 0.1;
@@ -3809,5 +3916,5 @@ const Separator = styled.span `
   width: var(--separator-size);
 `;
 
-export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldText, Flex, Grid, Icon, Idle, Input$1 as Input, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuTitle, Nav, NavContainer, NavItem, NumberInput, Order, Range, Select, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Textarea, Th, Thead, Tooltip, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input$2 as input, label, paragraph };
+export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldText, Flex, Grid, Icon, Idle, Input$1 as Input, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuTitle, Nav, NavContainer, NavItem, NumberInput, Order, Range, Select, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Textarea, Th, Thead, Toast, Tooltip, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input$2 as input, label, paragraph };
 //# sourceMappingURL=index.js.map

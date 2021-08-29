@@ -3,17 +3,10 @@ import * as React from 'react';
 function SvgTimesCircle() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
-      <circle cx={8} cy={8} r={8} fill="currentColor" />
       <path
-        fill="#fff"
+        fill="currentColor"
         fillRule="evenodd"
-        d="M11.417 4.583a1 1 0 010 1.414l-5.42 5.42a1 1 0 01-1.414-1.414l5.42-5.42a1 1 0 011.414 0z"
-        clipRule="evenodd"
-      />
-      <path
-        fill="#fff"
-        fillRule="evenodd"
-        d="M11.417 11.417a1 1 0 01-1.414 0l-5.42-5.42a1 1 0 011.414-1.414l5.42 5.42a1 1 0 010 1.414z"
+        d="M8 16A8 8 0 108 0a8 8 0 000 16zm3.417-11.417a1 1 0 010 1.414L9.414 8l2.003 2.003a1 1 0 01-1.414 1.414L8 9.414l-2.003 2.003a1 1 0 01-1.414-1.414L6.586 8 4.583 5.997a1 1 0 111.414-1.414L8 6.586l2.003-2.003a1 1 0 011.414 0z"
         clipRule="evenodd"
       />
     </svg>
