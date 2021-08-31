@@ -1686,8 +1686,8 @@ const truncate = css `
  * Text
  */
 const Text = (_a) => {
-    var { as = 'span', clamp, hyphens = 'manual', truncate, word = 'normal' } = _a, props = __rest(_a, ["as", "clamp", "hyphens", "truncate", "word"]);
-    return (React.createElement(Container$6, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, props)));
+    var { as = 'span', clamp, hyphens = 'manual', space, truncate, word = 'normal' } = _a, props = __rest(_a, ["as", "clamp", "hyphens", "space", "truncate", "word"]);
+    return (React.createElement(Container$6, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-space": space || null, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, props)));
 };
 const Container$6 = styled.span `
   &[data-clamp] {
@@ -1699,6 +1699,16 @@ const Container$6 = styled.span `
   }
   &[data-hyphens='none'] {
     hyphens: none;
+  }
+
+  &[data-space='normal'] {
+    white-space: normal;
+  }
+  &[data-space='nowrap'] {
+    white-space: nowrap;
+  }
+  &[data-space='pre'] {
+    white-space: pre;
   }
 
   &[data-truncate] {
@@ -3116,16 +3126,14 @@ const Container$4 = styled.label `
   --switch-radius: 4px;
   --switch-size: 16px;
 
-  align-items: center;
+  align-items: flex-start;
   /* color: var(--switch-color); */
   cursor: pointer;
   display: inline-flex;
   gap: var(--switch-gap);
   max-width: 100%;
   position: relative;
-  text-align: left;
   user-select: none;
-  white-space: nowrap;
 
   input {
     height: 0;
@@ -3286,7 +3294,6 @@ const Indicator = styled.span `
 `;
 const Label$1 = styled.span `
   ${button};
-  ${truncate};
 
   --color: inherit;
   --font-size: inherit;

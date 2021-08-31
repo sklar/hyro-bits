@@ -86,16 +86,14 @@ const Container = styled.label`
   --switch-radius: 4px;
   --switch-size: 16px;
 
-  align-items: center;
+  align-items: flex-start;
   /* color: var(--switch-color); */
   cursor: pointer;
   display: inline-flex;
   gap: var(--switch-gap);
   max-width: 100%;
   position: relative;
-  text-align: left;
   user-select: none;
-  white-space: nowrap;
 
   input {
     height: 0;
@@ -258,7 +256,6 @@ const Indicator = styled.span`
 
 const Label = styled.span`
   ${button};
-  ${truncate};
 
   --color: inherit;
   --font-size: inherit;

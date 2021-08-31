@@ -13,6 +13,10 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
      */
     hyphens?: 'manual' | 'auto' | 'none';
     /**
+     * White space
+     */
+    space?: 'normal' | 'nowrap' | 'pre';
+    /**
      * Truuncate text
      */
     truncate?: boolean;

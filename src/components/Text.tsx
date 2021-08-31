@@ -17,6 +17,10 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
    */
   hyphens?: 'manual' | 'auto' | 'none';
   /**
+   * White space
+   */
+  space?: 'normal' | 'nowrap' | 'pre';
+  /**
    * Truuncate text
    */
   truncate?: boolean;
@@ -33,6 +37,7 @@ export const Text: React.FC<TextProps> = ({
   as = 'span',
   clamp,
   hyphens = 'manual',
+  space,
   truncate,
   word = 'normal',
   ...props
@@ -42,6 +47,7 @@ export const Text: React.FC<TextProps> = ({
       as={as}
       data-clamp={clamp || null}
       data-hyphens={hyphens}
+      data-space={space || null}
       data-truncate={truncate || null}
       data-word={word}
       style={{ ['--lines' as string]: clamp }}
@@ -60,6 +66,16 @@ const Container = styled.span`
   }
   &[data-hyphens='none'] {
     hyphens: none;
+  }
+
+  &[data-space='normal'] {
+    white-space: normal;
+  }
+  &[data-space='nowrap'] {
+    white-space: nowrap;
+  }
+  &[data-space='pre'] {
+    white-space: pre;
   }
 
   &[data-truncate] {

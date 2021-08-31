@@ -32,7 +32,7 @@ export default {
       control: { type: 'range', min: 1, max: 10, step: 1 },
     }),
     ...mapArgTypes(['truncate'], {}),
-    ...mapArgTypes(['hyphens', 'word'], {
+    ...mapArgTypes(['hyphens', 'space', 'word'], {
       control: { type: 'inline-radio' },
     }),
   },
