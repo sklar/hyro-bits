@@ -32,6 +32,7 @@ export interface NumberInputProps extends InputProps {
     decimals?: number;
     /**
      * Format
+     * FIXME: Implement format correclty or drop it.
      */
     format?: (arg: string) => string;
     /**

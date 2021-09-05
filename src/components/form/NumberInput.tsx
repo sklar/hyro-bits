@@ -66,6 +66,7 @@ export interface NumberInputProps extends InputProps {
   decimals?: number;
   /**
    * Format
+   * FIXME: Implement format correclty or drop it.
    */
   format?: (arg: string) => string;
 
@@ -163,6 +164,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
 
 const input = css`
   input {
+    appearance: textfield;
     font-variant-numeric: tabular-nums;
     text-align: right;
   }

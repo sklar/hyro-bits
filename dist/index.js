@@ -2257,6 +2257,7 @@ const NumberInput = forwardRef((_a, ref) => {
 });
 const input = css `
   input {
+    appearance: textfield;
     font-variant-numeric: tabular-nums;
     text-align: right;
   }
