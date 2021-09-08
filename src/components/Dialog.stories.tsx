@@ -29,9 +29,17 @@ export default {
     ...mapArgTypes(['title'], {
       control: { type: 'text' },
     }),
-    ...mapArgTypes(['header', 'footer', 'bleed', 'rejectable'], {
+    ...mapArgTypes(['header', 'footer', 'backdrop', 'bleed', 'rejectable'], {
       control: { type: 'boolean' },
     }),
+    'data-qa': {
+      control: 'text',
+      description: 'QA handle',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'dialog' },
+      },
+    },
     ...mapArgTypes(['index'], {
       control: { type: 'range', min: -1, max: 1000, step: 1 },
       table: { category: 'Modifiers' },

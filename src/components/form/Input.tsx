@@ -90,6 +90,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         ['data-active', 'data-invalid', 'data-hover', 'style'].includes(key)
       )
     );
+    const qa = {
+      'data-qa': 'input',
+    };
     return (
       <Container
         as={as}
@@ -106,7 +109,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       >
         {prefix && <Prefix>{prefix}</Prefix>}
         {leader}
-        <Element ref={ref} disabled={disabled} readOnly={readonly} {...inputProps} />
+        <Element ref={ref} disabled={disabled} readOnly={readonly} {...qa} {...inputProps} />
         {busy && (
           <Indicator
             gap="2px"

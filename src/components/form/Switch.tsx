@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { kebabCase } from 'case-anything';
 import React, { ElementType, forwardRef, InputHTMLAttributes } from 'react';
 
 import { button, colors } from '../../theme';
@@ -41,8 +42,10 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     {
       as = 'label',
       children,
+      className,
       disabled,
       label,
+      style,
       theme,
       type = 'checkbox',
       appearance = type === 'radio' ? 'radio' : 'checkbox',
@@ -51,19 +54,28 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
     ref
   ): JSX.Element => {
     const containerProps = Object.fromEntries(
-      Object.entries(inputProps).filter(([key]) =>
-        ['className', 'data-hover', 'style'].includes(key)
-      )
+      Object.entries(inputProps).filter(([key]) => ['data-hover'].includes(key))
     );
+    const qa = {
+      // prettier-ignore
+      'data-qa': [
+        'switch',
+        `${appearance}`,
+        ...(label ? [`${kebabCase(label)}`] : [])
+      ].join('-'),
+    };
+
     return (
       <Container
         as={as}
+        className={className}
         data-disabled={disabled || null}
         data-label={label || null}
         data-theme={theme || null}
+        style={style}
         {...containerProps}
       >
-        <input ref={ref} type={type} disabled={disabled} {...inputProps} />
+        <input ref={ref} type={type} disabled={disabled} {...qa} {...inputProps} />
         <Indicator data-appearance={appearance} />
         {children}
         {label && <Label>{label}</Label>}

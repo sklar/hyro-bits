@@ -42,6 +42,9 @@ export const Text: React.FC<TextProps> = ({
   word = 'normal',
   ...props
 }): JSX.Element => {
+  const qa = {
+    'data-qa': `text-${as}`,
+  };
   return (
     <Container
       as={as}
@@ -51,6 +54,7 @@ export const Text: React.FC<TextProps> = ({
       data-truncate={truncate || null}
       data-word={word}
       style={{ ['--lines' as string]: clamp }}
+      {...qa}
       {...props}
     />
   );

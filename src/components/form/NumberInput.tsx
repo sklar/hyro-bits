@@ -22,6 +22,7 @@ const IncrementStepper: React.VFC<NumberInputStepperProps> = ({ disabled = false
     synthetic
     tabIndex={-1}
     disabled={disabled}
+    data-qa="number-input-step-increment"
     onClick={onChange}
   />
 );
@@ -32,6 +33,7 @@ const DecrementStepper: React.VFC<NumberInputStepperProps> = ({ disabled = false
     synthetic
     tabIndex={-1}
     disabled={disabled}
+    data-qa="number-input-step-decrement"
     onClick={onChange}
   />
 );
@@ -131,9 +133,14 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
       value,
     });
 
+    const qa = {
+      'data-qa': 'input-number',
+    };
+
     return (
       <div>
         <Input
+          {...qa}
           {...rest}
           ref={ref}
           type={format ? 'text' : 'number'}

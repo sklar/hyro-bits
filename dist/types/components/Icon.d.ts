@@ -11,7 +11,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
      */
     name: IconNameType;
     /**
-     * Size.
+     * Size
      */
     size?: SizeType;
 }

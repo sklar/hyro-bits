@@ -29,6 +29,18 @@ export default {
     },
   },
   argTypes: {
+    'text': {
+      control: 'text',
+    },
+    'data-qa': {
+      control: 'text',
+      description: 'QA handle',
+      table: {
+        type: { summary: 'string' },
+        // eslint-disable-next-line no-template-curly-in-string
+        defaultValue: { summary: 'status-${theme}-${kebabCase(text)}' },
+      },
+    },
     ...mapArgTypes(['icon'], {
       control: { disable: true },
       table: { category: 'Modifiers', type: { summary: 'ReactElement' } },

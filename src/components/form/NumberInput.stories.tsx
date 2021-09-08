@@ -48,7 +48,7 @@ export default {
     size: 'md',
   },
   argTypes: {
-    ...mapArgTypes(['busy', 'theme'], {
+    ...mapArgTypes(['busy', 'format', 'theme'], {
       control: { disable: true },
       table: { disable: true },
     }),

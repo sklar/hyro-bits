@@ -32,6 +32,18 @@ export default {
     text: 'In the 1960s CIA agent successfully helps Gaby Teller defect to West Germany',
   },
   argTypes: {
+    ...mapArgTypes(['title', 'text'], {
+      control: { type: 'text' },
+    }),
+    'data-qa': {
+      control: 'text',
+      description: 'QA handle',
+      table: {
+        type: { summary: 'string' },
+        // eslint-disable-next-line no-template-curly-in-string
+        defaultValue: { summary: 'toast-${theme}' },
+      },
+    },
     ...mapArgTypes(['variant', 'theme'], {
       control: { type: 'inline-radio' },
       table: { category: 'Modifiers' },

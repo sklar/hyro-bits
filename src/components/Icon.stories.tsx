@@ -38,14 +38,23 @@ export default {
       control: { disable: true },
       table: { disable: true },
     }),
-    name: { control: null },
+    'name': { control: null },
     ...mapArgTypes(['size'], {
       control: { type: 'inline-radio' },
     }),
+    'data-qa': {
+      control: 'text',
+      description: 'QA handle',
+      table: {
+        type: { summary: 'string' },
+        // eslint-disable-next-line no-template-curly-in-string
+        defaultValue: { summary: 'icon-${kebabCase(name)}' },
+      },
+    },
   },
 } as Meta;
 
-const Template: Story<StoryProps> = ({ icons, size }) => (
+const Template: Story<StoryProps> = ({ icons, size, ...props }) => (
   <>
     {Object.values(icons).map((icon, index) => {
       const name = icon.name.replace(ICO_PREFIX, '') as IconNameType;
@@ -53,7 +62,7 @@ const Template: Story<StoryProps> = ({ icons, size }) => (
         <Card key={index}>
           <div>{name}</div>
           <div>
-            <Icon name={name} size={size} />
+            <Icon {...props} name={name} size={size} />
           </div>
         </Card>
       );

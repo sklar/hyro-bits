@@ -35,6 +35,18 @@ export default {
         type: { summary: 'ElementType<any>' },
       },
     }),
+    'text': {
+      control: 'text',
+    },
+    'data-qa': {
+      control: 'text',
+      description: 'QA handle',
+      table: {
+        type: { summary: 'string' },
+        // eslint-disable-next-line no-template-curly-in-string
+        defaultValue: { summary: 'nav-item-${kebabCase(text)}' },
+      },
+    },
     ...mapArgTypes(['icon', 'records'], {
       control: { disable: true },
       table: { disable: true },
@@ -82,6 +94,7 @@ const Template: Story<StoryProps> = ({
   status: storyStatus,
   text,
   theme,
+  ...props
 }) => {
   const [activeItemIndex, setActiveItemIndex] = useState<number>(0);
   return (
@@ -90,6 +103,7 @@ const Template: Story<StoryProps> = ({
         const theme = getThemeByStatus(status as StatusType);
         return (
           <NavItem
+            {...props}
             key={index}
             active={active || activeItemIndex === index}
             status={showStatus ? ((storyStatus || theme) as StatusThemeType) : undefined}

@@ -12,9 +12,12 @@ import { Flex, FlexProps } from '../layout';
 /**
  * Field label
  */
-export const FieldLabel: React.FC<FlexProps> = (props): JSX.Element => (
-  <Flex as="label" css={labelStyle} gap="4px" {...props} />
-);
+export const FieldLabel: React.FC<FlexProps> = (props): JSX.Element => {
+  const qa = {
+    'data-qa': 'field-label',
+  };
+  return <Flex as="label" css={labelStyle} gap="4px" {...qa} {...props} />;
+};
 
 const labelStyle = css`
   ${label};
@@ -29,9 +32,12 @@ interface FieldTextProps extends HTMLAttributes<HTMLDivElement> {
   secondary?: boolean;
 }
 
-export const FieldText: React.FC<FieldTextProps> = ({ secondary, ...props }): JSX.Element => (
-  <FieldTextContainer data-secondary={secondary || null} {...props} />
-);
+export const FieldText: React.FC<FieldTextProps> = ({ secondary, ...props }): JSX.Element => {
+  const qa = {
+    'data-qa': 'field-text',
+  };
+  return <FieldTextContainer data-secondary={secondary || null} {...qa} {...props} />;
+};
 
 const FieldTextContainer = styled.div`
   ${base};
@@ -71,8 +77,11 @@ export const FieldMessage: React.FC<FieldMessageProps> = ({
   theme = 'danger',
   ...props
 }): JSX.Element => {
+  const qa = {
+    'data-qa': `field-message-${theme}`,
+  };
   return (
-    <Flex css={messageStyle} data-theme={theme || null} gap="8px" {...props}>
+    <Flex css={messageStyle} data-theme={theme || null} gap="8px" {...qa} {...props}>
       {theme && <Icon name={iconName(theme)} />}
       {children}
     </Flex>
@@ -105,9 +114,12 @@ const messageStyle = css`
  */
 export interface FieldProps extends FlexProps {}
 
-export const Field: React.FC<FieldProps> = (props): JSX.Element => (
-  <Flex block css={fieldStyle} direction="column" gap="8px" {...props} />
-);
+export const Field: React.FC<FieldProps> = (props): JSX.Element => {
+  const qa = {
+    'data-qa': 'field',
+  };
+  return <Flex block css={fieldStyle} direction="column" gap="8px" {...qa} {...props} />;
+};
 
 const fieldStyle = css`
   --field-indent: 0;

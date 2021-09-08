@@ -87,6 +87,9 @@ export const Dialog: React.FC<DialogProps> = ({
   title,
   ...props
 }): JSX.Element => {
+  const qa = {
+    'data-qa': 'dialog',
+  };
   const onKeyUp = useCallback(
     (event: KeyboardEvent) => {
       if (event.key === 'Escape') onClose();
@@ -113,9 +116,9 @@ export const Dialog: React.FC<DialogProps> = ({
       style={{ ['--dialog-index' as string]: index }}
     >
       {backdrop && <Backdrop data-dialog="backdrop" onClick={rejectable ? onClose : undefined} />}
-      <DialogContainer {...props} style={{ ['--dialog-size' as string]: size }}>
+      <DialogContainer {...qa} {...props} style={{ ['--dialog-size' as string]: size }}>
         {(header || title) && (
-          <header css={headerStyle} data-dialog="header">
+          <header css={headerStyle} data-dialog="header" data-qa="dialog-header">
             {header ? (
               header
             ) : (
@@ -125,9 +128,17 @@ export const Dialog: React.FC<DialogProps> = ({
             )}
           </header>
         )}
-        <Body data-dialog="body">{children}</Body>
+        <Body data-dialog="body" data-qa="dialog-body">
+          {children}
+        </Body>
         {footer && (
-          <Flex as="footer" css={footerStyle} data-dialog="footer" justify={justify}>
+          <Flex
+            as="footer"
+            css={footerStyle}
+            data-dialog="footer"
+            data-qa="dialog-footer"
+            justify={justify}
+          >
             {footer}
           </Flex>
         )}

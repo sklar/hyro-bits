@@ -44,8 +44,11 @@ export const Idle: React.VFC<IdleProps> = ({
   ...props
 }): JSX.Element => {
   const delegated = { color, delay, duration, gap, range, size, ...props };
+  const qa = {
+    'data-qa': 'idle',
+  };
   return (
-    <Container {...delegated}>
+    <Container {...qa} {...delegated}>
       <Element />
       <Element />
       <Element />
@@ -91,6 +94,9 @@ const Element = styled.div`
   }
 `;
 
+/**
+ * TODO: Improve performance
+ */
 const Container = styled.div<IdleProps>`
   ${({ color }) => color && `--color: ${color}`};
   ${({ delay }) => `--delay: ${delay}ms`};

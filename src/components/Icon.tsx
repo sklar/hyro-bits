@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { kebabCase } from 'case-anything';
 import React, { HTMLAttributes, SVGProps, useEffect, useState } from 'react';
 
 import * as BOLD from '../icons/bold';
@@ -20,7 +21,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
    */
   name: IconNameType;
   /**
-   * Size.
+   * Size
    */
   size?: SizeType;
 }
@@ -30,6 +31,9 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
  */
 export const Icon: React.VFC<IconProps> = ({ name, size = 'sm', ...props }): JSX.Element => {
   const [Component, setComponent] = useState<React.FC<SVGProps<SVGSVGElement>>>();
+  const qa = {
+    'data-qa': `icon-${kebabCase(name)}`,
+  };
 
   useEffect(() => {
     if (size === Size.XSMALL && isMini(name)) {
@@ -42,7 +46,7 @@ export const Icon: React.VFC<IconProps> = ({ name, size = 'sm', ...props }): JSX
   }, [name, size]);
 
   return (
-    <Container data-icon={name} data-size={size} {...props}>
+    <Container data-icon={name} data-size={size} {...qa} {...props}>
       {Component}
     </Container>
   );

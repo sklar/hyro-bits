@@ -9,6 +9,14 @@ export default {
   component: Component,
   decorators: [],
   argTypes: {
+    'data-qa': {
+      control: 'text',
+      description: 'QA handle',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'idle' },
+      },
+    },
     ...mapArgTypes(['color'], {
       control: { type: 'color' },
       table: { category: 'Modifiers' },

@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import { kebabCase } from 'case-anything';
 import React, { ElementType, forwardRef, HTMLAttributes, ReactElement } from 'react';
 
 import { button, colors } from '../theme';
@@ -44,22 +45,28 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
       ...props
     },
     ref
-  ): JSX.Element => (
-    <NavItemContainer
-      as={as}
-      data-active={active || null}
-      data-status={status || null}
-      ref={ref}
-      type={as === 'button' ? 'button' : undefined}
-      {...props}
-    >
-      {status && <Status theme={status || null} />}
-      <Text data-text truncate>
-        {text}
-      </Text>
-      {icon}
-    </NavItemContainer>
-  )
+  ): JSX.Element => {
+    const qa = {
+      'data-qa': `nav-item-${kebabCase(text)}`,
+    };
+    return (
+      <NavItemContainer
+        as={as}
+        data-active={active || null}
+        data-status={status || null}
+        ref={ref}
+        type={as === 'button' ? 'button' : undefined}
+        {...qa}
+        {...props}
+      >
+        {status && <Status theme={status || null} />}
+        <Text data-text truncate>
+          {text}
+        </Text>
+        {icon}
+      </NavItemContainer>
+    );
+  }
 );
 
 const NavItemContainer = styled.button`

@@ -5,6 +5,7 @@ import { base } from '../theme/typography';
 import { ThemeType } from '../utils/types';
 import { Text } from './Text';
 import { colors } from '../theme';
+import { kebabCase } from 'case-anything';
 
 export type StatusThemeType = Exclude<ThemeType, 'dark'>;
 
@@ -34,8 +35,16 @@ export const Status: React.FC<StatusProps> = ({
   ...props
 }): JSX.Element => {
   const isBeacon = !(text || children);
+  const qa = {
+    // prettier-ignore
+    'data-qa': [
+      'status',
+      ...(theme ? [theme] : []),
+      ...(text ? [`${kebabCase(text)}`] : [])
+    ].join('-'),
+  };
   return (
-    <Container data-beacon={isBeacon || null} data-theme={theme || null} {...props}>
+    <Container data-beacon={isBeacon || null} data-theme={theme || null} {...qa} {...props}>
       {icon}
       <Text truncate>{text ? text : children}</Text>
     </Container>

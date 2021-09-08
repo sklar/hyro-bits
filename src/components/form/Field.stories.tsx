@@ -42,6 +42,15 @@ export default {
     ...mapArgTypes(['theme'], {
       control: { type: 'inline-radio' },
     }),
+    'data-qa': {
+      control: 'text',
+      description: 'QA handle',
+      table: {
+        type: { summary: 'string' },
+        // eslint-disable-next-line no-template-curly-in-string
+        defaultValue: { summary: 'field-message-${theme}' },
+      },
+    },
   },
 } as Meta;
 

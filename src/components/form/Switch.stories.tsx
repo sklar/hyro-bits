@@ -42,6 +42,15 @@ export default {
       },
     }),
     ...mapArgTypes(['label'], { control: { type: 'text' } }),
+    'data-qa': {
+      control: 'text',
+      description: 'QA handle',
+      table: {
+        type: { summary: 'string' },
+        // eslint-disable-next-line no-template-curly-in-string
+        defaultValue: { summary: 'switch-checkbox-${kebabCase(label)}' },
+      },
+    },
     ...mapArgTypes(['appearance', 'theme', 'type'], {
       control: { type: 'inline-radio' },
       table: { category: 'Modifiers' },

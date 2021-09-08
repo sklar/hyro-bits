@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
+import { kebabCase } from 'case-anything';
 import { CSSProperties, forwardRef, ReactElement } from 'react';
 import ReactSelect, {
   components,
@@ -91,6 +92,10 @@ const Control = (props: any) => {
     },
     ...rest
   } = props;
+  const qa = {
+    'data-qa': 'select',
+  };
+
   return (
     <div
       data-active={active || null}
@@ -100,6 +105,7 @@ const Control = (props: any) => {
       data-readonly={readonly || null}
       data-size={size}
       data-theme={theme || null}
+      {...qa}
       {...helpers}
     >
       <components.Control css={[controlStyle, { ['--input-length' as string]: length }]} {...rest}>
@@ -280,16 +286,17 @@ const MenuList = (props: any) => {
 };
 
 const Option = (props: any) => {
-  const { cx, innerProps, innerRef, isDisabled, isFocused, isSelected, ...rest } = props;
+  const { cx, data, innerProps, innerRef, isDisabled, isFocused, isSelected, ...rest } = props;
   return (
     <MenuItem
+      {...innerProps}
+      {...rest}
       active={isSelected}
       as="div"
       data-hover={isFocused || null}
       disabled={isDisabled}
       ref={innerRef}
-      {...innerProps}
-      {...rest}
+      data-qa={`select-option-${kebabCase(data.value)}`}
     />
   );
 };

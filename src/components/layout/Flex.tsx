@@ -56,6 +56,9 @@ export const Flex: React.FC<FlexProps> = ({
   return <Container as={as} data-wrap={wrap || null} {...delegated} />;
 };
 
+/**
+ * TODO: Improve performance
+ */
 const Container = styled.div<FlexProps>`
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'flex' : 'inline-flex'}`};

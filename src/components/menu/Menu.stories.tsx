@@ -28,6 +28,14 @@ export default {
     },
   },
   argTypes: {
+    'data-qa': {
+      control: 'text',
+      description: 'QA handle',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'menu' },
+      },
+    },
     ...mapArgTypes(['justify', 'padding'], {
       table: { category: 'Modifiers' },
     }),

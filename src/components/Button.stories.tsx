@@ -29,7 +29,7 @@ export default {
     },
   },
   argTypes: {
-    children: {
+    'children': {
       control: { disable: true },
       table: { disable: true },
     },
@@ -42,6 +42,18 @@ export default {
     ...mapArgTypes(['type'], {
       control: { type: 'inline-radio' },
     }),
+    ...mapArgTypes(['text', 'href'], {
+      control: { type: 'text' },
+    }),
+    'data-qa': {
+      control: 'text',
+      description: 'QA handle',
+      table: {
+        type: { summary: 'string' },
+        // eslint-disable-next-line no-template-curly-in-string
+        defaultValue: { summary: 'button-${kebabCase(text)}' },
+      },
+    },
     ...mapArgTypes(['round', 'synthetic', 'toggle'], {
       table: { category: 'Modifiers' },
     }),

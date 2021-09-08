@@ -80,8 +80,12 @@ export const Toast: React.FC<ToastProps> = ({
   variant = 'toast',
   ...props
 }): JSX.Element => {
+  const qa = {
+    'data-qa': `toast-${theme}`,
+  };
   return (
     <Container
+      {...qa}
       {...props}
       data-clickable={closeable || null}
       data-theme={theme || null}
@@ -94,8 +98,10 @@ export const Toast: React.FC<ToastProps> = ({
         children
       ) : (
         <Body>
-          {title && <Title>{title}</Title>}
-          <Text clamp={title ? 2 : 3}>{text}</Text>
+          {title && <Title data-qa="toast-title">{title}</Title>}
+          <Text clamp={title ? 2 : 3} data-qa="toast-text">
+            {text}
+          </Text>
         </Body>
       )}
       {button && (

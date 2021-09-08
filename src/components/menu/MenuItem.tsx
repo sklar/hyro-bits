@@ -32,8 +32,9 @@ export interface MenuItemProps extends HTMLAttributes<HTMLElement> {
  */
 export const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
   ({ active, as = 'button', disabled, justify, theme, ...props }, ref): JSX.Element => {
-    const delegated = { ...props };
-
+    const qa = {
+      'data-qa': 'menu-item',
+    };
     return (
       <MenuItemContainer
         as={as}
@@ -44,7 +45,8 @@ export const MenuItem = forwardRef<HTMLButtonElement, MenuItemProps>(
         disabled={as === 'button' ? !!disabled : undefined}
         ref={ref}
         type={as === 'button' ? 'button' : undefined}
-        {...delegated}
+        {...qa}
+        {...props}
       />
     );
   }

@@ -37,8 +37,9 @@ export interface MenuProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Menu = forwardRef<HTMLDivElement, MenuProps>(
   ({ active, justify, padding, size, theme, ...props }, ref): JSX.Element => {
-    const delegated = { ...props };
-
+    const qa = {
+      'data-qa': 'menu',
+    };
     return (
       <MenuContainer
         data-active={active || null}
@@ -47,7 +48,8 @@ export const Menu = forwardRef<HTMLDivElement, MenuProps>(
         data-theme={theme || null}
         ref={ref}
         style={{ ['--size' as string]: size }}
-        {...delegated}
+        {...qa}
+        {...props}
       />
     );
   }

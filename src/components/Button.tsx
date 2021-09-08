@@ -1,5 +1,6 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import { kebabCase } from 'case-anything';
 import React, { ElementType, forwardRef, HTMLAttributes, ReactElement, ReactNode } from 'react';
 
 import { Idle as Indicator } from '../components/indicator';
@@ -103,6 +104,13 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ): JSX.Element => {
     const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
     const delegated = { size, variant, ...props };
+    const qa = {
+      // prettier-ignore
+      'data-qa': [
+        `${href ? 'link' : 'button'}`,
+        ...(text ? [`${kebabCase(text)}`] : []),
+      ].join('-'),
+    };
 
     return (
       <Container
@@ -120,6 +128,7 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         href={href}
         ref={ref}
         type={href ? undefined : type}
+        {...qa}
         {...delegated}
       >
         {leader}

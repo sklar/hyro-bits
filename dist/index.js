@@ -2,6 +2,7 @@
 
 import { keyframes, css, jsx, Global } from '@emotion/react';
 import styled from '@emotion/styled';
+import { kebabCase } from 'case-anything';
 import React, { createElement, useState, useEffect, forwardRef, useRef, useCallback, useMemo, Fragment } from 'react';
 import { useCombinedRef, useDependantState, useUpdatedRef } from '@spicy-hooks/core';
 import { transparentize } from 'color2k';
@@ -60,7 +61,10 @@ const fadeIn = keyframes `
 const Idle = (_a) => {
     var { color, delay = 100, duration = 500, gap = '4px', range = '6px', size = '5px' } = _a, props = __rest(_a, ["color", "delay", "duration", "gap", "range", "size"]);
     const delegated = Object.assign({ color, delay, duration, gap, range, size }, props);
-    return (React.createElement(Container$d, Object.assign({}, delegated),
+    const qa = {
+        'data-qa': 'idle',
+    };
+    return (React.createElement(Container$d, Object.assign({}, qa, delegated),
         React.createElement(Element$2, null),
         React.createElement(Element$2, null),
         React.createElement(Element$2, null)));
@@ -101,6 +105,9 @@ const Element$2 = styled.div `
     syntax: '<length>';
   }
 `;
+/**
+ * TODO: Improve performance
+ */
 const Container$d = styled.div `
   ${({ color }) => color && `--color: ${color}`};
   ${({ delay }) => `--delay: ${delay}ms`};
@@ -1265,6 +1272,9 @@ const isMini = (name) => name in MINI;
 const Icon = (_a) => {
     var { name, size = 'sm' } = _a, props = __rest(_a, ["name", "size"]);
     const [Component, setComponent] = useState();
+    const qa = {
+        'data-qa': `icon-${kebabCase(name)}`,
+    };
     useEffect(() => {
         if (size === Size.XSMALL && isMini(name)) {
             setComponent(MINI[name]);
@@ -1276,7 +1286,7 @@ const Icon = (_a) => {
             console.error(`${name} icon not found!`);
         }
     }, [name, size]);
-    return (React.createElement(Container$c, Object.assign({ "data-icon": name, "data-size": size }, props), Component));
+    return (React.createElement(Container$c, Object.assign({ "data-icon": name, "data-size": size }, qa, props), Component));
 };
 const Container$c = styled.span `
   --icon-size: ;
@@ -1364,7 +1374,14 @@ const Button = forwardRef((_a, ref) => {
     var { active, as, busy, children, disabled, href, icon, placement, round, size = 'md', synthetic, text, theme, toggle, type = 'button', variant = 'secondary' } = _a, props = __rest(_a, ["active", "as", "busy", "children", "disabled", "href", "icon", "placement", "round", "size", "synthetic", "text", "theme", "toggle", "type", "variant"]);
     const [leader, trailer] = Array.isArray(icon) ? icon : [icon];
     const delegated = Object.assign({ size, variant }, props);
-    return (React.createElement(Container$a, Object.assign({ as: as !== null && as !== void 0 ? as : (href ? 'a' : 'button'), "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, delegated),
+    const qa = {
+        // prettier-ignore
+        'data-qa': [
+            `${href ? 'link' : 'button'}`,
+            ...(text ? [`${kebabCase(text)}`] : []),
+        ].join('-'),
+    };
+    return (React.createElement(Container$a, Object.assign({ as: as !== null && as !== void 0 ? as : (href ? 'a' : 'button'), "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, qa, delegated),
         leader,
         text ? text : children,
         trailer,
@@ -1626,6 +1643,9 @@ const Flex = (_a) => {
     const delegated = Object.assign({ align, block, direction, gap, justify }, props);
     return React.createElement(Container$8, Object.assign({ as: as, "data-wrap": wrap || null }, delegated));
 };
+/**
+ * TODO: Improve performance
+ */
 const Container$8 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'flex' : 'inline-flex'}`};
@@ -1687,7 +1707,10 @@ const truncate = css `
  */
 const Text = (_a) => {
     var { as = 'span', clamp, hyphens = 'manual', space, truncate, word = 'normal' } = _a, props = __rest(_a, ["as", "clamp", "hyphens", "space", "truncate", "word"]);
-    return (React.createElement(Container$6, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-space": space || null, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, props)));
+    const qa = {
+        'data-qa': `text-${as}`,
+    };
+    return (React.createElement(Container$6, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-space": space || null, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, qa, props)));
 };
 const Container$6 = styled.span `
   &[data-clamp] {
@@ -1728,6 +1751,9 @@ const Container$6 = styled.span `
  */
 const Dialog = (_a) => {
     var { active = false, backdrop = true, bleed = false, children, footer, header, index = 10, justify = 'flex-end', onClose, rejectable = true, size, theme, title } = _a, props = __rest(_a, ["active", "backdrop", "bleed", "children", "footer", "header", "index", "justify", "onClose", "rejectable", "size", "theme", "title"]);
+    const qa = {
+        'data-qa': 'dialog',
+    };
     const onKeyUp = useCallback((event) => {
         if (event.key === 'Escape')
             onClose();
@@ -1742,10 +1768,10 @@ const Dialog = (_a) => {
     }, [onClose, onKeyUp, rejectable]);
     return (jsx(DialogWrapper, { "data-active": active || null, "data-bleed": bleed || null, "data-foot": footer ? true : null, "data-head": header || title ? true : null, "data-theme": theme || null, style: { ['--dialog-index']: index } },
         backdrop && jsx(Backdrop, { "data-dialog": "backdrop", onClick: rejectable ? onClose : undefined }),
-        jsx(DialogContainer, Object.assign({}, props, { style: { ['--dialog-size']: size } }),
-            (header || title) && (jsx("header", { css: headerStyle, "data-dialog": "header" }, header ? (header) : (jsx(Text, { as: "h1", clamp: 1, css: titleStyle }, title)))),
-            jsx(Body$1, { "data-dialog": "body" }, children),
-            footer && (jsx(Flex, { as: "footer", css: footerStyle, "data-dialog": "footer", justify: justify }, footer)),
+        jsx(DialogContainer, Object.assign({}, qa, props, { style: { ['--dialog-size']: size } }),
+            (header || title) && (jsx("header", { css: headerStyle, "data-dialog": "header", "data-qa": "dialog-header" }, header ? (header) : (jsx(Text, { as: "h1", clamp: 1, css: titleStyle }, title)))),
+            jsx(Body$1, { "data-dialog": "body", "data-qa": "dialog-body" }, children),
+            footer && (jsx(Flex, { as: "footer", css: footerStyle, "data-dialog": "footer", "data-qa": "dialog-footer", justify: justify }, footer)),
             rejectable && jsx(Control$1, { "data-dialog": "control", onClick: onClose }))));
 };
 // TypeScript warning will be gone after this boi is resolved
@@ -1936,7 +1962,12 @@ const Control$1 = (props) => (jsx(Button, Object.assign({ css: controlStyle$1, i
 /**
  * Field label
  */
-const FieldLabel = (props) => (jsx(Flex, Object.assign({ as: "label", css: labelStyle, gap: "4px" }, props)));
+const FieldLabel = (props) => {
+    const qa = {
+        'data-qa': 'field-label',
+    };
+    return jsx(Flex, Object.assign({ as: "label", css: labelStyle, gap: "4px" }, qa, props));
+};
 const labelStyle = css `
   ${label};
 
@@ -1944,7 +1975,10 @@ const labelStyle = css `
 `;
 const FieldText = (_a) => {
     var { secondary } = _a, props = __rest(_a, ["secondary"]);
-    return (jsx(FieldTextContainer, Object.assign({ "data-secondary": secondary || null }, props)));
+    const qa = {
+        'data-qa': 'field-text',
+    };
+    return jsx(FieldTextContainer, Object.assign({ "data-secondary": secondary || null }, qa, props));
 };
 const FieldTextContainer = styled.div `
   ${base$1};
@@ -1970,7 +2004,10 @@ const iconName$1 = (theme) => {
 };
 const FieldMessage = (_a) => {
     var { children, theme = 'danger' } = _a, props = __rest(_a, ["children", "theme"]);
-    return (jsx(Flex, Object.assign({ css: messageStyle$1, "data-theme": theme || null, gap: "8px" }, props),
+    const qa = {
+        'data-qa': `field-message-${theme}`,
+    };
+    return (jsx(Flex, Object.assign({ css: messageStyle$1, "data-theme": theme || null, gap: "8px" }, qa, props),
         theme && jsx(Icon, { name: iconName$1(theme) }),
         children));
 };
@@ -1994,7 +2031,12 @@ const messageStyle$1 = css `
     color: ${colors.SUCCESS};
   }
 `;
-const Field = (props) => (jsx(Flex, Object.assign({ block: true, css: fieldStyle, direction: "column", gap: "8px" }, props)));
+const Field = (props) => {
+    const qa = {
+        'data-qa': 'field',
+    };
+    return jsx(Flex, Object.assign({ block: true, css: fieldStyle, direction: "column", gap: "8px" }, qa, props));
+};
 const fieldStyle = css `
   --field-indent: 0;
 
@@ -2111,10 +2153,13 @@ const Input$1 = forwardRef((_a, ref) => {
     var { active, affix, as = 'label', busy, className, disabled, invalid, leader, length, readonly, size = 'md', theme, trailer } = _a, inputProps = __rest(_a, ["active", "affix", "as", "busy", "className", "disabled", "invalid", "leader", "length", "readonly", "size", "theme", "trailer"]);
     const [prefix, suffix] = Array.isArray(affix) ? affix : [affix];
     const _b = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['data-active', 'data-invalid', 'data-hover', 'style'].includes(key))), { style } = _b, containerProps = __rest(_b, ["style"]);
+    const qa = {
+        'data-qa': 'input',
+    };
     return (React.createElement(Container$5, Object.assign({ as: as, className: className, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
         prefix && React.createElement(Prefix, null, prefix),
         leader,
-        React.createElement(Element$1, Object.assign({ ref: ref, disabled: disabled, readOnly: readonly }, inputProps)),
+        React.createElement(Element$1, Object.assign({ ref: ref, disabled: disabled, readOnly: readonly }, qa, inputProps)),
         busy && (React.createElement(Idle, { gap: "2px", size: "4px", style: {
                 ['--color']: colors.ELEMENT_PRIMARY,
             } })),
@@ -2226,8 +2271,8 @@ function useNumberInput({ decimals = 0, format = (arg) => arg, max = Infinity, m
 }
 
 const Stepper = (props) => jsx(StepperContainer, Object.assign({ "data-stepper": true }, props));
-const IncrementStepper = ({ disabled = false, onChange }) => (jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: disabled, onClick: onChange }));
-const DecrementStepper = ({ disabled = false, onChange }) => (jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: disabled, onClick: onChange }));
+const IncrementStepper = ({ disabled = false, onChange }) => (jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: disabled, "data-qa": "number-input-step-increment", onClick: onChange }));
+const DecrementStepper = ({ disabled = false, onChange }) => (jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: disabled, "data-qa": "number-input-step-decrement", onClick: onChange }));
 const Components = {
     Stepper,
     IncrementStepper,
@@ -2250,8 +2295,11 @@ const NumberInput = forwardRef((_a, ref) => {
         step,
         value,
     });
+    const qa = {
+        'data-qa': 'input-number',
+    };
     return (jsx("div", null,
-        jsx(Input$1, Object.assign({}, rest, { ref: ref, type: format ? 'text' : 'number', value: interimInputValue, min: min, max: max, invalid: !isInterimValueValid, css: input, trailer: jsx(Fragment, null, stepper && (jsx(components.Stepper, null,
+        jsx(Input$1, Object.assign({}, qa, rest, { ref: ref, type: format ? 'text' : 'number', value: interimInputValue, min: min, max: max, invalid: !isInterimValueValid, css: input, trailer: jsx(Fragment, null, stepper && (jsx(components.Stepper, null,
                 jsx(components.IncrementStepper, { disabled: value >= max, onChange: handleIncrement }),
                 jsx(components.DecrementStepper, { disabled: value <= min, onChange: handleDecrement })))), onBlur: handleInputBlur, onChange: handleInputChange, onFocus: handleInputFocus, onKeyDown: handleKeyDown }))));
 });
@@ -2803,8 +2851,10 @@ const menuDivider = css `
  */
 const Menu = forwardRef((_a, ref) => {
     var { active, justify, padding, size, theme } = _a, props = __rest(_a, ["active", "justify", "padding", "size", "theme"]);
-    const delegated = Object.assign({}, props);
-    return (React.createElement(MenuContainer$1, Object.assign({ "data-active": active || null, "data-justify": justify || null, "data-padding": padding || null, "data-theme": theme || null, ref: ref, style: { ['--size']: size } }, delegated)));
+    const qa = {
+        'data-qa': 'menu',
+    };
+    return (React.createElement(MenuContainer$1, Object.assign({ "data-active": active || null, "data-justify": justify || null, "data-padding": padding || null, "data-theme": theme || null, ref: ref, style: { ['--size']: size } }, qa, props)));
 });
 /**
  * Note that [data-hover] and [data-pressed] are here only to help
@@ -2829,8 +2879,10 @@ const MenuGroupTitle = styled.h5 `
  */
 const MenuItem = forwardRef((_a, ref) => {
     var { active, as = 'button', disabled, justify, theme } = _a, props = __rest(_a, ["active", "as", "disabled", "justify", "theme"]);
-    const delegated = Object.assign({}, props);
-    return (React.createElement(MenuItemContainer, Object.assign({ as: as, "data-active": active || null, "data-disabled": disabled || null, "data-justify": justify || null, "data-theme": theme || null, disabled: as === 'button' ? !!disabled : undefined, ref: ref, type: as === 'button' ? 'button' : undefined }, delegated)));
+    const qa = {
+        'data-qa': 'menu-item',
+    };
+    return (React.createElement(MenuItemContainer, Object.assign({ as: as, "data-active": active || null, "data-disabled": disabled || null, "data-justify": justify || null, "data-theme": theme || null, disabled: as === 'button' ? !!disabled : undefined, ref: ref, type: as === 'button' ? 'button' : undefined }, qa, props)));
 });
 const MenuItemContainer = styled.button `
   ${menuItem};
@@ -2885,7 +2937,10 @@ const controlStyle = css `
 `;
 const Control = (props) => {
     const { children, selectProps: { active, busy, disabled, helpers, invalid, leader, length, readonly, size = 'md', theme, } } = props, rest = __rest(props, ["children", "selectProps"]);
-    return (jsx("div", Object.assign({ "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null }, helpers),
+    const qa = {
+        'data-qa': 'select',
+    };
+    return (jsx("div", Object.assign({ "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null }, qa, helpers),
         jsx(components.Control, Object.assign({ css: [controlStyle, { ['--input-length']: length }] }, rest),
             leader,
             children)));
@@ -3016,8 +3071,8 @@ const MenuList = (props) => {
     return jsx(components.MenuList, Object.assign({ css: [menuListStyle, { maxHeight: maxMenuHeight }] }, rest));
 };
 const Option = (props) => {
-    const { cx, innerProps, innerRef, isDisabled, isFocused, isSelected } = props, rest = __rest(props, ["cx", "innerProps", "innerRef", "isDisabled", "isFocused", "isSelected"]);
-    return (jsx(MenuItem, Object.assign({ active: isSelected, as: "div", "data-hover": isFocused || null, disabled: isDisabled, ref: innerRef }, innerProps, rest)));
+    const { cx, data, innerProps, innerRef, isDisabled, isFocused, isSelected } = props, rest = __rest(props, ["cx", "data", "innerProps", "innerRef", "isDisabled", "isFocused", "isSelected"]);
+    return (jsx(MenuItem, Object.assign({}, innerProps, rest, { active: isSelected, as: "div", "data-hover": isFocused || null, disabled: isDisabled, ref: innerRef, "data-qa": `select-option-${kebabCase(data.value)}` })));
 };
 /**
  * Message
@@ -3105,10 +3160,18 @@ const Slider = (_a) => {
  * Checkbox, Radio button or Toggle switch
  */
 const Switch = forwardRef((_a, ref) => {
-    var { as = 'label', children, disabled, label, theme, type = 'checkbox', appearance = type === 'radio' ? 'radio' : 'checkbox' } = _a, inputProps = __rest(_a, ["as", "children", "disabled", "label", "theme", "type", "appearance"]);
-    const containerProps = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['className', 'data-hover', 'style'].includes(key)));
-    return (React.createElement(Container$4, Object.assign({ as: as, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null }, containerProps),
-        React.createElement("input", Object.assign({ ref: ref, type: type, disabled: disabled }, inputProps)),
+    var { as = 'label', children, className, disabled, label, style, theme, type = 'checkbox', appearance = type === 'radio' ? 'radio' : 'checkbox' } = _a, inputProps = __rest(_a, ["as", "children", "className", "disabled", "label", "style", "theme", "type", "appearance"]);
+    const containerProps = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['data-hover'].includes(key)));
+    const qa = {
+        // prettier-ignore
+        'data-qa': [
+            'switch',
+            `${appearance}`,
+            ...(label ? [`${kebabCase(label)}`] : [])
+        ].join('-'),
+    };
+    return (React.createElement(Container$4, Object.assign({ as: as, className: className, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null, style: style }, containerProps),
+        React.createElement("input", Object.assign({ ref: ref, type: type, disabled: disabled }, qa, inputProps)),
         React.createElement(Indicator, { "data-appearance": appearance }),
         children,
         label && React.createElement(Label$1, null, label)));
@@ -3349,7 +3412,15 @@ const Element = styled.textarea `
 const Status = (_a) => {
     var { children, icon, text, theme } = _a, props = __rest(_a, ["children", "icon", "text", "theme"]);
     const isBeacon = !(text || children);
-    return (React.createElement(Container$2, Object.assign({ "data-beacon": isBeacon || null, "data-theme": theme || null }, props),
+    const qa = {
+        // prettier-ignore
+        'data-qa': [
+            'status',
+            ...(theme ? [theme] : []),
+            ...(text ? [`${kebabCase(text)}`] : [])
+        ].join('-'),
+    };
+    return (React.createElement(Container$2, Object.assign({ "data-beacon": isBeacon || null, "data-theme": theme || null }, qa, props),
         icon,
         React.createElement(Text, { truncate: true }, text ? text : children)));
 };
@@ -3443,7 +3514,10 @@ const Container$2 = styled.span `
  */
 const NavItem = forwardRef((_a, ref) => {
     var { active, as = 'button', icon = React.createElement(Icon, { name: "ChevronRight", size: "xs" }), status, text } = _a, props = __rest(_a, ["active", "as", "icon", "status", "text"]);
-    return (React.createElement(NavItemContainer, Object.assign({ as: as, "data-active": active || null, "data-status": status || null, ref: ref, type: as === 'button' ? 'button' : undefined }, props),
+    const qa = {
+        'data-qa': `nav-item-${kebabCase(text)}`,
+    };
+    return (React.createElement(NavItemContainer, Object.assign({ as: as, "data-active": active || null, "data-status": status || null, ref: ref, type: as === 'button' ? 'button' : undefined }, qa, props),
         status && React.createElement(Status, { theme: status || null }),
         React.createElement(Text, { "data-text": true, truncate: true }, text),
         icon));
@@ -3693,11 +3767,14 @@ const iconName = (theme) => {
  */
 const Toast = (_a) => {
     var { button = false, children, closeable = false, icon = true, onClick, size, style, text, theme = 'notice', title, variant = 'toast' } = _a, props = __rest(_a, ["button", "children", "closeable", "icon", "onClick", "size", "style", "text", "theme", "title", "variant"]);
-    return (React.createElement(Container$1, Object.assign({}, props, { "data-clickable": closeable || null, "data-theme": theme || null, "data-variant": variant || null, onClick: closeable && onClick ? onClick : undefined, style: Object.assign(Object.assign({}, style), { ['--toast-size']: size }) }),
+    const qa = {
+        'data-qa': `toast-${theme}`,
+    };
+    return (React.createElement(Container$1, Object.assign({}, qa, props, { "data-clickable": closeable || null, "data-theme": theme || null, "data-variant": variant || null, onClick: closeable && onClick ? onClick : undefined, style: Object.assign(Object.assign({}, style), { ['--toast-size']: size }) }),
         icon && React.createElement(Icon, { name: iconName(theme), size: "md", "data-toast": "icon" }),
         children ? (children) : (React.createElement(Body, null,
-            title && React.createElement(Title, null, title),
-            React.createElement(Text, { clamp: title ? 2 : 3 }, text))),
+            title && React.createElement(Title, { "data-qa": "toast-title" }, title),
+            React.createElement(Text, { clamp: title ? 2 : 3, "data-qa": "toast-text" }, text))),
         button && (React.createElement(Button, { icon: React.createElement(Icon, { name: "TimesCircle" }), round: true, variant: "tertiary", tabIndex: -1, "data-toast": "button", onClick: !closeable && onClick ? onClick : undefined }))));
 };
 const Container$1 = styled.div `

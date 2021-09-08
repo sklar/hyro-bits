@@ -47,6 +47,14 @@ export default {
       },
     }),
     ...mapArgTypes(['placeholder', 'defaultValue'], { control: { type: 'text' } }),
+    'data-qa': {
+      control: 'text',
+      description: 'QA handle',
+      table: {
+        type: { summary: 'string' },
+        defaultValue: { summary: 'text' },
+      },
+    },
     ...mapArgTypes(['size'], {
       control: { type: 'inline-radio' },
       table: { category: 'Modifiers' },
