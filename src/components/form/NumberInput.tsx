@@ -2,19 +2,25 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Dispatch, forwardRef, Fragment } from 'react';
+import { Dispatch, forwardRef, Fragment, ReactNode } from 'react';
 
 import { Button } from '../Button';
 import { Icon } from '../Icon';
 import { Input, InputProps } from './Input';
 import { useNumberInput } from './use-number-input';
 
+export interface NumberInputStepperContainerProps {
+  children: ReactNode;
+}
+
 export interface NumberInputStepperProps {
   disabled?: boolean;
   onChange: () => void;
 }
 
-const Stepper: React.FC = (props) => <StepperContainer data-stepper {...props} />;
+const Stepper: React.FC<NumberInputStepperContainerProps> = (props) => (
+  <StepperContainer data-stepper {...props} />
+);
 
 const IncrementStepper: React.VFC<NumberInputStepperProps> = ({ disabled = false, onChange }) => (
   <Button
@@ -38,7 +44,7 @@ const DecrementStepper: React.VFC<NumberInputStepperProps> = ({ disabled = false
   />
 );
 
-const Components = {
+export const NumberInputStepperComponents = {
   Stepper,
   IncrementStepper,
   DecrementStepper,
@@ -80,7 +86,7 @@ export interface NumberInputProps extends InputProps {
   /**
    * Custom omponents
    */
-  components?: Partial<typeof Components>;
+  components?: Partial<typeof NumberInputStepperComponents>;
 
   /**
    * Event: Change value
@@ -109,7 +115,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
     ref
   ): JSX.Element => {
     const components = {
-      ...Components,
+      ...NumberInputStepperComponents,
       ...rest.components,
     };
     const {

@@ -1,11 +1,14 @@
-import { Dispatch } from 'react';
+import { Dispatch, ReactNode } from 'react';
 import { InputProps } from './Input';
+export interface NumberInputStepperContainerProps {
+    children: ReactNode;
+}
 export interface NumberInputStepperProps {
     disabled?: boolean;
     onChange: () => void;
 }
-declare const Components: {
-    Stepper: import("react").FC<{}>;
+export declare const NumberInputStepperComponents: {
+    Stepper: import("react").FC<NumberInputStepperContainerProps>;
     IncrementStepper: import("react").VFC<NumberInputStepperProps>;
     DecrementStepper: import("react").VFC<NumberInputStepperProps>;
 };
@@ -42,7 +45,7 @@ export interface NumberInputProps extends InputProps {
     /**
      * Custom omponents
      */
-    components?: Partial<typeof Components>;
+    components?: Partial<typeof NumberInputStepperComponents>;
     /**
      * Event: Change value
      */
@@ -52,5 +55,4 @@ export interface NumberInputProps extends InputProps {
  * Number input
  */
 export declare const NumberInput: import("react").ForwardRefExoticComponent<NumberInputProps & import("react").RefAttributes<HTMLInputElement>>;
-export {};
 //# sourceMappingURL=NumberInput.d.ts.map

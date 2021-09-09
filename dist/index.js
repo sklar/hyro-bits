@@ -2270,10 +2270,10 @@ function useNumberInput({ decimals = 0, format = (arg) => arg, max = Infinity, m
     };
 }
 
-const Stepper = (props) => jsx(StepperContainer, Object.assign({ "data-stepper": true }, props));
+const Stepper = (props) => (jsx(StepperContainer, Object.assign({ "data-stepper": true }, props)));
 const IncrementStepper = ({ disabled = false, onChange }) => (jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: disabled, "data-qa": "number-input-step-increment", onClick: onChange }));
 const DecrementStepper = ({ disabled = false, onChange }) => (jsx(Button, { icon: jsx(Icon, { name: "ChevronDown", size: "xs" }), synthetic: true, tabIndex: -1, disabled: disabled, "data-qa": "number-input-step-decrement", onClick: onChange }));
-const Components = {
+const NumberInputStepperComponents = {
     Stepper,
     IncrementStepper,
     DecrementStepper,
@@ -2283,7 +2283,7 @@ const Components = {
  */
 const NumberInput = forwardRef((_a, ref) => {
     var { decimals, format, max = Infinity, min = -Infinity, onBlur, onChange, onChangeValue, step, stepper = false, value } = _a, rest = __rest(_a, ["decimals", "format", "max", "min", "onBlur", "onChange", "onChangeValue", "step", "stepper", "value"]);
-    const components = Object.assign(Object.assign({}, Components), rest.components);
+    const components = Object.assign(Object.assign({}, NumberInputStepperComponents), rest.components);
     const { handleDecrement, handleIncrement, handleInputBlur, handleInputChange, handleInputFocus, handleKeyDown, interimInputValue, isInterimValueValid, } = useNumberInput({
         decimals,
         format,
@@ -4001,5 +4001,5 @@ const Separator = styled.span `
   width: var(--separator-size);
 `;
 
-export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldText, Flex, Grid, Icon, Idle, Input$1 as Input, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuTitle, Nav, NavContainer, NavItem, NumberInput, Order, Range, Select, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Textarea, Th, Thead, Toast, Tooltip, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input$2 as input, label, paragraph };
+export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldText, Flex, Grid, Icon, Idle, Input$1 as Input, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuTitle, Nav, NavContainer, NavItem, NumberInput, NumberInputStepperComponents, Order, Range, Select, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Textarea, Th, Thead, Toast, Tooltip, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input$2 as input, label, paragraph };
 //# sourceMappingURL=index.js.map

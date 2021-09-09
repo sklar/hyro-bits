@@ -3,7 +3,6 @@ import { kebabCase } from 'case-anything';
 import React, { ElementType, forwardRef, InputHTMLAttributes } from 'react';
 
 import { button, colors } from '../../theme';
-import { truncate } from '../../utils/helpers';
 
 export interface SwitchProps extends InputHTMLAttributes<HTMLInputElement> {
   /**

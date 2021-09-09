@@ -12,6 +12,7 @@ import {
   Icon,
   NumberInput as Component,
   NumberInputProps,
+  NumberInputStepperContainerProps,
   NumberInputStepperProps,
 } from '../index';
 
@@ -117,7 +118,7 @@ const emojiStepper = css`
   user-select: none;
 `;
 
-const CustomStepper: React.FC = (props) => {
+const CustomStepper: React.FC<NumberInputStepperContainerProps> = (props) => {
   return <Flex align="center" gap="4px" {...props} />;
 };
 
