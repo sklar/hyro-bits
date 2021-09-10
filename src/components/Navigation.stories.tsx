@@ -53,16 +53,16 @@ export default {
     }),
     ...mapArgTypes(['status'], {
       control: {
-        options: Object.values(Theme).filter((t) => t !== 'dark'),
         type: 'inline-radio',
       },
+      options: Object.values(Theme).filter((t) => t !== 'dark'),
       table: { category: 'Modifiers' },
     }),
     ...mapArgTypes(['theme'], {
       control: {
-        options: ['dark', 'light'],
         type: 'inline-radio',
       },
+      options: ['dark', 'light'],
       table: { category: 'Modifiers' },
     }),
     ...mapArgTypes(['active'], {
