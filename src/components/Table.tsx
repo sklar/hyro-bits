@@ -10,7 +10,7 @@ import { Text } from './Text';
 
 type AlignmentType = 'inherit' | 'baseline' | 'bottom' | 'middle' | 'top';
 
-interface TdProps extends HTMLAttributes<HTMLTableDataCellElement> {
+interface TdProps extends HTMLAttributes<HTMLTableCellElement> {
   /**
    * Alignment, secondary axis
    */
@@ -36,7 +36,6 @@ export const Td: React.FC<TdProps> = ({
   align,
   justify,
   numeric = 'normal',
-  size,
   ...props
 }): JSX.Element => (
   <TdContainer
@@ -88,7 +87,7 @@ const TdContainer = styled.td<TdProps>`
   }
 `;
 
-interface ThProps extends HTMLAttributes<HTMLTableHeaderCellElement> {
+interface ThProps extends HTMLAttributes<HTMLTableCellElement> {
   /**
    * Alignment, secondary axis
    */

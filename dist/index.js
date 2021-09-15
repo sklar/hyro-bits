@@ -1,4 +1,4 @@
-/** Components v2.2.0 */
+/** Components v2.3.0 */
 
 import { keyframes, css, jsx, Global } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -3688,7 +3688,7 @@ const Spacer = styled.span `
  * Table data cell
  */
 const Td = (_a) => {
-    var { align, justify, numeric = 'normal', size } = _a, props = __rest(_a, ["align", "justify", "numeric", "size"]);
+    var { align, justify, numeric = 'normal' } = _a, props = __rest(_a, ["align", "justify", "numeric"]);
     return (React.createElement(TdContainer, Object.assign({ "data-align": align || null, "data-justify": justify || null, "data-numeric": numeric || null }, props)));
 };
 const textAlign = css `
