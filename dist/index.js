@@ -64,7 +64,7 @@ const Idle = (_a) => {
     const qa = {
         'data-qa': 'idle',
     };
-    return (React.createElement(Container$d, Object.assign({}, qa, delegated),
+    return (React.createElement(Container$e, Object.assign({}, qa, delegated),
         React.createElement(Element$2, null),
         React.createElement(Element$2, null),
         React.createElement(Element$2, null)));
@@ -108,7 +108,7 @@ const Element$2 = styled.div `
 /**
  * TODO: Improve performance
  */
-const Container$d = styled.div `
+const Container$e = styled.div `
   ${({ color }) => color && `--color: ${color}`};
   ${({ delay }) => `--delay: ${delay}ms`};
   ${({ duration }) => `--duration: ${duration}ms`};
@@ -1286,9 +1286,9 @@ const Icon = (_a) => {
             console.error(`${name} icon not found!`);
         }
     }, [name, size]);
-    return (React.createElement(Container$c, Object.assign({ "data-icon": name, "data-size": size }, qa, props), Component));
+    return (React.createElement(Container$d, Object.assign({ "data-icon": name, "data-size": size }, qa, props), Component));
 };
-const Container$c = styled.span `
+const Container$d = styled.span `
   --icon-size: ;
 
   display: inline-block;
@@ -1320,12 +1320,12 @@ const Container$c = styled.span `
  */
 const Order = (_a) => {
     var { direction, size = 'xs' } = _a, props = __rest(_a, ["direction", "size"]);
-    return (React.createElement(Container$b, Object.assign({ "data-direction": direction }, props),
+    return (React.createElement(Container$c, Object.assign({ "data-direction": direction }, props),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null }),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null }),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null })));
 };
-const Container$b = styled.div `
+const Container$c = styled.div `
   --opacity-2: 0;
   --opacity-3: 0;
   --path: ;
@@ -1381,7 +1381,7 @@ const Button = forwardRef((_a, ref) => {
             ...(text ? [`${kebabCase(text)}`] : []),
         ].join('-'),
     };
-    return (React.createElement(Container$a, Object.assign({ as: as !== null && as !== void 0 ? as : (href ? 'a' : 'button'), "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, qa, delegated),
+    return (React.createElement(Container$b, Object.assign({ as: as !== null && as !== void 0 ? as : (href ? 'a' : 'button'), "data-active": active || null, "data-busy": busy || null, "data-icon": (icon && !(text || children) && 'single') || (leader && trailer && 'both') || placement, "data-round": round || null, "data-synthetic": synthetic || null, "data-theme": theme || null, "data-toggle": toggle || null, disabled: busy || disabled, href: href, ref: ref, type: href ? undefined : type }, qa, delegated),
         leader,
         text ? text : children,
         trailer,
@@ -1542,7 +1542,7 @@ modification['tertiary'] = css `
     }
   }
 `;
-const Container$a = styled.button `
+const Container$b = styled.button `
   ${base};
 
   &[data-round] {
@@ -1626,9 +1626,9 @@ const ClickOutsideGuard = forwardRef((_a, ref) => {
             };
         }
     });
-    return React.createElement(Container$9, Object.assign({ ref: combinedRef }, props));
+    return React.createElement(Container$a, Object.assign({ ref: combinedRef }, props));
 });
-const Container$9 = styled.div `
+const Container$a = styled.div `
   display: contents;
 `;
 
@@ -1641,12 +1641,12 @@ const EMOTION_DISABLE_SSR = '/* emotion-disable-server-rendering-unsafe-selector
 const Flex = (_a) => {
     var { align, as = 'div', block, direction, gap, justify, wrap } = _a, props = __rest(_a, ["align", "as", "block", "direction", "gap", "justify", "wrap"]);
     const delegated = Object.assign({ align, block, direction, gap, justify }, props);
-    return React.createElement(Container$8, Object.assign({ as: as, "data-wrap": wrap || null }, delegated));
+    return React.createElement(Container$9, Object.assign({ as: as, "data-wrap": wrap || null }, delegated));
 };
 /**
  * TODO: Improve performance
  */
-const Container$8 = styled.div `
+const Container$9 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'flex' : 'inline-flex'}`};
   ${({ direction }) => direction && direction !== 'row' && `flex-direction: ${direction}`};
@@ -1664,9 +1664,9 @@ const Container$8 = styled.div `
 const Grid = (_a) => {
     var { align, as = 'div', block, columns, flow, gap, justify, max = '1fr', min = '0px', sizing = 'auto-fit' } = _a, props = __rest(_a, ["align", "as", "block", "columns", "flow", "gap", "justify", "max", "min", "sizing"]);
     const delegated = Object.assign({ align, block, columns, gap, justify, max, min, sizing }, props);
-    return React.createElement(Container$7, Object.assign({ as: as }, delegated));
+    return React.createElement(Container$8, Object.assign({ as: as }, delegated));
 };
-const Container$7 = styled.div `
+const Container$8 = styled.div `
   ${({ align }) => align && `align-items: ${align}`};
   ${({ block }) => `display: ${block ? 'grid' : 'inline-grid'}`};
   ${({ flow }) => flow && `grid-auto-flow: ${flow}`};
@@ -1678,7 +1678,7 @@ const Container$7 = styled.div `
 /**
  * Spacer.
  */
-const Spacer = styled.span `
+const Spacer$1 = styled.span `
   background: ${colors.STROKE};
   border-radius: 1000px;
   display: block;
@@ -1710,9 +1710,9 @@ const Text = (_a) => {
     const qa = {
         'data-qa': `text-${as}`,
     };
-    return (React.createElement(Container$6, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-space": space || null, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, qa, props)));
+    return (React.createElement(Container$7, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-space": space || null, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, qa, props)));
 };
-const Container$6 = styled.span `
+const Container$7 = styled.span `
   &[data-clamp] {
     ${clamp};
   }
@@ -2156,7 +2156,7 @@ const Input$1 = forwardRef((_a, ref) => {
     const qa = {
         'data-qa': 'input',
     };
-    return (React.createElement(Container$5, Object.assign({ as: as, className: className, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
+    return (React.createElement(Container$6, Object.assign({ as: as, className: className, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
         prefix && React.createElement(Prefix, null, prefix),
         leader,
         React.createElement(Element$1, Object.assign({ ref: ref, disabled: disabled, readOnly: readonly }, qa, inputProps)),
@@ -2166,7 +2166,7 @@ const Input$1 = forwardRef((_a, ref) => {
         trailer,
         suffix && React.createElement(Suffix, null, suffix)));
 });
-const Container$5 = styled.label `
+const Container$6 = styled.label `
   --gap: 1px;
 
   ${inputContainer};
@@ -3170,7 +3170,7 @@ const Switch = forwardRef((_a, ref) => {
             ...(label ? [`${kebabCase(label)}`] : [])
         ].join('-'),
     };
-    return (React.createElement(Container$4, Object.assign({ as: as, className: className, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null, style: style }, containerProps),
+    return (React.createElement(Container$5, Object.assign({ as: as, className: className, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null, style: style }, containerProps),
         React.createElement("input", Object.assign({ ref: ref, type: type, disabled: disabled }, qa, inputProps)),
         React.createElement(Indicator, { "data-appearance": appearance }),
         children,
@@ -3180,7 +3180,7 @@ const Switch = forwardRef((_a, ref) => {
  * Note that [data-hover] are here only to help
  * better illustrate `:hover` state in the dedicated story.
  */
-const Container$4 = styled.label `
+const Container$5 = styled.label `
   --switch-animation-duration: 0.2s;
   --switch-border-color: ${colors.STROKE};
   --switch-border-size: 1.5px;
@@ -3371,13 +3371,13 @@ const Label$1 = styled.span `
 const Textarea = forwardRef((_a, ref) => {
     var { active, as = 'label', busy, disabled, invalid, length, readonly, resize = 'vertical', theme } = _a, textareaProps = __rest(_a, ["active", "as", "busy", "disabled", "invalid", "length", "readonly", "resize", "theme"]);
     const _b = Object.fromEntries(Object.entries(textareaProps).filter(([key]) => ['className', 'data-active', 'data-invalid', 'data-hover', 'style'].includes(key))), { style } = _b, containerProps = __rest(_b, ["style"]);
-    return (React.createElement(Container$3, Object.assign({ as: as, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-resize": resize, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
+    return (React.createElement(Container$4, Object.assign({ as: as, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-resize": resize, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
         React.createElement(Element, Object.assign({ ref: ref, disabled: disabled, readOnly: readonly }, textareaProps)),
         busy && (React.createElement(Idle, { gap: "2px", size: "4px", "data-indicator": true, style: {
                 ['--color']: colors.ELEMENT_PRIMARY,
             } }))));
 });
-const Container$3 = styled.label `
+const Container$4 = styled.label `
   ${inputContainer};
 
   position: relative;
@@ -3420,11 +3420,11 @@ const Status = (_a) => {
             ...(text ? [`${kebabCase(text)}`] : [])
         ].join('-'),
     };
-    return (React.createElement(Container$2, Object.assign({ "data-beacon": isBeacon || null, "data-theme": theme || null }, qa, props),
+    return (React.createElement(Container$3, Object.assign({ "data-beacon": isBeacon || null, "data-theme": theme || null }, qa, props),
         icon,
         React.createElement(Text, { truncate: true }, text ? text : children)));
 };
-const Container$2 = styled.span `
+const Container$3 = styled.span `
   ${base$1};
 
   --status-background-color: #e7ebf2;
@@ -3585,6 +3585,103 @@ const Nav = (_a) => {
 const NavContainer = styled.nav `
   display: flex;
   flex-direction: column;
+`;
+
+const SPACER = '...';
+const createRange = (start, stop, step = 1) => Array.from({ length: (stop - start) / step + 1 }, (_, i) => start + i * step);
+const usePagination = ({ boundaryCount = 1, count, offset, page, siblingCount = 1, }) => {
+    const range = useMemo(() => {
+        const totalPageCount = Math.ceil(count / offset);
+        const totalPageNumbers = 2 * (boundaryCount + siblingCount) + 3; // page + 2 * SPACER = 3
+        if (totalPageNumbers >= totalPageCount) {
+            return createRange(1, totalPageCount);
+        }
+        const leadSiblingIndex = Math.max(page - siblingCount, 1);
+        const trailSiblingIndex = Math.min(page + siblingCount, totalPageCount);
+        /**
+         * Do not show dots if there is only one position left after/before the leader/trailer
+         *  page count as that would lead to a layout shift.
+         */
+        const showLeadingSpacer = leadSiblingIndex > 1 + (boundaryCount + siblingCount);
+        const showTrailingSpacer = trailSiblingIndex < totalPageCount - (boundaryCount + siblingCount);
+        const itemCount = 2 + boundaryCount + 2 * siblingCount;
+        if (!showLeadingSpacer && showTrailingSpacer) {
+            const leadRange = createRange(1, itemCount);
+            const trailRange = createRange(totalPageCount - boundaryCount + 1, totalPageCount);
+            return [...leadRange, SPACER, ...trailRange];
+        }
+        else if (showLeadingSpacer && !showTrailingSpacer) {
+            const leadRange = createRange(1, boundaryCount);
+            const trailRange = createRange(totalPageCount - itemCount + 1, totalPageCount);
+            return [...leadRange, SPACER, ...trailRange];
+        }
+        else {
+            const leadRange = createRange(1, boundaryCount);
+            const middleRange = createRange(leadSiblingIndex, trailSiblingIndex);
+            const trailRange = createRange(totalPageCount - boundaryCount + 1, totalPageCount);
+            return [...leadRange, SPACER, ...middleRange, SPACER, ...trailRange];
+        }
+    }, [boundaryCount, count, offset, page, siblingCount]);
+    const prevPageActive = useMemo(() => {
+        return page > 1;
+    }, [page]);
+    const nextPageActive = useMemo(() => {
+        if (range) {
+            return page < range[range.length - 1];
+        }
+    }, [page, range]);
+    return { range, prevPageActive, nextPageActive };
+};
+
+/**
+ * Pagination
+ */
+const Pagination = (_a) => {
+    var { boundaryCount, count, offset, onChange, page, siblingCount } = _a, props = __rest(_a, ["boundaryCount", "count", "offset", "onChange", "page", "siblingCount"]);
+    const qa = {
+        'data-qa': `pagination`,
+    };
+    const { range, prevPageActive, nextPageActive } = usePagination({
+        boundaryCount,
+        count,
+        offset,
+        page,
+        siblingCount,
+    });
+    const handleNextPage = useCallback(() => {
+        onChange(page + 1);
+    }, [onChange, page]);
+    const handlePrevPage = useCallback(() => {
+        onChange(page - 1);
+    }, [onChange, page]);
+    return (React.createElement(Container$2, Object.assign({ block: true, align: "center", gap: "8px", justify: "center" }, qa, props),
+        React.createElement(Button, { icon: React.createElement(Icon, { name: "ArrowAltLeft" }), variant: "tertiary", size: "lg", synthetic: true, disabled: !prevPageActive, onClick: handlePrevPage }),
+        range &&
+            range.map((p, index) => {
+                return p === SPACER ? (React.createElement(Spacer, { key: index }, SPACER)) : (React.createElement(Button, { key: index, text: `${p}`, variant: "tertiary", size: "lg", synthetic: p !== page, active: p === page, onClick: () => onChange(p) }));
+            }),
+        React.createElement(Button, { icon: React.createElement(Icon, { name: "ArrowAltRight" }), variant: "tertiary", size: "lg", synthetic: true, disabled: !nextPageActive, onClick: handleNextPage })));
+};
+const item = css `
+  --size: 40px;
+
+  height: var(--size);
+  padding: 0;
+  width: var(--size);
+`;
+const Container$2 = styled(Flex) `
+  user-select: none;
+
+  button {
+    ${item};
+  }
+`;
+const Spacer = styled.span `
+  ${item};
+
+  display: inline-grid;
+  place-items: center;
+  white-space: nowrap;
 `;
 
 /**
@@ -4001,5 +4098,5 @@ const Separator = styled.span `
   width: var(--separator-size);
 `;
 
-export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldText, Flex, Grid, Icon, Idle, Input$1 as Input, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuTitle, Nav, NavContainer, NavItem, NumberInput, NumberInputStepperComponents, Order, Range, Select, Slider, Spacer, Status, Switch, Table, Tbody, Td, Text, Textarea, Th, Thead, Toast, Tooltip, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input$2 as input, label, paragraph };
+export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldText, Flex, Grid, Icon, Idle, Input$1 as Input, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuTitle, Nav, NavContainer, NavItem, NumberInput, NumberInputStepperComponents, Order, Pagination, Range, Select, Slider, Spacer$1 as Spacer, Status, Switch, Table, Tbody, Td, Text, Textarea, Th, Thead, Toast, Tooltip, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input$2 as input, label, paragraph };
 //# sourceMappingURL=index.js.map

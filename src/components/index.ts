@@ -7,6 +7,7 @@ export * from './indicator';
 export * from './layout';
 export * from './menu';
 export * from './Navigation';
+export * from './Pagination';
 export * from './Status';
 export * from './Table';
 export * from './Text';
