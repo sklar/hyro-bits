@@ -296,7 +296,7 @@ const Option = (props: any) => {
       data-hover={isFocused || null}
       disabled={isDisabled}
       ref={innerRef}
-      data-qa={`select-option-${kebabCase(data.value)}`}
+      data-qa={`select-option-${data?.value && kebabCase(data.value)}`}
     />
   );
 };

@@ -32,7 +32,7 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
 export const Icon: React.VFC<IconProps> = ({ name, size = 'sm', ...props }): JSX.Element => {
   const [Component, setComponent] = useState<React.FC<SVGProps<SVGSVGElement>>>();
   const qa = {
-    'data-qa': `icon-${kebabCase(name)}`,
+    'data-qa': `icon-${name && kebabCase(name)}`,
   };
 
   useEffect(() => {

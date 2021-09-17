@@ -47,7 +47,7 @@ export const NavItem = forwardRef<HTMLButtonElement, NavItemProps>(
     ref
   ): JSX.Element => {
     const qa = {
-      'data-qa': `nav-item-${kebabCase(text)}`,
+      'data-qa': `nav-item-${text && kebabCase(text)}`,
     };
     return (
       <NavItemContainer

@@ -1273,7 +1273,7 @@ const Icon = (_a) => {
     var { name, size = 'sm' } = _a, props = __rest(_a, ["name", "size"]);
     const [Component, setComponent] = useState();
     const qa = {
-        'data-qa': `icon-${kebabCase(name)}`,
+        'data-qa': `icon-${name && kebabCase(name)}`,
     };
     useEffect(() => {
         if (size === Size.XSMALL && isMini(name)) {
@@ -3072,7 +3072,7 @@ const MenuList = (props) => {
 };
 const Option = (props) => {
     const { cx, data, innerProps, innerRef, isDisabled, isFocused, isSelected } = props, rest = __rest(props, ["cx", "data", "innerProps", "innerRef", "isDisabled", "isFocused", "isSelected"]);
-    return (jsx(MenuItem, Object.assign({}, innerProps, rest, { active: isSelected, as: "div", "data-hover": isFocused || null, disabled: isDisabled, ref: innerRef, "data-qa": `select-option-${kebabCase(data.value)}` })));
+    return (jsx(MenuItem, Object.assign({}, innerProps, rest, { active: isSelected, as: "div", "data-hover": isFocused || null, disabled: isDisabled, ref: innerRef, "data-qa": `select-option-${(data === null || data === void 0 ? void 0 : data.value) && kebabCase(data.value)}` })));
 };
 /**
  * Message
@@ -3515,7 +3515,7 @@ const Container$3 = styled.span `
 const NavItem = forwardRef((_a, ref) => {
     var { active, as = 'button', icon = React.createElement(Icon, { name: "ChevronRight", size: "xs" }), status, text } = _a, props = __rest(_a, ["active", "as", "icon", "status", "text"]);
     const qa = {
-        'data-qa': `nav-item-${kebabCase(text)}`,
+        'data-qa': `nav-item-${text && kebabCase(text)}`,
     };
     return (React.createElement(NavItemContainer, Object.assign({ as: as, "data-active": active || null, "data-status": status || null, ref: ref, type: as === 'button' ? 'button' : undefined }, qa, props),
         status && React.createElement(Status, { theme: status || null }),
