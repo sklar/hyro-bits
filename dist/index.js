@@ -1,4 +1,4 @@
-/** Components v2.3.0 */
+/** Components v2.4.0 */
 
 import { keyframes, css, jsx, Global } from '@emotion/react';
 import styled from '@emotion/styled';
