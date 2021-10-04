@@ -1,9 +1,9 @@
-/** Components v2.4.0 */
+/** Components v2.4.1 */
 
 import { keyframes, css, jsx, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { kebabCase } from 'case-anything';
-import React, { createElement, useState, useEffect, forwardRef, useRef, useCallback, useMemo, Fragment } from 'react';
+import React, { createElement, useState, useEffect, forwardRef, useRef, useCallback, useMemo } from 'react';
 import { useCombinedRef, useDependantState, useUpdatedRef } from '@spicy-hooks/core';
 import { transparentize } from 'color2k';
 import RcSlider, { Range as Range$1 } from 'rc-slider';
@@ -2282,7 +2282,7 @@ const NumberInputStepperComponents = {
  * Number input
  */
 const NumberInput = forwardRef((_a, ref) => {
-    var { decimals, format, max = Infinity, min = -Infinity, onBlur, onChange, onChangeValue, step, stepper = false, value } = _a, rest = __rest(_a, ["decimals", "format", "max", "min", "onBlur", "onChange", "onChangeValue", "step", "stepper", "value"]);
+    var { decimals, format, max = Infinity, min = -Infinity, onBlur, onChange, onChangeValue, step, stepper = false, trailer, value } = _a, rest = __rest(_a, ["decimals", "format", "max", "min", "onBlur", "onChange", "onChangeValue", "step", "stepper", "trailer", "value"]);
     const components = Object.assign(Object.assign({}, NumberInputStepperComponents), rest.components);
     const { handleDecrement, handleIncrement, handleInputBlur, handleInputChange, handleInputFocus, handleKeyDown, interimInputValue, isInterimValueValid, } = useNumberInput({
         decimals,
@@ -2299,9 +2299,9 @@ const NumberInput = forwardRef((_a, ref) => {
         'data-qa': 'input-number',
     };
     return (jsx("div", null,
-        jsx(Input$1, Object.assign({}, qa, rest, { ref: ref, type: format ? 'text' : 'number', value: interimInputValue, min: min, max: max, invalid: !isInterimValueValid, css: input, trailer: jsx(Fragment, null, stepper && (jsx(components.Stepper, null,
+        jsx(Input$1, Object.assign({}, qa, rest, { ref: ref, type: format ? 'text' : 'number', value: interimInputValue, min: min, max: max, invalid: !isInterimValueValid, css: input, trailer: stepper ? (jsx(components.Stepper, null,
                 jsx(components.IncrementStepper, { disabled: value >= max, onChange: handleIncrement }),
-                jsx(components.DecrementStepper, { disabled: value <= min, onChange: handleDecrement })))), onBlur: handleInputBlur, onChange: handleInputChange, onFocus: handleInputFocus, onKeyDown: handleKeyDown }))));
+                jsx(components.DecrementStepper, { disabled: value <= min, onChange: handleDecrement }))) : (trailer), onBlur: handleInputBlur, onChange: handleInputChange, onFocus: handleInputFocus, onKeyDown: handleKeyDown }))));
 });
 const input = css `
   input {

@@ -109,6 +109,7 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
       onChangeValue,
       step,
       stepper = false,
+      trailer,
       value,
       ...rest
     },
@@ -156,14 +157,14 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
           invalid={!isInterimValueValid}
           css={input}
           trailer={
-            <Fragment>
-              {stepper && (
-                <components.Stepper>
-                  <components.IncrementStepper disabled={value >= max} onChange={handleIncrement} />
-                  <components.DecrementStepper disabled={value <= min} onChange={handleDecrement} />
-                </components.Stepper>
-              )}
-            </Fragment>
+            stepper ? (
+              <components.Stepper>
+                <components.IncrementStepper disabled={value >= max} onChange={handleIncrement} />
+                <components.DecrementStepper disabled={value <= min} onChange={handleDecrement} />
+              </components.Stepper>
+            ) : (
+              trailer
+            )
           }
           onBlur={handleInputBlur}
           onChange={handleInputChange}
