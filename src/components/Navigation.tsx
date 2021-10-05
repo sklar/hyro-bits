@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 import { kebabCase } from 'case-anything';
-import React, { ElementType, forwardRef, HTMLAttributes, ReactElement } from 'react';
+import React, { ElementType, forwardRef, HTMLAttributes, ReactElement, ReactNode } from 'react';
 
 import { button, colors } from '../theme';
 import { Icon } from './Icon';
@@ -132,6 +132,10 @@ export interface NavProps extends HTMLAttributes<HTMLDivElement> {
    */
   as?: ElementType<any>;
   /**
+   * Children
+   */
+  children: ReactNode;
+  /**
    * Theme
    */
   theme?: 'light' | 'dark';
@@ -140,8 +144,10 @@ export interface NavProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Navigation item
  */
-export const Nav: React.FC<NavProps> = ({ as = 'nav', theme, ...props }): JSX.Element => (
-  <NavContainer as={as} data-theme={theme || null} {...props} />
+export const Nav = forwardRef<HTMLDivElement, NavProps>(
+  ({ as = 'nav', theme, ...props }, ref): JSX.Element => (
+    <NavContainer as={as} data-theme={theme || null} ref={ref} {...props} />
+  )
 );
 
 export const NavContainer = styled.nav`

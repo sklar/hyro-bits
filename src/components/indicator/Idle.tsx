@@ -1,10 +1,10 @@
-import React, { HTMLAttributes } from 'react';
-import { keyframes } from '@emotion/react';
+import React, { forwardRef, HTMLAttributes } from 'react';
+import { css, keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { EASING } from '../../utils/animations';
 
-export interface IdleProps extends HTMLAttributes<HTMLElement> {
+export interface IdleProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Color
    */
@@ -34,30 +34,33 @@ export interface IdleProps extends HTMLAttributes<HTMLElement> {
 /**
  * Idle indicator.
  */
-export const Idle: React.VFC<IdleProps> = ({
-  color,
-  delay = 100,
-  duration = 500,
-  gap = '4px',
-  range = '6px',
-  size = '5px',
-  ...props
-}): JSX.Element => {
-  const delegated = { color, delay, duration, gap, range, size, ...props };
-  const qa = {
-    'data-qa': 'idle',
-  };
-  return (
-    <Container {...qa} {...delegated}>
-      <Element />
-      <Element />
-      <Element />
-    </Container>
-  );
-};
+export const Idle = forwardRef<HTMLDivElement, IdleProps>(
+  (
+    {
+      color = 'currentColor',
+      delay = 100,
+      duration = 500,
+      gap = '4px',
+      range = '6px',
+      size = '5px',
+      ...props
+    },
+    ref
+  ): JSX.Element => {
+    const delegated = { color, delay, duration, gap, range, size, ...props };
+    const qa = {
+      'data-qa': 'idle',
+    };
+    return (
+      <Container ref={ref} {...qa} {...delegated}>
+        <Element />
+        <Element />
+        <Element />
+      </Container>
+    );
+  }
+);
 
-// TypeScript warning will be gone after this boi is resolved
-// https://github.com/microsoft/typescript-styled-plugin/issues/137#issuecomment-848930098
 const idle = keyframes`
   0%    { --offset: calc(-0.5 * var(--range)); }
   100%  { --offset: calc(0.5 * var(--range)); }
@@ -94,17 +97,16 @@ const Element = styled.div`
   }
 `;
 
-/**
- * TODO: Improve performance
- */
-const Container = styled.div<IdleProps>`
-  ${({ color }) => color && `--color: ${color}`};
-  ${({ delay }) => `--delay: ${delay}ms`};
-  ${({ duration }) => `--duration: ${duration}ms`};
-  ${({ gap }) => `--gap: ${gap}`};
-  ${({ range }) => `--range: ${range}`};
-  ${({ size }) => `--size: ${size}`};
+const Container = styled.div<IdleProps>(
+  ({ color, delay, duration, gap, range, size }) => css`
+    --color: ${color};
+    --delay: ${delay}ms;
+    --duration: ${duration}ms;
+    --gap: ${gap};
+    --range: ${range};
+    --size: ${size};
 
-  display: inline-flex;
-  gap: var(--gap);
-`;
+    display: inline-flex;
+    gap: var(--gap);
+  `
+);

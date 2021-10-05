@@ -1,4 +1,4 @@
-import React, { HTMLAttributes } from 'react';
+import React, { forwardRef, HTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 
 import { colors } from '../../theme';
@@ -20,12 +20,14 @@ export interface OrderProps extends HTMLAttributes<HTMLElement> {
 /**
  * Order indicator.
  */
-export const Order: React.VFC<OrderProps> = ({ direction, size = 'xs', ...props }): JSX.Element => (
-  <Container data-direction={direction} {...props}>
-    <Icon name="Sort" size="xs" data-size={size || null} />
-    <Icon name="Sort" size="xs" data-size={size || null} />
-    <Icon name="Sort" size="xs" data-size={size || null} />
-  </Container>
+export const Order = forwardRef<HTMLDivElement, OrderProps>(
+  ({ direction, size = 'xs', ...props }, ref): JSX.Element => (
+    <Container data-direction={direction} ref={ref} {...props}>
+      <Icon name="Sort" size="xs" data-size={size || null} />
+      <Icon name="Sort" size="xs" data-size={size || null} />
+      <Icon name="Sort" size="xs" data-size={size || null} />
+    </Container>
+  )
 );
 
 const Container = styled.div`

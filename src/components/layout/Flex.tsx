@@ -1,4 +1,5 @@
-import React, { ElementType, HTMLAttributes } from 'react';
+import React, { ElementType, forwardRef, HTMLAttributes, ReactNode } from 'react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import {
@@ -8,7 +9,7 @@ import {
   AlignmentTertiaryType,
 } from '../../utils/types';
 
-export interface FlexProps extends HTMLAttributes<HTMLElement> {
+export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Alignment, secondary axis
    */
@@ -21,6 +22,10 @@ export interface FlexProps extends HTMLAttributes<HTMLElement> {
    * Block or inline
    */
   block?: boolean;
+  /**
+   * Children
+   */
+  children: ReactNode;
   /**
    * Direction (default is `row`)
    */
@@ -42,31 +47,24 @@ export interface FlexProps extends HTMLAttributes<HTMLElement> {
 /**
  * Flexbox wrapper.
  */
-export const Flex: React.FC<FlexProps> = ({
-  align,
-  as = 'div',
-  block,
-  direction,
-  gap,
-  justify,
-  wrap,
-  ...props
-}): JSX.Element => {
-  const delegated = { align, block, direction, gap, justify, ...props };
-  return <Container as={as} data-wrap={wrap || null} {...delegated} />;
-};
-
-/**
- * TODO: Improve performance
- */
-const Container = styled.div<FlexProps>`
-  ${({ align }) => align && `align-items: ${align}`};
-  ${({ block }) => `display: ${block ? 'flex' : 'inline-flex'}`};
-  ${({ direction }) => direction && direction !== 'row' && `flex-direction: ${direction}`};
-  ${({ gap }) => gap && `gap: ${gap}`};
-  ${({ justify }) => justify && `justify-content: ${justify}`};
-
-  &[data-wrap] {
-    flex-wrap: wrap;
+export const Flex = forwardRef<HTMLDivElement, FlexProps>(
+  ({ align, as = 'div', block, direction, gap, justify, wrap, ...props }, ref): JSX.Element => {
+    const delegated = { align, block, direction, gap, justify, ...props };
+    return <Container as={as} data-wrap={wrap || null} ref={ref} {...delegated} />;
   }
-`;
+);
+
+const Container = styled.div<FlexProps>(
+  ({ align, block, direction, gap, justify }) => ({
+    alignItems: align,
+    display: `${block ? 'flex' : 'inline-flex'}`,
+    flexDirection: direction,
+    gap: gap,
+    justifyContent: justify,
+  }),
+  css`
+    &[data-wrap] {
+      flex-wrap: wrap;
+    }
+  `
+);

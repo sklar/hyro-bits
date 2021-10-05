@@ -41,6 +41,10 @@ export default {
     },
   },
   argTypes: {
+    children: {
+      control: { disable: true },
+      table: { disable: true },
+    },
     ...mapArgTypes(['layout'], {
       control: { type: 'inline-radio' },
     }),

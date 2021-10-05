@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from 'react';
-export interface IdleProps extends HTMLAttributes<HTMLElement> {
+export interface IdleProps extends HTMLAttributes<HTMLDivElement> {
     /**
      * Color
      */
@@ -28,5 +28,5 @@ export interface IdleProps extends HTMLAttributes<HTMLElement> {
 /**
  * Idle indicator.
  */
-export declare const Idle: React.VFC<IdleProps>;
+export declare const Idle: React.ForwardRefExoticComponent<IdleProps & React.RefAttributes<HTMLDivElement>>;
 //# sourceMappingURL=Idle.d.ts.map

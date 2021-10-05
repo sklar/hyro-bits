@@ -1,4 +1,4 @@
-import React, { ElementType, HTMLAttributes } from 'react';
+import React, { ElementType, forwardRef, HTMLAttributes } from 'react';
 import styled from '@emotion/styled';
 
 import { clamp, truncate } from '../utils/helpers';
@@ -33,32 +33,30 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Text
  */
-export const Text: React.FC<TextProps> = ({
-  as = 'span',
-  clamp,
-  hyphens = 'manual',
-  space,
-  truncate,
-  word = 'normal',
-  ...props
-}): JSX.Element => {
-  const qa = {
-    'data-qa': `text-${as}`,
-  };
-  return (
-    <Container
-      as={as}
-      data-clamp={clamp || null}
-      data-hyphens={hyphens}
-      data-space={space || null}
-      data-truncate={truncate || null}
-      data-word={word}
-      style={{ ['--lines' as string]: clamp }}
-      {...qa}
-      {...props}
-    />
-  );
-};
+export const Text = forwardRef<HTMLDivElement, TextProps>(
+  (
+    { as = 'span', clamp, hyphens = 'manual', space, truncate, word = 'normal', ...props },
+    ref
+  ): JSX.Element => {
+    const qa = {
+      'data-qa': `text-${as}`,
+    };
+    return (
+      <Container
+        as={as}
+        data-clamp={clamp || null}
+        data-hyphens={hyphens}
+        data-space={space || null}
+        data-truncate={truncate || null}
+        data-word={word}
+        ref={ref}
+        style={{ ['--lines' as string]: clamp }}
+        {...qa}
+        {...props}
+      />
+    );
+  }
+);
 
 const Container = styled.span`
   &[data-clamp] {

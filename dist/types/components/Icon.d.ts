@@ -18,6 +18,6 @@ export interface IconProps extends HTMLAttributes<HTMLElement> {
 /**
  * Icon wrapper.
  */
-export declare const Icon: React.VFC<IconProps>;
+export declare const Icon: React.ForwardRefExoticComponent<IconProps & React.RefAttributes<HTMLElement>>;
 export {};
 //# sourceMappingURL=Icon.d.ts.map

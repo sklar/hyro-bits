@@ -28,5 +28,5 @@ export interface PaginationProps extends Omit<HTMLAttributes<HTMLDivElement>, 'o
 /**
  * Pagination
  */
-export declare const Pagination: React.FC<PaginationProps>;
+export declare const Pagination: React.ForwardRefExoticComponent<PaginationProps & React.RefAttributes<HTMLDivElement>>;
 //# sourceMappingURL=Pagination.d.ts.map

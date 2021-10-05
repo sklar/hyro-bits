@@ -1,9 +1,9 @@
-import React, { ElementType, HTMLAttributes } from 'react';
+import React, { ElementType, forwardRef, HTMLAttributes, ReactNode } from 'react';
 import styled from '@emotion/styled';
 
 import { AlignmentPrimaryType, AlignmentSecondaryType } from '../../utils/types';
 
-export interface GridProps extends HTMLAttributes<HTMLElement> {
+export interface GridProps extends HTMLAttributes<HTMLDivElement> {
   /**
    * Alignment, secondary axis
    */
@@ -16,6 +16,10 @@ export interface GridProps extends HTMLAttributes<HTMLElement> {
    * Block or inline
    */
   block?: boolean;
+  /**
+   * Children
+   */
+  children: ReactNode;
   /**
    * Columns
    */
@@ -49,31 +53,37 @@ export interface GridProps extends HTMLAttributes<HTMLElement> {
 /**
  * Grid wrapper
  */
-export const Grid: React.FC<GridProps> = ({
-  align,
-  as = 'div',
-  block,
-  columns,
-  flow,
-  gap,
-  justify,
-  max = '1fr',
-  min = '0px',
-  sizing = 'auto-fit',
-  ...props
-}): JSX.Element => {
-  const delegated = { align, block, columns, gap, justify, max, min, sizing, ...props };
-  return <Container as={as} {...delegated} />;
-};
+export const Grid = forwardRef<HTMLDivElement, GridProps>(
+  (
+    {
+      align,
+      as = 'div',
+      block,
+      columns,
+      flow,
+      gap,
+      justify,
+      max = '1fr',
+      min = '0px',
+      sizing = 'auto-fit',
+      ...props
+    },
+    ref
+  ): JSX.Element => {
+    const delegated = { align, block, columns, gap, justify, max, min, sizing, ...props };
+    return <Container as={as} ref={ref} {...delegated} />;
+  }
+);
 
-const Container = styled.div<GridProps>`
-  ${({ align }) => align && `align-items: ${align}`};
-  ${({ block }) => `display: ${block ? 'grid' : 'inline-grid'}`};
-  ${({ flow }) => flow && `grid-auto-flow: ${flow}`};
-  ${({ gap }) => gap && `gap: ${gap}`};
-  ${({ justify }) => justify && `justify-items: ${justify}`};
-  ${({ columns, max, min, sizing }) =>
-    `grid-template-columns: ${
+const Container = styled.div<GridProps>(
+  ({ align, block, columns, flow, gap, justify, max, min, sizing }) => ({
+    alignItems: align,
+    display: `${block ? 'grid' : 'inline-grid'}`,
+    gap: gap,
+    gridAutoFlow: flow,
+    gridTemplateColumns: `${
       columns ? columns : `repeat(${sizing}, minmax(min(100%, ${min}), ${max}))`
-    }`};
-`;
+    }`,
+    justifyItems: justify,
+  })
+);

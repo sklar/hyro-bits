@@ -3,7 +3,7 @@
 import { keyframes, css, jsx, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { kebabCase } from 'case-anything';
-import React, { createElement, useState, useEffect, forwardRef, useRef, useCallback, useMemo } from 'react';
+import React, { forwardRef, createElement, useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { useCombinedRef, useDependantState, useUpdatedRef } from '@spicy-hooks/core';
 import { transparentize } from 'color2k';
 import RcSlider, { Range as Range$1 } from 'rc-slider';
@@ -58,19 +58,17 @@ const fadeIn = keyframes `
 /**
  * Idle indicator.
  */
-const Idle = (_a) => {
-    var { color, delay = 100, duration = 500, gap = '4px', range = '6px', size = '5px' } = _a, props = __rest(_a, ["color", "delay", "duration", "gap", "range", "size"]);
+const Idle = forwardRef((_a, ref) => {
+    var { color = 'currentColor', delay = 100, duration = 500, gap = '4px', range = '6px', size = '5px' } = _a, props = __rest(_a, ["color", "delay", "duration", "gap", "range", "size"]);
     const delegated = Object.assign({ color, delay, duration, gap, range, size }, props);
     const qa = {
         'data-qa': 'idle',
     };
-    return (React.createElement(Container$e, Object.assign({}, qa, delegated),
+    return (React.createElement(Container$e, Object.assign({ ref: ref }, qa, delegated),
         React.createElement(Element$2, null),
         React.createElement(Element$2, null),
         React.createElement(Element$2, null)));
-};
-// TypeScript warning will be gone after this boi is resolved
-// https://github.com/microsoft/typescript-styled-plugin/issues/137#issuecomment-848930098
+});
 const idle = keyframes `
   0%    { --offset: calc(-0.5 * var(--range)); }
   100%  { --offset: calc(0.5 * var(--range)); }
@@ -105,20 +103,17 @@ const Element$2 = styled.div `
     syntax: '<length>';
   }
 `;
-/**
- * TODO: Improve performance
- */
-const Container$e = styled.div `
-  ${({ color }) => color && `--color: ${color}`};
-  ${({ delay }) => `--delay: ${delay}ms`};
-  ${({ duration }) => `--duration: ${duration}ms`};
-  ${({ gap }) => `--gap: ${gap}`};
-  ${({ range }) => `--range: ${range}`};
-  ${({ size }) => `--size: ${size}`};
+const Container$e = styled.div(({ color, delay, duration, gap, range, size }) => css `
+    --color: ${color};
+    --delay: ${delay}ms;
+    --duration: ${duration}ms;
+    --gap: ${gap};
+    --range: ${range};
+    --size: ${size};
 
-  display: inline-flex;
-  gap: var(--gap);
-`;
+    display: inline-flex;
+    gap: var(--gap);
+  `);
 
 /**
  * Color palette.
@@ -1269,7 +1264,7 @@ const isMini = (name) => name in MINI;
 /**
  * Icon wrapper.
  */
-const Icon = (_a) => {
+const Icon = forwardRef((_a, ref) => {
     var { name, size = 'sm' } = _a, props = __rest(_a, ["name", "size"]);
     const [Component, setComponent] = useState();
     const qa = {
@@ -1286,8 +1281,8 @@ const Icon = (_a) => {
             console.error(`${name} icon not found!`);
         }
     }, [name, size]);
-    return (React.createElement(Container$d, Object.assign({ "data-icon": name, "data-size": size }, qa, props), Component));
-};
+    return (React.createElement(Container$d, Object.assign({ "data-icon": name, "data-size": size, ref: ref }, qa, props), Component));
+});
 const Container$d = styled.span `
   --icon-size: ;
 
@@ -1318,13 +1313,13 @@ const Container$d = styled.span `
 /**
  * Order indicator.
  */
-const Order = (_a) => {
+const Order = forwardRef((_a, ref) => {
     var { direction, size = 'xs' } = _a, props = __rest(_a, ["direction", "size"]);
-    return (React.createElement(Container$c, Object.assign({ "data-direction": direction }, props),
+    return (React.createElement(Container$c, Object.assign({ "data-direction": direction, ref: ref }, props),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null }),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null }),
         React.createElement(Icon, { name: "Sort", size: "xs", "data-size": size || null })));
-};
+});
 const Container$c = styled.div `
   --opacity-2: 0;
   --opacity-3: 0;
@@ -1638,42 +1633,39 @@ const EMOTION_DISABLE_SSR = '/* emotion-disable-server-rendering-unsafe-selector
 /**
  * Flexbox wrapper.
  */
-const Flex = (_a) => {
+const Flex = forwardRef((_a, ref) => {
     var { align, as = 'div', block, direction, gap, justify, wrap } = _a, props = __rest(_a, ["align", "as", "block", "direction", "gap", "justify", "wrap"]);
     const delegated = Object.assign({ align, block, direction, gap, justify }, props);
-    return React.createElement(Container$9, Object.assign({ as: as, "data-wrap": wrap || null }, delegated));
-};
-/**
- * TODO: Improve performance
- */
-const Container$9 = styled.div `
-  ${({ align }) => align && `align-items: ${align}`};
-  ${({ block }) => `display: ${block ? 'flex' : 'inline-flex'}`};
-  ${({ direction }) => direction && direction !== 'row' && `flex-direction: ${direction}`};
-  ${({ gap }) => gap && `gap: ${gap}`};
-  ${({ justify }) => justify && `justify-content: ${justify}`};
-
-  &[data-wrap] {
-    flex-wrap: wrap;
-  }
-`;
+    return React.createElement(Container$9, Object.assign({ as: as, "data-wrap": wrap || null, ref: ref }, delegated));
+});
+const Container$9 = styled.div(({ align, block, direction, gap, justify }) => ({
+    alignItems: align,
+    display: `${block ? 'flex' : 'inline-flex'}`,
+    flexDirection: direction,
+    gap: gap,
+    justifyContent: justify,
+}), css `
+    &[data-wrap] {
+      flex-wrap: wrap;
+    }
+  `);
 
 /**
  * Grid wrapper
  */
-const Grid = (_a) => {
+const Grid = forwardRef((_a, ref) => {
     var { align, as = 'div', block, columns, flow, gap, justify, max = '1fr', min = '0px', sizing = 'auto-fit' } = _a, props = __rest(_a, ["align", "as", "block", "columns", "flow", "gap", "justify", "max", "min", "sizing"]);
     const delegated = Object.assign({ align, block, columns, gap, justify, max, min, sizing }, props);
-    return React.createElement(Container$8, Object.assign({ as: as }, delegated));
-};
-const Container$8 = styled.div `
-  ${({ align }) => align && `align-items: ${align}`};
-  ${({ block }) => `display: ${block ? 'grid' : 'inline-grid'}`};
-  ${({ flow }) => flow && `grid-auto-flow: ${flow}`};
-  ${({ gap }) => gap && `gap: ${gap}`};
-  ${({ justify }) => justify && `justify-items: ${justify}`};
-  ${({ columns, max, min, sizing }) => `grid-template-columns: ${columns ? columns : `repeat(${sizing}, minmax(min(100%, ${min}), ${max}))`}`};
-`;
+    return React.createElement(Container$8, Object.assign({ as: as, ref: ref }, delegated));
+});
+const Container$8 = styled.div(({ align, block, columns, flow, gap, justify, max, min, sizing }) => ({
+    alignItems: align,
+    display: `${block ? 'grid' : 'inline-grid'}`,
+    gap: gap,
+    gridAutoFlow: flow,
+    gridTemplateColumns: `${columns ? columns : `repeat(${sizing}, minmax(min(100%, ${min}), ${max}))`}`,
+    justifyItems: justify,
+}));
 
 /**
  * Spacer.
@@ -1705,13 +1697,13 @@ const truncate = css `
 /**
  * Text
  */
-const Text = (_a) => {
+const Text = forwardRef((_a, ref) => {
     var { as = 'span', clamp, hyphens = 'manual', space, truncate, word = 'normal' } = _a, props = __rest(_a, ["as", "clamp", "hyphens", "space", "truncate", "word"]);
     const qa = {
         'data-qa': `text-${as}`,
     };
-    return (React.createElement(Container$7, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-space": space || null, "data-truncate": truncate || null, "data-word": word, style: { ['--lines']: clamp } }, qa, props)));
-};
+    return (React.createElement(Container$7, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-space": space || null, "data-truncate": truncate || null, "data-word": word, ref: ref, style: { ['--lines']: clamp } }, qa, props)));
+});
 const Container$7 = styled.span `
   &[data-clamp] {
     ${clamp};
@@ -1774,8 +1766,6 @@ const Dialog = (_a) => {
             footer && (jsx(Flex, { as: "footer", css: footerStyle, "data-dialog": "footer", "data-qa": "dialog-footer", justify: justify }, footer)),
             rejectable && jsx(Control$1, { "data-dialog": "control", onClick: onClose }))));
 };
-// TypeScript warning will be gone after this boi is resolved
-// https://github.com/microsoft/typescript-styled-plugin/issues/137#issuecomment-848930098
 const backdropAnimation = keyframes `
   0% {
     --dialog-backdrop-alpha: 0;
@@ -3578,10 +3568,10 @@ const NavItemContainer = styled.button `
 /**
  * Navigation item
  */
-const Nav = (_a) => {
+const Nav = forwardRef((_a, ref) => {
     var { as = 'nav', theme } = _a, props = __rest(_a, ["as", "theme"]);
-    return (React.createElement(NavContainer, Object.assign({ as: as, "data-theme": theme || null }, props)));
-};
+    return (React.createElement(NavContainer, Object.assign({ as: as, "data-theme": theme || null, ref: ref }, props)));
+});
 const NavContainer = styled.nav `
   display: flex;
   flex-direction: column;
@@ -3636,7 +3626,7 @@ const usePagination = ({ boundaryCount = 1, count, offset, page, siblingCount = 
 /**
  * Pagination
  */
-const Pagination = (_a) => {
+const Pagination = forwardRef((_a, ref) => {
     var { boundaryCount, count, offset, onChange, page, siblingCount } = _a, props = __rest(_a, ["boundaryCount", "count", "offset", "onChange", "page", "siblingCount"]);
     const qa = {
         'data-qa': `pagination`,
@@ -3654,14 +3644,14 @@ const Pagination = (_a) => {
     const handlePrevPage = useCallback(() => {
         onChange(page - 1);
     }, [onChange, page]);
-    return (React.createElement(Container$2, Object.assign({ block: true, align: "center", gap: "8px", justify: "center" }, qa, props),
+    return (React.createElement(Container$2, Object.assign({ block: true, align: "center", gap: "8px", justify: "center", ref: ref }, qa, props),
         React.createElement(Button, { icon: React.createElement(Icon, { name: "ArrowAltLeft" }), variant: "tertiary", size: "lg", synthetic: true, disabled: !prevPageActive, onClick: handlePrevPage }),
         range &&
             range.map((p, index) => {
                 return p === SPACER ? (React.createElement(Spacer, { key: index }, SPACER)) : (React.createElement(Button, { key: index, text: `${p}`, variant: "tertiary", size: "lg", synthetic: p !== page, active: p === page, onClick: () => onChange(p) }));
             }),
         React.createElement(Button, { icon: React.createElement(Icon, { name: "ArrowAltRight" }), variant: "tertiary", size: "lg", synthetic: true, disabled: !nextPageActive, onClick: handleNextPage })));
-};
+});
 const item = css `
   --size: 40px;
 
@@ -3687,10 +3677,10 @@ const Spacer = styled.span `
 /**
  * Table data cell
  */
-const Td = (_a) => {
+const Td = forwardRef((_a, ref) => {
     var { align, justify, numeric = 'normal' } = _a, props = __rest(_a, ["align", "justify", "numeric"]);
-    return (React.createElement(TdContainer, Object.assign({ "data-align": align || null, "data-justify": justify || null, "data-numeric": numeric || null }, props)));
-};
+    return (React.createElement(TdContainer, Object.assign({ "data-align": align || null, "data-justify": justify || null, "data-numeric": numeric || null, ref: ref }, props)));
+});
 const textAlign = css `
   &[data-justify='inherit'] {
     text-align: inherit;
@@ -3733,14 +3723,14 @@ const TdContainer = styled.td `
 /**
  * Table header cell
  */
-const Th = (_a) => {
+const Th = forwardRef((_a, ref) => {
     var { align, children, direction, icon, justify, onClick, sortable } = _a, props = __rest(_a, ["align", "children", "direction", "icon", "justify", "onClick", "sortable"]);
-    return (React.createElement(ThContainer, Object.assign({ "data-align": align || null, "data-justify": justify || null }, props),
+    return (React.createElement(ThContainer, Object.assign({ "data-align": align || null, "data-justify": justify || null, ref: ref }, props),
         React.createElement(Flex, { gap: "4px", "data-sortable": sortable || null, onClick: onClick },
             icon,
             React.createElement(Text, { truncate: true }, children),
             sortable && React.createElement(Order, { direction: direction }))));
-};
+});
 const ThContainer = styled.th `
   ${textAlign};
 
@@ -3757,10 +3747,10 @@ const ThContainer = styled.th `
 /**
  * Table row
  */
-const Tr = (_a) => {
+const Tr = forwardRef((_a, ref) => {
     var { mute } = _a, props = __rest(_a, ["mute"]);
-    return (React.createElement(TrContainer, Object.assign({ "data-mute": mute || null }, props)));
-};
+    return (React.createElement(TrContainer, Object.assign({ "data-mute": mute || null, ref: ref }, props)));
+});
 const TrContainer = styled.tr `
   &[data-mute] {
     td,
@@ -3772,18 +3762,20 @@ const TrContainer = styled.tr `
 /**
  * Table head
  */
-const Thead = styled.thead ``;
+const Thead = forwardRef((props, ref) => React.createElement(TheadContainer, Object.assign({ ref: ref }, props)));
+const TheadContainer = styled.thead ``;
 /**
  * Table body
  */
-const Tbody = styled.tbody ``;
+const Tbody = forwardRef((props, ref) => React.createElement(TbodyContainer, Object.assign({ ref: ref }, props)));
+const TbodyContainer = styled.tbody ``;
 /**
  * Table
  */
-const Table = (_a) => {
+const Table = forwardRef((_a, ref) => {
     var { layout, sticky } = _a, props = __rest(_a, ["layout", "sticky"]);
-    return (React.createElement(TableContainer, Object.assign({ "data-layout": layout || null, "data-sticky": sticky || null }, props)));
-};
+    return (React.createElement(TableContainer, Object.assign({ "data-layout": layout || null, "data-sticky": sticky || null, ref: ref }, props)));
+});
 const TableContainer = styled.table `
   ${base$1};
 

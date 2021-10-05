@@ -1,6 +1,6 @@
-import React, { ElementType, HTMLAttributes } from 'react';
+import React, { ElementType, HTMLAttributes, ReactNode } from 'react';
 import { AlignmentPrimaryType, AlignmentSecondaryType } from '../../utils/types';
-export interface GridProps extends HTMLAttributes<HTMLElement> {
+export interface GridProps extends HTMLAttributes<HTMLDivElement> {
     /**
      * Alignment, secondary axis
      */
@@ -13,6 +13,10 @@ export interface GridProps extends HTMLAttributes<HTMLElement> {
      * Block or inline
      */
     block?: boolean;
+    /**
+     * Children
+     */
+    children: ReactNode;
     /**
      * Columns
      */
@@ -45,5 +49,5 @@ export interface GridProps extends HTMLAttributes<HTMLElement> {
 /**
  * Grid wrapper
  */
-export declare const Grid: React.FC<GridProps>;
+export declare const Grid: React.ForwardRefExoticComponent<GridProps & React.RefAttributes<HTMLDivElement>>;
 //# sourceMappingURL=Grid.d.ts.map

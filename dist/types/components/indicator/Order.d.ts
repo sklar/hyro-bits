@@ -13,5 +13,5 @@ export interface OrderProps extends HTMLAttributes<HTMLElement> {
 /**
  * Order indicator.
  */
-export declare const Order: React.VFC<OrderProps>;
+export declare const Order: React.ForwardRefExoticComponent<OrderProps & React.RefAttributes<HTMLDivElement>>;
 //# sourceMappingURL=Order.d.ts.map

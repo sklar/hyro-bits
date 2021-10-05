@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, ReactElement } from 'react';
+import React, { forwardRef, HTMLAttributes, ReactElement, ReactNode } from 'react';
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
@@ -16,6 +16,10 @@ interface TdProps extends HTMLAttributes<HTMLTableCellElement> {
    */
   align?: AlignmentType;
   /**
+   * Children
+   */
+  children?: ReactNode;
+  /**
    * Alignment, primary axis
    */
   justify?: AlignmentPrimaryType;
@@ -32,18 +36,16 @@ interface TdProps extends HTMLAttributes<HTMLTableCellElement> {
 /**
  * Table data cell
  */
-export const Td: React.FC<TdProps> = ({
-  align,
-  justify,
-  numeric = 'normal',
-  ...props
-}): JSX.Element => (
-  <TdContainer
-    data-align={align || null}
-    data-justify={justify || null}
-    data-numeric={numeric || null}
-    {...props}
-  />
+export const Td = forwardRef<HTMLTableCellElement, TdProps>(
+  ({ align, justify, numeric = 'normal', ...props }, ref): JSX.Element => (
+    <TdContainer
+      data-align={align || null}
+      data-justify={justify || null}
+      data-numeric={numeric || null}
+      ref={ref}
+      {...props}
+    />
+  )
 );
 
 const textAlign = css`
@@ -93,6 +95,10 @@ interface ThProps extends HTMLAttributes<HTMLTableCellElement> {
    */
   align?: AlignmentType;
   /**
+   * Children
+   */
+  children?: ReactNode;
+  /**
    * Order direction
    */
   direction?: DirectionType;
@@ -122,23 +128,19 @@ interface ThProps extends HTMLAttributes<HTMLTableCellElement> {
 /**
  * Table header cell
  */
-export const Th: React.FC<ThProps> = ({
-  align,
-  children,
-  direction,
-  icon,
-  justify,
-  onClick,
-  sortable,
-  ...props
-}): JSX.Element => (
-  <ThContainer data-align={align || null} data-justify={justify || null} {...props}>
-    <Flex gap="4px" data-sortable={sortable || null} onClick={onClick}>
-      {icon}
-      <Text truncate>{children}</Text>
-      {sortable && <Order direction={direction} />}
-    </Flex>
-  </ThContainer>
+export const Th = forwardRef<HTMLTableCellElement, ThProps>(
+  (
+    { align, children, direction, icon, justify, onClick, sortable, ...props },
+    ref
+  ): JSX.Element => (
+    <ThContainer data-align={align || null} data-justify={justify || null} ref={ref} {...props}>
+      <Flex gap="4px" data-sortable={sortable || null} onClick={onClick}>
+        {icon}
+        <Text truncate>{children}</Text>
+        {sortable && <Order direction={direction} />}
+      </Flex>
+    </ThContainer>
+  )
 );
 
 const ThContainer = styled.th<ThProps>`
@@ -157,6 +159,10 @@ const ThContainer = styled.th<ThProps>`
 
 export interface TrProps extends HTMLAttributes<HTMLTableRowElement> {
   /**
+   * Children
+   */
+  children: ReactNode;
+  /**
    * Muted
    */
   mute?: boolean;
@@ -165,8 +171,10 @@ export interface TrProps extends HTMLAttributes<HTMLTableRowElement> {
 /**
  * Table row
  */
-export const Tr: React.FC<TrProps> = ({ mute, ...props }): JSX.Element => (
-  <TrContainer data-mute={mute || null} {...props} />
+export const Tr = forwardRef<HTMLTableRowElement, TrProps>(
+  ({ mute, ...props }, ref): JSX.Element => (
+    <TrContainer data-mute={mute || null} ref={ref} {...props} />
+  )
 );
 
 export const TrContainer = styled.tr`
@@ -181,14 +189,26 @@ export const TrContainer = styled.tr`
 /**
  * Table head
  */
-export const Thead = styled.thead``;
+export const Thead = forwardRef<HTMLTableSectionElement, { children: ReactNode }>(
+  (props, ref): JSX.Element => <TheadContainer ref={ref} {...props} />
+);
+
+const TheadContainer = styled.thead``;
 
 /**
  * Table body
  */
-export const Tbody = styled.tbody``;
+export const Tbody = forwardRef<HTMLTableSectionElement, { children: ReactNode }>(
+  (props, ref): JSX.Element => <TbodyContainer ref={ref} {...props} />
+);
+
+const TbodyContainer = styled.tbody``;
 
 export interface TableProps extends HTMLAttributes<HTMLTableElement> {
+  /**
+   * Children
+   */
+  children: ReactNode;
   /**
    * Layout
    */
@@ -206,8 +226,15 @@ export interface TableProps extends HTMLAttributes<HTMLTableElement> {
 /**
  * Table
  */
-export const Table: React.FC<TableProps> = ({ layout, sticky, ...props }): JSX.Element => (
-  <TableContainer data-layout={layout || null} data-sticky={sticky || null} {...props} />
+export const Table = forwardRef<HTMLTableElement, TableProps>(
+  ({ layout, sticky, ...props }, ref): JSX.Element => (
+    <TableContainer
+      data-layout={layout || null}
+      data-sticky={sticky || null}
+      ref={ref}
+      {...props}
+    />
+  )
 );
 
 const TableContainer = styled.table<TableProps>`

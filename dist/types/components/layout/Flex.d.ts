@@ -1,6 +1,6 @@
-import React, { ElementType, HTMLAttributes } from 'react';
+import React, { ElementType, HTMLAttributes, ReactNode } from 'react';
 import { AlignmentFlexboxType, AlignmentPrimaryType, AlignmentSecondaryType, AlignmentTertiaryType } from '../../utils/types';
-export interface FlexProps extends HTMLAttributes<HTMLElement> {
+export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
     /**
      * Alignment, secondary axis
      */
@@ -13,6 +13,10 @@ export interface FlexProps extends HTMLAttributes<HTMLElement> {
      * Block or inline
      */
     block?: boolean;
+    /**
+     * Children
+     */
+    children: ReactNode;
     /**
      * Direction (default is `row`)
      */
@@ -33,5 +37,5 @@ export interface FlexProps extends HTMLAttributes<HTMLElement> {
 /**
  * Flexbox wrapper.
  */
-export declare const Flex: React.FC<FlexProps>;
+export declare const Flex: React.ForwardRefExoticComponent<FlexProps & React.RefAttributes<HTMLDivElement>>;
 //# sourceMappingURL=Flex.d.ts.map

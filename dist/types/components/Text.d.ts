@@ -28,5 +28,5 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
 /**
  * Text
  */
-export declare const Text: React.FC<TextProps>;
+export declare const Text: React.ForwardRefExoticComponent<TextProps & React.RefAttributes<HTMLDivElement>>;
 //# sourceMappingURL=Text.d.ts.map

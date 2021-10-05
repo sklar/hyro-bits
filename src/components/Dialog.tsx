@@ -148,8 +148,6 @@ export const Dialog: React.FC<DialogProps> = ({
   );
 };
 
-// TypeScript warning will be gone after this boi is resolved
-// https://github.com/microsoft/typescript-styled-plugin/issues/137#issuecomment-848930098
 const backdropAnimation = keyframes`
   0% {
     --dialog-backdrop-alpha: 0;
