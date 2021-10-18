@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import styled from '@emotion/styled';
-import { Dispatch, forwardRef, Fragment, ReactNode } from 'react';
+import { Dispatch, forwardRef, ReactNode } from 'react';
 
 import { Button } from '../Button';
 import { Icon } from '../Icon';
