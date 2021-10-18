@@ -29,7 +29,7 @@ export declare const NavItem: React.ForwardRefExoticComponent<NavItemProps & Rea
 /**
  * Navigation
  */
-export interface NavProps extends HTMLAttributes<HTMLDivElement> {
+export interface NavProps extends HTMLAttributes<HTMLElement> {
     /**
      * Render as HTML element
      */

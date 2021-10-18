@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { AlignmentPrimaryType, AlignmentSecondaryType } from '../../utils/types';
 
-export interface GridProps extends HTMLAttributes<HTMLDivElement> {
+export interface GridProps extends HTMLAttributes<HTMLElement> {
   /**
    * Alignment, secondary axis
    */

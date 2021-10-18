@@ -1,5 +1,5 @@
 import React, { HTMLAttributes } from 'react';
-export interface PaginationProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface PaginationProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
     /**
      * Current page
      */

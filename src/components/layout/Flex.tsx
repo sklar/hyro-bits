@@ -9,7 +9,7 @@ import {
   AlignmentTertiaryType,
 } from '../../utils/types';
 
-export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
+export interface FlexProps extends HTMLAttributes<HTMLElement> {
   /**
    * Alignment, secondary axis
    */

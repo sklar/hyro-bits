@@ -1,6 +1,6 @@
 import React, { ElementType, HTMLAttributes, ReactNode } from 'react';
 import { AlignmentFlexboxType, AlignmentPrimaryType, AlignmentSecondaryType, AlignmentTertiaryType } from '../../utils/types';
-export interface FlexProps extends HTMLAttributes<HTMLDivElement> {
+export interface FlexProps extends HTMLAttributes<HTMLElement> {
     /**
      * Alignment, secondary axis
      */

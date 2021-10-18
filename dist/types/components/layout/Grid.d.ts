@@ -1,6 +1,6 @@
 import React, { ElementType, HTMLAttributes, ReactNode } from 'react';
 import { AlignmentPrimaryType, AlignmentSecondaryType } from '../../utils/types';
-export interface GridProps extends HTMLAttributes<HTMLDivElement> {
+export interface GridProps extends HTMLAttributes<HTMLElement> {
     /**
      * Alignment, secondary axis
      */

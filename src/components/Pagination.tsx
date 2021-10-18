@@ -7,7 +7,7 @@ import { Icon } from './Icon';
 import { Flex } from './layout';
 import { SPACER, usePagination } from './use-pagination';
 
-export interface PaginationProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onChange'> {
+export interface PaginationProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
   /**
    * Current page
    */

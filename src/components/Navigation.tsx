@@ -126,7 +126,7 @@ const NavItemContainer = styled.button`
 /**
  * Navigation
  */
-export interface NavProps extends HTMLAttributes<HTMLDivElement> {
+export interface NavProps extends HTMLAttributes<HTMLElement> {
   /**
    * Render as HTML element
    */
