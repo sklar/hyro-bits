@@ -3,8 +3,9 @@ import { kebabCase } from 'case-anything';
 import React, { ElementType, forwardRef, InputHTMLAttributes } from 'react';
 
 import { button, colors } from '../../theme';
+import { InternalHTMLAttributes, splitPropsByKeys } from '../../utils';
 
-export interface SwitchProps extends InputHTMLAttributes<HTMLInputElement> {
+export interface SwitchProps extends InternalHTMLAttributes, InputHTMLAttributes<HTMLInputElement> {
   /**
    * Appearance (`checkbox` as default)
    * No matter on type, appearance can be chosen manually
@@ -48,13 +49,11 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       theme,
       type = 'checkbox',
       appearance = type === 'radio' ? 'radio' : 'checkbox',
-      ...inputProps
+      ...props
     },
     ref
   ): JSX.Element => {
-    const containerProps = Object.fromEntries(
-      Object.entries(inputProps).filter(([key]) => ['data-hover'].includes(key))
-    );
+    const [containerProps, inputProps] = splitPropsByKeys(props, ['data-hover']);
     const qa = {
       // prettier-ignore
       'data-qa': [
@@ -66,13 +65,13 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
 
     return (
       <Container
+        {...containerProps}
         as={as}
         className={className}
         data-disabled={disabled || null}
         data-label={label || null}
         data-theme={theme || null}
         style={style}
-        {...containerProps}
       >
         <input ref={ref} type={type} disabled={disabled} {...qa} {...inputProps} />
         <Indicator data-appearance={appearance} />

@@ -1,6 +1,6 @@
 import React, { ElementType, InputHTMLAttributes, ReactElement } from 'react';
-import { SizeType } from '../../utils/types';
-export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+import { InternalHTMLAttributes, SizeType } from '../../utils';
+export interface InputProps extends InternalHTMLAttributes, Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
     /**
      * Render as HTML element
      */

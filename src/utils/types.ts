@@ -19,3 +19,10 @@ export type SizeType = Values<typeof Size>;
 export type ThemeType = Values<typeof Theme>;
 
 export type VariantType = Values<typeof Variant>;
+
+export interface InternalHTMLAttributes {
+  'data-active'?: boolean;
+  'data-hover'?: boolean;
+  'data-invalid'?: boolean;
+  'data-qa'?: string;
+}

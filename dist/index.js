@@ -1629,6 +1629,19 @@ const Container$a = styled.div `
 
 // @see https://github.com/emotion-js/emotion/issues/1105#issuecomment-557726922
 const EMOTION_DISABLE_SSR = '/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */';
+const splitPropsByKeys = (props, keys) => {
+    const restKeys = Object.keys(props).filter((key) => !keys.includes(key));
+    return [
+        keys.reduce((memo, current) => {
+            memo[current] = props[current];
+            return memo;
+        }, {}),
+        restKeys.reduce((memo, current) => {
+            memo[current] = props[current];
+            return memo;
+        }, {}),
+    ];
+};
 
 /**
  * Flexbox wrapper.
@@ -2140,16 +2153,18 @@ const inputAffix = css `
  * Input
  */
 const Input$1 = forwardRef((_a, ref) => {
-    var { active, affix, as = 'label', busy, className, disabled, invalid, leader, length, readonly, size = 'md', theme, trailer } = _a, inputProps = __rest(_a, ["active", "affix", "as", "busy", "className", "disabled", "invalid", "leader", "length", "readonly", "size", "theme", "trailer"]);
+    var { active, affix, as = 'label', busy, className, disabled, invalid, leader, length, readonly, size = 'md', style, theme, trailer } = _a, props = __rest(_a, ["active", "affix", "as", "busy", "className", "disabled", "invalid", "leader", "length", "readonly", "size", "style", "theme", "trailer"]);
     const [prefix, suffix] = Array.isArray(affix) ? affix : [affix];
-    const _b = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['data-active', 'data-invalid', 'data-hover', 'style'].includes(key))), { style } = _b, containerProps = __rest(_b, ["style"]);
-    const qa = {
-        'data-qa': 'input',
-    };
-    return (React.createElement(Container$6, Object.assign({ as: as, className: className, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
+    const [containerProps, inputProps] = splitPropsByKeys(props, [
+        'data-active',
+        'data-hover',
+        'data-invalid',
+    ]);
+    const qa = { 'data-qa': 'input' };
+    return (React.createElement(Container$6, Object.assign({}, containerProps, { as: as, className: className, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }),
         prefix && React.createElement(Prefix, null, prefix),
         leader,
-        React.createElement(Element$1, Object.assign({ ref: ref, disabled: disabled, readOnly: readonly }, qa, inputProps)),
+        React.createElement(Element$1, Object.assign({}, qa, inputProps, { ref: ref, disabled: disabled, readOnly: readonly })),
         busy && (React.createElement(Idle, { gap: "2px", size: "4px", style: {
                 ['--color']: colors.ELEMENT_PRIMARY,
             } })),
@@ -2619,9 +2634,9 @@ const sliderWrapper = css `
  * @see https://slider.react-component.now.sh/
  */
 const Range = (_a) => {
-    var { bleed = true, reverse, theme, vertical } = _a, rangeProps = __rest(_a, ["bleed", "reverse", "theme", "vertical"]);
-    const containerProps = Object.fromEntries(Object.entries(rangeProps).filter(([key]) => ['className', 'data-hover', 'data-qa'].includes(key)));
-    return (jsx("div", Object.assign({}, containerProps, { css: sliderWrapper, "data-bleed": bleed, "data-direction": vertical ? 'vertical' : 'horizontal', "data-reverse": reverse || null, "data-theme": theme || null }),
+    var { bleed = true, className, reverse, style, theme, vertical } = _a, props = __rest(_a, ["bleed", "className", "reverse", "style", "theme", "vertical"]);
+    const [containerProps, rangeProps] = splitPropsByKeys(props, ['data-hover', 'data-qa']);
+    return (jsx("div", Object.assign({}, containerProps, { className: className, css: sliderWrapper, "data-bleed": bleed, "data-direction": vertical ? 'vertical' : 'horizontal', "data-reverse": reverse || null, "data-theme": theme || null, style: style }),
         jsx(Range$1, Object.assign({}, rangeProps, { css: slider, reverse: reverse, vertical: vertical }))));
 };
 
@@ -3140,9 +3155,9 @@ const Select = forwardRef((props, ref) => {
  * @see https://slider.react-component.now.sh/
  */
 const Slider = (_a) => {
-    var { bleed = true, reverse, theme, vertical } = _a, sliderProps = __rest(_a, ["bleed", "reverse", "theme", "vertical"]);
-    const containerProps = Object.fromEntries(Object.entries(sliderProps).filter(([key]) => ['className', 'data-hover', 'data-qa'].includes(key)));
-    return (jsx("div", Object.assign({}, containerProps, { css: sliderWrapper, "data-bleed": bleed, "data-direction": vertical ? 'vertical' : 'horizontal', "data-reverse": reverse || null, "data-theme": theme || null }),
+    var { bleed = true, className, reverse, style, theme, vertical } = _a, props = __rest(_a, ["bleed", "className", "reverse", "style", "theme", "vertical"]);
+    const [containerProps, sliderProps] = splitPropsByKeys(props, ['data-hover', 'data-qa']);
+    return (jsx("div", Object.assign({}, containerProps, { className: className, css: sliderWrapper, "data-bleed": bleed, "data-direction": vertical ? 'vertical' : 'horizontal', "data-reverse": reverse || null, "data-theme": theme || null, style: style }),
         jsx(RcSlider, Object.assign({}, sliderProps, { css: slider, reverse: reverse, vertical: vertical }))));
 };
 
@@ -3150,8 +3165,8 @@ const Slider = (_a) => {
  * Checkbox, Radio button or Toggle switch
  */
 const Switch = forwardRef((_a, ref) => {
-    var { as = 'label', children, className, disabled, label, style, theme, type = 'checkbox', appearance = type === 'radio' ? 'radio' : 'checkbox' } = _a, inputProps = __rest(_a, ["as", "children", "className", "disabled", "label", "style", "theme", "type", "appearance"]);
-    const containerProps = Object.fromEntries(Object.entries(inputProps).filter(([key]) => ['data-hover'].includes(key)));
+    var { as = 'label', children, className, disabled, label, style, theme, type = 'checkbox', appearance = type === 'radio' ? 'radio' : 'checkbox' } = _a, props = __rest(_a, ["as", "children", "className", "disabled", "label", "style", "theme", "type", "appearance"]);
+    const [containerProps, inputProps] = splitPropsByKeys(props, ['data-hover']);
     const qa = {
         // prettier-ignore
         'data-qa': [
@@ -3160,7 +3175,7 @@ const Switch = forwardRef((_a, ref) => {
             ...(label ? [`${kebabCase(label)}`] : [])
         ].join('-'),
     };
-    return (React.createElement(Container$5, Object.assign({ as: as, className: className, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null, style: style }, containerProps),
+    return (React.createElement(Container$5, Object.assign({}, containerProps, { as: as, className: className, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null, style: style }),
         React.createElement("input", Object.assign({ ref: ref, type: type, disabled: disabled }, qa, inputProps)),
         React.createElement(Indicator, { "data-appearance": appearance }),
         children,
@@ -3359,10 +3374,14 @@ const Label$1 = styled.span `
  * TODO: Implement auto-grow feature
  */
 const Textarea = forwardRef((_a, ref) => {
-    var { active, as = 'label', busy, disabled, invalid, length, readonly, resize = 'vertical', theme } = _a, textareaProps = __rest(_a, ["active", "as", "busy", "disabled", "invalid", "length", "readonly", "resize", "theme"]);
-    const _b = Object.fromEntries(Object.entries(textareaProps).filter(([key]) => ['className', 'data-active', 'data-invalid', 'data-hover', 'style'].includes(key))), { style } = _b, containerProps = __rest(_b, ["style"]);
-    return (React.createElement(Container$4, Object.assign({ as: as, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-resize": resize, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }, containerProps),
-        React.createElement(Element, Object.assign({ ref: ref, disabled: disabled, readOnly: readonly }, textareaProps)),
+    var { active, as = 'label', busy, className, disabled, invalid, length, readonly, resize = 'vertical', style, theme } = _a, props = __rest(_a, ["active", "as", "busy", "className", "disabled", "invalid", "length", "readonly", "resize", "style", "theme"]);
+    const [containerProps, textareaProps] = splitPropsByKeys(props, [
+        'data-active',
+        'data-hover',
+        'data-invalid',
+    ]);
+    return (React.createElement(Container$4, Object.assign({}, containerProps, { as: as, className: className, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-resize": resize, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }),
+        React.createElement(Element, Object.assign({}, textareaProps, { ref: ref, disabled: disabled, readOnly: readonly })),
         busy && (React.createElement(Idle, { gap: "2px", size: "4px", "data-indicator": true, style: {
                 ['--color']: colors.ELEMENT_PRIMARY,
             } }))));
@@ -4090,5 +4109,5 @@ const Separator = styled.span `
   width: var(--separator-size);
 `;
 
-export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldText, Flex, Grid, Icon, Idle, Input$1 as Input, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuTitle, Nav, NavContainer, NavItem, NumberInput, NumberInputStepperComponents, Order, Pagination, Range, Select, Slider, Spacer$1 as Spacer, Status, Switch, Table, Tbody, Td, Text, Textarea, Th, Thead, Toast, Tooltip, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input$2 as input, label, paragraph };
+export { Button, ClickOutsideGuard, Dialog, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldText, Flex, Grid, Icon, Idle, Input$1 as Input, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuTitle, Nav, NavContainer, NavItem, NumberInput, NumberInputStepperComponents, Order, Pagination, Range, Select, Slider, Spacer$1 as Spacer, Status, Switch, Table, Tbody, Td, Text, Textarea, Th, Thead, Toast, Tooltip, Tr, TrContainer, base$1 as base, button, colors, h1, h2, h3, h4, h5, input$2 as input, label, paragraph, splitPropsByKeys };
 //# sourceMappingURL=index.js.map

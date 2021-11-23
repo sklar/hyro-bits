@@ -1,13 +1,14 @@
 import styled from '@emotion/styled';
 import React, { ElementType, forwardRef, InputHTMLAttributes, ReactElement } from 'react';
-
 import { colors } from '../../theme';
+import { InternalHTMLAttributes, SizeType, splitPropsByKeys } from '../../utils';
 import { truncate } from '../../utils/helpers';
-import { SizeType } from '../../utils/types';
 import { Idle as Indicator } from '../indicator';
-import { inputAffix, inputContainer, input } from './Input.styles';
+import { input, inputAffix, inputContainer } from './Input.styles';
 
-export interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface InputProps
+  extends InternalHTMLAttributes,
+    Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
   /**
    * Render as HTML element
    */
@@ -78,23 +79,24 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
       length,
       readonly,
       size = 'md',
+      style,
       theme,
       trailer,
-      ...inputProps
+      ...props
     },
     ref
   ): JSX.Element => {
     const [prefix, suffix] = Array.isArray(affix) ? affix : [affix];
-    const { style, ...containerProps } = Object.fromEntries(
-      Object.entries(inputProps).filter(([key]) =>
-        ['data-active', 'data-invalid', 'data-hover', 'style'].includes(key)
-      )
-    );
-    const qa = {
-      'data-qa': 'input',
-    };
+    const [containerProps, inputProps] = splitPropsByKeys(props, [
+      'data-active',
+      'data-hover',
+      'data-invalid',
+    ]);
+    const qa = { 'data-qa': 'input' };
+
     return (
       <Container
+        {...containerProps}
         as={as}
         className={className}
         data-active={active || null}
@@ -105,11 +107,10 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         data-size={size}
         data-theme={theme || null}
         style={{ ['--input-length' as string]: length, ...style }}
-        {...containerProps}
       >
         {prefix && <Prefix>{prefix}</Prefix>}
         {leader}
-        <Element ref={ref} disabled={disabled} readOnly={readonly} {...qa} {...inputProps} />
+        <Element {...qa} {...inputProps} ref={ref} disabled={disabled} readOnly={readonly} />
         {busy && (
           <Indicator
             gap="2px"

@@ -1,5 +1,6 @@
 import React, { ElementType, TextareaHTMLAttributes } from 'react';
-export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+import { InternalHTMLAttributes } from '../../utils';
+export interface TextareaProps extends InternalHTMLAttributes, TextareaHTMLAttributes<HTMLTextAreaElement> {
     /**
      * Render as HTML element
      */

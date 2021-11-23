@@ -30,7 +30,7 @@ const optionsGrouped = [
     ],
   },
   {
-    label: 'Rupan Sansei)',
+    label: 'Rupan Sansei',
     options: [
       { value: 'Lupin', label: 'Arsène Lupin' },
       { value: 'Jigen', label: 'Daisuke Jigen' },
@@ -72,10 +72,13 @@ export default {
     placeholder: 'Hold my 🍺',
   },
   argTypes: {
-    ...mapArgTypes(['maxMenuHeight', 'options', 'style'], {
-      control: { disable: true },
-      table: { disable: true },
-    }),
+    ...mapArgTypes(
+      ['data-active', 'data-hover', 'data-invalid', 'maxMenuHeight', 'options', 'style'],
+      {
+        control: { disable: true },
+        table: { disable: true },
+      }
+    ),
     ...mapArgTypes(['placeholder'], { control: { type: 'text' } }),
     'data-qa': {
       control: 'text',

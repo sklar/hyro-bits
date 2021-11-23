@@ -1,5 +1,6 @@
 import { SliderProps as RcSliderProps } from 'rc-slider';
-export interface SliderProps extends RcSliderProps {
+import { InternalHTMLAttributes } from '../../utils';
+export interface SliderProps extends InternalHTMLAttributes, RcSliderProps {
     /**
      * Bleed
      * Whether to let handle and dots bleed outside the box or keep'em inside.
@@ -14,5 +15,5 @@ export interface SliderProps extends RcSliderProps {
  * Styled RC Slider wrapper
  * @see https://slider.react-component.now.sh/
  */
-export declare const Slider: ({ bleed, reverse, theme, vertical, ...sliderProps }: SliderProps) => JSX.Element;
+export declare const Slider: ({ bleed, className, reverse, style, theme, vertical, ...props }: SliderProps) => JSX.Element;
 //# sourceMappingURL=Slider.d.ts.map

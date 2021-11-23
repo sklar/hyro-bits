@@ -2,10 +2,13 @@ import styled from '@emotion/styled';
 import React, { ElementType, forwardRef, TextareaHTMLAttributes } from 'react';
 
 import { colors } from '../../theme';
+import { InternalHTMLAttributes, splitPropsByKeys } from '../../utils';
 import { Idle as Indicator } from '../indicator';
 import { inputContainer, input } from './Input.styles';
 
-export interface TextareaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+export interface TextareaProps
+  extends InternalHTMLAttributes,
+    TextareaHTMLAttributes<HTMLTextAreaElement> {
   /**
    * Render as HTML element
    */
@@ -56,24 +59,29 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       active,
       as = 'label',
       busy,
+      className,
       disabled,
       invalid,
       length,
       readonly,
       resize = 'vertical',
+      style,
       theme,
-      ...textareaProps
+      ...props
     },
     ref
   ): JSX.Element => {
-    const { style, ...containerProps } = Object.fromEntries(
-      Object.entries(textareaProps).filter(([key]) =>
-        ['className', 'data-active', 'data-invalid', 'data-hover', 'style'].includes(key)
-      )
-    );
+    const [containerProps, textareaProps] = splitPropsByKeys(props, [
+      'data-active',
+      'data-hover',
+      'data-invalid',
+    ]);
+
     return (
       <Container
+        {...containerProps}
         as={as}
+        className={className}
         data-active={active || null}
         data-busy={busy || null}
         data-disabled={disabled || null}
@@ -82,9 +90,8 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         data-resize={resize}
         data-theme={theme || null}
         style={{ ['--input-length' as string]: length, ...style }}
-        {...containerProps}
       >
-        <Element ref={ref} disabled={disabled} readOnly={readonly} {...textareaProps} />
+        <Element {...textareaProps} ref={ref} disabled={disabled} readOnly={readonly} />
         {busy && (
           <Indicator
             gap="2px"
