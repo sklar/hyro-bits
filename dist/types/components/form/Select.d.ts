@@ -45,6 +45,7 @@ declare module 'react-select/dist/declarations/src/Select' {
         readonly?: boolean;
     }
 }
+export type { Props as ReactSelectProps } from 'react-select';
 export interface SelectProps<Option = unknown, IsMulti extends boolean = boolean, Group extends GroupBase<Option> = GroupBase<Option>> extends InternalHTMLAttributes, ReactSelectProps<Option, IsMulti, Group> {
 }
 export declare const Select: <Option extends unknown = {

@@ -1,7 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
-import { kebabCase } from 'case-anything';
 import { CSSProperties, ReactElement } from 'react';
 import ReactSelect, {
   ClearIndicatorProps,
@@ -76,6 +75,8 @@ declare module 'react-select/dist/declarations/src/Select' {
     readonly?: boolean;
   }
 }
+
+export type { Props as ReactSelectProps } from 'react-select';
 
 /**
  * Container
