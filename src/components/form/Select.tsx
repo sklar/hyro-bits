@@ -2,30 +2,80 @@
 /** @jsx jsx */
 import { css, jsx } from '@emotion/react';
 import { kebabCase } from 'case-anything';
-import { CSSProperties, forwardRef, ReactElement } from 'react';
+import { CSSProperties, ReactElement } from 'react';
 import ReactSelect, {
+  ClearIndicatorProps,
   components,
+  ContainerProps,
+  ControlProps,
+  DropdownIndicatorProps,
+  GroupBase,
+  GroupHeadingProps,
   GroupProps,
-  GroupTypeBase,
-  IndicatorContainerProps,
-  IndicatorProps,
   InputProps,
+  MenuProps,
   MultiValueProps,
-  NamedProps,
-  OptionTypeBase,
-  PlaceholderProps,
-  SingleValueProps,
-  ValueContainerProps,
+  NoticeProps,
+  OptionProps,
+  Props as ReactSelectProps,
+  StylesConfig,
 } from 'react-select';
 
 import { colors, paragraph } from '../../theme';
-import { SizeType } from '../../utils';
+import { InternalHTMLAttributes, SizeType, splitPropsByKeys } from '../../utils';
 import { truncate } from '../../utils/helpers';
 import { Icon } from '../Icon';
 import { Idle } from '../indicator';
 import { Menu, MenuItem } from '../menu';
 import { menuGroup, menuGroupTitle } from '../menu/Menu.styles';
 import { input, inputContainer } from './Input.styles';
+
+declare module 'react-select/dist/declarations/src/Select' {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  export interface Props<Option, IsMulti extends boolean, Group extends GroupBase<Option>> {
+    /**
+     * Internal styling helpers
+     */
+    helpers?: InternalHTMLAttributes;
+    /**
+     * Leader placeholder (buttons, icons)
+     */
+    leader?: ReactElement;
+    /**
+     * Length (aka `width`)
+     */
+    length?: string;
+    /**
+     * Size
+     */
+    size?: Exclude<SizeType, 'xs' | 'xl'>;
+    /**
+     * Style
+     */
+    style?: CSSProperties;
+
+    /**
+     * State: Active
+     */
+    active?: boolean;
+    /**
+     * State: Busy
+     */
+    busy?: boolean;
+    /**
+     * State: Disabled
+     */
+    disabled?: boolean;
+    /**
+     * State: Invalid
+     */
+    invalid?: boolean;
+    /**
+     * State: Read-only
+     */
+    readonly?: boolean;
+  }
+}
 
 /**
  * Container
@@ -34,11 +84,17 @@ const containerStyle = css`
   position: relative;
 `;
 
-const SelectContainer = (props: any) => {
+const SelectContainer = <
+  Option extends unknown,
+  IsMulti extends boolean,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(
+  props: ContainerProps<Option, IsMulti, Group>
+) => {
   const {
     selectProps: { style },
   } = props;
-  return <components.SelectContainer css={[containerStyle, style]} {...props} />;
+  return <components.SelectContainer css={[containerStyle, { ...style }]} {...props} />;
 };
 
 /**
@@ -75,7 +131,13 @@ const controlStyle = css`
   /* [data-theme='dark'] & {} */
 `;
 
-const Control = (props: any) => {
+const Control = <
+  Option extends unknown,
+  IsMulti extends boolean,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(
+  props: ControlProps<Option, IsMulti, Group>
+) => {
   const {
     children,
     selectProps: {
@@ -108,7 +170,11 @@ const Control = (props: any) => {
       {...qa}
       {...helpers}
     >
-      <components.Control css={[controlStyle, { ['--input-length' as string]: length }]} {...rest}>
+      <components.Control
+        css={[controlStyle, { ['--input-length' as string]: length }]}
+        {...rest}
+        selectProps={props.selectProps}
+      >
         {leader}
         {children}
       </components.Control>
@@ -119,33 +185,6 @@ const Control = (props: any) => {
 /**
  * Values
  */
-const valueContainerStyle = css`
-  align-items: center;
-  display: flex;
-  flex: 1;
-  gap: 4px;
-  overflow: hidden;
-  padding-block: 4px;
-`;
-
-const ValueContainer = ({
-  selectProps: { isMulti, ...selectProps },
-  ...props
-}: ValueContainerProps<any, any>) => (
-  <components.ValueContainer
-    css={[
-      valueContainerStyle,
-      isMulti
-        ? css`
-            flex-wrap: wrap;
-          `
-        : null,
-    ]}
-    selectProps={selectProps}
-    {...props}
-  />
-);
-
 const multiValueStyle = css`
   align-items: center;
   background: ${colors.ELEMENT_FOCUS};
@@ -163,40 +202,33 @@ const multiValueStyle = css`
   [data-value] {
     ${truncate};
   }
-
+  [data-container] {
+    display: contents;
+  }
   [data-icon] {
     cursor: pointer;
   }
 `;
-const MultiValue = (props: MultiValueProps<any, any>) => {
-  const { children, removeProps } = props;
-  return (
-    <div css={multiValueStyle}>
-      <span data-value>{children}</span>
-      <Icon name="Times" size="xs" {...removeProps} />
-    </div>
-  );
-};
 
-const singleValueStyle = css`
-  white-space: nowrap;
-`;
-const SingleValue = (props: SingleValueProps<any, any>) => (
-  <components.SingleValue css={singleValueStyle} {...props} />
+const MultiValue = <
+  Option extends unknown,
+  IsMulti extends boolean,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>({
+  children,
+  removeProps,
+}: MultiValueProps<Option, IsMulti, Group>) => (
+  <div css={multiValueStyle}>
+    <span data-value>{children}</span>
+    <span data-container {...removeProps}>
+      <Icon name="Times" size="xs" />
+    </span>
+  </div>
 );
 
 /**
  * Input
  */
-const placeholderStyle = css`
-  color: var(--input-placeholder-color);
-  padding-left: 1px;
-  position: absolute;
-`;
-const Placeholder = (props: PlaceholderProps<any, any>) => (
-  <components.Placeholder css={placeholderStyle} {...props} />
-);
-
 const inputStyle = css`
   word-break: break-all;
 
@@ -204,7 +236,13 @@ const inputStyle = css`
     ${input};
   }
 `;
-const Input = (props: InputProps) => <components.Input css={inputStyle} {...props} />;
+const Input = <
+  Option extends unknown,
+  IsMulti extends boolean,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(
+  props: InputProps<Option, IsMulti, Group>
+) => <components.Input css={inputStyle} {...props} />;
 
 /**
  * Indicators
@@ -216,24 +254,25 @@ const indicatorStyle = css`
   transition: transform 0.2s;
 `;
 
-const indicatorsContainerStyle = css`
-  align-items: center;
-  display: flex;
-  gap: 8px;
-`;
-const IndicatorsContainer = (props: IndicatorContainerProps<any, any>) => (
-  <components.IndicatorsContainer css={indicatorsContainerStyle} {...props} />
+const ClearIndicator = <
+  Option extends unknown,
+  IsMulti extends boolean,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(
+  props: ClearIndicatorProps<Option, IsMulti, Group>
+) => (
+  <components.ClearIndicator css={indicatorStyle} {...props}>
+    <Icon name="Times" size="xs" />
+  </components.ClearIndicator>
 );
 
-const ClearIndicator = (props: IndicatorProps<any, any>) => {
-  return (
-    <components.ClearIndicator css={indicatorStyle} {...props}>
-      <Icon name="Times" size="xs" />
-    </components.ClearIndicator>
-  );
-};
-
-const DropdownIndicator = (props: IndicatorProps<any, any>) => {
+const DropdownIndicator = <
+  Option extends unknown,
+  IsMulti extends boolean,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(
+  props: DropdownIndicatorProps<Option, IsMulti, Group>
+) => {
   const {
     selectProps: { menuIsOpen },
   } = props;
@@ -257,47 +296,70 @@ const LoadingIndicator = () => <Idle css={loadingIndicatorStyle} />;
 
 /**
  * Menu
- * TODO: Implement MenuProps
  */
 const menuStyle = css`
   --size: 100%;
 
   position: absolute;
 `;
-const MenuContainer = (props: any) => {
-  const { cx, innerProps, innerRef, ...rest } = props;
-  return <Menu css={menuStyle} ref={innerRef} {...innerProps} {...rest} />;
-};
 
-const Group = (props: GroupProps<any, any>) => <components.Group css={menuGroup} {...props} />;
-
-const GroupHeading = (props: any) => <components.GroupHeading css={menuGroupTitle} {...props} />;
-
-const menuListStyle = css`
-  overflow-y: auto;
-  position: relative;
-`;
-const MenuList = (props: any) => {
-  const {
-    selectProps: { maxMenuHeight },
-    ...rest
-  } = props;
-  return <components.MenuList css={[menuListStyle, { maxHeight: maxMenuHeight }]} {...rest} />;
-};
-
-const Option = (props: any) => {
-  const { cx, data, innerProps, innerRef, isDisabled, isFocused, isSelected, ...rest } = props;
+const MenuContainer = <
+  Option extends unknown,
+  IsMulti extends boolean,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(
+  props: MenuProps<Option, IsMulti, Group>
+) => {
+  const { cx, innerProps, innerRef, theme, ...rest } = props;
   return (
-    <MenuItem
-      {...innerProps}
-      {...rest}
-      active={isSelected}
-      as="div"
-      data-hover={isFocused || null}
-      disabled={isDisabled}
-      ref={innerRef}
-      data-qa={`select-option-${data?.value && kebabCase(data.value)}`}
-    />
+    <div {...innerProps}>
+      <Menu css={menuStyle} {...rest} />
+    </div>
+  );
+};
+
+const Group = <
+  Option extends unknown,
+  IsMulti extends boolean,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(
+  props: GroupProps<Option, IsMulti, Group>
+) => <components.Group css={menuGroup} {...props} />;
+
+const GroupHeading = <
+  Option extends unknown,
+  IsMulti extends boolean,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(
+  props: GroupHeadingProps<Option, IsMulti, Group>
+) => <components.GroupHeading css={menuGroupTitle} {...props} />;
+
+const Option = <
+  Option extends unknown,
+  IsMulti extends boolean,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(
+  props: OptionProps<Option, IsMulti, Group>
+) => {
+  const { cx, innerProps, innerRef, isDisabled, isFocused, isSelected, theme, ...rest } = props;
+  // FIXME: Hilfeeee!
+  // const [option] = rest.getValue();
+  // const value = option instanceof Object && 'value' in option ? option.value : '';
+  // const qa = {
+  //   'data-qa': `select-option-${value && value !== '' ? kebabCase(value) : null}`,
+  // };
+
+  return (
+    <div {...innerProps}>
+      <MenuItem
+        {...rest}
+        // {...qa}
+        active={isSelected}
+        as="div"
+        data-hover={isFocused || null}
+        disabled={isDisabled}
+      />
+    </div>
   );
 };
 
@@ -307,10 +369,24 @@ const Option = (props: any) => {
 const messageStyle = css`
   ${paragraph};
 `;
-const LoadingMessage = (props: any) => {
+
+const LoadingMessage = <
+  Option extends unknown,
+  IsMulti extends boolean,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(
+  props: NoticeProps<Option, IsMulti, Group>
+) => {
   return <components.LoadingMessage css={messageStyle} {...props} />;
 };
-const NoOptionsMessage = (props: any) => {
+
+const NoOptionsMessage = <
+  Option extends unknown,
+  IsMulti extends boolean,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(
+  props: NoticeProps<Option, IsMulti, Group>
+) => {
   return <components.NoOptionsMessage css={messageStyle} {...props} />;
 };
 
@@ -327,8 +403,8 @@ const noopStyles = [
   'dropdownIndicator',
   'group',
   'groupHeading',
-  'indicatorSeparator',
   'indicatorsContainer',
+  'indicatorSeparator',
   'input',
   'loadingIndicator',
   'loadingMessage',
@@ -347,110 +423,102 @@ const noopStyles = [
   return { ...acc, [style]: () => {} };
 }, {});
 
-export interface SelectProps
-  extends Omit<NamedProps<OptionTypeBase, boolean, GroupTypeBase<any>>, 'theme'> {
-  /**
-   * Leader placeholder (buttons, icons)
-   */
-  leader?: ReactElement;
+export interface SelectProps<
+  Option = unknown,
+  IsMulti extends boolean = boolean,
+  Group extends GroupBase<Option> = GroupBase<Option>
+> extends InternalHTMLAttributes,
+    ReactSelectProps<Option, IsMulti, Group> {}
 
-  /**
-   * Length (aka `width`)
-   */
-  length?: string;
-  /**
-   * Size
-   */
-  size?: Exclude<SizeType, 'xs' | 'xl'>;
-  /**
-   * Style
-   */
-  style?: CSSProperties;
+export const Select = <
+  Option extends unknown = { label: string; value: string },
+  IsMulti extends boolean = false,
+  Group extends GroupBase<Option> = GroupBase<Option>
+>(
+  props: SelectProps<Option, IsMulti, Group>
+): JSX.Element => {
+  const {
+    active,
+    busy,
+    components,
+    disabled,
+    invalid,
+    readonly,
+    style,
+    styles: componentStyles,
+    ...rest
+  } = props;
 
-  /**
-   * State: Active
-   */
-  active?: boolean;
-  /**
-   * State: Busy
-   */
-  busy?: boolean;
-  /**
-   * State: Disabled
-   */
-  disabled?: boolean;
-  /**
-   * State: Invalid
-   */
-  invalid?: boolean;
-  /**
-   * State: Read-only
-   */
-  readonly?: boolean;
-}
+  const [helpers] = splitPropsByKeys(props, ['data-hover', 'data-qa']);
 
-export const Select = forwardRef<HTMLElement, SelectProps>(
-  (props, ref): JSX.Element => {
-    const {
-      active,
-      busy,
-      components,
-      disabled,
-      invalid,
-      readonly,
-      style,
-      styles: componentStyles,
-      ...rest
-    } = props;
-    const helpers = Object.fromEntries(
-      Object.entries(props).filter(([key]) => ['data-hover', 'data-qa'].includes(key))
-    );
-    const selectProps = {
-      active,
-      busy,
-      disabled,
-      helpers,
-      invalid,
-      readonly,
-      style,
-      ...rest,
-    };
-    const customStyles = {
-      ...noopStyles,
-      ...componentStyles,
-    };
+  // These are passed to every component that we define;
+  //  don't forget to add each of them to the Select module declaration
+  const selectProps = {
+    active,
+    busy,
+    disabled,
+    helpers,
+    invalid,
+    readonly,
+    style,
+    ...rest,
+  };
 
-    return (
-      <ReactSelect
-        components={{
-          ClearIndicator,
-          Control,
-          DropdownIndicator,
-          Group,
-          GroupHeading,
-          IndicatorsContainer,
-          IndicatorSeparator: () => null,
-          Input,
-          LoadingIndicator,
-          LoadingMessage,
-          Menu: MenuContainer,
-          MenuList,
-          MultiValue,
-          NoOptionsMessage,
-          Option,
-          Placeholder,
-          SelectContainer,
-          SingleValue,
-          ValueContainer,
-          ...components,
-        }}
-        isDisabled={readonly || disabled}
-        isLoading={busy}
-        menuIsOpen={active}
-        ref={ref as any}
-        styles={customStyles}
-        {...selectProps}
-      />
-    );
-  }
-);
+  // Drop default styling and provide custom styles
+  const customStyles: StylesConfig<Option, IsMulti, Group> = {
+    ...noopStyles,
+    indicatorsContainer: () => ({
+      alignItems: 'center',
+      display: 'flex',
+      gap: 8,
+    }),
+    menuList: (_, { selectProps: { maxMenuHeight } }) => ({
+      maxHeight: maxMenuHeight,
+      overflowY: 'auto',
+      position: 'relative',
+    }),
+    placeholder: () => ({
+      color: 'var(--input-placeholder-color)',
+      paddingLeft: 1,
+      position: 'absolute',
+    }),
+    singleValue: () => ({ whiteSpace: 'nowrap' }),
+    valueContainer: (_, { selectProps: { isMulti } }) => ({
+      alignItems: 'center',
+      display: 'flex',
+      flex: 1,
+      flexWrap: isMulti ? 'wrap' : 'nowrap',
+      gap: 4,
+      overflow: 'hidden',
+      paddingBlock: 4,
+    }),
+    ...componentStyles,
+  };
+
+  return (
+    <ReactSelect
+      components={{
+        ClearIndicator,
+        Control,
+        DropdownIndicator,
+        Group,
+        GroupHeading,
+        IndicatorSeparator: () => null,
+        Input,
+        LoadingIndicator,
+        LoadingMessage,
+        Menu: MenuContainer,
+        MultiValue,
+        NoOptionsMessage,
+        Option,
+        SelectContainer,
+        ...components,
+      }}
+      isDisabled={readonly || disabled}
+      isLoading={busy}
+      menuIsOpen={active}
+      styles={customStyles}
+      {...selectProps}
+    />
+  );
+};

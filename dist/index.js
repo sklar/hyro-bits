@@ -2905,7 +2905,7 @@ const containerStyle = css `
 `;
 const SelectContainer = (props) => {
     const { selectProps: { style }, } = props;
-    return jsx(components.SelectContainer, Object.assign({ css: [containerStyle, style] }, props));
+    return jsx(components.SelectContainer, Object.assign({ css: [containerStyle, Object.assign({}, style)] }, props));
 };
 /**
  * Control
@@ -2946,32 +2946,13 @@ const Control = (props) => {
         'data-qa': 'select',
     };
     return (jsx("div", Object.assign({ "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-size": size, "data-theme": theme || null }, qa, helpers),
-        jsx(components.Control, Object.assign({ css: [controlStyle, { ['--input-length']: length }] }, rest),
+        jsx(components.Control, Object.assign({ css: [controlStyle, { ['--input-length']: length }] }, rest, { selectProps: props.selectProps }),
             leader,
             children)));
 };
 /**
  * Values
  */
-const valueContainerStyle = css `
-  align-items: center;
-  display: flex;
-  flex: 1;
-  gap: 4px;
-  overflow: hidden;
-  padding-block: 4px;
-`;
-const ValueContainer = (_a) => {
-    var _b = _a.selectProps, { isMulti } = _b, selectProps = __rest(_b, ["isMulti"]), props = __rest(_a, ["selectProps"]);
-    return (jsx(components.ValueContainer, Object.assign({ css: [
-            valueContainerStyle,
-            isMulti
-                ? css `
-            flex-wrap: wrap;
-          `
-                : null,
-        ], selectProps: selectProps }, props)));
-};
 const multiValueStyle = css `
   align-items: center;
   background: ${colors.ELEMENT_FOCUS};
@@ -2989,30 +2970,20 @@ const multiValueStyle = css `
   [data-value] {
     ${truncate};
   }
-
+  [data-container] {
+    display: contents;
+  }
   [data-icon] {
     cursor: pointer;
   }
 `;
-const MultiValue = (props) => {
-    const { children, removeProps } = props;
-    return (jsx("div", { css: multiValueStyle },
-        jsx("span", { "data-value": true }, children),
-        jsx(Icon, Object.assign({ name: "Times", size: "xs" }, removeProps))));
-};
-const singleValueStyle = css `
-  white-space: nowrap;
-`;
-const SingleValue = (props) => (jsx(components.SingleValue, Object.assign({ css: singleValueStyle }, props)));
+const MultiValue = ({ children, removeProps, }) => (jsx("div", { css: multiValueStyle },
+    jsx("span", { "data-value": true }, children),
+    jsx("span", Object.assign({ "data-container": true }, removeProps),
+        jsx(Icon, { name: "Times", size: "xs" }))));
 /**
  * Input
  */
-const placeholderStyle = css `
-  color: var(--input-placeholder-color);
-  padding-left: 1px;
-  position: absolute;
-`;
-const Placeholder = (props) => (jsx(components.Placeholder, Object.assign({ css: placeholderStyle }, props)));
 const inputStyle = css `
   word-break: break-all;
 
@@ -3030,16 +3001,8 @@ const indicatorStyle = css `
   place-items: center;
   transition: transform 0.2s;
 `;
-const indicatorsContainerStyle = css `
-  align-items: center;
-  display: flex;
-  gap: 8px;
-`;
-const IndicatorsContainer = (props) => (jsx(components.IndicatorsContainer, Object.assign({ css: indicatorsContainerStyle }, props)));
-const ClearIndicator = (props) => {
-    return (jsx(components.ClearIndicator, Object.assign({ css: indicatorStyle }, props),
-        jsx(Icon, { name: "Times", size: "xs" })));
-};
+const ClearIndicator = (props) => (jsx(components.ClearIndicator, Object.assign({ css: indicatorStyle }, props),
+    jsx(Icon, { name: "Times", size: "xs" })));
 const DropdownIndicator = (props) => {
     const { selectProps: { menuIsOpen }, } = props;
     return (jsx(components.DropdownIndicator, Object.assign({ css: [indicatorStyle, menuIsOpen ? { transform: 'rotateX(180deg)' } : undefined] }, props),
@@ -3054,7 +3017,6 @@ const loadingIndicatorStyle = css `
 const LoadingIndicator = () => jsx(Idle, { css: loadingIndicatorStyle });
 /**
  * Menu
- * TODO: Implement MenuProps
  */
 const menuStyle = css `
   --size: 100%;
@@ -3062,22 +3024,24 @@ const menuStyle = css `
   position: absolute;
 `;
 const MenuContainer = (props) => {
-    const { cx, innerProps, innerRef } = props, rest = __rest(props, ["cx", "innerProps", "innerRef"]);
-    return jsx(Menu, Object.assign({ css: menuStyle, ref: innerRef }, innerProps, rest));
+    const { cx, innerProps, innerRef, theme } = props, rest = __rest(props, ["cx", "innerProps", "innerRef", "theme"]);
+    return (jsx("div", Object.assign({}, innerProps),
+        jsx(Menu, Object.assign({ css: menuStyle }, rest))));
 };
 const Group = (props) => jsx(components.Group, Object.assign({ css: menuGroup }, props));
 const GroupHeading = (props) => jsx(components.GroupHeading, Object.assign({ css: menuGroupTitle }, props));
-const menuListStyle = css `
-  overflow-y: auto;
-  position: relative;
-`;
-const MenuList = (props) => {
-    const { selectProps: { maxMenuHeight } } = props, rest = __rest(props, ["selectProps"]);
-    return jsx(components.MenuList, Object.assign({ css: [menuListStyle, { maxHeight: maxMenuHeight }] }, rest));
-};
 const Option = (props) => {
-    const { cx, data, innerProps, innerRef, isDisabled, isFocused, isSelected } = props, rest = __rest(props, ["cx", "data", "innerProps", "innerRef", "isDisabled", "isFocused", "isSelected"]);
-    return (jsx(MenuItem, Object.assign({}, innerProps, rest, { active: isSelected, as: "div", "data-hover": isFocused || null, disabled: isDisabled, ref: innerRef, "data-qa": `select-option-${(data === null || data === void 0 ? void 0 : data.value) && kebabCase(data.value)}` })));
+    const { cx, innerProps, innerRef, isDisabled, isFocused, isSelected, theme } = props, rest = __rest(props, ["cx", "innerProps", "innerRef", "isDisabled", "isFocused", "isSelected", "theme"]);
+    // FIXME: Hilfeeee!
+    // const [option] = rest.getValue();
+    // const value = option instanceof Object && 'value' in option ? option.value : '';
+    // const qa = {
+    //   'data-qa': `select-option-${value && value !== '' ? kebabCase(value) : null}`,
+    // };
+    return (jsx("div", Object.assign({}, innerProps),
+        jsx(MenuItem, Object.assign({}, rest, { 
+            // {...qa}
+            active: isSelected, as: "div", "data-hover": isFocused || null, disabled: isDisabled }))));
 };
 /**
  * Message
@@ -3103,8 +3067,8 @@ const noopStyles = [
     'dropdownIndicator',
     'group',
     'groupHeading',
-    'indicatorSeparator',
     'indicatorsContainer',
+    'indicatorSeparator',
     'input',
     'loadingIndicator',
     'loadingMessage',
@@ -3122,9 +3086,11 @@ const noopStyles = [
 ].reduce((acc, style) => {
     return Object.assign(Object.assign({}, acc), { [style]: () => { } });
 }, {});
-const Select = forwardRef((props, ref) => {
+const Select = (props) => {
     const { active, busy, components, disabled, invalid, readonly, style, styles: componentStyles } = props, rest = __rest(props, ["active", "busy", "components", "disabled", "invalid", "readonly", "style", "styles"]);
-    const helpers = Object.fromEntries(Object.entries(props).filter(([key]) => ['data-hover', 'data-qa'].includes(key)));
+    const [helpers] = splitPropsByKeys(props, ['data-hover', 'data-qa']);
+    // These are passed to every component that we define;
+    //  don't forget to add each of them to the Select module declaration
     const selectProps = Object.assign({ active,
         busy,
         disabled,
@@ -3132,23 +3098,39 @@ const Select = forwardRef((props, ref) => {
         invalid,
         readonly,
         style }, rest);
-    const customStyles = Object.assign(Object.assign({}, noopStyles), componentStyles);
+    // Drop default styling and provide custom styles
+    const customStyles = Object.assign(Object.assign(Object.assign({}, noopStyles), { indicatorsContainer: () => ({
+            alignItems: 'center',
+            display: 'flex',
+            gap: 8,
+        }), menuList: (_, { selectProps: { maxMenuHeight } }) => ({
+            maxHeight: maxMenuHeight,
+            overflowY: 'auto',
+            position: 'relative',
+        }), placeholder: () => ({
+            color: 'var(--input-placeholder-color)',
+            paddingLeft: 1,
+            position: 'absolute',
+        }), singleValue: () => ({ whiteSpace: 'nowrap' }), valueContainer: (_, { selectProps: { isMulti } }) => ({
+            alignItems: 'center',
+            display: 'flex',
+            flex: 1,
+            flexWrap: isMulti ? 'wrap' : 'nowrap',
+            gap: 4,
+            overflow: 'hidden',
+            paddingBlock: 4,
+        }) }), componentStyles);
     return (jsx(ReactSelect, Object.assign({ components: Object.assign({ ClearIndicator,
             Control,
             DropdownIndicator,
             Group,
-            GroupHeading,
-            IndicatorsContainer, IndicatorSeparator: () => null, Input,
+            GroupHeading, IndicatorSeparator: () => null, Input,
             LoadingIndicator,
-            LoadingMessage, Menu: MenuContainer, MenuList,
-            MultiValue,
+            LoadingMessage, Menu: MenuContainer, MultiValue,
             NoOptionsMessage,
             Option,
-            Placeholder,
-            SelectContainer,
-            SingleValue,
-            ValueContainer }, components), isDisabled: readonly || disabled, isLoading: busy, menuIsOpen: active, ref: ref, styles: customStyles }, selectProps)));
-});
+            SelectContainer }, components), isDisabled: readonly || disabled, isLoading: busy, menuIsOpen: active, styles: customStyles }, selectProps)));
+};
 
 /**
  * Styled RC Slider wrapper

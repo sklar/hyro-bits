@@ -73,7 +73,7 @@ export default {
   },
   argTypes: {
     ...mapArgTypes(
-      ['data-active', 'data-hover', 'data-invalid', 'maxMenuHeight', 'options', 'style'],
+      ['data-active', 'data-hover', 'data-invalid', 'helpers', 'maxMenuHeight', 'options', 'style'],
       {
         control: { disable: true },
         table: { disable: true },
