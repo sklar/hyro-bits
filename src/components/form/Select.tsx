@@ -76,6 +76,7 @@ declare module 'react-select/dist/declarations/src/Select' {
   }
 }
 
+export { components as ReactSelectComponents } from 'react-select';
 export type { Props as ReactSelectProps } from 'react-select';
 
 /**

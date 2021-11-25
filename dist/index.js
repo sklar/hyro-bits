@@ -8,6 +8,7 @@ import { useCombinedRef, useDependantState, useUpdatedRef } from '@spicy-hooks/c
 import { transparentize } from 'color2k';
 import RcSlider, { Range as Range$1 } from 'rc-slider';
 import ReactSelect, { components } from 'react-select';
+export { components as ReactSelectComponents } from 'react-select';
 import RcTooltip from 'rc-tooltip';
 
 /*! *****************************************************************************
