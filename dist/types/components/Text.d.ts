@@ -1,4 +1,8 @@
 import React, { ElementType, HTMLAttributes } from 'react';
+export declare type TruncateOptionType = {
+    begin: number;
+    end: number;
+};
 export interface TextProps extends HTMLAttributes<HTMLDivElement> {
     /**
      * Render as HTML element
@@ -9,6 +13,10 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
      */
     clamp?: number;
     /**
+     * Content
+     */
+    content?: string;
+    /**
      * Hyphens
      */
     hyphens?: 'manual' | 'auto' | 'none';
@@ -17,9 +25,9 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
      */
     space?: 'normal' | 'nowrap' | 'pre';
     /**
-     * Truuncate text
+     * Truncate text
      */
-    truncate?: boolean;
+    truncate?: boolean | Partial<TruncateOptionType>;
     /**
      * Word break
      */

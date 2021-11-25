@@ -1708,15 +1708,26 @@ const truncate = css `
   width: inherit;
 `;
 
+function shorten(text, { begin = Infinity, end = Infinity }) {
+    return (React.createElement(React.Fragment, null, text.length - (begin + end) ? (React.createElement(React.Fragment, null,
+        React.createElement("span", null, text.slice(0, text.length - end)),
+        React.createElement("span", null, text.slice(-end)))) : (React.createElement(React.Fragment, null, text))));
+}
 /**
  * Text
  */
 const Text = forwardRef((_a, ref) => {
-    var { as = 'span', clamp, hyphens = 'manual', space, truncate, word = 'normal' } = _a, props = __rest(_a, ["as", "clamp", "hyphens", "space", "truncate", "word"]);
+    var { as = 'span', children, clamp, content, hyphens = 'manual', space, truncate, word = 'normal' } = _a, props = __rest(_a, ["as", "children", "clamp", "content", "hyphens", "space", "truncate", "word"]);
+    const short = truncate instanceof Object && ('begin' in truncate || 'end' in truncate);
+    const text = content && short ? shorten(content, truncate) : children;
     const qa = {
         'data-qa': `text-${as}`,
     };
-    return (React.createElement(Container$7, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-space": space || null, "data-truncate": truncate || null, "data-word": word, ref: ref, style: { ['--lines']: clamp } }, qa, props)));
+    return (React.createElement(Container$7, Object.assign({ as: as, "data-clamp": clamp || null, "data-hyphens": hyphens, "data-space": space || null, "data-truncate": text && short ? 'smart' : truncate ? 'simple' : null, "data-word": word, ref: ref, style: {
+            ['--lines']: clamp,
+            ['--chars-begin']: short && truncate instanceof Object && (truncate === null || truncate === void 0 ? void 0 : truncate.begin),
+            ['--chars-end']: short && truncate instanceof Object && (truncate === null || truncate === void 0 ? void 0 : truncate.end),
+        } }, qa, props), text));
 });
 const Container$7 = styled.span `
   &[data-clamp] {
@@ -1740,8 +1751,32 @@ const Container$7 = styled.span `
     white-space: pre;
   }
 
-  &[data-truncate] {
+  &[data-truncate='simple'] {
     ${truncate};
+  }
+
+  &[data-truncate='smart'] {
+    --char-size: calc(0.68 * 1em);
+    --size-begin: calc(var(--char-size) * (var(--chars-begin, 3) + 3));
+    --size-end: calc(var(--char-size) * var(--chars-end, 6));
+
+    display: inline-flex;
+    max-width: 100%;
+
+    span {
+      overflow: hidden;
+      white-space: nowrap;
+
+      &:nth-of-type(1) {
+        max-width: calc(100% - var(--size-end));
+        min-width: var(--size-begin);
+        text-overflow: ellipsis;
+      }
+      &:nth-of-type(2) {
+        direction: rtl;
+        max-width: var(--size-end);
+      }
+    }
   }
 
   &[data-word='break'] {

@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { Meta, Story } from '@storybook/react/types-6-0';
 import React from 'react';
 
-import { global, mapArgTypes } from '../stories';
+import { Container, global, mapArgTypes } from '../stories';
 import { Text as TextCmp, TextProps } from './Text';
 
 export default {
@@ -22,6 +22,10 @@ export default {
     clamp: 10,
   },
   argTypes: {
+    ...mapArgTypes(['content', 'truncate'], {
+      control: { disable: true },
+      table: { disable: true },
+    }),
     ...mapArgTypes(['as'], {
       control: { type: 'text' },
       table: {
@@ -31,7 +35,6 @@ export default {
     ...mapArgTypes(['clamp'], {
       control: { type: 'range', min: 1, max: 10, step: 1 },
     }),
-    ...mapArgTypes(['truncate'], {}),
     ...mapArgTypes(['hyphens', 'space', 'word'], {
       control: { type: 'inline-radio' },
     }),
@@ -64,20 +67,58 @@ const Template: Story<TextProps> = (args) => (
       circumstances, Bryce would do anything to prove his worth, and, before long, he accepts an
       offer from Interpol to escort the international assassin, Darius Kincaid, from Manchester to
       the Hague. The task seems simple: Bryce needs to transport him from point A to point B;
-      nevertheless, the trip to the Netherlands is long and hazardous, and Kincaid--as the only one
-      with the guts and enough hard evidence to testify against a tyrannical Belarusian dictator--is
+      nevertheless, the trip to the Netherlands is long and hazardous, and Kincaid—as the only one
+      with the guts and enough hard evidence to testify against a tyrannical Belarusian dictator—is
       an obvious target. Undoubtedly, it's a tough job, as the mismatched duo will have to put aside
       their grudges, and race against the clock in a non-stop concerto for bullets. Can the hitman's
       bodyguard carry through the most important mission in his career?
     </TextCmp>
-    <TextCmp {...args}>
-      WithhisreputationintattersafterthepainfullyunsuccessfuldeliveryofadistinguishedJapaneseclienttheformertripleAprotectionagentMichaelBryceisnowreducedtoameresecondclassbodyguardforhiretwoyearsafterthedisgracefulincidentUnderthosecircumstancesBrycewoulddoanythingtoprovehisworthandbeforelongheacceptsanofferfromInterpoltoescorttheinternationalassassinDariusKincaidfromManchestertotheHagueThetaskseemssimpleBryceneedstotransporthimfrompointAtopointB;nevertheless,thetriptotheNetherlandsislongandhazardous,andKincaidastheonlyonewiththegutsandenoughhardevidencetotestifyagainstatyrannicalBelarusiandictatorisanobvioustarget.Undoubtedly,itsatoughjob,asthemismatchedduowillhavetoputasidetheirgrudgesandraceagainsttheclockinanonstopconcertoforbulletsCanthehitmansbodyguardcarrythroughthemostimportantmissioninhiscareer?
-    </TextCmp>
+
+    <Container indent="16px" resize="horizontal">
+      <h2 style={{ marginBottom: 0 }}>Truncate</h2>
+
+      <TextCmp truncate style={{ maxWidth: '100%' }} {...args}>
+        WithhisreputationintattersafterthepainfullyunsuccessfuldeliveryofadistinguishedJapaneseclienttheformertripleAprotectionagentMichaelBryceisnowreducedtoameresecondclassbodyguardforhiretwoyearsafterthedisgracefulincidentUnderthosecircumstancesBrycewoulddoanythingtoprovehisworthandbeforelongheacceptsanofferfromInterpoltoescorttheinternationalassassinDariusKincaidfromManchestertotheHagueThetaskseemssimpleBryceneedstotransporthimfrompointAtopointB;nevertheless,thetriptotheNetherlandsislongandhazardous,andKincaidastheonlyonewiththegutsandenoughhardevidencetotestifyagainstatyrannicalBelarusiandictatorisanobvioustarget.Undoubtedly,itsatoughjob,asthemismatchedduowillhavetoputasidetheirgrudgesandraceagainsttheclockinanonstopconcertoforbulletsCanthehitmansbodyguardcarrythroughthemostimportantmissioninhiscareer?
+      </TextCmp>
+
+      <List>
+        <Item>
+          <Preview />
+          <TextCmp content="test.mmmmmmmmmmmmmmmmmmmmmmmm.jpg" truncate={{ end: 8 }} />
+        </Item>
+        <Item>
+          <Preview />
+          <TextCmp content="test.iiiiiiiiiiiiiiiiiiiiiiii.jpg" truncate={{ end: 8 }} />
+        </Item>
+        <Item>
+          <Preview />
+          <TextCmp content="test.oooooooooooooooooooooooo.jpg" truncate={{ end: 8 }} />
+        </Item>
+      </List>
+    </Container>
   </Wrapper>
 );
 
 export const Text = Template.bind({});
 
 const Wrapper = styled.div`
-  max-width: 80ch;
+  width: min(80ch, 100%);
+`;
+
+const List = styled.div`
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+`;
+
+const Item = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+`;
+
+const Preview = styled.div`
+  background: url('https://source.unsplash.com/9XngoIpxcEo/300x200') center / cover;
+  border-radius: 6px;
+  height: 100px;
 `;
