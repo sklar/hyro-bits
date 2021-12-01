@@ -24,6 +24,10 @@ export declare const FieldMessage: React.FC<FieldMessageProps>;
  * Field
  */
 export interface FieldProps extends FlexProps {
+    /**
+     * Compact
+     */
+    compact?: boolean;
 }
 export declare const Field: React.FC<FieldProps>;
 export {};

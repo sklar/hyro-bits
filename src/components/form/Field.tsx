@@ -112,18 +112,36 @@ const messageStyle = css`
 /**
  * Field
  */
-export interface FieldProps extends FlexProps {}
+export interface FieldProps extends FlexProps {
+  /**
+   * Compact
+   */
+  compact?: boolean;
+}
 
-export const Field: React.FC<FieldProps> = (props): JSX.Element => {
+export const Field: React.FC<FieldProps> = ({ compact, ...props }): JSX.Element => {
   const qa = {
     'data-qa': 'field',
   };
-  return <Flex block css={fieldStyle} direction="column" gap="8px" {...qa} {...props} />;
+  return (
+    <Flex
+      block
+      css={fieldStyle}
+      data-compact={compact || null}
+      direction="column"
+      gap="8px"
+      {...qa}
+      {...props}
+    />
+  );
 };
 
 const fieldStyle = css`
   --field-indent: 0;
 
   flex: 1;
-  padding-block: 12px;
+
+  &:not([data-compact]) {
+    padding-block: 12px;
+  }
 `;

@@ -232,10 +232,23 @@ const MultiValue = <
  * Input
  */
 const inputStyle = css`
-  word-break: break-all;
+  display: inline-grid;
+  flex: 1;
+  grid-area: 1 / 1 / 2 / 3;
+  grid-template-columns: 0 min-content;
+
+  &::after {
+    content: attr(data-value) ' ';
+    font: inherit;
+    grid-area: 1 / 2 / auto / auto;
+    white-space: pre;
+  }
 
   input {
     ${input};
+
+    grid-area: 1 / 2 / auto / auto;
+    width: max(100%, 2px);
   }
 `;
 const Input = <
@@ -244,7 +257,17 @@ const Input = <
   Group extends GroupBase<Option> = GroupBase<Option>
 >(
   props: InputProps<Option, IsMulti, Group>
-) => <components.Input css={inputStyle} {...props} />;
+) => (
+  <components.Input
+    css={inputStyle}
+    {...props}
+    style={
+      {
+        /* Nuke the inline styles */
+      }
+    }
+  />
+);
 
 /**
  * Indicators
@@ -484,10 +507,14 @@ export const Select = <
       paddingLeft: 1,
       position: 'absolute',
     }),
-    singleValue: () => ({ whiteSpace: 'nowrap' }),
+    singleValue: () => ({
+      gridArea: '1 / 1 / 2 / 3',
+      maxWidth: '100%',
+      whiteSpace: 'nowrap',
+    }),
     valueContainer: (_, { selectProps: { isMulti } }) => ({
       alignItems: 'center',
-      display: 'flex',
+      display: isMulti ? 'flex' : 'grid',
       flex: 1,
       flexWrap: isMulti ? 'wrap' : 'nowrap',
       gap: 4,

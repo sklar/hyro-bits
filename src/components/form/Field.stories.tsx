@@ -35,7 +35,7 @@ export default {
   },
   args: {},
   argTypes: {
-    ...mapArgTypes(['align', 'as', 'block', 'direction', 'gap', 'justify', 'wrap'], {
+    ...mapArgTypes(['align', 'as', 'block', 'children', 'direction', 'gap', 'justify', 'wrap'], {
       control: { disable: true },
       table: { disable: true },
     }),
