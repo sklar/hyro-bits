@@ -1,5 +1,5 @@
 import { Global } from '@emotion/react';
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { withDesign } from 'storybook-addon-designs';
 
@@ -35,6 +35,10 @@ export default {
     size: 16,
   },
   argTypes: {
+    ...mapArgTypes(['data-active', 'data-hover', 'data-invalid'], {
+      control: { disable: true },
+      table: { disable: true },
+    }),
     ...mapArgTypes(['as'], {
       control: { type: 'text' },
       table: {
@@ -98,7 +102,6 @@ export const Overview = TemplateOverview.bind({});
 Overview.args = {};
 
 export const Checkbox = TemplateCheckbox.bind({});
-Checkbox.storyName = 'Checkbox';
 Checkbox.args = {
   appearance: 'checkbox',
 };

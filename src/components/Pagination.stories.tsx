@@ -1,4 +1,4 @@
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react';
 import React, { useMemo, useState } from 'react';
 import { withDesign } from 'storybook-addon-designs';
 

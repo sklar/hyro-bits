@@ -1,5 +1,5 @@
 import { Global } from '@emotion/react';
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { withDesign } from 'storybook-addon-designs';
 
@@ -36,7 +36,7 @@ export default {
     placeholder: 'Hold my 🍺',
   },
   argTypes: {
-    ...mapArgTypes(['theme'], {
+    ...mapArgTypes(['data-active', 'data-hover', 'data-invalid', 'theme'], {
       control: { disable: true },
       table: { disable: true },
     }),

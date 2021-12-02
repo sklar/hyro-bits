@@ -1,6 +1,5 @@
 import { css } from '@emotion/react';
-import { ArgTypes } from '@storybook/react/types-6-0';
-
+import { Args } from '@storybook/react';
 import { base, colors, paragraph } from '../theme';
 
 export const global = css`
@@ -17,9 +16,9 @@ export const global = css`
   }
 `;
 
-export const mapArgTypes = (types: string[], args: ArgTypes): ArgTypes => {
-  return types.reduce((acc: Record<string, ArgTypes>, value) => {
-    return { ...acc, [value]: args };
+export const mapArgTypes = (items: string[], args: Args) => {
+  return items.reduce((acc: Record<string, Args>, item) => {
+    return { ...acc, [item]: args };
   }, {});
 };
 

@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { css, Global, jsx } from '@emotion/react';
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react';
 import React, { Fragment, useCallback, useState } from 'react';
 import { withDesign } from 'storybook-addon-designs';
 
@@ -49,7 +49,7 @@ export default {
     size: 'md',
   },
   argTypes: {
-    ...mapArgTypes(['busy', 'format', 'theme'], {
+    ...mapArgTypes(['busy', 'data-active', 'data-hover', 'data-invalid', 'format', 'theme'], {
       control: { disable: true },
       table: { disable: true },
     }),

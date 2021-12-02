@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { Meta, Story } from '@storybook/react/types-6-0';
+import { Meta, Story } from '@storybook/react';
 import React, { useMemo } from 'react';
 import { withDesign } from 'storybook-addon-designs';
 
@@ -36,7 +36,7 @@ export default {
     step: 1,
   },
   argTypes: {
-    ...mapArgTypes(['value', 'theme'], {
+    ...mapArgTypes(['data-active', 'data-hover', 'data-invalid', 'theme', 'value'], {
       control: { disable: true },
       table: { disable: true },
     }),
