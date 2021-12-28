@@ -212,7 +212,7 @@ modification['sm'] = css`
 modification['md'] = css`
   --button-icon-offset: 4px;
   --button-indent: 14px;
-  --button-size: 32px;
+  --button-size: 36px;
 `;
 
 modification['lg'] = css`

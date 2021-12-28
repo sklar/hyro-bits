@@ -1,4 +1,4 @@
-/** Components v2.5.0 */
+/** Components v3.0.0 */
 
 import { keyframes, css, jsx, Global } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -1447,7 +1447,7 @@ modification['sm'] = css `
 modification['md'] = css `
   --button-icon-offset: 4px;
   --button-indent: 14px;
-  --button-size: 32px;
+  --button-size: 36px;
 `;
 modification['lg'] = css `
   --button-icon-offset: 0px;
