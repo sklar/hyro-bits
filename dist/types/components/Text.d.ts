@@ -2,6 +2,7 @@ import React, { ElementType, HTMLAttributes } from 'react';
 export declare type TruncateOptionType = {
     begin: number;
     end: number;
+    limit: number;
 };
 export interface TextProps extends HTMLAttributes<HTMLDivElement> {
     /**

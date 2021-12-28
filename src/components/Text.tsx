@@ -6,15 +6,13 @@ import { clamp, truncate } from '../utils/helpers';
 export type TruncateOptionType = {
   begin: number;
   end: number;
+  limit: number;
 };
 
-function shorten(
-  text: string,
-  { begin = Infinity, end = Infinity }: TruncateOptionType
-): JSX.Element {
+function shorten(text: string, { begin = 0, end = 0, limit = 5 }: TruncateOptionType): JSX.Element {
   return (
     <>
-      {text.length - (begin + end) ? (
+      {text.length - (begin + end) > limit ? (
         <>
           <span>{text.slice(0, text.length - end)}</span>
           <span>{text.slice(-end)}</span>
@@ -132,8 +130,8 @@ const Container = styled.span`
 
   &[data-truncate='smart'] {
     --char-size: calc(0.68 * 1em);
-    --size-begin: calc(var(--char-size) * (var(--chars-begin, 3) + 3));
-    --size-end: calc(var(--char-size) * var(--chars-end, 6));
+    --size-begin: calc(var(--char-size) * var(--chars-begin, 0));
+    --size-end: calc(var(--char-size) * var(--chars-end, 0));
 
     display: inline-flex;
     max-width: 100%;
@@ -148,7 +146,6 @@ const Container = styled.span`
         text-overflow: ellipsis;
       }
       &:nth-of-type(2) {
-        direction: rtl;
         max-width: var(--size-end);
       }
     }

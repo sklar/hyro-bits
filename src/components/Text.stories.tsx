@@ -94,6 +94,18 @@ const Template: Story<TextProps> = (args) => (
           <Preview />
           <TextCmp content="test.oooooooooooooooooooooooo.jpg" truncate={{ end: 8 }} />
         </Item>
+        <Item>
+          <Preview />
+          <TextCmp content="t.jpg" truncate={{ end: 8 }} />
+        </Item>
+        <Item>
+          <Preview />
+          <TextCmp content="test.jpg" truncate={{ end: 8 }} />
+        </Item>
+        <Item>
+          <Preview />
+          <TextCmp content="testeeeaaauuu.jpg" truncate={{ begin: 3, end: 8 }} />
+        </Item>
       </List>
     </Container>
   </Wrapper>

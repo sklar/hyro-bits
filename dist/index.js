@@ -1708,8 +1708,8 @@ const truncate = css `
   width: inherit;
 `;
 
-function shorten(text, { begin = Infinity, end = Infinity }) {
-    return (React.createElement(React.Fragment, null, text.length - (begin + end) ? (React.createElement(React.Fragment, null,
+function shorten(text, { begin = 0, end = 0, limit = 5 }) {
+    return (React.createElement(React.Fragment, null, text.length - (begin + end) > limit ? (React.createElement(React.Fragment, null,
         React.createElement("span", null, text.slice(0, text.length - end)),
         React.createElement("span", null, text.slice(-end)))) : (React.createElement(React.Fragment, null, text))));
 }
@@ -1757,8 +1757,8 @@ const Container$7 = styled.span `
 
   &[data-truncate='smart'] {
     --char-size: calc(0.68 * 1em);
-    --size-begin: calc(var(--char-size) * (var(--chars-begin, 3) + 3));
-    --size-end: calc(var(--char-size) * var(--chars-end, 6));
+    --size-begin: calc(var(--char-size) * var(--chars-begin, 0));
+    --size-end: calc(var(--char-size) * var(--chars-end, 0));
 
     display: inline-flex;
     max-width: 100%;
@@ -1773,7 +1773,6 @@ const Container$7 = styled.span `
         text-overflow: ellipsis;
       }
       &:nth-of-type(2) {
-        direction: rtl;
         max-width: var(--size-end);
       }
     }
