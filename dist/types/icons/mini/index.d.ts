@@ -24,6 +24,8 @@ export { default as LockOpen } from './LockOpen';
 export { default as Lock } from './Lock';
 export { default as MinusSquare } from './MinusSquare';
 export { default as Moon } from './Moon';
+export { default as MusicPause } from './MusicPause';
+export { default as MusicPlay } from './MusicPlay';
 export { default as Music } from './Music';
 export { default as PenDraw } from './PenDraw';
 export { default as PlayCircle } from './PlayCircle';

@@ -60,6 +60,8 @@ export { default as MapMarkerShine } from './MapMarkerShine';
 export { default as Microphone } from './Microphone';
 export { default as MinusSquare } from './MinusSquare';
 export { default as MobileWifi } from './MobileWifi';
+export { default as MusicPause } from './MusicPause';
+export { default as MusicPlay } from './MusicPlay';
 export { default as Music } from './Music';
 export { default as PageNext } from './PageNext';
 export { default as PagePrevious } from './PagePrevious';
