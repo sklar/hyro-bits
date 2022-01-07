@@ -15,6 +15,10 @@ export interface SwitchProps extends InternalHTMLAttributes, InputHTMLAttributes
      */
     label?: string;
     /**
+     * Synthetic behaviour to disable `:focus` styles.
+     */
+    synthetic?: boolean;
+    /**
      * Theme
      */
     theme?: 'light' | 'dark';

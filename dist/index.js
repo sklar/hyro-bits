@@ -1,4 +1,4 @@
-/** Components v3.1.0 */
+/** Components v3.2.0 */
 
 import { keyframes, css, jsx, Global } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -3237,7 +3237,7 @@ const Slider = (_a) => {
  * Checkbox, Radio button or Toggle switch
  */
 const Switch = forwardRef((_a, ref) => {
-    var { as = 'label', children, className, disabled, label, style, theme, type = 'checkbox', appearance = type === 'radio' ? 'radio' : 'checkbox' } = _a, props = __rest(_a, ["as", "children", "className", "disabled", "label", "style", "theme", "type", "appearance"]);
+    var { as = 'label', children, className, disabled, label, style, synthetic, theme, type = 'checkbox', appearance = type === 'radio' ? 'radio' : 'checkbox' } = _a, props = __rest(_a, ["as", "children", "className", "disabled", "label", "style", "synthetic", "theme", "type", "appearance"]);
     const [containerProps, inputProps] = splitPropsByKeys(props, ['data-hover']);
     const qa = {
         // prettier-ignore
@@ -3247,7 +3247,7 @@ const Switch = forwardRef((_a, ref) => {
             ...(label ? [`${kebabCase(label)}`] : [])
         ].join('-'),
     };
-    return (React.createElement(Container$5, Object.assign({}, containerProps, { as: as, className: className, "data-disabled": disabled || null, "data-label": label || null, "data-theme": theme || null, style: style }),
+    return (React.createElement(Container$5, Object.assign({}, containerProps, { as: as, className: className, "data-disabled": disabled || null, "data-label": label || null, "data-synthetic": synthetic || null, "data-theme": theme || null, style: style }),
         React.createElement("input", Object.assign({ ref: ref, type: type, disabled: disabled }, qa, inputProps)),
         React.createElement(Indicator, { "data-appearance": appearance }),
         children,
@@ -3288,7 +3288,8 @@ const Container$5 = styled.label `
     --switch-border-color: #969cac;
   }
 
-  &:is(:focus-within, :hover, label:hover *, [data-hover]) {
+  &:is(:focus-within):not([data-synthetic]),
+  &:is(:hover, label:hover *, [data-hover]) {
     --switch-border-color: ${colors.ELEMENT_PRIMARY};
     --switch-color: ${colors.ELEMENT_PRIMARY};
 

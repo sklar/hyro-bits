@@ -20,6 +20,10 @@ export interface SwitchProps extends InternalHTMLAttributes, InputHTMLAttributes
    */
   label?: string;
   /**
+   * Synthetic behaviour to disable `:focus` styles.
+   */
+  synthetic?: boolean;
+  /**
    * Theme
    */
   theme?: 'light' | 'dark';
@@ -46,6 +50,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
       disabled,
       label,
       style,
+      synthetic,
       theme,
       type = 'checkbox',
       appearance = type === 'radio' ? 'radio' : 'checkbox',
@@ -70,6 +75,7 @@ export const Switch = forwardRef<HTMLInputElement, SwitchProps>(
         className={className}
         data-disabled={disabled || null}
         data-label={label || null}
+        data-synthetic={synthetic || null}
         data-theme={theme || null}
         style={style}
       >
@@ -117,7 +123,8 @@ const Container = styled.label`
     --switch-border-color: #969cac;
   }
 
-  &:is(:focus-within, :hover, label:hover *, [data-hover]) {
+  &:is(:focus-within):not([data-synthetic]),
+  &:is(:hover, label:hover *, [data-hover]) {
     --switch-border-color: ${colors.ELEMENT_PRIMARY};
     --switch-color: ${colors.ELEMENT_PRIMARY};
 

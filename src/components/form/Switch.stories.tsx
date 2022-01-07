@@ -63,6 +63,9 @@ export default {
       control: { type: 'range', min: 16, max: 150, step: 1 },
       table: { category: 'Modifiers' },
     }),
+    ...mapArgTypes(['synthetic'], {
+      table: { category: 'Modifiers' },
+    }),
     ...mapArgTypes(['defaultChecked', 'disabled'], { table: { category: 'States' } }),
   },
 } as Meta;
