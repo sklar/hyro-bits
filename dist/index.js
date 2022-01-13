@@ -1,4 +1,4 @@
-/** Components v3.2.0 */
+/** Components v3.3.0 */
 
 import { keyframes, css, jsx, Global } from '@emotion/react';
 import styled from '@emotion/styled';
@@ -3447,13 +3447,13 @@ const Label$1 = styled.span `
  * TODO: Implement auto-grow feature
  */
 const Textarea = forwardRef((_a, ref) => {
-    var { active, as = 'label', busy, className, disabled, invalid, length, readonly, resize = 'vertical', style, theme } = _a, props = __rest(_a, ["active", "as", "busy", "className", "disabled", "invalid", "length", "readonly", "resize", "style", "theme"]);
+    var { active, as = 'label', busy, className, disabled, expandable, invalid, length, readonly, resize = 'vertical', style, theme } = _a, props = __rest(_a, ["active", "as", "busy", "className", "disabled", "expandable", "invalid", "length", "readonly", "resize", "style", "theme"]);
     const [containerProps, textareaProps] = splitPropsByKeys(props, [
         'data-active',
         'data-hover',
         'data-invalid',
     ]);
-    return (React.createElement(Container$4, Object.assign({}, containerProps, { as: as, className: className, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-resize": resize, "data-theme": theme || null, style: Object.assign({ ['--input-length']: length }, style) }),
+    return (React.createElement(Container$4, Object.assign({}, containerProps, { as: as, className: className, "data-active": active || null, "data-busy": busy || null, "data-disabled": disabled || null, "data-expandable": expandable || null, "data-invalid": invalid || null, "data-readonly": readonly || null, "data-resize": resize, "data-theme": theme || null, "data-value": expandable ? textareaProps.value || textareaProps.defaultValue : '', style: Object.assign({ ['--input-length']: length }, style) }),
         React.createElement(Element, Object.assign({}, textareaProps, { ref: ref, disabled: disabled, readOnly: readonly })),
         busy && (React.createElement(Idle, { gap: "2px", size: "4px", "data-indicator": true, style: {
                 ['--color']: colors.ELEMENT_PRIMARY,
@@ -3467,6 +3467,30 @@ const Container$4 = styled.label `
 
   [data-indicator] {
     position: absolute;
+  }
+
+  &[data-expandable] {
+    align-items: stretch;
+    display: inline-grid;
+    max-width: 20em;
+
+    &::after {
+      content: attr(data-value);
+      min-width: 0;
+      overflow: hidden;
+      overflow-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
+    &::after,
+    textarea,
+    [data-indicator] {
+      grid-area: 1 / 1 / -1 / -1;
+    }
+
+    [data-indicator] {
+      align-self: center;
+    }
   }
 `;
 const Element = styled.textarea `

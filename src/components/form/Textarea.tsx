@@ -15,6 +15,10 @@ export interface TextareaProps
   as?: ElementType<any>;
 
   /**
+   * Expandable
+   */
+  expandable?: boolean;
+  /**
    * Length (aka `width`)
    */
   length?: string;
@@ -61,6 +65,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
       busy,
       className,
       disabled,
+      expandable,
       invalid,
       length,
       readonly,
@@ -85,10 +90,12 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         data-active={active || null}
         data-busy={busy || null}
         data-disabled={disabled || null}
+        data-expandable={expandable || null}
         data-invalid={invalid || null}
         data-readonly={readonly || null}
         data-resize={resize}
         data-theme={theme || null}
+        data-value={expandable ? textareaProps.value || textareaProps.defaultValue : ''}
         style={{ ['--input-length' as string]: length, ...style }}
       >
         <Element {...textareaProps} ref={ref} disabled={disabled} readOnly={readonly} />
@@ -115,6 +122,30 @@ const Container = styled.label`
 
   [data-indicator] {
     position: absolute;
+  }
+
+  &[data-expandable] {
+    align-items: stretch;
+    display: inline-grid;
+    max-width: 20em;
+
+    &::after {
+      content: attr(data-value);
+      min-width: 0;
+      overflow: hidden;
+      overflow-wrap: break-word;
+      white-space: pre-wrap;
+    }
+
+    &::after,
+    textarea,
+    [data-indicator] {
+      grid-area: 1 / 1 / -1 / -1;
+    }
+
+    [data-indicator] {
+      align-self: center;
+    }
   }
 `;
 

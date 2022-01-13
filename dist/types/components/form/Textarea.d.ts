@@ -6,6 +6,10 @@ export interface TextareaProps extends InternalHTMLAttributes, TextareaHTMLAttri
      */
     as?: ElementType<any>;
     /**
+     * Expandable
+     */
+    expandable?: boolean;
+    /**
      * Length (aka `width`)
      */
     length?: string;

@@ -89,6 +89,19 @@ const TemplateOverview: Story<TextareaProps> = (args) => (
       nuclear bomb. Through clenched teeth and stylish poise, all three must find a way to cooperate
       for the sake of world peace, even as they each pursue their own agendas."
     />
+    <Template
+      {...args}
+      defaultValue="In the 1960s with the Cold War in play, CIA agent Napoleon Solo successfully helps Gaby Teller
+      defect to West Germany despite the intimidating opposition of KGB agent Illya Kuryakin."
+      expandable
+      resize="none"
+    />
+    <Template
+      {...args}
+      defaultValue="aaaaabbbbbcccccdeeeeeeeefffffggggghhhhhhhhiiiiiijjjjjjkkkkkkkkk"
+      expandable
+      resize="none"
+    />
   </>
 );
 
