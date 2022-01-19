@@ -3472,13 +3472,13 @@ const Container$4 = styled.label `
   &[data-expandable] {
     align-items: stretch;
     display: inline-grid;
-    max-width: 20em;
 
     &::after {
       content: attr(data-value);
       min-width: 0;
       overflow: hidden;
       overflow-wrap: break-word;
+      visibility: hidden;
       white-space: pre-wrap;
     }
 
