@@ -1,5 +1,6 @@
-import React, { ElementType, forwardRef, HTMLAttributes, ReactNode } from 'react';
+import { css } from '@emotion/react';
 import styled from '@emotion/styled';
+import React, { ElementType, forwardRef, HTMLAttributes, ReactNode } from 'react';
 
 import { AlignmentPrimaryType, AlignmentSecondaryType } from '../../utils/types';
 
@@ -76,6 +77,11 @@ export const Grid = forwardRef<HTMLDivElement, GridProps>(
 );
 
 const Container = styled.div<GridProps>(
+  css`
+    & > * {
+      min-width: 0;
+    }
+  `,
   ({ align, block, columns, flow, gap, justify, max, min, sizing }) => ({
     alignItems: align,
     display: `${block ? 'grid' : 'inline-grid'}`,

@@ -1704,7 +1704,11 @@ const Grid = forwardRef((_a, ref) => {
     const delegated = Object.assign({ align, block, columns, gap, justify, max, min, sizing }, props);
     return React.createElement(Container$8, Object.assign({ as: as, ref: ref }, delegated));
 });
-const Container$8 = styled.div(({ align, block, columns, flow, gap, justify, max, min, sizing }) => ({
+const Container$8 = styled.div(css `
+    & > * {
+      min-width: 0;
+    }
+  `, ({ align, block, columns, flow, gap, justify, max, min, sizing }) => ({
     alignItems: align,
     display: `${block ? 'grid' : 'inline-grid'}`,
     gap: gap,
