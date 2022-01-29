@@ -96,7 +96,9 @@ const SelectContainer = <
   const {
     selectProps: { style },
   } = props;
-  return <components.SelectContainer css={[containerStyle, { ...style }]} {...props} />;
+  return (
+    <components.SelectContainer css={[containerStyle, css(style ? { ...style } : {})]} {...props} />
+  );
 };
 
 /**

@@ -1,3 +1,3 @@
 module.exports = {
-  extends: ["react-app", "react-app/jest", "plugin:storybook/recommended"]
+  extends: ["react-app", "plugin:storybook/recommended"]
 };

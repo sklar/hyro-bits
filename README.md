@@ -1,12 +1,9 @@
 # Components [![Netlify Status](https://api.netlify.com/api/v1/badges/12dc96bb-b265-43f8-a631-906c22495fff/deploy-status)](https://app.netlify.com/sites/purplex-components-bd1db7/deploys)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and extended with [Storybook](https://storybook.js.org/docs/react/get-started/introduction).
-
 ### Table of Contents
 
 - [Quick Start](#quick-start)
 - [Usage](#usage)
-- [Troubleshooting](#troubleshooting)
 
 ---
 
@@ -18,6 +15,12 @@ yarn && yarn start
 
 
 ## Usage
+
+### 🚧 Installing library
+
+```
+yarn add --dev purplenl/purplex-components
+```
 
 ### 🚀 Start Storybook
 
@@ -62,7 +65,7 @@ yarn bump<:patch|minor|major>?
 
 ### 📦 Bundle library
 
-Bundle package with types into `dist` folder with [Rollup](https://rollupjs.org/).
+Bundle package into `dist` folder with [tsup](https://tsup.egoist.sh/).
 
 ```
 yarn compile
@@ -85,32 +88,3 @@ Reinstal `purplex-components` to fetch the latest changes from `master` by runni
 yarn add purplenl/purplex-components
 ```  
 You can verify it by comparing the commit SHA in with the value used in `yarn.lock`.
-
-## Troubleshooting
-
-### 🚧 Installing package
-
-```
-yarn add --dev purplenl/purplex-components
-```
-
-
-### 🚧 Invalid Hook Call Warning
-
-Follow the [official workaround](https://reactjs.org/warnings/invalid-hook-call-warning.html#duplicate-react).
-
-TL;DR fire these commands in your Terminal to link your local app and library folders.
-
-```
-library
-➜ yarn link
-
-app
-➜ yarn link purplex-components
-
-app/node_modules/react
-➜ yarn link
-
-library
-➜ yarn link react
-```

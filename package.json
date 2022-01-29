@@ -1,88 +1,83 @@
 {
   "name": "purplex-components",
   "version": "3.3.0",
+  "private": true,
   "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/types/index.d.ts",
-  "source": "src/index.ts",
-  "sideEffects": false,
+  "module": "dist/esm/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "files": [
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/purplenl/purplex-components"
-  },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
-  },
-  "license": "UNLICENSED",
   "scripts": {
     "build": "run-s copy:fonts storybook:build",
     "bump:major": "npm version major -m 'Bump v%s :rocket:'",
     "bump:minor": "npm version minor -m 'Bump v%s :point_up:'",
     "bump:patch": "npm version patch -m 'Bump v%s :speak_no_evil:'",
     "bump": "npm run bump:patch",
-    "ci": "yarn --frozen-lockfile",
-    "clean": "rimraf -rf dist",
-    "compile": "yarn clean && rollup -c && tsc --project ./tsconfig.icons.json",
+    "check:types": "tsc --noEmit --skipLibCheck",
+    "compile": "tsup",
     "compile:icons": "svgr --expand-props none --typescript -d ./src/icons ./src/assets/images",
     "copy:fonts": "cp './node_modules/inter-ui/Inter (web latin)/Inter-roman.var.woff2' './src/assets/fonts/Inter.woff2'",
-    "lint": "eslint --ext .js,.ts,.jsx,.tsx",
-    "prepublishOnly": "yarn compile",
+    "lint": "eslint . --ext .js,.ts,.jsx,.tsx",
+    "preview": "vite preview",
     "start": "run-s copy:fonts storybook",
-    "start:dev": "run-p start watch:compile",
-    "storybook": "start-storybook -p 6006 -c .storybook -s ./src/assets",
-    "storybook:build": "build-storybook -c .storybook -s ./src/assets",
+    "start:dev": "run-p start watch",
+    "storybook": "start-storybook -p 6006 -c .storybook",
+    "storybook:build": "build-storybook -c .storybook",
     "test": "echo 'Error: no test specified' && exit 1",
-    "watch:compile": "rollup -cw"
+    "watch": "tsup --watch src"
   },
   "dependencies": {
-    "@spicy-hooks/core": "^2.0.3",
-    "case-anything": "^1.1.3",
+    "@spicy-hooks/core": "^2.1.1",
+    "case-anything": "^1.1.5",
     "color2k": "^1.2.4",
-    "rc-slider": "^9.7.2",
+    "rc-slider": "^9.7.5",
     "rc-tooltip": "^5.1.1",
     "react-select": "^5.2.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.16.5",
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@rollup/plugin-typescript": "^8.2.0",
-    "@storybook/addon-actions": "^6.4.4",
-    "@storybook/addon-essentials": "^6.4.4",
-    "@storybook/addon-links": "^6.4.4",
-    "@storybook/node-logger": "^6.4.4",
-    "@storybook/preset-create-react-app": "^3.2.0",
-    "@storybook/react": "^6.4.4",
+    "@storybook/addon-actions": "^6.4.16",
+    "@storybook/addon-essentials": "^6.4.16",
+    "@storybook/addon-links": "^6.4.16",
+    "@storybook/react": "^6.4.16",
     "@svgr/cli": "^5.5.0",
-    "@types/node": "^14.14.31",
-    "@types/rc-tooltip": "^3.7.4",
-    "@types/react": "^17.0.2",
-    "@types/react-dom": "^17.0.1",
-    "eslint": "^7.21.0",
+    "@types/rc-tooltip": "^3.7.6",
+    "@types/react": "^17.0.38",
+    "@types/react-dom": "^17.0.11",
+    "@vitejs/plugin-react": "^1.1.3",
+    "babel-loader": "^8.2.3",
+    "babel-preset-react-app": "^10.0.1",
+    "eslint": "^8.5.0",
+    "eslint-config-react-app": "^7.0.0",
     "eslint-plugin-prettier": "^3.3.1",
-    "eslint-plugin-storybook": "^0.5.1",
+    "eslint-plugin-storybook": "^0.5.6",
     "husky": "^4.3.8",
-    "inter-ui": "^3.18.1",
+    "inter-ui": "^3.19.3",
     "lint-staged": "^10.5.4",
     "npm-run-all": "^4.1.5",
-    "prettier": "^2.2.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.3",
-    "rimraf": "^3.0.2",
-    "rollup": "^2.40.0",
-    "rollup-plugin-copy": "^3.4.0",
-    "rollup-plugin-filesize": "^9.1.1",
-    "storybook-addon-designs": "^6.2.0",
-    "typescript": "4.1.3"
+    "prettier": "^2.5.1",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "storybook-addon-designs": "^6.2.1",
+    "tsup": "^5.11.9",
+    "typescript": "^4.5.4",
+    "vite": "^2.7.2"
   },
   "peerDependencies": {
-    "@emotion/react": "^11.1.5",
-    "@emotion/styled": "^11.1.5",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "react": "^16",
+    "react-dom": "^16"
   },
   "husky": {
     "hooks": {
@@ -102,6 +97,6 @@
     "not op_mini all"
   ],
   "engines": {
-    "node": ">=10.0"
+    "node": ">=14.0"
   }
 }

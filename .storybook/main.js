@@ -1,12 +1,11 @@
 const path = require('path');
 
 module.exports = {
-  addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/preset-create-react-app',
-    'storybook-addon-designs',
-  ],
+  addons: ['@storybook/addon-links', '@storybook/addon-essentials', 'storybook-addon-designs'],
+
+  framework: '@storybook/react',
+
+  staticDirs: ['../src/assets'],
 
   stories: [
     '../src/*.stories.mdx',
