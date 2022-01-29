@@ -3470,9 +3470,23 @@ const Container$4 = styled.label `
   padding-block: calc(0.8 * var(--input-indent));
 
   [data-indicator] {
+    place-self: center;
     position: absolute;
   }
 
+  &[data-busy] {
+    overflow: hidden;
+
+    &::before {
+      background-color: var(--input-background-color);
+      content: '';
+      inset: 0;
+      opacity: 0.8;
+      position: absolute;
+    }
+  }
+
+  &[data-busy],
   &[data-expandable] {
     align-items: stretch;
     display: inline-grid;
@@ -3490,10 +3504,6 @@ const Container$4 = styled.label `
     textarea,
     [data-indicator] {
       grid-area: 1 / 1 / -1 / -1;
-    }
-
-    [data-indicator] {
-      align-self: center;
     }
   }
 `;
