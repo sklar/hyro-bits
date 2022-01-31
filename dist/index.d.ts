@@ -727,6 +727,8 @@ declare function SvgMusicPlay$1(): JSX.Element;
 
 declare function SvgMusic$1(): JSX.Element;
 
+declare function SvgNdi$1(): JSX.Element;
+
 declare function SvgPageNext(): JSX.Element;
 
 declare function SvgPagePrevious(): JSX.Element;
@@ -872,6 +874,7 @@ declare namespace BOLD {
     SvgMusicPause$1 as MusicPause,
     SvgMusicPlay$1 as MusicPlay,
     SvgMusic$1 as Music,
+    SvgNdi$1 as Ndi,
     SvgPageNext as PageNext,
     SvgPagePrevious as PagePrevious,
     SvgPaintRoller as PaintRoller,
@@ -972,6 +975,8 @@ declare function SvgMusicPlay(): JSX.Element;
 
 declare function SvgMusic(): JSX.Element;
 
+declare function SvgNdi(): JSX.Element;
+
 declare function SvgPenDraw(): JSX.Element;
 
 declare function SvgPlayCircle(): JSX.Element;
@@ -1037,6 +1042,7 @@ declare namespace MINI {
     SvgMusicPause as MusicPause,
     SvgMusicPlay as MusicPlay,
     SvgMusic as Music,
+    SvgNdi as Ndi,
     SvgPenDraw as PenDraw,
     SvgPlayCircle as PlayCircle,
     SvgPlusCircle as PlusCircle,
