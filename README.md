@@ -16,10 +16,10 @@ yarn && yarn start
 
 ## Usage
 
-### 🚧 Installing library
+### ⚡ Install library
 
 ```
-yarn add --dev purplenl/purplex-components
+yarn add purplenl/purplex-components
 ```
 
 ### 🚀 Start Storybook
