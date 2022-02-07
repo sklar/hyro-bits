@@ -340,7 +340,7 @@ const controlStyle = css`
   }
 `;
 
-const Control = (props: ButtonProps) => (
+const Control = (props: ButtonProps<'button'>) => (
   <Button
     css={controlStyle}
     icon={<Icon name="Times" />}

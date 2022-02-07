@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { withDesign } from 'storybook-addon-designs';
 
 import { Legend, mapArgTypes } from '../stories';
-import { Button, ButtonProps, Flex, Grid, Icon } from './index';
+import { Button, SharedButtonProps as ButtonProps, Flex, Grid, Icon } from './index';
 
 export default {
   title: 'Components/Button',
@@ -29,20 +29,14 @@ export default {
     },
   },
   argTypes: {
-    'children': {
+    ...mapArgTypes(['as', 'children', 'ref'], {
       control: { disable: true },
       table: { disable: true },
-    },
-    ...mapArgTypes(['as'], {
-      control: { type: 'text' },
-      table: {
-        type: { summary: 'ElementType<any>' },
-      },
     }),
     ...mapArgTypes(['type'], {
       control: { type: 'inline-radio' },
     }),
-    ...mapArgTypes(['text', 'href'], {
+    ...mapArgTypes(['text'], {
       control: { type: 'text' },
     }),
     'data-qa': {

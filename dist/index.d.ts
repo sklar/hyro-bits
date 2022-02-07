@@ -1,10 +1,20 @@
 import * as React from 'react';
-import React__default, { HTMLAttributes, ElementType, ReactNode, ReactElement, InputHTMLAttributes, Dispatch, CSSProperties, TextareaHTMLAttributes } from 'react';
+import React__default, { ElementType, ComponentPropsWithRef, JSXElementConstructor, ComponentPropsWithoutRef, ReactNode, ReactElement, HTMLAttributes, InputHTMLAttributes, Dispatch, CSSProperties, TextareaHTMLAttributes } from 'react';
 import { RangeProps as RangeProps$1, SliderProps as SliderProps$1 } from 'rc-slider';
 import { GroupBase, Props } from 'react-select';
 export { components as ReactSelectComponents, Props as ReactSelectProps } from 'react-select';
 import * as _emotion_styled from '@emotion/styled';
 import * as _emotion_react from '@emotion/react';
+
+declare type ExtendedProps<BaseProps = {}, OverrideProps = {}> = OverrideProps & Omit<BaseProps, keyof OverrideProps>;
+declare type PropsOf<C extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>> = JSX.LibraryManagedAttributes<C, ComponentPropsWithoutRef<C>>;
+declare type InheritedProps<C extends ElementType, Props = {}> = ExtendedProps<PropsOf<C>, Props>;
+declare type PolymorphicRef<C extends ElementType> = ComponentPropsWithRef<C>['ref'];
+declare type PolymorphicComponentProps<C extends ElementType, Props = {}> = InheritedProps<C, Props & {
+    as?: C;
+}> & {
+    ref?: PolymorphicRef<C>;
+};
 
 declare const Direction: {
     readonly NONE: "None";
@@ -48,19 +58,11 @@ interface InternalHTMLAttributes {
     'data-qa'?: string;
 }
 
-interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButtonElement> {
-    /**
-     * Render as HTML element
-     */
-    as?: ElementType<any>;
+interface SharedButtonProps {
     /**
      * Children
      */
     children?: ReactNode;
-    /**
-     * Href
-     */
-    href?: string;
     /**
      * Label
      */
@@ -114,10 +116,12 @@ interface ButtonProps extends HTMLAttributes<HTMLAnchorElement | HTMLButtonEleme
      */
     disabled?: boolean;
 }
+declare type ButtonProps<C extends ElementType> = PolymorphicComponentProps<C, SharedButtonProps>;
+declare type ButtonComponent = <C extends ElementType = 'button'>(props: ButtonProps<C>) => ReactElement;
 /**
- * Primary UI component for user interaction
+ * Button
  */
-declare const Button: React__default.ForwardRefExoticComponent<ButtonProps & React__default.RefAttributes<HTMLButtonElement>>;
+declare const Button: ButtonComponent;
 
 interface ClickOutsideGuardProps extends HTMLAttributes<HTMLDivElement> {
     ignore?: Element;
@@ -1563,4 +1567,4 @@ declare const button: _emotion_react.SerializedStyles;
 declare const label: _emotion_react.SerializedStyles;
 declare const input: _emotion_react.SerializedStyles;
 
-export { AlignmentFlexboxType, AlignmentPrimaryType, AlignmentSecondaryType, AlignmentTertiaryType, Button, ButtonProps, ClickOutsideGuard, ClickOutsideGuardProps, Dialog, DialogProps, DirectionType, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldMessageProps, FieldProps, FieldText, Flex, FlexProps, Grid, GridProps, Icon, IconNameType, IconProps, Idle, IdleProps, Input, InputProps, InternalHTMLAttributes, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuItemProps, MenuProps, MenuTitle, Nav, NavContainer, NavItem, NavItemProps, NavProps, NumberInput, NumberInputProps, NumberInputStepperComponents, NumberInputStepperContainerProps, NumberInputStepperProps, Order, OrderProps, Pagination, PaginationProps, PartialBy, Range, RangeProps, Select, SelectProps, SizeType, Slider, SliderProps, Spacer, Status, StatusProps, StatusThemeType, Switch, SwitchProps, Table, TableProps, Tbody, Td, Text, TextProps, Textarea, TextareaProps, Th, Thead, ThemeType, Toast, ToastProps, ToastTheme, ToastVariant, Tooltip, TooltipProps, Tr, TrContainer, TrProps, TruncateOptionType, Values, VariantType, base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph, splitPropsByKeys };
+export { AlignmentFlexboxType, AlignmentPrimaryType, AlignmentSecondaryType, AlignmentTertiaryType, Button, ButtonProps, ClickOutsideGuard, ClickOutsideGuardProps, Dialog, DialogProps, DirectionType, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldMessageProps, FieldProps, FieldText, Flex, FlexProps, Grid, GridProps, Icon, IconNameType, IconProps, Idle, IdleProps, Input, InputProps, InternalHTMLAttributes, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuItemProps, MenuProps, MenuTitle, Nav, NavContainer, NavItem, NavItemProps, NavProps, NumberInput, NumberInputProps, NumberInputStepperComponents, NumberInputStepperContainerProps, NumberInputStepperProps, Order, OrderProps, Pagination, PaginationProps, PartialBy, Range, RangeProps, Select, SelectProps, SharedButtonProps, SizeType, Slider, SliderProps, Spacer, Status, StatusProps, StatusThemeType, Switch, SwitchProps, Table, TableProps, Tbody, Td, Text, TextProps, Textarea, TextareaProps, Th, Thead, ThemeType, Toast, ToastProps, ToastTheme, ToastVariant, Tooltip, TooltipProps, Tr, TrContainer, TrProps, TruncateOptionType, Values, VariantType, base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph, splitPropsByKeys };
