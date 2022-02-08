@@ -391,7 +391,7 @@ interface NumberInputProps extends InputProps {
     /**
      * Value
      */
-    value: number;
+    value?: number;
     /**
      * Min value
      */

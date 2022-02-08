@@ -54,7 +54,7 @@ export interface NumberInputProps extends InputProps {
   /**
    * Value
    */
-  value: number;
+  value?: number;
   /**
    * Min value
    */
@@ -159,8 +159,14 @@ export const NumberInput = forwardRef<HTMLInputElement, NumberInputProps>(
           trailer={
             stepper ? (
               <components.Stepper>
-                <components.IncrementStepper disabled={value >= max} onChange={handleIncrement} />
-                <components.DecrementStepper disabled={value <= min} onChange={handleDecrement} />
+                <components.IncrementStepper
+                  disabled={value ? value >= max : false}
+                  onChange={handleIncrement}
+                />
+                <components.DecrementStepper
+                  disabled={value ? value <= min : false}
+                  onChange={handleDecrement}
+                />
               </components.Stepper>
             ) : (
               trailer
