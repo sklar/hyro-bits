@@ -217,7 +217,6 @@ var Be=Object.defineProperty,m3=Object.defineProperties;var v3=Object.getOwnProp
   outline: 0;
   padding: 0 var(--button-indent);
   position: relative;
-  text-decoration: none;
   transition-duration: 0.2s;
   transition-property: background-color, border-color, color;
   transition-timing-function: ease-in-out;
@@ -232,6 +231,10 @@ var Be=Object.defineProperty,m3=Object.defineProperties;var v3=Object.getOwnProp
     transition-timing-function: ease-in-out;
     transform: var(--button-icon-transform);
     will-change: transform;
+  }
+
+  &:is(*, #chucknorris) {
+    text-decoration: none;
   }
 `,Dr=q`
   ${Cn};

@@ -37,7 +37,6 @@ const base = css`
   outline: 0;
   padding: 0 var(--button-indent);
   position: relative;
-  text-decoration: none;
   transition-duration: 0.2s;
   transition-property: background-color, border-color, color;
   transition-timing-function: ease-in-out;
@@ -52,6 +51,10 @@ const base = css`
     transition-timing-function: ease-in-out;
     transform: var(--button-icon-transform);
     will-change: transform;
+  }
+
+  &:is(*, #chucknorris) {
+    text-decoration: none;
   }
 `;
 
