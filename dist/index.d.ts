@@ -701,6 +701,8 @@ declare function SvgImage$1(): JSX.Element;
 
 declare function SvgImages(): JSX.Element;
 
+declare function SvgInfoCircle$1(): JSX.Element;
+
 declare function SvgKeyboard(): JSX.Element;
 
 declare function SvgLamp(): JSX.Element;
@@ -863,6 +865,7 @@ declare namespace BOLD {
     SvgHeartbeatSquare as HeartbeatSquare,
     SvgImage$1 as Image,
     SvgImages as Images,
+    SvgInfoCircle$1 as InfoCircle,
     SvgKeyboard as Keyboard,
     SvgLamp as Lamp,
     SvgLockAlt as LockAlt,
@@ -965,6 +968,8 @@ declare function SvgHeight(): JSX.Element;
 
 declare function SvgImage(): JSX.Element;
 
+declare function SvgInfoCircle(): JSX.Element;
+
 declare function SvgLockOpen(): JSX.Element;
 
 declare function SvgLock(): JSX.Element;
@@ -1039,6 +1044,7 @@ declare namespace MINI {
     SvgGroupAdd as GroupAdd,
     SvgHeight as Height,
     SvgImage as Image,
+    SvgInfoCircle as InfoCircle,
     SvgLockOpen as LockOpen,
     SvgLock as Lock,
     SvgMinusSquare as MinusSquare,

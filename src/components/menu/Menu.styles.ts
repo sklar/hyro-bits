@@ -42,6 +42,22 @@ export const menu = css`
 `;
 
 /**
+ * Menu divider
+ */
+export const menuDivider = css`
+  --color: ${colors.STROKE};
+  --size: 2px;
+
+  background-color: var(--color);
+  border-radius: 1000px;
+  height: var(--size);
+
+  [data-theme='dark'] & {
+    --color: ${colors.DARK_STROKE};
+  }
+`;
+
+/**
  * Menu group
  */
 export const menuGroup = css`
@@ -51,6 +67,11 @@ export const menuGroup = css`
 
   & + & {
     margin-top: var(--gap);
+
+    &::before {
+      ${menuDivider};
+      content: '';
+    }
   }
 `;
 
@@ -199,21 +220,5 @@ export const menuTitle = css`
 
   [data-theme='dark'] & {
     --color: ${colors.WHITE};
-  }
-`;
-
-/**
- * Menu divider
- */
-export const menuDivider = css`
-  --color: ${colors.STROKE};
-  --size: 2px;
-
-  background-color: var(--color);
-  border-radius: 1000px;
-  height: var(--size);
-
-  [data-theme='dark'] & {
-    --color: ${colors.DARK_STROKE};
   }
 `;
