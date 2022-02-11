@@ -201,6 +201,7 @@ const multiValueStyle = css`
   height: 24px;
   max-width: 100%;
   padding-inline: 8px 4px;
+  transition: background-color 0.2s;
   user-select: none;
 
   [data-value] {
@@ -211,6 +212,15 @@ const multiValueStyle = css`
   }
   [data-icon] {
     cursor: pointer;
+  }
+
+  [data-disabled] & {
+    background: ${colors.ELEMENT_DISABLED};
+    padding-inline-end: 8px;
+
+    [data-icon] {
+      display: none;
+    }
   }
 `;
 
@@ -253,6 +263,7 @@ const inputStyle = css`
     width: max(100%, 2px);
   }
 `;
+
 const Input = <
   Option extends unknown,
   IsMulti extends boolean,

@@ -1311,6 +1311,7 @@ var Ne=Object.defineProperty,x3=Object.defineProperties;var w3=Object.getOwnProp
   height: 24px;
   max-width: 100%;
   padding-inline: 8px 4px;
+  transition: background-color 0.2s;
   user-select: none;
 
   [data-value] {
@@ -1321,6 +1322,15 @@ var Ne=Object.defineProperty,x3=Object.defineProperties;var w3=Object.getOwnProp
   }
   [data-icon] {
     cursor: pointer;
+  }
+
+  [data-disabled] & {
+    background: ${o.ELEMENT_DISABLED};
+    padding-inline-end: 8px;
+
+    [data-icon] {
+      display: none;
+    }
   }
 `,mi=({children:t,removeProps:r})=>E("div",{css:fi},E("span",{"data-value":!0},t),E("span",i({"data-container":!0},r),E(T,{name:"Times",size:"xs"}))),vi=O`
   display: inline-grid;

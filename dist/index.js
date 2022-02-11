@@ -1311,6 +1311,7 @@ var i2=Object.create;var M0=Object.defineProperty,s2=Object.defineProperties,c2=
   height: 24px;
   max-width: 100%;
   padding-inline: 8px 4px;
+  transition: background-color 0.2s;
   user-select: none;
 
   [data-value] {
@@ -1321,6 +1322,15 @@ var i2=Object.create;var M0=Object.defineProperty,s2=Object.defineProperties,c2=
   }
   [data-icon] {
     cursor: pointer;
+  }
+
+  [data-disabled] & {
+    background: ${r.ELEMENT_DISABLED};
+    padding-inline-end: 8px;
+
+    [data-icon] {
+      display: none;
+    }
   }
 `,bi=({children:t,removeProps:o})=>(0,w.jsx)("div",{css:wi},(0,w.jsx)("span",{"data-value":!0},t),(0,w.jsx)("span",i({"data-container":!0},o),(0,w.jsx)(E,{name:"Times",size:"xs"}))),yi=w.css`
   display: inline-grid;
