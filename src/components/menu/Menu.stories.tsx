@@ -1,9 +1,11 @@
+import { keyframes } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Meta, Story } from '@storybook/react';
-import React from 'react';
+import React, { useCallback, useState } from 'react';
 import { withDesign } from 'storybook-addon-designs';
 
 import { Legend, mapArgTypes } from '../../stories';
+import { EMOTION_DISABLE_SSR } from '../../utils';
 import { Button, Flex, Grid, Icon, Switch, Text } from '../index';
 import {
   Menu,
@@ -462,6 +464,187 @@ const TemplateOverview: Story<StoryProps> = ({ size, ...args }) => (
   </>
 );
 
+const Placeholder = styled.div`
+  --radius: 6px;
+  --size: 32px;
+
+  background: gold;
+  border-radius: var(--radius);
+  flex-shrink: 0;
+  height: var(--size);
+  width: 100%;
+`;
+
+const Avatar = styled(Placeholder)`
+  --radius: 50%;
+  --size: 24px;
+
+  width: var(--size);
+`;
+
+const TemplateAccordion: Story<StoryProps> = (args) => {
+  const [sectionActive, setSectionActive] = useState([true]);
+
+  const toggleSection = useCallback((index: number) => {
+    setSectionActive((value) => {
+      const localValue = [...value];
+      localValue[index] = !localValue[index];
+      return localValue;
+    });
+  }, []);
+
+  return (
+    <>
+      <Accordion>
+        <Menu data-menu>
+          <MenuInset>
+            <Section className={sectionActive[0] ? 'is-active' : undefined}>
+              <SectionTitle onClick={() => toggleSection(0)}>
+                Section A
+                <Icon name="ChevronRight" size="xs" />
+              </SectionTitle>
+              <div data-section="body">
+                <MenuGroup>
+                  <MenuGroupTitle>Group A.1</MenuGroupTitle>
+                  <MenuItem onClick={() => {}}>
+                    <Text>Item A.1.1</Text>
+                  </MenuItem>
+                  <MenuItem onClick={() => {}}>Item A.2.1</MenuItem>
+                  <MenuItem onClick={() => {}}>Item A.3.1</MenuItem>
+                </MenuGroup>
+                <MenuGroup>
+                  <MenuGroupTitle>Group A.2</MenuGroupTitle>
+                  <MenuItem onClick={() => {}}>
+                    <Text truncate>Item A.2.1 w/ some suuuuuperlong title</Text>
+                  </MenuItem>
+                  <MenuItem onClick={() => {}}>Item A.2.2</MenuItem>
+                </MenuGroup>
+              </div>
+            </Section>
+
+            <Section className={sectionActive[1] ? 'is-active' : undefined}>
+              <SectionTitle onClick={() => toggleSection(1)}>
+                Section B
+                <Icon name="ChevronRight" size="xs" />
+              </SectionTitle>
+              <div data-section="body">
+                <MenuGroup>
+                  <MenuGroupTitle>Group B.1</MenuGroupTitle>
+                  <MenuItem onClick={() => {}}>
+                    <Text>Item B.1.1</Text>
+                  </MenuItem>
+                  <MenuItem onClick={() => {}}>Item B.2.1</MenuItem>
+                  <MenuItem onClick={() => {}}>Item B.3.1</MenuItem>
+                </MenuGroup>
+                <MenuGroup>
+                  <MenuGroupTitle>Group B.2</MenuGroupTitle>
+                  <MenuItem onClick={() => {}}>
+                    <Text truncate>Item B.2.1</Text>
+                  </MenuItem>
+                  <MenuItem onClick={() => {}}>Item B.2.2</MenuItem>
+                </MenuGroup>
+              </div>
+            </Section>
+
+            <Section className={sectionActive[2] ? 'is-active' : undefined}>
+              <SectionTitle onClick={() => toggleSection(2)}>
+                Section C
+                <Icon name="ChevronRight" size="xs" />
+              </SectionTitle>
+              <div data-section="body">
+                <MenuGroup>
+                  <MenuGroupTitle>Group C.1</MenuGroupTitle>
+                  <MenuItem onClick={() => {}}>
+                    <Text>Item C.1.1</Text>
+                  </MenuItem>
+                  <MenuItem onClick={() => {}}>Item C.2.1</MenuItem>
+                  <MenuItem onClick={() => {}}>Item C.3.1</MenuItem>
+                </MenuGroup>
+                <MenuGroup>
+                  <MenuGroupTitle>Group C.2</MenuGroupTitle>
+                  <MenuItem onClick={() => {}}>
+                    <Text truncate>Item C.2.1</Text>
+                  </MenuItem>
+                  <MenuItem onClick={() => {}}>Item C.2.2</MenuItem>
+                </MenuGroup>
+              </div>
+            </Section>
+          </MenuInset>
+        </Menu>
+      </Accordion>
+    </>
+  );
+};
+
+const enterAnimation = keyframes`
+  0%    { opacity: 0; transform: translateY(8px); }
+  100%  { opacity: 1; transform: translateY(0) }
+`;
+
+const Accordion = styled.div`
+  --max-height: 80vh;
+
+  min-width: 100%;
+
+  [data-menu='true'] {
+    max-width: 288px;
+  }
+
+  [data-menu='group'] {
+    & > :first-child ${EMOTION_DISABLE_SSR} {
+      margin-top: 0;
+      padding-left: calc(3 * var(--indent));
+    }
+  }
+`;
+
+const MenuInset = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: var(--gap);
+  max-height: var(--max-height);
+  overflow-y: auto;
+`;
+
+const Section = styled.div`
+  --icon-transform: rotateZ(calc(var(--icon-rotation) * 90deg));
+
+  position: relative;
+
+  [data-section='body'] {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  &.is-active {
+    --icon-rotation: 1;
+
+    [data-section='body'] {
+      animation: ${enterAnimation} 0.3s ease-out 0.1s both;
+      max-height: var(--max-height);
+    }
+  }
+`;
+
+const SectionTitle = styled(MenuGroupTitle)`
+  cursor: pointer;
+  justify-content: flex-start;
+  gap: calc(2 * var(--gap));
+  padding: var(--indent);
+
+  &:is(*, #chucknorris) {
+    margin: 0;
+  }
+
+  [data-icon] {
+    flex-shrink: 0;
+    transform: var(--icon-transform);
+    transition: transform 0.3s ease-in-out;
+    will-change: transform;
+  }
+`;
+
 export const Overview = TemplateOverview.bind({});
 Overview.args = {
   size: Infinity,
@@ -512,20 +695,6 @@ ItemsAlt.decorators = [
   ),
 ];
 
-const Placeholder = styled.div`
-  --radius: 6px;
-  --size: 32px;
-
-  background: gold;
-  border-radius: var(--radius);
-  flex-shrink: 0;
-  height: var(--size);
-  width: 100%;
-`;
-
-const Avatar = styled(Placeholder)`
-  --radius: 50%;
-  --size: 24px;
-
-  width: var(--size);
-`;
+export const MenuAccordion = TemplateAccordion.bind({});
+MenuAccordion.storyName = 'Accordion';
+MenuAccordion.decorators = [...decorators, (Story) => <Story />];
