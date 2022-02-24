@@ -216,7 +216,6 @@ var Ne=Object.defineProperty,x3=Object.defineProperties;var w3=Object.getOwnProp
   overflow: hidden;
   outline: 0;
   padding: 0 var(--button-indent);
-  position: relative;
   transition-duration: 0.2s;
   transition-property: background-color, border-color, color;
   transition-timing-function: ease-in-out;

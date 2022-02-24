@@ -216,7 +216,6 @@ var i2=Object.create;var M0=Object.defineProperty,s2=Object.defineProperties,c2=
   overflow: hidden;
   outline: 0;
   padding: 0 var(--button-indent);
-  position: relative;
   transition-duration: 0.2s;
   transition-property: background-color, border-color, color;
   transition-timing-function: ease-in-out;
