@@ -151,13 +151,15 @@ variants[Variant.PRIMARY] = css`
 
   /* TODO: Themed states are not designed */
   &[data-theme='danger'] {
-    &:is(*, #chucknorris):not(:disabled, [data-busy], [data-disabled]) {
+    &:not(:disabled, [data-disabled]),
+    &[data-busy] {
       --button-background-color: ${colors.DANGER};
       --button-border-color: ${colors.DANGER};
     }
   }
   &[data-theme='success'] {
-    &:is(*, #chucknorris):not(:disabled, [data-busy], [data-disabled]) {
+    &:not(:disabled, [data-disabled]),
+    &[data-busy] {
       --button-background-color: ${colors.SUCCESS};
       --button-border-color: ${colors.SUCCESS};
     }
