@@ -150,10 +150,10 @@ export const Dialog: React.FC<DialogProps> = ({
 
 const backdropAnimation = keyframes`
   0% {
-    --dialog-backdrop-alpha: 0;
+    --dialog-backdrop-alpha: 0%;
   }
   100% {
-    --dialog-backdrop-alpha: 0.5;
+    --dialog-backdrop-alpha: 50%;
   }
 `;
 
@@ -175,13 +175,13 @@ const container = css`
 const DialogWrapper = styled.div`
   @property --dialog-backdrop-alpha {
     inherits: true;
-    initial-value: 0;
-    syntax: '<number>';
+    initial-value: 0%;
+    syntax: '<percentage>';
   }
 
   ${paragraph};
 
-  --dialog-background-color: 0 0% 100%;
+  --dialog-background-color: 0deg 0% 100%;
   --dialog-border-color: ${colors.STROKE};
   --dialog-border-radius: 6px;
   --dialog-border-size: 1px;
@@ -209,7 +209,7 @@ const DialogWrapper = styled.div`
 `;
 
 const Backdrop = styled.div`
-  background-color: hsla(var(--dialog-backdrop-color) / var(--dialog-backdrop-alpha));
+  background-color: hsl(var(--dialog-backdrop-color) / var(--dialog-backdrop-alpha));
   inset: inherit;
   position: inherit;
 

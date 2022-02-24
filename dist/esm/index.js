@@ -460,10 +460,10 @@ var Ne=Object.defineProperty,x3=Object.defineProperties;var w3=Object.getOwnProp
   }
 `;var j9=w=>{var b=w,{active:t=!1,backdrop:r=!0,bleed:n=!1,children:l,footer:s,header:c,index:d=10,justify:v="flex-end",onClose:p,rejectable:u=!0,size:f,theme:g,title:x}=b,h=m(b,["active","backdrop","bleed","children","footer","header","index","justify","onClose","rejectable","size","theme","title"]);let z={"data-qa":"dialog"},A=nl(H=>{H.key==="Escape"&&p()},[p]);return ll(()=>{if(u)return document.addEventListener("keyup",A),()=>{document.removeEventListener("keyup",A)}},[p,A,u]),$(cl,{"data-active":t||null,"data-bleed":n||null,"data-foot":s?!0:null,"data-head":c||x?!0:null,"data-theme":g||null,style:{["--dialog-index"]:d}},r&&$(dl,{"data-dialog":"backdrop",onClick:u?p:void 0}),$(pl,y(i(i({},z),h),{style:{["--dialog-size"]:f}}),(c||x)&&$("header",{css:ul,"data-dialog":"header","data-qa":"dialog-header"},c||$(V,{as:"h1",clamp:1,css:fl},x)),$(ml,{"data-dialog":"body","data-qa":"dialog-body"},l),s&&$(B,{as:"footer",css:vl,"data-dialog":"footer","data-qa":"dialog-footer",justify:v},s),u&&$(hl,{"data-dialog":"control",onClick:p})))},il=Wr`
   0% {
-    --dialog-backdrop-alpha: 0;
+    --dialog-backdrop-alpha: 0%;
   }
   100% {
-    --dialog-backdrop-alpha: 0.5;
+    --dialog-backdrop-alpha: 50%;
   }
 `,sl=Wr`
   0% {
@@ -479,13 +479,13 @@ var Ne=Object.defineProperty,x3=Object.defineProperties;var w3=Object.getOwnProp
 `,cl=h1.div`
   @property --dialog-backdrop-alpha {
     inherits: true;
-    initial-value: 0;
-    syntax: '<number>';
+    initial-value: 0%;
+    syntax: '<percentage>';
   }
 
   ${K};
 
-  --dialog-background-color: 0 0% 100%;
+  --dialog-background-color: 0deg 0% 100%;
   --dialog-border-color: ${o.STROKE};
   --dialog-border-radius: 6px;
   --dialog-border-size: 1px;
@@ -511,7 +511,7 @@ var Ne=Object.defineProperty,x3=Object.defineProperties;var w3=Object.getOwnProp
     display: grid;
   }
 `,dl=h1.div`
-  background-color: hsla(var(--dialog-backdrop-color) / var(--dialog-backdrop-alpha));
+  background-color: hsl(var(--dialog-backdrop-color) / var(--dialog-backdrop-alpha));
   inset: inherit;
   position: inherit;
 

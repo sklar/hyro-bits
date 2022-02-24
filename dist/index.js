@@ -460,10 +460,10 @@ var i2=Object.create;var M0=Object.defineProperty,s2=Object.defineProperties,c2=
   }
 `;var Tl=b=>{var y=b,{active:t=!1,backdrop:o=!0,bleed:n=!1,children:l,footer:s,header:c,index:d=10,justify:v="flex-end",onClose:p,rejectable:u=!0,size:f,theme:g,title:x}=y,h=m(y,["active","backdrop","bleed","children","footer","header","index","justify","onClose","rejectable","size","theme","title"]);let M={"data-qa":"dialog"},A=(0,E1.useCallback)(O=>{O.key==="Escape"&&p()},[p]);return(0,E1.useEffect)(()=>{if(u)return document.addEventListener("keyup",A),()=>{document.removeEventListener("keyup",A)}},[p,A,u]),(0,R.jsx)(Rl,{"data-active":t||null,"data-bleed":n||null,"data-foot":s?!0:null,"data-head":c||x?!0:null,"data-theme":g||null,style:{["--dialog-index"]:d}},o&&(0,R.jsx)(Cl,{"data-dialog":"backdrop",onClick:u?p:void 0}),(0,R.jsx)(Sl,z(i(i({},M),h),{style:{["--dialog-size"]:f}}),(c||x)&&(0,R.jsx)("header",{css:kl,"data-dialog":"header","data-qa":"dialog-header"},c||(0,R.jsx)(G,{as:"h1",clamp:1,css:Ll},x)),(0,R.jsx)(Hl,{"data-dialog":"body","data-qa":"dialog-body"},l),s&&(0,R.jsx)(_,{as:"footer",css:Il,"data-dialog":"footer","data-qa":"dialog-footer",justify:v},s),u&&(0,R.jsx)(Bl,{"data-dialog":"control",onClick:p})))},El=R.keyframes`
   0% {
-    --dialog-backdrop-alpha: 0;
+    --dialog-backdrop-alpha: 0%;
   }
   100% {
-    --dialog-backdrop-alpha: 0.5;
+    --dialog-backdrop-alpha: 50%;
   }
 `,Al=R.keyframes`
   0% {
@@ -479,13 +479,13 @@ var i2=Object.create;var M0=Object.defineProperty,s2=Object.defineProperties,c2=
 `,Rl=P0.default.div`
   @property --dialog-backdrop-alpha {
     inherits: true;
-    initial-value: 0;
-    syntax: '<number>';
+    initial-value: 0%;
+    syntax: '<percentage>';
   }
 
   ${Y};
 
-  --dialog-background-color: 0 0% 100%;
+  --dialog-background-color: 0deg 0% 100%;
   --dialog-border-color: ${r.STROKE};
   --dialog-border-radius: 6px;
   --dialog-border-size: 1px;
@@ -511,7 +511,7 @@ var i2=Object.create;var M0=Object.defineProperty,s2=Object.defineProperties,c2=
     display: grid;
   }
 `,Cl=P0.default.div`
-  background-color: hsla(var(--dialog-backdrop-color) / var(--dialog-backdrop-alpha));
+  background-color: hsl(var(--dialog-backdrop-color) / var(--dialog-backdrop-alpha));
   inset: inherit;
   position: inherit;
 
