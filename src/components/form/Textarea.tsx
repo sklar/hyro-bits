@@ -1,10 +1,13 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 import styled from '@emotion/styled';
-import React, { ElementType, forwardRef, TextareaHTMLAttributes } from 'react';
+import { ElementType, forwardRef, TextareaHTMLAttributes } from 'react';
 
 import { colors } from '../../theme';
 import { InternalHTMLAttributes, splitPropsByKeys } from '../../utils';
 import { Idle as Indicator } from '../indicator';
-import { inputContainer, input } from './Input.styles';
+import { input, inputContainer } from './Input.styles';
 
 export interface TextareaProps
   extends InternalHTMLAttributes,
@@ -104,6 +107,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
             gap="2px"
             size="4px"
             data-indicator
+            css={indicator}
             style={{
               ['--color' as string]: colors.ELEMENT_PRIMARY,
             }}
@@ -114,34 +118,29 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
   }
 );
 
+const indicator = css`
+  background-image: linear-gradient(90deg, transparent, var(--input-background-color) 60%);
+  padding-block: 6px;
+  padding-inline-start: 2em;
+  place-self: start end;
+  position: absolute;
+`;
+
 const Container = styled.label`
   ${inputContainer};
 
+  align-items: stretch;
+  display: inline-grid;
   position: relative;
   padding-block: calc(0.8 * var(--input-indent));
 
+  &::after,
+  textarea,
   [data-indicator] {
-    place-self: center;
-    position: absolute;
+    grid-area: 1 / 1 / -1 / -1;
   }
 
-  &[data-busy] {
-    overflow: hidden;
-
-    &::before {
-      background-color: var(--input-background-color);
-      content: '';
-      inset: 0;
-      opacity: 0.8;
-      position: absolute;
-    }
-  }
-
-  &[data-busy],
   &[data-expandable] {
-    align-items: stretch;
-    display: inline-grid;
-
     &::after {
       content: attr(data-value);
       min-width: 0;
@@ -150,12 +149,6 @@ const Container = styled.label`
       visibility: hidden;
       white-space: pre-wrap;
     }
-
-    &::after,
-    textarea,
-    [data-indicator] {
-      grid-area: 1 / 1 / -1 / -1;
-    }
   }
 `;
 
@@ -163,6 +156,10 @@ const Element = styled.textarea`
   ${input};
 
   width: 100%;
+
+  [data-expandable] & {
+    overflow-y: hidden;
+  }
 
   [data-resize='both'] & {
     resize: both;

@@ -40,13 +40,13 @@ export const inputContainer = css`
   width: var(--input-length);
   will-change: border-color, width;
 
-  &:is(:active, :focus-within, :hover, [data-active], [data-hover]):not([data-disabled], [data-busy]) {
+  &:is(:active, :focus-within, :hover, [data-active], [data-hover]):not([data-disabled]) {
     --input-border-color: ${colors.ELEMENT_FOCUS};
   }
-  &:is([data-invalid]):not([data-disabled], [data-busy]) {
+  &:is([data-invalid]):not([data-disabled]) {
     --input-border-color: ${colors.DANGER};
   }
-  &:is([data-disabled], [data-busy]) {
+  &:is([data-disabled]) {
     --input-color: ${colors.ELEMENT_DISABLED};
     pointer-events: none;
   }

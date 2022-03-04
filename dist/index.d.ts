@@ -599,7 +599,7 @@ interface TextareaProps extends InternalHTMLAttributes, TextareaHTMLAttributes<H
  * Textarea
  * TODO: Implement auto-grow feature
  */
-declare const Textarea: React__default.ForwardRefExoticComponent<TextareaProps & React__default.RefAttributes<HTMLTextAreaElement>>;
+declare const Textarea: React.ForwardRefExoticComponent<TextareaProps & React.RefAttributes<HTMLTextAreaElement>>;
 
 declare function SvgAlignBottom(): JSX.Element;
 

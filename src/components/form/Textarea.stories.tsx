@@ -1,6 +1,6 @@
 import { Global } from '@emotion/react';
 import { Meta, Story } from '@storybook/react';
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { withDesign } from 'storybook-addon-designs';
 
 import { global, Legend, mapArgTypes } from '../../stories';
@@ -13,7 +13,7 @@ export default {
     (Story) => (
       <>
         <Global styles={global} />
-        <Grid align="center" columns="repeat(6, 1fr)" gap="1em" justify="start">
+        <Grid columns="repeat(6, 1fr)" gap="1em">
           <Legend>default</Legend>
           <Legend>hover</Legend>
           <Legend>active</Legend>
@@ -64,16 +64,30 @@ export default {
   },
 } as Meta;
 
-const Template: Story<TextareaProps> = (args) => (
-  <>
-    <Component {...args} />
-    <Component {...args} data-hover />
-    <Component {...args} data-active />
-    <Component {...args} busy />
-    <Component {...args} disabled />
-    <Component {...args} invalid />
-  </>
-);
+const Template: Story<TextareaProps> = ({ value: defaultValue, ...args }) => {
+  const [value, setValue] = useState('');
+  const handleChange = useCallback(
+    (event) => {
+      setValue(event.target.value);
+    },
+    [setValue]
+  );
+
+  useEffect(() => {
+    setValue(defaultValue?.toString() ?? '');
+  }, [defaultValue]);
+
+  return (
+    <>
+      <Component {...args} value={value} onChange={handleChange} />
+      <Component {...args} value={value} onChange={handleChange} data-hover />
+      <Component {...args} value={value} onChange={handleChange} data-active />
+      <Component {...args} value={value} onChange={handleChange} busy />
+      <Component {...args} value={value} onChange={handleChange} disabled />
+      <Component {...args} value={value} onChange={handleChange} invalid />
+    </>
+  );
+};
 
 const TemplateOverview: Story<TextareaProps> = (args) => (
   <>
@@ -82,7 +96,7 @@ const TemplateOverview: Story<TextareaProps> = (args) => (
     <Template
       {...args}
       rows={4}
-      defaultValue="In the 1960s with the Cold War in play, CIA agent Napoleon Solo successfully helps Gaby Teller
+      value="In the 1960s with the Cold War in play, CIA agent Napoleon Solo successfully helps Gaby Teller
       defect to West Germany despite the intimidating opposition of KGB agent Illya Kuryakin. Later,
       all three unexpectedly find themselves working together in a joint mission to stop a private
       criminal organization from using Gaby's father's scientific expertise to construct their own
@@ -91,14 +105,14 @@ const TemplateOverview: Story<TextareaProps> = (args) => (
     />
     <Template
       {...args}
-      defaultValue="In the 1960s with the Cold War in play, CIA agent Napoleon Solo successfully helps Gaby Teller
+      value="In the 1960s with the Cold War in play, CIA agent Napoleon Solo successfully helps Gaby Teller
       defect to West Germany despite the intimidating opposition of KGB agent Illya Kuryakin."
       expandable
       resize="none"
     />
     <Template
       {...args}
-      defaultValue="aaaaabbbbbcccccdeeeeeeeefffffggggghhhhhhhhiiiiiijjjjjjkkkkkkkkk"
+      value="aaaaabbbbbcccccdeeeeeeeefffffggggghhhhhhhhiiiiiijjjjjjkkkkkkkkk"
       expandable
       resize="none"
     />

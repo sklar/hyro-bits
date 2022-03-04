@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import React, { ElementType, forwardRef, InputHTMLAttributes, ReactElement } from 'react';
+
 import { colors } from '../../theme';
 import { InternalHTMLAttributes, SizeType, splitPropsByKeys } from '../../utils';
 import { truncate } from '../../utils/helpers';
