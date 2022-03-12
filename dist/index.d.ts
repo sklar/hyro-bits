@@ -450,21 +450,21 @@ interface RangeProps extends InternalHTMLAttributes, RangeProps$1 {
  */
 declare const Range: ({ bleed, className, reverse, style, theme, vertical, ...props }: RangeProps) => JSX.Element;
 
-interface SelectProps$1<Option = unknown, IsMulti extends boolean = boolean, Group extends GroupBase<Option> = GroupBase<Option>> extends InternalHTMLAttributes, Props<Option, IsMulti, Group> {
+interface SelectProps<Option = unknown, IsMulti extends boolean = boolean, Group extends GroupBase<Option> = GroupBase<Option>> extends CustomSelectProps, InternalHTMLAttributes, Props<Option, IsMulti, Group> {
 }
 declare const Select: <Option extends unknown = {
     label: string;
     value: string;
-}, IsMulti extends boolean = false, Group extends GroupBase<Option> = GroupBase<Option>>(props: SelectProps$1<Option, IsMulti, Group>) => JSX.Element;
+}, IsMulti extends boolean = false, Group extends GroupBase<Option> = GroupBase<Option>>(props: SelectProps<Option, IsMulti, Group>) => JSX.Element;
 
-interface AsyncSelectProps<Option = unknown, IsMulti extends boolean = boolean, Group extends GroupBase<Option> = GroupBase<Option>> extends InternalHTMLAttributes, AsyncProps<Option, IsMulti, Group> {
+interface AsyncSelectProps<Option = unknown, IsMulti extends boolean = boolean, Group extends GroupBase<Option> = GroupBase<Option>> extends CustomSelectProps, InternalHTMLAttributes, AsyncProps<Option, IsMulti, Group> {
 }
 declare const AsyncSelect: <Option extends unknown = {
     label: string;
     value: string;
 }, IsMulti extends boolean = false, Group extends GroupBase<Option> = GroupBase<Option>>(props: AsyncSelectProps<Option, IsMulti, Group>) => JSX.Element;
 
-interface SelectProps {
+interface CustomSelectProps {
     /**
      * Internal styling helpers
      */
@@ -477,6 +477,10 @@ interface SelectProps {
      * Length (aka `width`)
      */
     length?: string;
+    /**
+     * Menu position
+     */
+    menu?: 'absolute' | 'static';
     /**
      * Size
      */
@@ -507,7 +511,7 @@ interface SelectProps {
     readonly?: boolean;
 }
 declare module 'react-select/dist/declarations/src/Select' {
-    interface Props<Option, IsMulti extends boolean, Group extends GroupBase<Option>> extends SelectProps {
+    interface Props<Option, IsMulti extends boolean, Group extends GroupBase<Option>> extends CustomSelectProps {
     }
 }
 
@@ -1584,4 +1588,4 @@ declare const button: _emotion_react.SerializedStyles;
 declare const label: _emotion_react.SerializedStyles;
 declare const input: _emotion_react.SerializedStyles;
 
-export { AlignmentFlexboxType, AlignmentPrimaryType, AlignmentSecondaryType, AlignmentTertiaryType, AsyncSelect, AsyncSelectProps, Button, ButtonProps, ClickOutsideGuard, ClickOutsideGuardProps, Dialog, DialogProps, DirectionType, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldMessageProps, FieldProps, FieldText, Flex, FlexProps, Grid, GridProps, Icon, IconNameType, IconProps, Idle, IdleProps, Input, InputProps, InternalHTMLAttributes, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuItemProps, MenuProps, MenuTitle, Nav, NavContainer, NavItem, NavItemProps, NavProps, NumberInput, NumberInputProps, NumberInputStepperComponents, NumberInputStepperContainerProps, NumberInputStepperProps, Order, OrderProps, Pagination, PaginationProps, PartialBy, Range, RangeProps, Select, SelectProps$1 as SelectProps, SharedButtonProps, SizeType, Slider, SliderProps, Spacer, Status, StatusProps, StatusThemeType, Switch, SwitchProps, Table, TableProps, Tbody, Td, Text, TextProps, Textarea, TextareaProps, Th, Thead, ThemeType, Toast, ToastProps, ToastTheme, ToastVariant, Tooltip, TooltipProps, Tr, TrContainer, TrProps, TruncateOptionType, Values, VariantType, base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph, splitPropsByKeys };
+export { AlignmentFlexboxType, AlignmentPrimaryType, AlignmentSecondaryType, AlignmentTertiaryType, AsyncSelect, AsyncSelectProps, Button, ButtonProps, ClickOutsideGuard, ClickOutsideGuardProps, CustomSelectProps, Dialog, DialogProps, DirectionType, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldMessageProps, FieldProps, FieldText, Flex, FlexProps, Grid, GridProps, Icon, IconNameType, IconProps, Idle, IdleProps, Input, InputProps, InternalHTMLAttributes, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuItemProps, MenuProps, MenuTitle, Nav, NavContainer, NavItem, NavItemProps, NavProps, NumberInput, NumberInputProps, NumberInputStepperComponents, NumberInputStepperContainerProps, NumberInputStepperProps, Order, OrderProps, Pagination, PaginationProps, PartialBy, Range, RangeProps, Select, SelectProps, SharedButtonProps, SizeType, Slider, SliderProps, Spacer, Status, StatusProps, StatusThemeType, Switch, SwitchProps, Table, TableProps, Tbody, Td, Text, TextProps, Textarea, TextareaProps, Th, Thead, ThemeType, Toast, ToastProps, ToastTheme, ToastVariant, Tooltip, TooltipProps, Tr, TrContainer, TrProps, TruncateOptionType, Values, VariantType, base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph, splitPropsByKeys };

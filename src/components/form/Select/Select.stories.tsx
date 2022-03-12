@@ -16,7 +16,7 @@ export default {
     (Story) => (
       <>
         <Global styles={global} />
-        <Grid align="center" block columns="repeat(5, 1fr)" gap="1em">
+        <Grid block columns="repeat(5, 1fr)" gap="1em">
           <Legend>default</Legend>
           <Legend>hover</Legend>
           <Legend>active</Legend>

@@ -67,7 +67,7 @@ export const argTypes = {
       defaultValue: { summary: 'select' },
     },
   },
-  ...mapArgTypes(['size'], {
+  ...mapArgTypes(['menu', 'size'], {
     control: { type: 'inline-radio' },
     table: { category: 'Modifiers' },
   }),

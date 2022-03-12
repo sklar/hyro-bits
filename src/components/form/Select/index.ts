@@ -3,7 +3,7 @@ import { GroupBase } from 'react-select';
 
 import { InternalHTMLAttributes, SizeType } from '../../../utils/types';
 
-interface SelectProps {
+export interface CustomSelectProps {
   /**
    * Internal styling helpers
    */
@@ -16,6 +16,10 @@ interface SelectProps {
    * Length (aka `width`)
    */
   length?: string;
+  /**
+   * Menu position
+   */
+  menu?: 'absolute' | 'static';
   /**
    * Size
    */
@@ -50,7 +54,7 @@ interface SelectProps {
 declare module 'react-select/dist/declarations/src/Select' {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   export interface Props<Option, IsMulti extends boolean, Group extends GroupBase<Option>>
-    extends SelectProps {}
+    extends CustomSelectProps {}
 }
 
 export { components as ReactSelectComponents } from 'react-select';

@@ -156,8 +156,6 @@ export const loadingIndicator = css`
  */
 export const menu = css`
   --size: 100%;
-
-  position: absolute;
 `;
 
 export const menuList = css`

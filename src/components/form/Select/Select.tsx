@@ -25,13 +25,15 @@ import {
   SingleValue,
   ValueContainer,
 } from './components';
+import { CustomSelectProps } from './index';
 import { components as defaultComponentsStyles } from './Select.styles';
 
 export interface SelectProps<
   Option = unknown,
   IsMulti extends boolean = boolean,
   Group extends GroupBase<Option> = GroupBase<Option>
-> extends InternalHTMLAttributes,
+> extends CustomSelectProps,
+    InternalHTMLAttributes,
     ReactSelectProps<Option, IsMulti, Group> {}
 
 export const Select = <
