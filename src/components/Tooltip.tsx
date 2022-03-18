@@ -18,6 +18,18 @@ export interface TooltipProps {
    * Children
    */
   children?: ReactElement;
+  /**
+   * Content
+   */
+  content?: ReactElement;
+  /**
+   * Label
+   */
+  label?: string;
+  /**
+   * Shortcut
+   */
+  shortcut?: string;
 
   /**
    * Delay, onmouseenter
@@ -28,17 +40,10 @@ export interface TooltipProps {
    */
   delayLeave?: number;
   /**
-   * Label
-   */
-  label?: string;
-  /**
    * Placement
    */
   placement?: 'bottom' | 'left' | 'right' | 'top';
-  /**
-   * Shortcut
-   */
-  shortcut?: string;
+
   /**
    * Size aka max. width
    */
@@ -56,6 +61,7 @@ export interface TooltipProps {
  */
 export const Tooltip: React.FC<TooltipProps> = ({
   children,
+  content,
   delayEnter = DELAY_ENTER,
   delayLeave = DELAY_LEAVE,
   disabled,
@@ -88,9 +94,15 @@ export const Tooltip: React.FC<TooltipProps> = ({
         mouseEnterDelay={delayEnter}
         mouseLeaveDelay={delayLeave}
         overlay={
-          <Container style={{ ['--size' as string]: size }}>
-            {label && <Label data-label>{label}</Label>}
-            {shortcut && <Shortcut>{shortcuts}</Shortcut>}
+          <Container data-content={content || null} style={{ ['--size' as string]: size }}>
+            {content ? (
+              content
+            ) : (
+              <>
+                {label && <Label data-label>{label}</Label>}
+                {shortcut && <Shortcut>{shortcuts}</Shortcut>}
+              </>
+            )}
           </Container>
         }
         placement={placement}
@@ -165,10 +177,13 @@ const Container = styled.div`
   background-color: var(--background-color);
   border-radius: 6px;
   color: ${colors.WHITE};
-  display: inline-flex;
   isolation: isolate;
   max-width: var(--size);
   padding: 10px;
+
+  &:not([data-content]) {
+    display: inline-flex;
+  }
 `;
 
 const Arrow = styled.div`

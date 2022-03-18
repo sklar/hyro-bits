@@ -1540,6 +1540,18 @@ interface TooltipProps {
      */
     children?: ReactElement;
     /**
+     * Content
+     */
+    content?: ReactElement;
+    /**
+     * Label
+     */
+    label?: string;
+    /**
+     * Shortcut
+     */
+    shortcut?: string;
+    /**
      * Delay, onmouseenter
      */
     delayEnter?: number;
@@ -1548,17 +1560,9 @@ interface TooltipProps {
      */
     delayLeave?: number;
     /**
-     * Label
-     */
-    label?: string;
-    /**
      * Placement
      */
     placement?: 'bottom' | 'left' | 'right' | 'top';
-    /**
-     * Shortcut
-     */
-    shortcut?: string;
     /**
      * Size aka max. width
      */
