@@ -1,8 +1,8 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx } from '@emotion/react';
-import styled from '@emotion/styled';
 import React, { HTMLAttributes } from 'react';
+import { VariantType } from '../../utils/types';
 
 import { menuGroup, menuGroupTitle } from './Menu.styles';
 
@@ -10,6 +10,19 @@ export const MenuGroup: React.FC<HTMLAttributes<HTMLDivElement>> = (props): JSX.
   <div css={menuGroup} data-menu="group" {...props} />
 );
 
-export const MenuGroupTitle = styled.h5`
-  ${menuGroupTitle};
-`;
+export interface MenuGroupTitleProps extends HTMLAttributes<HTMLHeadingElement> {
+  /**
+   * Variant
+   */
+  variant?: VariantType;
+}
+
+export const MenuGroupTitle: React.FC<MenuGroupTitleProps> = ({
+  children,
+  variant,
+  ...props
+}): JSX.Element => (
+  <h5 css={menuGroupTitle} data-variant={variant || null} {...props}>
+    {children}
+  </h5>
+);

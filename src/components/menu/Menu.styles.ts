@@ -84,9 +84,20 @@ export const menuGroupTitle = css`
 
   align-items: center;
   display: flex;
-  justify-content: space-between;
   padding: var(--indent);
   padding-bottom: calc(0.5 * var(--indent));
+
+  &[data-variant='primary'] {
+    --font-size: 16px;
+    --line-height: calc(24 / 16);
+
+    display: inline-block;
+    padding-bottom: var(--indent);
+
+    &::after {
+      content: ':';
+    }
+  }
 
   [data-theme='dark'] & {
     --color: ${colors.WHITE};

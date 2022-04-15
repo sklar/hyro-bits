@@ -11,4 +11,4 @@ export const GroupHeading = <
   Group extends GroupBase<Option> = GroupBase<Option>
 >(
   props: GroupHeadingProps<Option, IsMulti, Group>
-) => <components.GroupHeading css={menuGroupTitle} {...props} />;
+) => <components.GroupHeading css={menuGroupTitle} data-variant="primary" {...props} />;

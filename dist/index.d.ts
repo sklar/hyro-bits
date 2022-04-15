@@ -1189,10 +1189,13 @@ declare const MenuDivider: _emotion_styled.StyledComponent<{
 }, React.DetailedHTMLProps<React.HTMLAttributes<HTMLDivElement>, HTMLDivElement>, {}>;
 
 declare const MenuGroup: React__default.FC<HTMLAttributes<HTMLDivElement>>;
-declare const MenuGroupTitle: _emotion_styled.StyledComponent<{
-    theme?: _emotion_react.Theme | undefined;
-    as?: React__default.ElementType<any> | undefined;
-}, React__default.DetailedHTMLProps<React__default.HTMLAttributes<HTMLHeadingElement>, HTMLHeadingElement>, {}>;
+interface MenuGroupTitleProps extends HTMLAttributes<HTMLHeadingElement> {
+    /**
+     * Variant
+     */
+    variant?: VariantType;
+}
+declare const MenuGroupTitle: React__default.FC<MenuGroupTitleProps>;
 
 interface MenuItemProps extends HTMLAttributes<HTMLElement> {
     /**
@@ -1592,4 +1595,4 @@ declare const button: _emotion_react.SerializedStyles;
 declare const label: _emotion_react.SerializedStyles;
 declare const input: _emotion_react.SerializedStyles;
 
-export { AlignmentFlexboxType, AlignmentPrimaryType, AlignmentSecondaryType, AlignmentTertiaryType, AsyncSelect, AsyncSelectProps, Button, ButtonProps, ClickOutsideGuard, ClickOutsideGuardProps, CustomSelectProps, Dialog, DialogProps, DirectionType, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldMessageProps, FieldProps, FieldText, Flex, FlexProps, Grid, GridProps, Icon, IconNameType, IconProps, Idle, IdleProps, Input, InputProps, InternalHTMLAttributes, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuItem, MenuItemProps, MenuProps, MenuTitle, Nav, NavContainer, NavItem, NavItemProps, NavProps, NumberInput, NumberInputProps, NumberInputStepperComponents, NumberInputStepperContainerProps, NumberInputStepperProps, Order, OrderProps, Pagination, PaginationProps, PartialBy, Range, RangeProps, Select, SelectProps, SharedButtonProps, SizeType, Slider, SliderProps, Spacer, Status, StatusProps, StatusThemeType, Switch, SwitchProps, Table, TableProps, Tbody, Td, Text, TextProps, Textarea, TextareaProps, Th, Thead, ThemeType, Toast, ToastProps, ToastTheme, ToastVariant, Tooltip, TooltipProps, Tr, TrContainer, TrProps, TruncateOptionType, Values, VariantType, base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph, splitPropsByKeys };
+export { AlignmentFlexboxType, AlignmentPrimaryType, AlignmentSecondaryType, AlignmentTertiaryType, AsyncSelect, AsyncSelectProps, Button, ButtonProps, ClickOutsideGuard, ClickOutsideGuardProps, CustomSelectProps, Dialog, DialogProps, DirectionType, EMOTION_DISABLE_SSR, Field, FieldLabel, FieldMessage, FieldMessageProps, FieldProps, FieldText, Flex, FlexProps, Grid, GridProps, Icon, IconNameType, IconProps, Idle, IdleProps, Input, InputProps, InternalHTMLAttributes, Menu, MenuDivider, MenuGroup, MenuGroupTitle, MenuGroupTitleProps, MenuItem, MenuItemProps, MenuProps, MenuTitle, Nav, NavContainer, NavItem, NavItemProps, NavProps, NumberInput, NumberInputProps, NumberInputStepperComponents, NumberInputStepperContainerProps, NumberInputStepperProps, Order, OrderProps, Pagination, PaginationProps, PartialBy, Range, RangeProps, Select, SelectProps, SharedButtonProps, SizeType, Slider, SliderProps, Spacer, Status, StatusProps, StatusThemeType, Switch, SwitchProps, Table, TableProps, Tbody, Td, Text, TextProps, Textarea, TextareaProps, Th, Thead, ThemeType, Toast, ToastProps, ToastTheme, ToastVariant, Tooltip, TooltipProps, Tr, TrContainer, TrProps, TruncateOptionType, Values, VariantType, base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph, splitPropsByKeys };

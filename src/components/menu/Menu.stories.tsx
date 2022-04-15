@@ -505,7 +505,7 @@ const TemplateAccordion: Story<StoryProps> = (args) => {
               </SectionTitle>
               <div data-section="body">
                 <MenuGroup>
-                  <MenuGroupTitle>Group A.1</MenuGroupTitle>
+                  <MenuGroupTitle variant="primary">Group A.1</MenuGroupTitle>
                   <MenuItem onClick={() => {}}>
                     <Text>Item A.1.1</Text>
                   </MenuItem>
@@ -513,7 +513,7 @@ const TemplateAccordion: Story<StoryProps> = (args) => {
                   <MenuItem onClick={() => {}}>Item A.3.1</MenuItem>
                 </MenuGroup>
                 <MenuGroup>
-                  <MenuGroupTitle>Group A.2</MenuGroupTitle>
+                  <MenuGroupTitle variant="primary">Group A.2</MenuGroupTitle>
                   <MenuItem onClick={() => {}}>
                     <Text truncate>Item A.2.1 w/ some suuuuuperlong title</Text>
                   </MenuItem>
@@ -529,7 +529,7 @@ const TemplateAccordion: Story<StoryProps> = (args) => {
               </SectionTitle>
               <div data-section="body">
                 <MenuGroup>
-                  <MenuGroupTitle>Group B.1</MenuGroupTitle>
+                  <MenuGroupTitle variant="primary">Group B.1</MenuGroupTitle>
                   <MenuItem onClick={() => {}}>
                     <Text>Item B.1.1</Text>
                   </MenuItem>
@@ -537,7 +537,7 @@ const TemplateAccordion: Story<StoryProps> = (args) => {
                   <MenuItem onClick={() => {}}>Item B.3.1</MenuItem>
                 </MenuGroup>
                 <MenuGroup>
-                  <MenuGroupTitle>Group B.2</MenuGroupTitle>
+                  <MenuGroupTitle variant="primary">Group B.2</MenuGroupTitle>
                   <MenuItem onClick={() => {}}>
                     <Text truncate>Item B.2.1</Text>
                   </MenuItem>
@@ -553,7 +553,7 @@ const TemplateAccordion: Story<StoryProps> = (args) => {
               </SectionTitle>
               <div data-section="body">
                 <MenuGroup>
-                  <MenuGroupTitle>Group C.1</MenuGroupTitle>
+                  <MenuGroupTitle variant="primary">Group C.1</MenuGroupTitle>
                   <MenuItem onClick={() => {}}>
                     <Text>Item C.1.1</Text>
                   </MenuItem>
@@ -561,7 +561,7 @@ const TemplateAccordion: Story<StoryProps> = (args) => {
                   <MenuItem onClick={() => {}}>Item C.3.1</MenuItem>
                 </MenuGroup>
                 <MenuGroup>
-                  <MenuGroupTitle>Group C.2</MenuGroupTitle>
+                  <MenuGroupTitle variant="primary">Group C.2</MenuGroupTitle>
                   <MenuItem onClick={() => {}}>
                     <Text truncate>Item C.2.1</Text>
                   </MenuItem>
@@ -629,7 +629,6 @@ const Section = styled.div`
 
 const SectionTitle = styled(MenuGroupTitle)`
   cursor: pointer;
-  justify-content: flex-start;
   gap: calc(2 * var(--gap));
   padding: var(--indent);
 
