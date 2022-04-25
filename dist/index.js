@@ -1,4 +1,4 @@
-/** Components v4.2.1 */
+/** Components v4.3.0 */
 var Tn=Object.create;var M0=Object.defineProperty,En=Object.defineProperties,An=Object.getOwnPropertyDescriptor,Cn=Object.getOwnPropertyDescriptors,Rn=Object.getOwnPropertyNames,N0=Object.getOwnPropertySymbols,Sn=Object.getPrototypeOf,ct=Object.prototype.hasOwnProperty,_o=Object.prototype.propertyIsEnumerable;var Fo=(t,a,i)=>a in t?M0(t,a,{enumerable:!0,configurable:!0,writable:!0,value:i}):t[a]=i,r=(t,a)=>{for(var i in a||(a={}))ct.call(a,i)&&Fo(t,i,a[i]);if(N0)for(var i of N0(a))_o.call(a,i)&&Fo(t,i,a[i]);return t},b=(t,a)=>En(t,Cn(a)),Ko=t=>M0(t,"__esModule",{value:!0});var f=(t,a)=>{var i={};for(var l in t)ct.call(t,l)&&a.indexOf(l)<0&&(i[l]=t[l]);if(t!=null&&N0)for(var l of N0(t))a.indexOf(l)<0&&_o.call(t,l)&&(i[l]=t[l]);return i};var dt=(t,a)=>{for(var i in a)M0(t,i,{get:a[i],enumerable:!0})},Yo=(t,a,i,l)=>{if(a&&typeof a=="object"||typeof a=="function")for(let s of Rn(a))!ct.call(t,s)&&(i||s!=="default")&&M0(t,s,{get:()=>a[s],enumerable:!(l=An(a,s))||l.enumerable});return t},o=(t,a)=>Yo(Ko(M0(t!=null?Tn(Sn(t)):{},"default",!a&&t&&t.__esModule?{get:()=>t.default,enumerable:!0}:{value:t,enumerable:!0})),t),Ln=(t=>(a,i)=>t&&t.get(a)||(i=Yo(Ko({}),a,1),t&&t.set(a,i),i))(typeof WeakMap!="undefined"?new WeakMap:0);var M4={};dt(M4,{AsyncSelect:()=>ln,Button:()=>$,ClickOutsideGuard:()=>Il,Dialog:()=>Gl,EMOTION_DISABLE_SSR:()=>Mo,Field:()=>n5,FieldLabel:()=>Zl,FieldMessage:()=>a5,FieldText:()=>t5,Flex:()=>G,Grid:()=>Bl,Icon:()=>M,Idle:()=>F,Input:()=>Ao,Menu:()=>Ho,MenuDivider:()=>A5,MenuGroup:()=>C5,MenuGroupTitle:()=>R5,MenuItem:()=>Po,MenuTitle:()=>L5,Nav:()=>F5,NavContainer:()=>vn,NavItem:()=>D5,NumberInput:()=>v5,NumberInputStepperComponents:()=>l2,Order:()=>bo,Pagination:()=>K5,Range:()=>T5,ReactSelectComponents:()=>sn.components,Select:()=>an,Slider:()=>k5,Spacer:()=>$l,Status:()=>Oo,Switch:()=>I5,Table:()=>o4,Tbody:()=>t4,Td:()=>X5,Text:()=>D,Textarea:()=>V5,Th:()=>W5,Thead:()=>Z5,Toast:()=>n4,Tooltip:()=>m4,Tr:()=>Q5,TrContainer:()=>yn,base:()=>C,button:()=>Y,colors:()=>n,h1:()=>ft,h2:()=>mt,h3:()=>D0,h4:()=>Uo,h5:()=>vt,input:()=>ht,label:()=>gt,paragraph:()=>K,splitPropsByKeys:()=>k});var yo=require("@emotion/react"),Y3=require("case-anything"),q3=require("react");var o0=o(require("react")),O0=require("@emotion/react"),pt=o(require("@emotion/styled"));var qo=require("@emotion/react"),z0={easeInOut:"ease-in-out",easeInOutQuart:"cubic-bezier(0.770, 0.000, 0.175, 1.000)",easeOutCirc:"cubic-bezier(0.075, 0.820, 0.165, 1.000)",easeOutCubic:"cubic-bezier(0.215, 0.610, 0.355, 1.000)"},Xo=qo.keyframes`
   0%    { opacity: 0; }
   100%  { opacity: 1; }
@@ -1181,6 +1181,7 @@ var Tn=Object.create;var M0=Object.defineProperty,En=Object.defineProperties,An=
   --range: 4px;
   --size: 4px;
 `,x2=I.css`
+  --index: 2;
   --size: 100%;
 `,w2=I.css`
   overflow-y: auto;
@@ -1196,6 +1197,7 @@ var Tn=Object.create;var M0=Object.defineProperty,En=Object.defineProperties,An=
   --indent: 8px;
   --radius: 6px;
   --size: ;
+  --index: 1;
 
   background-color: var(--background-color);
   border: var(--border-size) solid var(--border-color);
@@ -1208,7 +1210,7 @@ var Tn=Object.create;var M0=Object.defineProperty,En=Object.defineProperties,An=
   padding: calc(1.5 * var(--indent)) var(--indent);
   user-select: none;
   width: var(--size);
-  z-index: 1;
+  z-index: var(--index);
 
   &[data-padding] {
     padding: calc(2 * var(--indent));

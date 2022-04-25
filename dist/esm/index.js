@@ -1,4 +1,4 @@
-/** Components v4.2.1 */
+/** Components v4.3.0 */
 var ro=Object.defineProperty,Z3=Object.defineProperties;var j3=Object.getOwnPropertyDescriptors;var S0=Object.getOwnPropertySymbols;var no=Object.prototype.hasOwnProperty,io=Object.prototype.propertyIsEnumerable;var lo=(t,a,i)=>a in t?ro(t,a,{enumerable:!0,configurable:!0,writable:!0,value:i}):t[a]=i,r=(t,a)=>{for(var i in a||(a={}))no.call(a,i)&&lo(t,i,a[i]);if(S0)for(var i of S0(a))io.call(a,i)&&lo(t,i,a[i]);return t},b=(t,a)=>Z3(t,j3(a));var f=(t,a)=>{var i={};for(var l in t)no.call(t,l)&&a.indexOf(l)<0&&(i[l]=t[l]);if(t!=null&&S0)for(var l of S0(t))a.indexOf(l)<0&&io.call(t,l)&&(i[l]=t[l]);return i};var so=(t,a)=>{for(var i in a)ro(t,i,{get:a[i],enumerable:!0})};import{jsx as p3}from"@emotion/react";import{kebabCase as vi}from"case-anything";import{forwardRef as gi}from"react";import L0,{forwardRef as e2}from"react";import{css as o2,keyframes as a2}from"@emotion/react";import po from"@emotion/styled";import{keyframes as t2}from"@emotion/react";var m0={easeInOut:"ease-in-out",easeInOutQuart:"cubic-bezier(0.770, 0.000, 0.175, 1.000)",easeOutCirc:"cubic-bezier(0.075, 0.820, 0.165, 1.000)",easeOutCubic:"cubic-bezier(0.215, 0.610, 0.355, 1.000)"},co=t2`
   0%    { opacity: 0; }
   100%  { opacity: 1; }
@@ -1181,6 +1181,7 @@ var ro=Object.defineProperty,Z3=Object.defineProperties;var j3=Object.getOwnProp
   --range: 4px;
   --size: 4px;
 `,R3=L`
+  --index: 2;
   --size: 100%;
 `,S3=L`
   overflow-y: auto;
@@ -1196,6 +1197,7 @@ var ro=Object.defineProperty,Z3=Object.defineProperties;var j3=Object.getOwnProp
   --indent: 8px;
   --radius: 6px;
   --size: ;
+  --index: 1;
 
   background-color: var(--background-color);
   border: var(--border-size) solid var(--border-color);
@@ -1208,7 +1210,7 @@ var ro=Object.defineProperty,Z3=Object.defineProperties;var j3=Object.getOwnProp
   padding: calc(1.5 * var(--indent)) var(--indent);
   user-select: none;
   width: var(--size);
-  z-index: 1;
+  z-index: var(--index);
 
   &[data-padding] {
     padding: calc(2 * var(--indent));

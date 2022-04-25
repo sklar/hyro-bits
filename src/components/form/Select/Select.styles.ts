@@ -155,6 +155,7 @@ export const loadingIndicator = css`
  * Menu
  */
 export const menu = css`
+  --index: 2;
   --size: 100%;
 `;
 

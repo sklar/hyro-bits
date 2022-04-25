@@ -14,6 +14,7 @@ export const menu = css`
   --indent: 8px;
   --radius: 6px;
   --size: ;
+  --index: 1;
 
   background-color: var(--background-color);
   border: var(--border-size) solid var(--border-color);
@@ -26,7 +27,7 @@ export const menu = css`
   padding: calc(1.5 * var(--indent)) var(--indent);
   user-select: none;
   width: var(--size);
-  z-index: 1;
+  z-index: var(--index);
 
   &[data-padding] {
     padding: calc(2 * var(--indent));
