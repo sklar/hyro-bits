@@ -142,10 +142,9 @@ const Container = styled.div`
   display: inline-flex;
   gap: var(--toast-gap);
   justify-content: space-between;
-  max-width: min(100%, 480px);
+  max-width: min(100%, var(--toast-size));
   min-height: 48px;
   min-width: 240px;
-  width: var(--toast-size);
   padding: calc(3 / 2 * var(--toast-indent)) calc(2 * var(--toast-indent));
   user-select: none;
 

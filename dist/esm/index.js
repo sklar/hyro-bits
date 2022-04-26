@@ -1,4 +1,4 @@
-/** Components v4.3.1 */
+/** Components v4.4.0 */
 var ro=Object.defineProperty,j3=Object.defineProperties;var t2=Object.getOwnPropertyDescriptors;var S0=Object.getOwnPropertySymbols;var no=Object.prototype.hasOwnProperty,io=Object.prototype.propertyIsEnumerable;var lo=(t,a,i)=>a in t?ro(t,a,{enumerable:!0,configurable:!0,writable:!0,value:i}):t[a]=i,r=(t,a)=>{for(var i in a||(a={}))no.call(a,i)&&lo(t,i,a[i]);if(S0)for(var i of S0(a))io.call(a,i)&&lo(t,i,a[i]);return t},b=(t,a)=>j3(t,t2(a));var u=(t,a)=>{var i={};for(var l in t)no.call(t,l)&&a.indexOf(l)<0&&(i[l]=t[l]);if(t!=null&&S0)for(var l of S0(t))a.indexOf(l)<0&&io.call(t,l)&&(i[l]=t[l]);return i};var so=(t,a)=>{for(var i in a)ro(t,i,{get:a[i],enumerable:!0})};import{jsx as p3}from"@emotion/react";import{kebabCase as gi}from"case-anything";import{forwardRef as hi}from"react";import L0,{forwardRef as o2}from"react";import{css as a2,keyframes as r2}from"@emotion/react";import po from"@emotion/styled";import{keyframes as e2}from"@emotion/react";var f0={easeInOut:"ease-in-out",easeInOutQuart:"cubic-bezier(0.770, 0.000, 0.175, 1.000)",easeOutCirc:"cubic-bezier(0.075, 0.820, 0.165, 1.000)",easeOutCubic:"cubic-bezier(0.215, 0.610, 0.355, 1.000)"},co=e2`
   0%    { opacity: 0; }
   100%  { opacity: 1; }
@@ -1936,10 +1936,9 @@ var ro=Object.defineProperty,j3=Object.defineProperties;var t2=Object.getOwnProp
   display: inline-flex;
   gap: var(--toast-gap);
   justify-content: space-between;
-  max-width: min(100%, 480px);
+  max-width: min(100%, var(--toast-size));
   min-height: 48px;
   min-width: 240px;
-  width: var(--toast-size);
   padding: calc(3 / 2 * var(--toast-indent)) calc(2 * var(--toast-indent));
   user-select: none;
 

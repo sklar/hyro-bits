@@ -1,4 +1,4 @@
-/** Components v4.3.1 */
+/** Components v4.4.0 */
 var zn=Object.create;var M0=Object.defineProperty,Tn=Object.defineProperties,En=Object.getOwnPropertyDescriptor,An=Object.getOwnPropertyDescriptors,Cn=Object.getOwnPropertyNames,N0=Object.getOwnPropertySymbols,Rn=Object.getPrototypeOf,ct=Object.prototype.hasOwnProperty,Fo=Object.prototype.propertyIsEnumerable;var Ko=(t,a,i)=>a in t?M0(t,a,{enumerable:!0,configurable:!0,writable:!0,value:i}):t[a]=i,r=(t,a)=>{for(var i in a||(a={}))ct.call(a,i)&&Ko(t,i,a[i]);if(N0)for(var i of N0(a))Fo.call(a,i)&&Ko(t,i,a[i]);return t},b=(t,a)=>Tn(t,An(a)),Yo=t=>M0(t,"__esModule",{value:!0});var u=(t,a)=>{var i={};for(var l in t)ct.call(t,l)&&a.indexOf(l)<0&&(i[l]=t[l]);if(t!=null&&N0)for(var l of N0(t))a.indexOf(l)<0&&Fo.call(t,l)&&(i[l]=t[l]);return i};var dt=(t,a)=>{for(var i in a)M0(t,i,{get:a[i],enumerable:!0})},qo=(t,a,i,l)=>{if(a&&typeof a=="object"||typeof a=="function")for(let s of Cn(a))!ct.call(t,s)&&(i||s!=="default")&&M0(t,s,{get:()=>a[s],enumerable:!(l=En(a,s))||l.enumerable});return t},o=(t,a)=>qo(Yo(M0(t!=null?zn(Rn(t)):{},"default",!a&&t&&t.__esModule?{get:()=>t.default,enumerable:!0}:{value:t,enumerable:!0})),t),Sn=(t=>(a,i)=>t&&t.get(a)||(i=qo(Yo({}),a,1),t&&t.set(a,i),i))(typeof WeakMap!="undefined"?new WeakMap:0);var y4={};dt(y4,{AsyncSelect:()=>nn,Button:()=>$,ClickOutsideGuard:()=>kl,Dialog:()=>Ol,EMOTION_DISABLE_SSR:()=>Mo,Field:()=>r5,FieldLabel:()=>Ql,FieldMessage:()=>o5,FieldText:()=>jl,Flex:()=>G,Grid:()=>Pl,Icon:()=>M,Idle:()=>F,Input:()=>Ao,Menu:()=>Io,MenuDivider:()=>E5,MenuGroup:()=>A5,MenuGroupTitle:()=>C5,MenuItem:()=>Bo,MenuTitle:()=>S5,Nav:()=>_5,NavContainer:()=>fn,NavItem:()=>G5,NumberInput:()=>f5,NumberInputStepperComponents:()=>s2,Order:()=>bo,Pagination:()=>F5,Range:()=>z5,ReactSelectComponents:()=>ln.components,Select:()=>on,Slider:()=>L5,Spacer:()=>Vl,Status:()=>Go,Switch:()=>k5,Table:()=>e4,Tbody:()=>j5,Td:()=>q5,Text:()=>D,Textarea:()=>B5,Th:()=>U5,Thead:()=>Q5,Toast:()=>r4,Tooltip:()=>m4,Tr:()=>J5,TrContainer:()=>bn,base:()=>C,button:()=>Y,colors:()=>n,h1:()=>mt,h2:()=>ft,h3:()=>D0,h4:()=>Wo,h5:()=>vt,input:()=>ht,label:()=>gt,paragraph:()=>K,splitPropsByKeys:()=>k});var yo=require("@emotion/react"),q3=require("case-anything"),X3=require("react");var o0=o(require("react")),O0=require("@emotion/react"),pt=o(require("@emotion/styled"));var Xo=require("@emotion/react"),z0={easeInOut:"ease-in-out",easeInOutQuart:"cubic-bezier(0.770, 0.000, 0.175, 1.000)",easeOutCirc:"cubic-bezier(0.075, 0.820, 0.165, 1.000)",easeOutCubic:"cubic-bezier(0.215, 0.610, 0.355, 1.000)"},Uo=Xo.keyframes`
   0%    { opacity: 0; }
   100%  { opacity: 1; }
@@ -1936,10 +1936,9 @@ var zn=Object.create;var M0=Object.defineProperty,Tn=Object.defineProperties,En=
   display: inline-flex;
   gap: var(--toast-gap);
   justify-content: space-between;
-  max-width: min(100%, 480px);
+  max-width: min(100%, var(--toast-size));
   min-height: 48px;
   min-width: 240px;
-  width: var(--toast-size);
   padding: calc(3 / 2 * var(--toast-indent)) calc(2 * var(--toast-indent));
   user-select: none;
 
