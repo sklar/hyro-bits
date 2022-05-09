@@ -1,4 +1,5 @@
 export { default as ArrowFromRight } from './ArrowFromRight'
+export { default as ArrowLeft } from './ArrowLeft'
 export { default as AxisX } from './AxisX'
 export { default as AxisY } from './AxisY'
 export { default as Background } from './Background'

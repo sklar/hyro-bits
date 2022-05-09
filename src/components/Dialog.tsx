@@ -142,7 +142,7 @@ export const Dialog: React.FC<DialogProps> = ({
             {footer}
           </Flex>
         )}
-        {rejectable && <Control data-dialog="control" onClick={onClose} />}
+        {rejectable && <Control data-dialog="control" data-qa="button-close" onClick={onClose} />}
       </DialogContainer>
     </DialogWrapper>
   );

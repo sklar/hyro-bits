@@ -1,4 +1,5 @@
 import { css, SerializedStyles } from '@emotion/react';
+import { adjustHue, darken, desaturate, lighten } from 'color2k';
 
 import { button as typography, colors } from '../theme';
 import { Size, Variant } from '../utils/constants';
@@ -28,6 +29,7 @@ const base = css`
   box-shadow: 0 0 0 3px var(--button-box-shadow);
   color: var(--button-color);
   display: inline-flex;
+  flex-shrink: 0;
   gap: var(--button-gap);
   height: var(--button-size);
   justify-content: center;
@@ -135,6 +137,10 @@ sizes[Size.LARGE] = css`
 
 export const variants: Variants = {};
 
+/**
+ * TODO: Themed mutations are not designed.
+ * 🗣️ We can forget the `sythetic` (i.e. [data-synthetic]) for themed mutations.
+ */
 variants[Variant.PRIMARY] = css`
   --button-background-color: ${colors.ELEMENT_PRIMARY};
   --button-border-color: ${colors.ELEMENT_PRIMARY};
@@ -149,19 +155,25 @@ variants[Variant.PRIMARY] = css`
     --button-border-color: ${colors.ELEMENT_ACTIVE};
   }
 
-  /* TODO: Themed states are not designed */
   &[data-theme='danger'] {
-    &:not(:disabled, [data-disabled]),
-    &[data-busy] {
-      --button-background-color: ${colors.DANGER};
-      --button-border-color: ${colors.DANGER};
+    --button-background-color: ${colors.DANGER};
+    --button-border-color: ${colors.DANGER};
+
+    &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]):not(:disabled, [data-busy], [data-disabled]) {
+      --_color: ${darken(colors.DANGER, 0.16)};
+      --button-background-color: var(--_color);
+      --button-border-color: var(--_color);
     }
   }
+
   &[data-theme='success'] {
-    &:not(:disabled, [data-disabled]),
-    &[data-busy] {
-      --button-background-color: ${colors.SUCCESS};
-      --button-border-color: ${colors.SUCCESS};
+    --button-background-color: ${colors.SUCCESS};
+    --button-border-color: ${colors.SUCCESS};
+
+    &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]):not(:disabled, [data-busy], [data-disabled]) {
+      --_color: ${darken(colors.SUCCESS, 0.02)};
+      --button-background-color: var(--_color);
+      --button-border-color: var(--_color);
     }
   }
 `;
@@ -182,6 +194,36 @@ variants[Variant.SECONDARY] = css`
   }
   &:is(:disabled, [data-disabled]):not([data-busy]) {
     --button-color: ${colors.WHITE};
+  }
+
+  &[data-theme='danger'] {
+    --_color: ${lighten(desaturate(adjustHue(colors.DANGER, 1), 0.1), 0.34)};
+
+    --button-background-color: var(--_color);
+    --button-border-color: var(--_color);
+
+    &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]):not(:disabled, [data-busy], [data-disabled]) {
+      --_color: ${lighten(desaturate(adjustHue(colors.DANGER, 2), 0.2), 0.3)};
+
+      --button-background-color: var(--_color);
+      --button-border-color: var(--_color);
+      --button-color: ${darken(desaturate(colors.DANGER, 0.4), 0.1)};
+    }
+  }
+
+  &[data-theme='success'] {
+    --_color: ${lighten(desaturate(adjustHue(colors.SUCCESS, 1), 0.6), 0.5)};
+
+    --button-background-color: var(--_color);
+    --button-border-color: var(--_color);
+
+    &:is(:active, :focus, :hover, [data-active], [data-hover], [data-pressed]):not(:disabled, [data-busy], [data-disabled]) {
+      --_color: ${lighten(desaturate(adjustHue(colors.SUCCESS, 2), 0.4), 0.4)};
+
+      --button-background-color: var(--_color);
+      --button-border-color: var(--_color);
+      --button-color: ${darken(desaturate(colors.SUCCESS, 0.4), 0.1)};
+    }
   }
 `;
 

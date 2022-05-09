@@ -642,7 +642,7 @@ declare function SvgArrowForward(): JSX.Element;
 
 declare function SvgArrowFromRight$1(): JSX.Element;
 
-declare function SvgArrowLeft(): JSX.Element;
+declare function SvgArrowLeft$1(): JSX.Element;
 
 declare function SvgArrowReplay(): JSX.Element;
 
@@ -691,6 +691,10 @@ declare function SvgEye$1(): JSX.Element;
 declare function SvgFilter$1(): JSX.Element;
 
 declare function SvgFlash$1(): JSX.Element;
+
+declare function SvgFolderOpen$1(): JSX.Element;
+
+declare function SvgFolder$1(): JSX.Element;
 
 declare function SvgForward(): JSX.Element;
 
@@ -843,7 +847,7 @@ declare namespace BOLD {
     SvgArrowBackward as ArrowBackward,
     SvgArrowForward as ArrowForward,
     SvgArrowFromRight$1 as ArrowFromRight,
-    SvgArrowLeft as ArrowLeft,
+    SvgArrowLeft$1 as ArrowLeft,
     SvgArrowReplay as ArrowReplay,
     SvgBackground$1 as Background,
     SvgBackspace as Backspace,
@@ -868,6 +872,8 @@ declare namespace BOLD {
     SvgEye$1 as Eye,
     SvgFilter$1 as Filter,
     SvgFlash$1 as Flash,
+    SvgFolderOpen$1 as FolderOpen,
+    SvgFolder$1 as Folder,
     SvgForward as Forward,
     SvgGamepad$1 as Gamepad,
     SvgGlobeCursor$1 as GlobeCursor,
@@ -940,6 +946,8 @@ declare namespace BOLD {
 }
 
 declare function SvgArrowFromRight(): JSX.Element;
+
+declare function SvgArrowLeft(): JSX.Element;
 
 declare function SvgAxisX(): JSX.Element;
 
@@ -1038,6 +1046,7 @@ declare function SvgWidth(): JSX.Element;
 declare namespace MINI {
   export {
     SvgArrowFromRight as ArrowFromRight,
+    SvgArrowLeft as ArrowLeft,
     SvgAxisX as AxisX,
     SvgAxisY as AxisY,
     SvgBackground as Background,
