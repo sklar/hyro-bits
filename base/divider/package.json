@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/divider/index.js",
+  "module": "../../dist/esm/components/divider/index.js",
+  "types": "../../dist/components/divider/index.d.ts"
+}

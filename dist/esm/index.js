@@ -1,4 +1,4 @@
-/** Components v4.5.0 */
+/** Components v5.0.0 */
 var ba=Object.defineProperty,i6=Object.defineProperties;var s6=Object.getOwnPropertyDescriptors;var g0=Object.getOwnPropertySymbols;var ya=Object.prototype.hasOwnProperty,za=Object.prototype.propertyIsEnumerable;var Ma=(o,r,l)=>r in o?ba(o,r,{enumerable:!0,configurable:!0,writable:!0,value:l}):o[r]=l,i=(o,r)=>{for(var l in r||(r={}))ya.call(r,l)&&Ma(o,l,r[l]);if(g0)for(var l of g0(r))za.call(r,l)&&Ma(o,l,r[l]);return o},b=(o,r)=>i6(o,s6(r));var p=(o,r)=>{var l={};for(var n in o)ya.call(o,n)&&r.indexOf(n)<0&&(l[n]=o[n]);if(o!=null&&g0)for(var n of g0(o))r.indexOf(n)<0&&za.call(o,n)&&(l[n]=o[n]);return l};var Aa=(o,r)=>{for(var l in r)ba(o,l,{get:r[l],enumerable:!0})};import{jsx as Pa}from"@emotion/react";import{kebabCase as x6}from"case-anything";import{forwardRef as w6}from"react";import{css as p6}from"@emotion/react";import Sa from"@emotion/styled";import x0,{forwardRef as f6}from"react";import{css as Ra,keyframes as d6}from"@emotion/react";import{css as Ta}from"@emotion/react";import{keyframes as c6}from"@emotion/react";var F={easeInOut:"ease-in-out",easeInOutQuart:"cubic-bezier(0.770, 0.000, 0.175, 1.000)",easeOutCirc:"cubic-bezier(0.075, 0.820, 0.165, 1.000)",easeOutCubic:"cubic-bezier(0.215, 0.610, 0.355, 1.000)"},h1=c6`
   0%    { opacity: 0; }
   100%  { opacity: 1; }
@@ -449,7 +449,7 @@ var ba=Object.defineProperty,i6=Object.defineProperties;var s6=Object.getOwnProp
     --overlay-alpha: 0%;
   }
   100% {
-    --overlay-alpha: 60%;
+    --overlay-alpha: 50%;
   }
 `,d0=F4`
   @property --overlay-alpha {
@@ -458,7 +458,7 @@ var ba=Object.defineProperty,i6=Object.defineProperties;var s6=Object.getOwnProp
     syntax: '<percentage>';
   }
 
-  --overlay-color: 0 0% 0%;
+  --overlay-color: 0deg 0% 0%;
   --overlay-duration: 0.6s;
   --overlay-easing: linear;
   --overlay-index: ;

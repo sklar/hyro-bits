@@ -1,5 +1,0 @@
-{
-  "main": "../../dist/components/spacer/index.js",
-  "module": "../../dist/esm/components/spacer/index.js",
-  "types": "../../dist/components/spacer/index.d.ts"
-}

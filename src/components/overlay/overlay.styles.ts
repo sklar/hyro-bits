@@ -5,7 +5,7 @@ export const overlayAnimation = keyframes`
     --overlay-alpha: 0%;
   }
   100% {
-    --overlay-alpha: 60%;
+    --overlay-alpha: 50%;
   }
 `;
 
@@ -16,7 +16,7 @@ export const overlay = css`
     syntax: '<percentage>';
   }
 
-  --overlay-color: 0 0% 0%;
+  --overlay-color: 0deg 0% 0%;
   --overlay-duration: 0.6s;
   --overlay-easing: linear;
   --overlay-index: ;

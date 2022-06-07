@@ -1,7 +1,7 @@
 export { B as Button, a as ButtonProps } from './button-bd8fafa7';
 export { C as ClickOutsideGuard, a as ClickOutsideGuardProps } from './click-outside-guard-44f82d45';
 export { D as Dialog, a as DialogProps } from './dialog-472ae893';
-import React__default, { HTMLAttributes, ElementType } from 'react';
+export { D as Divider, a as DividerProps } from './divider-5599b0fb';
 export { F as Field, b as FieldLabel, c as FieldMessage, d as FieldMessageProps, a as FieldProps, e as FieldText } from './field-text-850f5b9c';
 export { a as Flex, F as FlexProps } from './flex-bfbe6ff8';
 export { G as Grid, a as GridProps } from './grid-0227ff8d';
@@ -20,30 +20,8 @@ export { T as Tooltip, a as TooltipProps } from './tooltip-af600a3b';
 import * as _emotion_react from '@emotion/react';
 export { b as AlignmentFlexboxType, A as AlignmentPrimaryType, c as AlignmentSecondaryType, a as AlignmentTertiaryType, D as DirectionType, I as InternalHTMLAttributes, P as PartialBy, S as SizeType, T as ThemeType, d as Values, V as VariantType } from './index-2e22dac1';
 import { Keyframes } from '@emotion/serialize';
+import 'react';
 import '@emotion/styled';
-
-interface DividerProps extends HTMLAttributes<HTMLDivElement> {
-    /**
-     * Render as HTML element
-     */
-    as?: ElementType<any>;
-    /**
-     * Direction
-     */
-    direction?: 'horizontal' | 'vertical';
-    /**
-     * Size
-     */
-    size?: string;
-    /**
-     * Space
-     */
-    space?: string;
-}
-/**
- * Divider.
- */
-declare const Divider: React__default.ForwardRefExoticComponent<DividerProps & React__default.RefAttributes<HTMLDivElement>>;
 
 /**
  * Easing.
@@ -65,4 +43,4 @@ declare const truncate: _emotion_react.SerializedStyles;
 
 declare const EMOTION_DISABLE_SSR = "/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */";
 
-export { Divider, DividerProps, EASING, EMOTION_DISABLE_SSR, clamp, fadeInAnimation, truncate };
+export { EASING, EMOTION_DISABLE_SSR, clamp, fadeInAnimation, truncate };
