@@ -1,0 +1,215 @@
+import { Meta } from '@storybook/addon-docs';
+
+import { Flex } from '../components/flex';
+import { Color, Divider } from '../stories';
+import { colors } from './colors';
+
+<Meta title="Colors" />
+
+
+# Colors
+
+## Brand
+
+<Flex block gap="24px" wrap style={{ '--size': '12em', margin: '0.25em 0 1em'}}>
+  <Color
+    title="Primary"
+    subtitle="Ribbon Blue"
+    token="PRIMARY"
+    value={colors.PRIMARY}
+  />
+  <Color
+    title="Secondary"
+    subtitle="Hawkes Blue"
+    token="SECONDARY"
+    value={colors.SECONDARY}
+  />
+  <Color
+    title="Tertiary"
+    subtitle="Cadet Gray"
+    token="TERTIARY"
+    value={colors.TERTIARY}
+  />
+
+  <Color
+    title="Tertiary"
+    subtitle="Waterloo Gray"
+    token="DARK_TERTIARY"
+    value={colors.DARK_TERTIARY}
+    theme="dark"
+  />
+</Flex>
+
+
+## Accent
+
+<Flex gap="24px" wrap style={{ '--size': '12em', margin: '0.25em 0 1em'}}>
+  <Color
+    title="Notice"
+    token="NOTICE"
+    subtitle="Ribbon Blue"
+    value={colors.NOTICE}
+  />
+  <Color
+    title="Success"
+    token="SUCCESS"
+    subtitle="Caribbean Green"
+    value={colors.SUCCESS}
+  />
+  <Color
+    title="Warning"
+    token="WARNING"
+    subtitle="Amber Orange"
+    value={colors.WARNING}
+  />
+  <Color
+    title="Danger"
+    token="DANGER"
+    subtitle="Radical Red"
+    value={colors.DANGER}
+  />
+</Flex>
+
+
+## Tokens
+
+<Flex gap="24px" wrap style={{ '--size': '12em', margin: '0.25em 0 1em' }}>
+  <Color
+    title="Background / Primary"
+    token="BACKGROUND_PRIMARY"
+    subtitle="White"
+    value={colors.BACKGROUND_PRIMARY}
+  />
+  <Color
+    title="Background / Secondary"
+    token="BACKGROUND_SECONDARY"
+    subtitle="Porcelain Gray"
+    value={colors.BACKGROUND_SECONDARY}
+  />
+
+  <Color
+    title="Background / Primary"
+    token="DARK_BACKGROUND_PRIMARY"
+    subtitle="Vulcan Blue"
+    value={colors.DARK_BACKGROUND_PRIMARY}
+    theme="dark"
+  />
+  <Color
+    title="Background / Secondary"
+    token="DARK_BACKGROUND_SECONDARY"
+    subtitle="Ebony Blue"
+    value={colors.DARK_BACKGROUND_SECONDARY}
+    theme="dark"
+  />
+
+  <Divider />
+
+  <Color
+    title="Element / Primary"
+    token="ELEMENT_PRIMARY"
+    subtitle="Ribbon Blue"
+    value={colors.ELEMENT_PRIMARY}
+  />
+  <Color
+    title="Element / Secondary"
+    token="ELEMENT_SECONDARY"
+    subtitle="Hawkes Blue"
+    value={colors.ELEMENT_SECONDARY}
+  />
+  <Color
+    title="Element / Tertiary"
+    token="ELEMENT_TERTIARY"
+    subtitle="Cadet Gray"
+    value={colors.ELEMENT_TERTIARY}
+  />
+
+  <Color
+    title="Element / Tertiary"
+    token="DARK_ELEMENT_TERTIARY"
+    subtitle="Waterloo Gray"
+    value={colors.DARK_ELEMENT_TERTIARY}
+    theme="dark"
+  />
+
+  <Divider />
+
+  <Color
+    title="Element / Active"
+    token="ELEMENT_ACTIVE"
+    subtitle="Science Blue"
+    value={colors.ELEMENT_ACTIVE}
+  />
+  <Color
+    title="Element / Disabled"
+    token="ELEMENT_DISABLED"
+    subtitle="Geyser Gray"
+    value={colors.ELEMENT_DISABLED}
+  />
+  <Color
+    title="Element / Focus"
+    token="ELEMENT_FOCUS"
+    subtitle="Dodger Blue"
+    value={colors.ELEMENT_FOCUS}
+  />
+
+  <Divider />
+
+  <Color
+    title="Element / Active"
+    token="DARK_ELEMENT_ACTIVE"
+    subtitle="Oxford Blue"
+    value={colors.DARK_ELEMENT_ACTIVE}
+    theme="dark"
+  />
+  <Color
+    title="Element / Disabled"
+    token="DARK_ELEMENT_DISABLED"
+    subtitle="Trout Gray"
+    value={colors.DARK_ELEMENT_DISABLED}
+    theme="dark"
+  />
+  <Color
+    title="Element / Focus"
+    token="DARK_ELEMENT_FOCUS"
+    subtitle="Denim Blue"
+    value={colors.DARK_ELEMENT_FOCUS}
+    theme="dark"
+  />
+
+  <Divider />
+
+  <Color
+    title="Stroke"
+    token="STROKE"
+    subtitle="Botticelli Gray"
+    value={colors.STROKE}
+  />
+  <Color
+    title="Stroke"
+    token="DARK_STROKE"
+    subtitle="Fiord Gray"
+    value={colors.DARK_STROKE}
+    theme="dark"
+  />
+
+  <Divider />
+
+  <Color
+    title="Text / Primary"
+    token="TEXT_PRIMARY"
+    subtitle="Haiti Blue"
+    value={colors.TEXT_PRIMARY}
+  />
+  <Color
+    title="Text / Secondary"
+    token="TEXT_SECONDARY"
+    subtitle="Hawkes Blue"
+    value={colors.TEXT_SECONDARY}
+  />
+  <Color
+    title="Text / Tertiary"
+    token="TEXT_TERTIARY"
+    subtitle="Cadet Gray"
+    value={colors.TEXT_TERTIARY}
+  />
+</Flex>

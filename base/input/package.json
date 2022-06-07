@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/input/index.js",
+  "module": "../../dist/esm/components/input/index.js",
+  "types": "../../dist/components/input/index.d.ts"
+}

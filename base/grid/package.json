@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/grid/index.js",
+  "module": "../../dist/esm/components/grid/index.js",
+  "types": "../../dist/components/grid/index.d.ts"
+}

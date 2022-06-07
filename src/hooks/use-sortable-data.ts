@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 
-import { Direction } from '../utils/constants';
-import { DirectionType } from '../utils/types';
+import { Direction } from '../constants';
+import { DirectionType } from '../types';
 
 const DIRECTIONS = Object.values(Direction);
 

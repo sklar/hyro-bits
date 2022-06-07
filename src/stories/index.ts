@@ -1,6 +1,8 @@
 import { css } from '@emotion/react';
 import { Args } from '@storybook/react';
-import { base, colors, paragraph } from '../theme';
+
+import { colors } from '../colors';
+import { base, paragraph } from '../typography';
 
 export const global = css`
   body {
@@ -22,7 +24,7 @@ export const mapArgTypes = (items: string[], args: Args) => {
   }, {});
 };
 
-export * from './Color';
-export * from './Container';
-export * from './Divider';
-export * from './Legend';
+export * from './color';
+export * from './container';
+export * from './divider';
+export * from './legend';

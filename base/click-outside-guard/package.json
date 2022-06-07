@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/click-outside-guard/index.js",
+  "module": "../../dist/esm/components/click-outside-guard/index.js",
+  "types": "../../dist/components/click-outside-guard/index.d.ts"
+}

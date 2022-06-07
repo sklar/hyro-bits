@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/switch/index.js",
+  "module": "../../dist/esm/components/switch/index.js",
+  "types": "../../dist/components/switch/index.d.ts"
+}

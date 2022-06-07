@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/idle/index.js",
+  "module": "../../dist/esm/components/idle/index.js",
+  "types": "../../dist/components/idle/index.d.ts"
+}

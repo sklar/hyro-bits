@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/range/index.js",
+  "module": "../../dist/esm/components/range/index.js",
+  "types": "../../dist/components/range/index.d.ts"
+}

@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/slider/index.js",
+  "module": "../../dist/esm/components/slider/index.js",
+  "types": "../../dist/components/slider/index.d.ts"
+}

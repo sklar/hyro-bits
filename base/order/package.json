@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/order/index.js",
+  "module": "../../dist/esm/components/order/index.js",
+  "types": "../../dist/components/order/index.d.ts"
+}

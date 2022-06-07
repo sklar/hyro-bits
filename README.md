@@ -13,14 +13,61 @@
 yarn && yarn start
 ```
 
-
 ## Usage
 
-### ⚡ Install library
+### ⚡ Install
 
 ```
 yarn add purplenl/purplex-components
 ```
+
+## ✨ Import
+
+There're 3 entry points.
+Every component has its own entry point, but not every component is available on the general entry point.
+
+```typescript
+// General
+import { Button, ButtonProps } from "purplex-components";
+
+// Component related w/ related types, hooks and styles
+import { ComponentName } from "purplex-components/base/<component-name>";
+import { Button, button, sizes } from "purplex-components/base/button";
+
+// Theme w/ color and typography tokens (not a theme provider)
+import { colors, h1 } from "purplex-components";
+```
+### 🍱 Components
+
+| Components | General entry | Component entry |
+| ---------- | :-----------: | :-------------: |
+| [Button](src/components/button/) | ✅ | ✅ |
+| [ClickOtsideGuard](src/components/click-outside-guard/) | ✅ | ✅ |
+| [Dialog](src/components/dialog/) | ✅ | ✅ |
+| [Divider](src/components/divider/) | ✅ | ✅ |
+| [Field](src/components/field/) | ✅ | ✅ |
+| [Flex](src/components/flex/) | ✅ | ✅ |
+| [Grid](src/components/grid/) | ✅ | ✅ |
+| [Icon](src/components/icon/) | ✅ | ✅ |
+| [Idle](src/components/idle/) | ✅ | ✅ |
+| [Input](src/components/input/) | ✅ | ✅ |
+| [Menu](src/components/menu/) | ✅ | ✅ |
+| [Navigation](src/components/navigation/) | ✅ | ✅ |
+| [NumberInput](src/components/number-input/) | ⛔ | ✅ |
+| [Order](src/components/order/) | ⛔ | ✅ |
+| [Overlay](src/components/overlay/) | ✅ | ✅ |
+| [Pagination](src/components/pagination/) | ⛔ | ✅ |
+| [Range](src/components/range/) | ⛔ | ✅ |
+| [Select](src/components/select/) | ⛔ | ✅ |
+| [Slider](src/components/slider/) | ⛔ | ✅ |
+| [Status](src/components/status/) | ✅ | ✅ |
+| [Switch](src/components/switch/) | ✅ | ✅ |
+| [Table](src/components/table/) | ⛔ | ✅ |
+| [Text](src/components/text/) | ✅ | ✅ |
+| [Textarea](src/components/textarea/) | ✅ | ✅ |
+| [Toast](src/components/toast/) | ✅ | ✅ |
+| [Tooltip](src/components/tooltip/) | ✅ | ✅ |
+
 
 ### 🚀 Start Storybook
 
@@ -71,7 +118,7 @@ Bundle package into `dist` folder with [tsup](https://tsup.egoist.sh/).
 yarn compile
 ```
 
-### 🍱 Update and Consume library
+### 🏄‍♂️ Update and Consume library
 
 #### `purplex-components`
 

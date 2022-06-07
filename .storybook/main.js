@@ -9,8 +9,9 @@ module.exports = {
 
   stories: [
     '../src/*.stories.mdx',
+    '../src/colors/*.stories.@(mdx|ts|tsx)',
+    '../src/typography/*.stories.@(mdx|ts|tsx)',
     '../src/components/**/*.stories.@(mdx|ts|tsx)',
-    '../src/theme/**/*.stories.@(mdx|ts|tsx)',
   ],
 
   webpackFinal: async (config, { configType }) => {

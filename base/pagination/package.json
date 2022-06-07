@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/pagination/index.js",
+  "module": "../../dist/esm/components/pagination/index.js",
+  "types": "../../dist/components/pagination/index.d.ts"
+}

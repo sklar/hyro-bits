@@ -1,0 +1,12 @@
+import * as React from 'react';
+
+const SvgPlayCircle = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+    <path
+      fill="currentColor"
+      d="M8 2a6 6 0 1 0 6 6 6.006 6.006 0 0 0-6-6zm2.414 6.447-3.69 1.845A.5.5 0 0 1 6 9.845V6.154a.5.5 0 0 1 .723-.447l3.692 1.843a.5.5 0 0 1-.001.897z"
+    />
+  </svg>
+);
+
+export default SvgPlayCircle;

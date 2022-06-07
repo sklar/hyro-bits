@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/icon/index.js",
+  "module": "../../dist/esm/components/icon/index.js",
+  "types": "../../dist/components/icon/index.d.ts"
+}

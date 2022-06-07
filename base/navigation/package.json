@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/navigation/index.js",
+  "module": "../../dist/esm/components/navigation/index.js",
+  "types": "../../dist/components/navigation/index.d.ts"
+}

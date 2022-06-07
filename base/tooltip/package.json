@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/tooltip/index.js",
+  "module": "../../dist/esm/components/tooltip/index.js",
+  "types": "../../dist/components/tooltip/index.d.ts"
+}

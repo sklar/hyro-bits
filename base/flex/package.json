@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/flex/index.js",
+  "module": "../../dist/esm/components/flex/index.js",
+  "types": "../../dist/components/flex/index.d.ts"
+}

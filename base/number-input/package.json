@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/number-input/index.js",
+  "module": "../../dist/esm/components/number-input/index.js",
+  "types": "../../dist/components/number-input/index.d.ts"
+}

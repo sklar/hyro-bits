@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/overlay/index.js",
+  "module": "../../dist/esm/components/overlay/index.js",
+  "types": "../../dist/components/overlay/index.d.ts"
+}

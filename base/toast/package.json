@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/toast/index.js",
+  "module": "../../dist/esm/components/toast/index.js",
+  "types": "../../dist/components/toast/index.d.ts"
+}

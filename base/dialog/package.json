@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/dialog/index.js",
+  "module": "../../dist/esm/components/dialog/index.js",
+  "types": "../../dist/components/dialog/index.d.ts"
+}

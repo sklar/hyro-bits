@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/field/index.js",
+  "module": "../../dist/esm/components/field/index.js",
+  "types": "../../dist/components/field/index.d.ts"
+}
