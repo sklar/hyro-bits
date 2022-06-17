@@ -125,7 +125,11 @@ declare const SvgMapMarkerInfo: () => JSX.Element;
 
 declare const SvgMapMarkerShine: () => JSX.Element;
 
+declare const SvgMaximize: () => JSX.Element;
+
 declare const SvgMicrophone: () => JSX.Element;
+
+declare const SvgMinimize: () => JSX.Element;
 
 declare const SvgMinusSquare$1: () => JSX.Element;
 
@@ -164,6 +168,8 @@ declare const SvgPlusSquare$1: () => JSX.Element;
 declare const SvgPreview: () => JSX.Element;
 
 declare const SvgProjector: () => JSX.Element;
+
+declare const SvgRefresh: () => JSX.Element;
 
 declare const SvgSave: () => JSX.Element;
 
@@ -281,7 +287,9 @@ declare namespace BOLD {
     SvgManStar as ManStar,
     SvgMapMarkerInfo as MapMarkerInfo,
     SvgMapMarkerShine as MapMarkerShine,
+    SvgMaximize as Maximize,
     SvgMicrophone as Microphone,
+    SvgMinimize as Minimize,
     SvgMinusSquare$1 as MinusSquare,
     SvgMobileWifi as MobileWifi,
     SvgMusicPause$1 as MusicPause,
@@ -301,6 +309,7 @@ declare namespace BOLD {
     SvgPlusSquare$1 as PlusSquare,
     SvgPreview as Preview,
     SvgProjector as Projector,
+    SvgRefresh as Refresh,
     SvgSave as Save,
     SvgSearch$1 as Search,
     SvgShare as Share,
