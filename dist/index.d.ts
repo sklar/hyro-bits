@@ -678,7 +678,7 @@ declare function SvgDoorOpen(): JSX.Element;
 
 declare function SvgDrop(): JSX.Element;
 
-declare function SvgEllipsisHorizontal(): JSX.Element;
+declare function SvgEllipsisHorizontal$1(): JSX.Element;
 
 declare function SvgEllipsisVertical$1(): JSX.Element;
 
@@ -740,7 +740,11 @@ declare function SvgMapMarkerInfo(): JSX.Element;
 
 declare function SvgMapMarkerShine(): JSX.Element;
 
+declare function SvgMaximize(): JSX.Element;
+
 declare function SvgMicrophone(): JSX.Element;
+
+declare function SvgMinimize(): JSX.Element;
 
 declare function SvgMinusSquare$1(): JSX.Element;
 
@@ -779,6 +783,8 @@ declare function SvgPlusSquare$1(): JSX.Element;
 declare function SvgPreview(): JSX.Element;
 
 declare function SvgProjector(): JSX.Element;
+
+declare function SvgRefresh(): JSX.Element;
 
 declare function SvgSave(): JSX.Element;
 
@@ -865,7 +871,7 @@ declare namespace BOLD {
     SvgDocument as Document,
     SvgDoorOpen as DoorOpen,
     SvgDrop as Drop,
-    SvgEllipsisHorizontal as EllipsisHorizontal,
+    SvgEllipsisHorizontal$1 as EllipsisHorizontal,
     SvgEllipsisVertical$1 as EllipsisVertical,
     SvgExclamationTriangle as ExclamationTriangle,
     SvgEyeSlash$1 as EyeSlash,
@@ -896,7 +902,9 @@ declare namespace BOLD {
     SvgManStar as ManStar,
     SvgMapMarkerInfo as MapMarkerInfo,
     SvgMapMarkerShine as MapMarkerShine,
+    SvgMaximize as Maximize,
     SvgMicrophone as Microphone,
+    SvgMinimize as Minimize,
     SvgMinusSquare$1 as MinusSquare,
     SvgMobileWifi as MobileWifi,
     SvgMusicPause$1 as MusicPause,
@@ -916,6 +924,7 @@ declare namespace BOLD {
     SvgPlusSquare$1 as PlusSquare,
     SvgPreview as Preview,
     SvgProjector as Projector,
+    SvgRefresh as Refresh,
     SvgSave as Save,
     SvgSearch$1 as Search,
     SvgShare as Share,
@@ -962,6 +971,8 @@ declare function SvgChevronRight(): JSX.Element;
 declare function SvgClick(): JSX.Element;
 
 declare function SvgCog(): JSX.Element;
+
+declare function SvgEllipsisHorizontal(): JSX.Element;
 
 declare function SvgEllipsisVertical(): JSX.Element;
 
@@ -1054,6 +1065,7 @@ declare namespace MINI {
     SvgChevronRight as ChevronRight,
     SvgClick as Click,
     SvgCog as Cog,
+    SvgEllipsisHorizontal as EllipsisHorizontal,
     SvgEllipsisVertical as EllipsisVertical,
     SvgEyeSlash as EyeSlash,
     SvgEye as Eye,
