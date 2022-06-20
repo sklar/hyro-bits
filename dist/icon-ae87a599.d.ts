@@ -63,7 +63,7 @@ declare const SvgDoorOpen: () => JSX.Element;
 
 declare const SvgDrop: () => JSX.Element;
 
-declare const SvgEllipsisHorizontal: () => JSX.Element;
+declare const SvgEllipsisHorizontal$1: () => JSX.Element;
 
 declare const SvgEllipsisVertical$1: () => JSX.Element;
 
@@ -125,11 +125,11 @@ declare const SvgMapMarkerInfo: () => JSX.Element;
 
 declare const SvgMapMarkerShine: () => JSX.Element;
 
-declare const SvgMaximize$1: () => JSX.Element;
+declare const SvgMaximize: () => JSX.Element;
 
 declare const SvgMicrophone: () => JSX.Element;
 
-declare const SvgMinimize$1: () => JSX.Element;
+declare const SvgMinimize: () => JSX.Element;
 
 declare const SvgMinusSquare$1: () => JSX.Element;
 
@@ -169,7 +169,7 @@ declare const SvgPreview: () => JSX.Element;
 
 declare const SvgProjector: () => JSX.Element;
 
-declare const SvgRefresh$1: () => JSX.Element;
+declare const SvgRefresh: () => JSX.Element;
 
 declare const SvgSave: () => JSX.Element;
 
@@ -256,7 +256,7 @@ declare namespace BOLD {
     SvgDocument as Document,
     SvgDoorOpen as DoorOpen,
     SvgDrop as Drop,
-    SvgEllipsisHorizontal as EllipsisHorizontal,
+    SvgEllipsisHorizontal$1 as EllipsisHorizontal,
     SvgEllipsisVertical$1 as EllipsisVertical,
     SvgExclamationTriangle as ExclamationTriangle,
     SvgEyeSlash$1 as EyeSlash,
@@ -287,9 +287,9 @@ declare namespace BOLD {
     SvgManStar as ManStar,
     SvgMapMarkerInfo as MapMarkerInfo,
     SvgMapMarkerShine as MapMarkerShine,
-    SvgMaximize$1 as Maximize,
+    SvgMaximize as Maximize,
     SvgMicrophone as Microphone,
-    SvgMinimize$1 as Minimize,
+    SvgMinimize as Minimize,
     SvgMinusSquare$1 as MinusSquare,
     SvgMobileWifi as MobileWifi,
     SvgMusicPause$1 as MusicPause,
@@ -309,7 +309,7 @@ declare namespace BOLD {
     SvgPlusSquare$1 as PlusSquare,
     SvgPreview as Preview,
     SvgProjector as Projector,
-    SvgRefresh$1 as Refresh,
+    SvgRefresh as Refresh,
     SvgSave as Save,
     SvgSearch$1 as Search,
     SvgShare as Share,
@@ -357,6 +357,8 @@ declare const SvgClick: () => JSX.Element;
 
 declare const SvgCog: () => JSX.Element;
 
+declare const SvgEllipsisHorizontal: () => JSX.Element;
+
 declare const SvgEllipsisVertical: () => JSX.Element;
 
 declare const SvgEyeSlash: () => JSX.Element;
@@ -391,10 +393,6 @@ declare const SvgLockOpen: () => JSX.Element;
 
 declare const SvgLock: () => JSX.Element;
 
-declare const SvgMaximize: () => JSX.Element;
-
-declare const SvgMinimize: () => JSX.Element;
-
 declare const SvgMinusSquare: () => JSX.Element;
 
 declare const SvgMoon: () => JSX.Element;
@@ -418,8 +416,6 @@ declare const SvgPlusSquare: () => JSX.Element;
 declare const SvgPlus: () => JSX.Element;
 
 declare const SvgQuestionCircle: () => JSX.Element;
-
-declare const SvgRefresh: () => JSX.Element;
 
 declare const SvgSearch: () => JSX.Element;
 
@@ -454,6 +450,7 @@ declare namespace MINI {
     SvgChevronRight as ChevronRight,
     SvgClick as Click,
     SvgCog as Cog,
+    SvgEllipsisHorizontal as EllipsisHorizontal,
     SvgEllipsisVertical as EllipsisVertical,
     SvgEyeSlash as EyeSlash,
     SvgEye as Eye,
@@ -471,8 +468,6 @@ declare namespace MINI {
     SvgInfoCircle as InfoCircle,
     SvgLockOpen as LockOpen,
     SvgLock as Lock,
-    SvgMaximize as Maximize,
-    SvgMinimize as Minimize,
     SvgMinusSquare as MinusSquare,
     SvgMoon as Moon,
     SvgMusicPause as MusicPause,
@@ -485,7 +480,6 @@ declare namespace MINI {
     SvgPlusSquare as PlusSquare,
     SvgPlus as Plus,
     SvgQuestionCircle as QuestionCircle,
-    SvgRefresh as Refresh,
     SvgSearch as Search,
     SvgSort as Sort,
     SvgStopCircle as StopCircle,
