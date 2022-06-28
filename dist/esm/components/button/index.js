@@ -1,5 +1,5 @@
-/** Components v5.2.0 */
-var at=Object.defineProperty;var y=Object.getOwnPropertySymbols;var G=Object.prototype.hasOwnProperty,U=Object.prototype.propertyIsEnumerable;var V=(t,a,e)=>a in t?at(t,a,{enumerable:!0,configurable:!0,writable:!0,value:e}):t[a]=e,s=(t,a)=>{for(var e in a||(a={}))G.call(a,e)&&V(t,e,a[e]);if(y)for(var e of y(a))U.call(a,e)&&V(t,e,a[e]);return t};var R=(t,a)=>{var e={};for(var r in t)G.call(t,r)&&a.indexOf(r)<0&&(e[r]=t[r]);if(t!=null&&y)for(var r of y(t))a.indexOf(r)<0&&U.call(t,r)&&(e[r]=t[r]);return e};import{jsx as j}from"@emotion/react";import{kebabCase as Et}from"case-anything";import{forwardRef as ft}from"react";import{css as dt}from"@emotion/react";import q from"@emotion/styled";import v,{forwardRef as st}from"react";import{css as X,keyframes as it}from"@emotion/react";import{css as H}from"@emotion/react";import{keyframes as rt}from"@emotion/react";var D={easeInOut:"ease-in-out",easeInOutQuart:"cubic-bezier(0.770, 0.000, 0.175, 1.000)",easeOutCirc:"cubic-bezier(0.075, 0.820, 0.165, 1.000)",easeOutCubic:"cubic-bezier(0.215, 0.610, 0.355, 1.000)"},nt=rt`
+/** Components v5.3.0 */
+var at=Object.defineProperty;var y=Object.getOwnPropertySymbols;var G=Object.prototype.hasOwnProperty,U=Object.prototype.propertyIsEnumerable;var V=(t,a,e)=>a in t?at(t,a,{enumerable:!0,configurable:!0,writable:!0,value:e}):t[a]=e,s=(t,a)=>{for(var e in a||(a={}))G.call(a,e)&&V(t,e,a[e]);if(y)for(var e of y(a))U.call(a,e)&&V(t,e,a[e]);return t};var v=(t,a)=>{var e={};for(var r in t)G.call(t,r)&&a.indexOf(r)<0&&(e[r]=t[r]);if(t!=null&&y)for(var r of y(t))a.indexOf(r)<0&&U.call(t,r)&&(e[r]=t[r]);return e};import{jsx as j}from"@emotion/react";import{kebabCase as Et}from"case-anything";import{forwardRef as ft}from"react";import{css as dt}from"@emotion/react";import q from"@emotion/styled";import R,{forwardRef as st}from"react";import{css as X,keyframes as it}from"@emotion/react";import{css as H}from"@emotion/react";import{keyframes as rt}from"@emotion/react";var D={easeInOut:"ease-in-out",easeInOutQuart:"cubic-bezier(0.770, 0.000, 0.175, 1.000)",easeOutCirc:"cubic-bezier(0.075, 0.820, 0.165, 1.000)",easeOutCubic:"cubic-bezier(0.215, 0.610, 0.355, 1.000)"},nt=rt`
   0%    { opacity: 0; }
   100%  { opacity: 1; }
 `;var Tt=H`
@@ -49,7 +49,7 @@ var at=Object.defineProperty;var y=Object.getOwnPropertySymbols;var G=Object.pro
 `,L=X`
   display: inline-flex;
   gap: var(--gap);
-`;var w=st((P,C)=>{var g=P,{color:t="currentColor",delay:a=100,duration:e=500,gap:r="4px",range:m="6px",size:c="5px"}=g,$=R(g,["color","delay","duration","gap","range","size"]);let b=s({color:t,delay:a,duration:e,gap:r,range:m,size:c},$);return v.createElement(ct,s(s({ref:C},{"data-qa":"idle"}),b),v.createElement(k,null),v.createElement(k,null),v.createElement(k,null))}),k=q.div`
+`;var w=st((P,C)=>{var g=P,{color:t="currentColor",delay:a=100,duration:e=500,gap:r="4px",range:m="6px",size:c="5px"}=g,$=v(g,["color","delay","duration","gap","range","size"]);let b=s({color:t,delay:a,duration:e,gap:r,range:m,size:c},$);return R.createElement(ct,s(s({ref:C},{"data-qa":"idle"}),b),R.createElement(k,null),R.createElement(k,null),R.createElement(k,null))}),k=q.div`
   ${M};
 `,ct=q.div(({color:t,delay:a,duration:e,gap:r,range:m,size:c})=>dt`
     --color: ${t};
@@ -168,6 +168,7 @@ var at=Object.defineProperty;var y=Object.getOwnPropertySymbols;var G=Object.pro
   overflow: hidden;
   outline: 0;
   padding: 0 var(--button-indent);
+  position: relative;
   transition-duration: 0.2s;
   transition-property: background-color, border-color, color;
   transition-timing-function: ease-in-out;
@@ -354,5 +355,5 @@ var at=Object.defineProperty;var y=Object.getOwnPropertySymbols;var G=Object.pro
       --button-color: ${o.DARK_ELEMENT_DISABLED};
     }
   }
-`;var mt=ft((ht,ot)=>{var O=ht,{active:t,as:a,busy:e,children:r,disabled:m,icon:c,placement:$,round:C,size:P="md",synthetic:g,text:b,theme:Y,toggle:J,type:Q="button",variant:Z="secondary"}=O,tt=R(O,["active","as","busy","children","disabled","icon","placement","round","size","synthetic","text","theme","toggle","type","variant"]);let[K,B]=Array.isArray(c)?c:[c],I=a===void 0||a==="button",et={"data-qa":[`${I?"button":"link"}`,...b?[`${Et(b)}`]:[]].join("-")};return j(a||"button",s(s({css:[z,E[P],f[Z]],"data-active":t||null,"data-busy":e||null,"data-icon":c&&!(b||r)&&"single"||K&&B&&"both"||$,"data-round":C||null,"data-synthetic":g||null,"data-theme":Y||null,"data-toggle":J||null,disabled:I&&(e||m)?!0:void 0,ref:ot,type:I?Q:void 0},et),tt),K,b||r,B,e&&j(w,{style:{["--color"]:"var(--button-color)",position:"absolute"}}))});export{mt as Button,z as button,E as sizes,f as variants};
+`;var mt=ft((ht,ot)=>{var O=ht,{active:t,as:a,busy:e,children:r,disabled:m,icon:c,placement:$,round:C,size:P="md",synthetic:g,text:b,theme:Y,toggle:J,type:Q="button",variant:Z="secondary"}=O,tt=v(O,["active","as","busy","children","disabled","icon","placement","round","size","synthetic","text","theme","toggle","type","variant"]);let[K,B]=Array.isArray(c)?c:[c],I=a===void 0||a==="button",et={"data-qa":[`${I?"button":"link"}`,...b?[`${Et(b)}`]:[]].join("-")};return j(a||"button",s(s({css:[z,E[P],f[Z]],"data-active":t||null,"data-busy":e||null,"data-icon":c&&!(b||r)&&"single"||K&&B&&"both"||$,"data-round":C||null,"data-synthetic":g||null,"data-theme":Y||null,"data-toggle":J||null,disabled:I&&(e||m)?!0:void 0,ref:ot,type:I?Q:void 0},et),tt),K,b||r,B,e&&j(w,{style:{["--color"]:"var(--button-color)",position:"absolute"}}))});export{mt as Button,z as button,E as sizes,f as variants};
 //# sourceMappingURL=index.js.map
