@@ -1,20 +1,20 @@
 /** Components v5.3.1 */
-var U=Object.defineProperty;var m=Object.getOwnPropertySymbols;var N=Object.prototype.hasOwnProperty,_=Object.prototype.propertyIsEnumerable;var I=(t,e,o)=>e in t?U(t,e,{enumerable:!0,configurable:!0,writable:!0,value:o}):t[e]=o,g=(t,e)=>{for(var o in e||(e={}))N.call(e,o)&&I(t,o,e[o]);if(m)for(var o of m(e))_.call(e,o)&&I(t,o,e[o]);return t};var S=(t,e)=>{var o={};for(var a in t)N.call(t,a)&&e.indexOf(a)<0&&(o[a]=t[a]);if(t!=null&&m)for(var a of m(t))e.indexOf(a)<0&&_.call(t,a)&&(o[a]=t[a]);return o};import{css as V,Global as W}from"@emotion/react";import b from"@emotion/styled";import F from"rc-tooltip";import r,{useMemo as J}from"react";import{css as p}from"@emotion/react";var c={black:"#000000",blue:{denim:"#184ece",dodger:"#3370ff",ebony:"#1f222f",haiti:"#0f152e",hawkes:"#ecf1fe",oxford:"#3f485e",ribbon:"#004bff",ribbon1:"#1d61ff",science:"#0041dd",vulcan:"#131620"},current:"currentColor",gray:{botticelli:"#dbe4ee",cadet:"#b4bac8",fiord:"#3b4463",geyser:"#ced4e2",porcelain:"#f6f7f8",trout:"#545864",waterloo:"#757c91"},green:{caribbean:"#07d094"},orange:{amber:"#ffbe0b"},red:{radical:"#ff3b58"},transparent:"transparent",white:"#ffffff"},G=(t=>({DANGER:t.red.radical,NOTICE:t.blue.ribbon1,SUCCESS:t.green.caribbean,WARNING:t.orange.amber}))(c),B=(t=>({PRIMARY:t.blue.ribbon,SECONDARY:t.blue.hawkes,TERTIARY:t.gray.cadet,BACKGROUND_PRIMARY:t.white,BACKGROUND_SECONDARY:t.gray.porcelain,ELEMENT_PRIMARY:t.blue.ribbon,ELEMENT_SECONDARY:t.blue.hawkes,ELEMENT_TERTIARY:t.gray.cadet,ELEMENT_ACTIVE:t.blue.science,ELEMENT_DISABLED:t.gray.geyser,ELEMENT_FOCUS:t.blue.dodger,STROKE:t.gray.botticelli,TEXT_PRIMARY:t.blue.haiti,TEXT_SECONDARY:t.blue.hawkes,TEXT_TERTIARY:t.gray.cadet,DARK_TERTIARY:t.gray.waterloo,DARK_ELEMENT_TERTIARY:t.gray.waterloo,DARK_BACKGROUND_PRIMARY:t.blue.vulcan,DARK_BACKGROUND_SECONDARY:t.blue.ebony,DARK_ELEMENT_ACTIVE:t.blue.oxford,DARK_ELEMENT_DISABLED:t.gray.trout,DARK_ELEMENT_FOCUS:t.blue.denim,DARK_STROKE:t.gray.fiord}))(c),f=g(g({BLACK:c.black,CURRENT:c.current,TRANSPARENT:c.transparent,WHITE:c.white},G),B);import{css as D}from"@emotion/react";import{keyframes as X}from"@emotion/react";var w=X`
+var G=Object.defineProperty;var m=Object.getOwnPropertySymbols;var N=Object.prototype.hasOwnProperty,_=Object.prototype.propertyIsEnumerable;var I=(t,o,e)=>o in t?G(t,o,{enumerable:!0,configurable:!0,writable:!0,value:e}):t[o]=e,g=(t,o)=>{for(var e in o||(o={}))N.call(o,e)&&I(t,e,o[e]);if(m)for(var e of m(o))_.call(o,e)&&I(t,e,o[e]);return t};var S=(t,o)=>{var e={};for(var a in t)N.call(t,a)&&o.indexOf(a)<0&&(e[a]=t[a]);if(t!=null&&m)for(var a of m(t))o.indexOf(a)<0&&_.call(t,a)&&(e[a]=t[a]);return e};import{css as W,Global as F}from"@emotion/react";import b from"@emotion/styled";import J from"rc-tooltip";import r,{useMemo as Q}from"react";import{css as p}from"@emotion/react";var c={black:"#000000",blue:{denim:"#184ece",dodger:"#3370ff",ebony:"#1f222f",haiti:"#0f152e",hawkes:"#ecf1fe",oxford:"#3f485e",ribbon:"#004bff",ribbon1:"#1d61ff",science:"#0041dd",vulcan:"#131620"},current:"currentColor",gray:{botticelli:"#dbe4ee",cadet:"#b4bac8",fiord:"#3b4463",geyser:"#ced4e2",porcelain:"#f6f7f8",trout:"#545864",waterloo:"#757c91"},green:{caribbean:"#07d094"},orange:{amber:"#ffbe0b"},red:{radical:"#ff3b58"},transparent:"transparent",white:"#ffffff"},B=(t=>({DANGER:t.red.radical,NOTICE:t.blue.ribbon1,SUCCESS:t.green.caribbean,WARNING:t.orange.amber}))(c),X=(t=>({PRIMARY:t.blue.ribbon,SECONDARY:t.blue.hawkes,TERTIARY:t.gray.cadet,BACKGROUND_PRIMARY:t.white,BACKGROUND_SECONDARY:t.gray.porcelain,ELEMENT_PRIMARY:t.blue.ribbon,ELEMENT_SECONDARY:t.blue.hawkes,ELEMENT_TERTIARY:t.gray.cadet,ELEMENT_ACTIVE:t.blue.science,ELEMENT_DISABLED:t.gray.geyser,ELEMENT_FOCUS:t.blue.dodger,STROKE:t.gray.botticelli,TEXT_PRIMARY:t.blue.haiti,TEXT_SECONDARY:t.blue.hawkes,TEXT_TERTIARY:t.gray.cadet,DARK_TERTIARY:t.gray.waterloo,DARK_ELEMENT_TERTIARY:t.gray.waterloo,DARK_BACKGROUND_PRIMARY:t.blue.vulcan,DARK_BACKGROUND_SECONDARY:t.blue.ebony,DARK_ELEMENT_ACTIVE:t.blue.oxford,DARK_ELEMENT_DISABLED:t.gray.trout,DARK_ELEMENT_FOCUS:t.blue.denim,DARK_STROKE:t.gray.fiord}))(c),f=g(g({BLACK:c.black,CURRENT:c.current,TRANSPARENT:c.transparent,WHITE:c.white},B),X);import{css as D}from"@emotion/react";import{keyframes as H}from"@emotion/react";var w=H`
   0%    { opacity: 0; }
   100%  { opacity: 1; }
-`;var xt=D`
+`;var wt=D`
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: var(--lines, 1);
-`,wt=D`
+`,ut=D`
   display: inline-block;
   max-width: inherit;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: inherit;
-`;import{css as n}from"@emotion/react";var l=n`
+`;import{css as i}from"@emotion/react";var l=i`
   --color: ${f.TEXT_PRIMARY};
   --font-family: 'Inter', sans-serif;
   --font-size: ;
@@ -29,44 +29,44 @@ var U=Object.defineProperty;var m=Object.getOwnPropertySymbols;var N=Object.prot
   font-weight: var(--font-weight);
   letter-spacing: var(--letter-spacing);
   line-height: var(--line-height);
-`,E=n`
+`,E=i`
   ${l};
 
   --font-weight: 700;
   --letter-spacing: -0.01em;
 
   margin: 0;
-`,Rt=n`
+`,Rt=i`
   ${E};
 
   --font-size: 18px;
   --line-height: calc(24 / 18);
-`,vt=n`
+`,kt=i`
   ${E};
 
   --font-size: 16px;
   --line-height: calc(24 / 16);
-`,kt=n`
+`,Ct=i`
   ${E};
 
   --font-size: 14px;
   --line-height: calc(16 / 14);
-`,H=n`
+`,V=i`
   ${E};
 
   --font-size: 13px;
   --line-height: calc(16 / 13);
-`,Ct=n`
-  ${H};
+`,zt=i`
+  ${V};
 
   --font-weight: 600;
-`,zt=n`
+`,Nt=i`
   ${l};
 
   --font-size: 13px;
   --font-weight: 500;
   --line-height: calc(16 / 13);
-`,Nt=n`
+`,_t=i`
   ${l};
 
   --font-size: 14px;
@@ -75,14 +75,14 @@ var U=Object.defineProperty;var m=Object.getOwnPropertySymbols;var N=Object.prot
   --line-height: calc(16 / 14);
 
   text-decoration: none;
-`,_t=n`
+`,It=i`
   ${l};
 
   --font-size: 14px;
   --font-weight: 700;
   --letter-spacing: -0.01em;
   --line-height: calc(16 / 14);
-`,It=n`
+`,St=i`
   ${l};
 
   --font-size: 14px;
@@ -102,7 +102,6 @@ var U=Object.defineProperty;var m=Object.getOwnPropertySymbols;var N=Object.prot
   animation: ${w} 0.2s 0.1s both;
   display: block;
   position: absolute;
-  pointer-events: none;
   z-index: 1;
 
   &[class*='hidden'] {
@@ -150,6 +149,10 @@ var U=Object.defineProperty;var m=Object.getOwnPropertySymbols;var N=Object.prot
   max-width: var(--size);
   padding: 10px;
 
+  &:not([data-active]) {
+    pointer-events: none;
+  }
+
   &:not([data-content]) {
     display: inline-flex;
   }
@@ -161,7 +164,7 @@ var U=Object.defineProperty;var m=Object.getOwnPropertySymbols;var N=Object.prot
   position: absolute;
   transform: translate(var(--arrow-translate-x), var(--arrow-translate-y)) rotate(45deg);
   width: var(--arrow-size);
-`,T=p``,R=p`
+`,T=p``,v=p`
   align-items: center;
   display: inline-flex;
   gap: 4px;
@@ -170,7 +173,7 @@ var U=Object.defineProperty;var m=Object.getOwnPropertySymbols;var N=Object.prot
   [data-label] + & {
     margin-left: 10px;
   }
-`,v=p`
+`,R=p`
   --arrow-size: 24px;
 
   background-color: #50525a;
@@ -190,21 +193,21 @@ var U=Object.defineProperty;var m=Object.getOwnPropertySymbols;var N=Object.prot
   display: inline-block;
   height: var(--separator-size);
   width: var(--separator-size);
-`;var $="t00lt1p",Q=.4,j=.1,q="+",Z="super",tt=navigator.platform.includes("Mac")?"\u2318":"Ctrl",et=pt=>{var z=pt,{children:t,content:e,delayEnter:o=Q,delayLeave:a=j,disabled:L,label:C,placement:M,shortcut:x="",size:K="192px"}=z,O=S(z,["children","content","delayEnter","delayLeave","disabled","label","placement","shortcut","size"]);let Y=J(()=>x.split(q).map((d,h)=>r.createElement(st,{key:`key-${h}`},d.replace(Z,tt))).reduce((d,h,P)=>d.length===0?[h]:[...d,r.createElement(lt,{key:`separator-${P}`}),h],[]),[x]);return L?r.createElement(r.Fragment,null,t):r.createElement(r.Fragment,null,r.createElement(W,{styles:ot}),r.createElement(F,g({arrowContent:r.createElement(at,null),mouseEnterDelay:o,mouseLeaveDelay:a,overlay:r.createElement(rt,{"data-content":e||null,style:{["--size"]:K}},e||r.createElement(r.Fragment,null,C&&r.createElement(nt,{"data-label":!0},C),x&&r.createElement(it,null,Y))),placement:M,prefixCls:$},O),t))},ot=V`
+`;var $="t00lt1p",j=.4,q=.1,Z="+",tt="super",et=navigator.platform.includes("Mac")?"\u2318":"Ctrl",ot=ct=>{var z=ct,{active:t,children:o,content:e,delayEnter:a=j,delayLeave:L=q,disabled:M,label:C,placement:K,shortcut:x="",size:O="192px"}=z,Y=S(z,["active","children","content","delayEnter","delayLeave","disabled","label","placement","shortcut","size"]);let P=Q(()=>x.split(Z).map((d,h)=>r.createElement(lt,{key:`key-${h}`},d.replace(tt,et))).reduce((d,h,U)=>d.length===0?[h]:[...d,r.createElement(pt,{key:`separator-${U}`}),h],[]),[x]);return M?r.createElement(r.Fragment,null,o):r.createElement(r.Fragment,null,r.createElement(F,{styles:rt}),r.createElement(J,g({arrowContent:r.createElement(it,null),mouseEnterDelay:a,mouseLeaveDelay:L,overlay:r.createElement(at,{"data-active":t||null,"data-content":e||null,style:{["--size"]:O}},e||r.createElement(r.Fragment,null,C&&r.createElement(nt,{"data-label":!0},C),x&&r.createElement(st,null,P))),placement:K,prefixCls:$},Y),o))},rt=W`
   .${$} {
     ${u};
   }
-`,rt=b.div`
-  ${y};
 `,at=b.div`
+  ${y};
+`,it=b.div`
   ${A};
 `,nt=b.span`
   ${T};
-`,it=b.span`
-  ${R};
-`,st=b.kbd`
+`,st=b.span`
   ${v};
-`,lt=b.span`
+`,lt=b.kbd`
+  ${R};
+`,pt=b.span`
   ${k};
-`;export{et as Tooltip,A as arrow,u as global,v as key,T as label,k as separator,R as shortcut,y as tooltip};
+`;export{ot as Tooltip,A as arrow,u as global,R as key,T as label,k as separator,v as shortcut,y as tooltip};
 //# sourceMappingURL=index.js.map

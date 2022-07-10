@@ -18,6 +18,10 @@ interface TooltipProps {
      */
     shortcut?: string;
     /**
+     * Trigger
+     */
+    trigger?: string | string[];
+    /**
      * Delay, onmouseenter
      */
     delayEnter?: number;
@@ -34,9 +38,17 @@ interface TooltipProps {
      */
     size?: string;
     /**
+     * State: Active
+     */
+    active?: boolean;
+    /**
      * State: Disabled
      */
     disabled?: boolean;
+    /**
+     * State: Visible
+     */
+    visible?: boolean;
 }
 /**
  * Tooltip wrapper.

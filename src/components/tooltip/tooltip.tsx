@@ -31,6 +31,10 @@ export interface TooltipProps {
   shortcut?: string;
 
   /**
+   * Trigger
+   */
+  trigger?: string | string[];
+  /**
    * Delay, onmouseenter
    */
   delayEnter?: number;
@@ -48,9 +52,17 @@ export interface TooltipProps {
   size?: string;
 
   /**
+   * State: Active
+   */
+  active?: boolean;
+  /**
    * State: Disabled
    */
   disabled?: boolean;
+  /**
+   * State: Visible
+   */
+  visible?: boolean;
 }
 
 /**
@@ -58,6 +70,7 @@ export interface TooltipProps {
  * TOTO: Replace `rc-tooltip` with some lightweight alternative, e.g. popper, tippy or tether.
  */
 export const Tooltip: React.FC<TooltipProps> = ({
+  active,
   children,
   content,
   delayEnter = DELAY_ENTER,
@@ -92,7 +105,11 @@ export const Tooltip: React.FC<TooltipProps> = ({
         mouseEnterDelay={delayEnter}
         mouseLeaveDelay={delayLeave}
         overlay={
-          <Container data-content={content || null} style={{ ['--size' as string]: size }}>
+          <Container
+            data-active={active || null}
+            data-content={content || null}
+            style={{ ['--size' as string]: size }}
+          >
             {content ? (
               content
             ) : (

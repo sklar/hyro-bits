@@ -37,7 +37,7 @@ export default {
     defaultVisible: true,
   },
   argTypes: {
-    ...mapArgTypes(['defaultVisible', 'theme'], {
+    ...mapArgTypes(['defaultVisible', 'theme', 'trigger'], {
       control: { disable: true },
       table: { disable: true },
     }),
@@ -56,7 +56,7 @@ export default {
     ...mapArgTypes(['delayEnter', 'delayLeave'], {
       table: { category: 'Modifiers' },
     }),
-    ...mapArgTypes(['disabled'], {
+    ...mapArgTypes(['disabled', 'visible'], {
       table: { category: 'States' },
     }),
   },

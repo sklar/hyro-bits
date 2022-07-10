@@ -18,7 +18,6 @@ export const global = css`
   animation: ${fadeInAnimation} 0.2s 0.1s both;
   display: block;
   position: absolute;
-  pointer-events: none;
   z-index: 1;
 
   &[class*='hidden'] {
@@ -67,6 +66,10 @@ export const tooltip = css`
   isolation: isolate;
   max-width: var(--size);
   padding: 10px;
+
+  &:not([data-active]) {
+    pointer-events: none;
+  }
 
   &:not([data-content]) {
     display: inline-flex;
