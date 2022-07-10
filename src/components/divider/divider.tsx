@@ -27,7 +27,7 @@ export interface DividerProps extends HTMLAttributes<HTMLDivElement> {
  */
 export const Divider = forwardRef<HTMLDivElement, DividerProps>(
   (
-    { as = 'span', direction = 'vertical', size = '2px', space = '0', ...props },
+    { as = 'span', direction = 'vertical', size = '2px', space = '0', style, ...props },
     ref
   ): JSX.Element => {
     return (
@@ -36,7 +36,7 @@ export const Divider = forwardRef<HTMLDivElement, DividerProps>(
         as={as}
         data-divider={direction}
         ref={ref}
-        style={{ ['--size' as string]: size, ['--space' as string]: space }}
+        style={{ ['--size' as string]: size, ['--space' as string]: space, ...style }}
       />
     );
   }
