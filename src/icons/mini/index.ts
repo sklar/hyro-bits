@@ -33,6 +33,7 @@ export { default as Music } from './music';
 export { default as Ndi } from './ndi';
 export { default as PenDraw } from './pen-draw';
 export { default as PlayCircle } from './play-circle';
+export { default as Play } from './play';
 export { default as PlusCircle } from './plus-circle';
 export { default as PlusSquare } from './plus-square';
 export { default as Plus } from './plus';
