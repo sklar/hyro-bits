@@ -435,13 +435,13 @@ var w2=Object.defineProperty,_4=Object.defineProperties;var I4=Object.getOwnProp
     }
   }
 
-  &[data-word='break'] {
-    word-break: break-all;
+  &[data-wrap='all'] {
+    overflow-wrap: anywhere;
   }
-  &[data-word='keep'] {
-    word-break: keep-all;
+  &[data-wrap='word'] {
+    overflow-wrap: break-word;
   }
-`;function mo(t,{begin:r=0,end:l=0,limit:n=5}){return z.createElement(z.Fragment,null,t.length-(r+l)>n?z.createElement(z.Fragment,null,z.createElement("span",null,t.slice(0,t.length-l)),z.createElement("span",null,t.slice(-l))):z.createElement(z.Fragment,null,t))}var n2=go((p,m)=>{var x=p,{as:t="span",children:r,clamp:l,content:n,hyphens:d="manual",space:c,truncate:i,word:g="normal"}=x,v=f(x,["as","children","clamp","content","hyphens","space","truncate","word"]);let h=i instanceof Object&&("begin"in i||"end"in i),y=n&&h?mo(n,i):r,q={"data-qa":`text-${t}`};return z.createElement(uo,s(s({as:t,"data-clamp":l||null,"data-hyphens":d,"data-space":c||null,"data-truncate":y&&h?"smart":i?"simple":null,"data-word":g,ref:m,style:{["--lines"]:l,["--chars-begin"]:h&&i instanceof Object&&(i==null?void 0:i.begin),["--chars-end"]:h&&i instanceof Object&&(i==null?void 0:i.end)}},q),v),y)}),uo=fo.span`
+`;function mo(t,{begin:r=0,end:l=0,limit:n=5}){return z.createElement(z.Fragment,null,t.length-(r+l)>n?z.createElement(z.Fragment,null,z.createElement("span",null,t.slice(0,t.length-l)),z.createElement("span",null,t.slice(-l))):z.createElement(z.Fragment,null,t))}var n2=go((p,m)=>{var x=p,{as:t="span",children:r,clamp:l,content:n,hyphens:d="manual",space:c,truncate:i,wrap:g="normal"}=x,v=f(x,["as","children","clamp","content","hyphens","space","truncate","wrap"]);let h=i instanceof Object&&("begin"in i||"end"in i),y=n&&h?mo(n,i):r,q={"data-qa":`text-${t}`};return z.createElement(uo,s(s({as:t,"data-clamp":l||null,"data-hyphens":d,"data-space":c||null,"data-truncate":y&&h?"smart":i?"simple":null,"data-wrap":g,ref:m,style:{["--lines"]:l,["--chars-begin"]:h&&i instanceof Object&&(i==null?void 0:i.begin),["--chars-end"]:h&&i instanceof Object&&(i==null?void 0:i.end)}},q),v),y)}),uo=fo.span`
   ${l2};
 `;import{css as M,keyframes as xo}from"@emotion/react";var L4="/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */";import{jsx as vi}from"@emotion/react";import{css as ho,keyframes as wo}from"@emotion/react";var D0=wo`
   0% {

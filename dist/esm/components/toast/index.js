@@ -431,13 +431,13 @@ var s2=Object.defineProperty,A4=Object.defineProperties;var C4=Object.getOwnProp
     }
   }
 
-  &[data-word='break'] {
-    word-break: break-all;
+  &[data-wrap='all'] {
+    overflow-wrap: anywhere;
   }
-  &[data-word='keep'] {
-    word-break: keep-all;
+  &[data-wrap='word'] {
+    overflow-wrap: break-word;
   }
-`;function ja(t,{begin:r=0,end:l=0,limit:s=5}){return h.createElement(h.Fragment,null,t.length-(r+l)>s?h.createElement(h.Fragment,null,h.createElement("span",null,t.slice(0,t.length-l)),h.createElement("span",null,t.slice(-l))):h.createElement(h.Fragment,null,t))}var Z3=Xa((g,m)=>{var x=g,{as:t="span",children:r,clamp:l,content:s,hyphens:v="manual",space:c,truncate:n,word:p="normal"}=x,d=u(x,["as","children","clamp","content","hyphens","space","truncate","word"]);let z=n instanceof Object&&("begin"in n||"end"in n),M=s&&z?ja(s,n):r,P={"data-qa":`text-${t}`};return h.createElement(Za,i(i({as:t,"data-clamp":l||null,"data-hyphens":v,"data-space":c||null,"data-truncate":M&&z?"smart":n?"simple":null,"data-word":p,ref:m,style:{["--lines"]:l,["--chars-begin"]:z&&n instanceof Object&&(n==null?void 0:n.begin),["--chars-end"]:z&&n instanceof Object&&(n==null?void 0:n.end)}},P),d),M)}),Za=Wa.span`
+`;function ja(t,{begin:r=0,end:l=0,limit:s=5}){return h.createElement(h.Fragment,null,t.length-(r+l)>s?h.createElement(h.Fragment,null,h.createElement("span",null,t.slice(0,t.length-l)),h.createElement("span",null,t.slice(-l))):h.createElement(h.Fragment,null,t))}var Z3=Xa((g,m)=>{var x=g,{as:t="span",children:r,clamp:l,content:s,hyphens:v="manual",space:c,truncate:n,wrap:p="normal"}=x,d=u(x,["as","children","clamp","content","hyphens","space","truncate","wrap"]);let z=n instanceof Object&&("begin"in n||"end"in n),M=s&&z?ja(s,n):r,P={"data-qa":`text-${t}`};return h.createElement(Za,i(i({as:t,"data-clamp":l||null,"data-hyphens":v,"data-space":c||null,"data-truncate":M&&z?"smart":n?"simple":null,"data-wrap":p,ref:m,style:{["--lines"]:l,["--chars-begin"]:z&&n instanceof Object&&(n==null?void 0:n.begin),["--chars-end"]:z&&n instanceof Object&&(n==null?void 0:n.end)}},P),d),M)}),Za=Wa.span`
   ${j3};
 `;import{css as J3}from"@emotion/react";var Q3=J3`
   ${b};

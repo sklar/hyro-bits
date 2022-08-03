@@ -431,13 +431,13 @@ var L4=Object.create;var I=Object.defineProperty,k4=Object.defineProperties,P4=O
     }
   }
 
-  &[data-word='break'] {
-    word-break: break-all;
+  &[data-wrap='all'] {
+    overflow-wrap: anywhere;
   }
-  &[data-word='keep'] {
-    word-break: keep-all;
+  &[data-wrap='word'] {
+    overflow-wrap: break-word;
   }
-`;function Xa(t,{begin:r=0,end:l=0,limit:s=5}){return d.default.createElement(d.default.Fragment,null,t.length-(r+l)>s?d.default.createElement(d.default.Fragment,null,d.default.createElement("span",null,t.slice(0,t.length-l)),d.default.createElement("span",null,t.slice(-l))):d.default.createElement(d.default.Fragment,null,t))}var n2=(0,d.forwardRef)((h,u)=>{var b=h,{as:t="span",children:r,clamp:l,content:s,hyphens:v="manual",space:f,truncate:i,word:m="normal"}=b,g=w(b,["as","children","clamp","content","hyphens","space","truncate","word"]);let A=i instanceof Object&&("begin"in i||"end"in i),C=s&&A?Xa(s,i):r,_={"data-qa":`text-${t}`};return d.default.createElement(ja,c(c({as:t,"data-clamp":l||null,"data-hyphens":v,"data-space":f||null,"data-truncate":C&&A?"smart":i?"simple":null,"data-word":m,ref:u,style:{["--lines"]:l,["--chars-begin"]:A&&i instanceof Object&&(i==null?void 0:i.begin),["--chars-end"]:A&&i instanceof Object&&(i==null?void 0:i.end)}},_),g),C)}),ja=y4.default.span`
+`;function Xa(t,{begin:r=0,end:l=0,limit:s=5}){return d.default.createElement(d.default.Fragment,null,t.length-(r+l)>s?d.default.createElement(d.default.Fragment,null,d.default.createElement("span",null,t.slice(0,t.length-l)),d.default.createElement("span",null,t.slice(-l))):d.default.createElement(d.default.Fragment,null,t))}var n2=(0,d.forwardRef)((h,u)=>{var b=h,{as:t="span",children:r,clamp:l,content:s,hyphens:v="manual",space:f,truncate:i,wrap:m="normal"}=b,g=w(b,["as","children","clamp","content","hyphens","space","truncate","wrap"]);let A=i instanceof Object&&("begin"in i||"end"in i),C=s&&A?Xa(s,i):r,_={"data-qa":`text-${t}`};return d.default.createElement(ja,c(c({as:t,"data-clamp":l||null,"data-hyphens":v,"data-space":f||null,"data-truncate":C&&A?"smart":i?"simple":null,"data-wrap":m,ref:u,style:{["--lines"]:l,["--chars-begin"]:A&&i instanceof Object&&(i==null?void 0:i.begin),["--chars-end"]:A&&i instanceof Object&&(i==null?void 0:i.end)}},_),g),C)}),ja=y4.default.span`
   ${s2};
 `;var P0=require("@emotion/react");var N0=P0.css`
   ${S};

@@ -1,13 +1,13 @@
 /** Components v5.5.1 */
-var M=Object.defineProperty;var h=Object.getOwnPropertySymbols;var z=Object.prototype.hasOwnProperty,N=Object.prototype.propertyIsEnumerable;var S=(e,a,t)=>a in e?M(e,a,{enumerable:!0,configurable:!0,writable:!0,value:t}):e[a]=t,c=(e,a)=>{for(var t in a||(a={}))z.call(a,t)&&S(e,t,a[t]);if(h)for(var t of h(a))N.call(a,t)&&S(e,t,a[t]);return e};var m=(e,a)=>{var t={};for(var r in e)z.call(e,r)&&a.indexOf(r)<0&&(t[r]=e[r]);if(e!=null&&h)for(var r of h(e))a.indexOf(r)<0&&N.call(e,r)&&(t[r]=e[r]);return t};import q from"@emotion/styled";import{kebabCase as F}from"case-anything";import O from"react";import Y from"@emotion/styled";import p,{forwardRef as P}from"react";import{css as K}from"@emotion/react";import{css as k}from"@emotion/react";import{keyframes as $}from"@emotion/react";var L=$`
+var M=Object.defineProperty;var h=Object.getOwnPropertySymbols;var z=Object.prototype.hasOwnProperty,N=Object.prototype.propertyIsEnumerable;var S=(t,a,e)=>a in t?M(t,a,{enumerable:!0,configurable:!0,writable:!0,value:e}):t[a]=e,c=(t,a)=>{for(var e in a||(a={}))z.call(a,e)&&S(t,e,a[e]);if(h)for(var e of h(a))N.call(a,e)&&S(t,e,a[e]);return t};var m=(t,a)=>{var e={};for(var r in t)z.call(t,r)&&a.indexOf(r)<0&&(e[r]=t[r]);if(t!=null&&h)for(var r of h(t))a.indexOf(r)<0&&N.call(t,r)&&(e[r]=t[r]);return e};import q from"@emotion/styled";import{kebabCase as F}from"case-anything";import k from"react";import Y from"@emotion/styled";import p,{forwardRef as P}from"react";import{css as K}from"@emotion/react";import{css as C}from"@emotion/react";import{keyframes as $}from"@emotion/react";var L=$`
   0%    { opacity: 0; }
   100%  { opacity: 1; }
-`;var C=k`
+`;var I=C`
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: var(--lines, 1);
-`,I=k`
+`,O=C`
   display: inline-block;
   max-width: inherit;
   overflow: hidden;
@@ -16,7 +16,7 @@ var M=Object.defineProperty;var h=Object.getOwnPropertySymbols;var z=Object.prot
   width: inherit;
 `;var x=K`
   &[data-clamp] {
-    ${C};
+    ${I};
   }
 
   &[data-hyphens='auto'] {
@@ -37,7 +37,7 @@ var M=Object.defineProperty;var h=Object.getOwnPropertySymbols;var z=Object.prot
   }
 
   &[data-truncate='simple'] {
-    ${I};
+    ${O};
   }
 
   &[data-truncate='smart'] {
@@ -63,15 +63,15 @@ var M=Object.defineProperty;var h=Object.getOwnPropertySymbols;var z=Object.prot
     }
   }
 
-  &[data-word='break'] {
-    word-break: break-all;
+  &[data-wrap='all'] {
+    overflow-wrap: anywhere;
   }
-  &[data-word='keep'] {
-    word-break: keep-all;
+  &[data-wrap='word'] {
+    overflow-wrap: break-word;
   }
-`;function G(e,{begin:a=0,end:t=0,limit:r=5}){return p.createElement(p.Fragment,null,e.length-(a+t)>r?p.createElement(p.Fragment,null,p.createElement("span",null,e.slice(0,e.length-t)),p.createElement("span",null,e.slice(-t))):p.createElement(p.Fragment,null,e))}var y=P((V,_)=>{var R=V,{as:e="span",children:a,clamp:t,content:r,hyphens:g="manual",space:A,truncate:o,word:T="normal"}=R,E=m(R,["as","children","clamp","content","hyphens","space","truncate","word"]);let f=o instanceof Object&&("begin"in o||"end"in o),v=r&&f?G(r,o):a,D={"data-qa":`text-${e}`};return p.createElement(U,c(c({as:e,"data-clamp":t||null,"data-hyphens":g,"data-space":A||null,"data-truncate":v&&f?"smart":o?"simple":null,"data-word":T,ref:_,style:{["--lines"]:t,["--chars-begin"]:f&&o instanceof Object&&(o==null?void 0:o.begin),["--chars-end"]:f&&o instanceof Object&&(o==null?void 0:o.end)}},D),E),v)}),U=Y.span`
+`;function G(t,{begin:a=0,end:e=0,limit:r=5}){return p.createElement(p.Fragment,null,t.length-(a+e)>r?p.createElement(p.Fragment,null,p.createElement("span",null,t.slice(0,t.length-e)),p.createElement("span",null,t.slice(-e))):p.createElement(p.Fragment,null,t))}var y=P((V,_)=>{var R=V,{as:t="span",children:a,clamp:e,content:r,hyphens:g="manual",space:A,truncate:o,wrap:T="normal"}=R,E=m(R,["as","children","clamp","content","hyphens","space","truncate","wrap"]);let d=o instanceof Object&&("begin"in o||"end"in o),v=r&&d?G(r,o):a,D={"data-qa":`text-${t}`};return p.createElement(U,c(c({as:t,"data-clamp":e||null,"data-hyphens":g,"data-space":A||null,"data-truncate":v&&d?"smart":o?"simple":null,"data-wrap":T,ref:_,style:{["--lines"]:e,["--chars-begin"]:d&&o instanceof Object&&(o==null?void 0:o.begin),["--chars-end"]:d&&o instanceof Object&&(o==null?void 0:o.end)}},D),E),v)}),U=Y.span`
   ${x};
-`;import{css as j}from"@emotion/react";var d={black:"#000000",blue:{denim:"#184ece",dodger:"#3370ff",ebony:"#1f222f",haiti:"#0f152e",hawkes:"#ecf1fe",oxford:"#3f485e",ribbon:"#004bff",ribbon1:"#1d61ff",science:"#0041dd",vulcan:"#131620"},current:"currentColor",gray:{botticelli:"#dbe4ee",cadet:"#b4bac8",fiord:"#3b4463",geyser:"#ced4e2",porcelain:"#f6f7f8",trout:"#545864",waterloo:"#757c91"},green:{caribbean:"#07d094"},orange:{amber:"#ffbe0b"},red:{radical:"#ff3b58"},transparent:"transparent",white:"#ffffff"},B=(e=>({DANGER:e.red.radical,NOTICE:e.blue.ribbon1,SUCCESS:e.green.caribbean,WARNING:e.orange.amber}))(d),H=(e=>({PRIMARY:e.blue.ribbon,SECONDARY:e.blue.hawkes,TERTIARY:e.gray.cadet,BACKGROUND_PRIMARY:e.white,BACKGROUND_SECONDARY:e.gray.porcelain,ELEMENT_PRIMARY:e.blue.ribbon,ELEMENT_SECONDARY:e.blue.hawkes,ELEMENT_TERTIARY:e.gray.cadet,ELEMENT_ACTIVE:e.blue.science,ELEMENT_DISABLED:e.gray.geyser,ELEMENT_FOCUS:e.blue.dodger,STROKE:e.gray.botticelli,TEXT_PRIMARY:e.blue.haiti,TEXT_SECONDARY:e.blue.hawkes,TEXT_TERTIARY:e.gray.cadet,DARK_TERTIARY:e.gray.waterloo,DARK_ELEMENT_TERTIARY:e.gray.waterloo,DARK_BACKGROUND_PRIMARY:e.blue.vulcan,DARK_BACKGROUND_SECONDARY:e.blue.ebony,DARK_ELEMENT_ACTIVE:e.blue.oxford,DARK_ELEMENT_DISABLED:e.gray.trout,DARK_ELEMENT_FOCUS:e.blue.denim,DARK_STROKE:e.gray.fiord}))(d),l=c(c({BLACK:d.black,CURRENT:d.current,TRANSPARENT:d.transparent,WHITE:d.white},B),H);import{css as i}from"@emotion/react";var u=i`
+`;import{css as j}from"@emotion/react";var f={black:"#000000",blue:{denim:"#184ece",dodger:"#3370ff",ebony:"#1f222f",haiti:"#0f152e",hawkes:"#ecf1fe",oxford:"#3f485e",ribbon:"#004bff",ribbon1:"#1d61ff",science:"#0041dd",vulcan:"#131620"},current:"currentColor",gray:{botticelli:"#dbe4ee",cadet:"#b4bac8",fiord:"#3b4463",geyser:"#ced4e2",porcelain:"#f6f7f8",trout:"#545864",waterloo:"#757c91"},green:{caribbean:"#07d094"},orange:{amber:"#ffbe0b"},red:{radical:"#ff3b58"},transparent:"transparent",white:"#ffffff"},B=(t=>({DANGER:t.red.radical,NOTICE:t.blue.ribbon1,SUCCESS:t.green.caribbean,WARNING:t.orange.amber}))(f),H=(t=>({PRIMARY:t.blue.ribbon,SECONDARY:t.blue.hawkes,TERTIARY:t.gray.cadet,BACKGROUND_PRIMARY:t.white,BACKGROUND_SECONDARY:t.gray.porcelain,ELEMENT_PRIMARY:t.blue.ribbon,ELEMENT_SECONDARY:t.blue.hawkes,ELEMENT_TERTIARY:t.gray.cadet,ELEMENT_ACTIVE:t.blue.science,ELEMENT_DISABLED:t.gray.geyser,ELEMENT_FOCUS:t.blue.dodger,STROKE:t.gray.botticelli,TEXT_PRIMARY:t.blue.haiti,TEXT_SECONDARY:t.blue.hawkes,TEXT_TERTIARY:t.gray.cadet,DARK_TERTIARY:t.gray.waterloo,DARK_ELEMENT_TERTIARY:t.gray.waterloo,DARK_BACKGROUND_PRIMARY:t.blue.vulcan,DARK_BACKGROUND_SECONDARY:t.blue.ebony,DARK_ELEMENT_ACTIVE:t.blue.oxford,DARK_ELEMENT_DISABLED:t.gray.trout,DARK_ELEMENT_FOCUS:t.blue.denim,DARK_STROKE:t.gray.fiord}))(f),l=c(c({BLACK:f.black,CURRENT:f.current,TRANSPARENT:f.transparent,WHITE:f.white},B),H);import{css as i}from"@emotion/react";var u=i`
   --color: ${l.TEXT_PRIMARY};
   --font-family: 'Inter', sans-serif;
   --font-size: ;
@@ -93,17 +93,17 @@ var M=Object.defineProperty;var h=Object.getOwnPropertySymbols;var z=Object.prot
   --letter-spacing: -0.01em;
 
   margin: 0;
-`,we=i`
+`,wt=i`
   ${b};
 
   --font-size: 18px;
   --line-height: calc(24 / 18);
-`,Ae=i`
+`,At=i`
   ${b};
 
   --font-size: 16px;
   --line-height: calc(24 / 16);
-`,Re=i`
+`,Rt=i`
   ${b};
 
   --font-size: 14px;
@@ -113,17 +113,17 @@ var M=Object.defineProperty;var h=Object.getOwnPropertySymbols;var z=Object.prot
 
   --font-size: 13px;
   --line-height: calc(16 / 13);
-`,ve=i`
+`,vt=i`
   ${X};
 
   --font-weight: 600;
-`,ze=i`
+`,zt=i`
   ${u};
 
   --font-size: 13px;
   --font-weight: 500;
   --line-height: calc(16 / 13);
-`,Ne=i`
+`,Nt=i`
   ${u};
 
   --font-size: 14px;
@@ -132,14 +132,14 @@ var M=Object.defineProperty;var h=Object.getOwnPropertySymbols;var z=Object.prot
   --line-height: calc(16 / 14);
 
   text-decoration: none;
-`,Se=i`
+`,St=i`
   ${u};
 
   --font-size: 14px;
   --font-weight: 700;
   --letter-spacing: -0.01em;
   --line-height: calc(16 / 14);
-`,ke=i`
+`,Ct=i`
   ${u};
 
   --font-size: 14px;
@@ -228,7 +228,7 @@ var M=Object.defineProperty;var h=Object.getOwnPropertySymbols;var z=Object.prot
       width: calc(var(--status-size) / 8 * 5);
     }
   }
-`;var J=A=>{var o=A,{children:e,icon:a,text:t,theme:r}=o,g=m(o,["children","icon","text","theme"]);let T=!(t||e),E={"data-qa":["status",...r?[r]:[],...t?[`${F(t)}`]:[]].join("-")};return O.createElement(W,c(c({"data-beacon":T||null,"data-theme":r||null},E),g),a,O.createElement(y,{truncate:!0},t||e))},W=q.span`
+`;var J=A=>{var o=A,{children:t,icon:a,text:e,theme:r}=o,g=m(o,["children","icon","text","theme"]);let T=!(e||t),E={"data-qa":["status",...r?[r]:[],...e?[`${F(e)}`]:[]].join("-")};return k.createElement(W,c(c({"data-beacon":T||null,"data-theme":r||null},E),g),a,k.createElement(y,{truncate:!0},e||t))},W=q.span`
   ${w};
 `;export{J as Status,w as status};
 //# sourceMappingURL=index.js.map

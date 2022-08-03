@@ -328,13 +328,13 @@ var Y3=Object.defineProperty;var O=Object.getOwnPropertySymbols;var X3=Object.pr
     }
   }
 
-  &[data-word='break'] {
-    word-break: break-all;
+  &[data-wrap='all'] {
+    overflow-wrap: anywhere;
   }
-  &[data-word='keep'] {
-    word-break: keep-all;
+  &[data-wrap='word'] {
+    overflow-wrap: break-word;
   }
-`;function Ia(o,{begin:e=0,end:l=0,limit:r=5}){return m.createElement(m.Fragment,null,o.length-(e+l)>r?m.createElement(m.Fragment,null,m.createElement("span",null,o.slice(0,o.length-l)),m.createElement("span",null,o.slice(-l))):m.createElement(m.Fragment,null,o))}var K3=Da((z,R0)=>{var I=z,{as:o="span",children:e,clamp:l,content:r,hyphens:i="manual",space:c,truncate:s,word:d="normal"}=I,g=f(I,["as","children","clamp","content","hyphens","space","truncate","word"]);let _=s instanceof Object&&("begin"in s||"end"in s),U3=r&&_?Ia(r,s):e,l4={"data-qa":`text-${o}`};return m.createElement(_a,n(n({as:o,"data-clamp":l||null,"data-hyphens":i,"data-space":c||null,"data-truncate":U3&&_?"smart":s?"simple":null,"data-word":d,ref:R0,style:{["--lines"]:l,["--chars-begin"]:_&&s instanceof Object&&(s==null?void 0:s.begin),["--chars-end"]:_&&s instanceof Object&&(s==null?void 0:s.end)}},l4),g),U3)}),_a=Na.span`
+`;function Ia(o,{begin:e=0,end:l=0,limit:r=5}){return m.createElement(m.Fragment,null,o.length-(e+l)>r?m.createElement(m.Fragment,null,m.createElement("span",null,o.slice(0,o.length-l)),m.createElement("span",null,o.slice(-l))):m.createElement(m.Fragment,null,o))}var K3=Da((z,R0)=>{var I=z,{as:o="span",children:e,clamp:l,content:r,hyphens:i="manual",space:c,truncate:s,wrap:d="normal"}=I,g=f(I,["as","children","clamp","content","hyphens","space","truncate","wrap"]);let _=s instanceof Object&&("begin"in s||"end"in s),U3=r&&_?Ia(r,s):e,l4={"data-qa":`text-${o}`};return m.createElement(_a,n(n({as:o,"data-clamp":l||null,"data-hyphens":i,"data-space":c||null,"data-truncate":U3&&_?"smart":s?"simple":null,"data-wrap":d,ref:R0,style:{["--lines"]:l,["--chars-begin"]:_&&s instanceof Object&&(s==null?void 0:s.begin),["--chars-end"]:_&&s instanceof Object&&(s==null?void 0:s.end)}},l4),g),U3)}),_a=Na.span`
   ${F3};
 `;var Oa=e4((c,i)=>{var s=c,{align:o,justify:e,numeric:l="normal"}=s,r=f(s,["align","justify","numeric"]);return D.createElement(Ga,n({"data-align":o||null,"data-justify":e||null,"data-numeric":l||null,ref:i},r))}),Ga=o4.td`
   ${H0};

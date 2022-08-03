@@ -35,7 +35,7 @@ export default {
     ...mapArgTypes(['clamp'], {
       control: { type: 'range', min: 1, max: 10, step: 1 },
     }),
-    ...mapArgTypes(['hyphens', 'space', 'word'], {
+    ...mapArgTypes(['hyphens', 'space', 'wrap'], {
       control: { type: 'inline-radio' },
     }),
     'data-qa': {
@@ -73,6 +73,21 @@ const Template: Story<TextProps> = (args) => (
       their grudges, and race against the clock in a non-stop concerto for bullets. Can the hitman's
       bodyguard carry through the most important mission in his career?
     </TextCmp>
+
+    <Container indent="16px" resize="both">
+      <h2>Wrap</h2>
+      <TextCmp as="p" style={{ maxWidth: '100%' }} wrap={args.wrap}>
+        WithhisreputationintattersafterthepainfullyunsuccessfuldeliveryofadistinguishedJapaneseclienttheformertripleAprotectionagentMichaelBryceisnowreducedtoameresecondclassbodyguardforhiretwoyearsafterthedisgracefulincidentUnderthosecircumstancesBrycewoulddoanythingtoprovehisworthandbeforelongheacceptsanofferfromInterpoltoescorttheinternationalassassinDariusKincaidfromManchestertotheHagueThetaskseemssimpleBryceneedstotransporthimfrompointAtopointB;nevertheless,thetriptotheNetherlandsislongandhazardous,andKincaidastheonlyonewiththegutsandenoughhardevidencetotestifyagainstatyrannicalBelarusiandictatorisanobvioustarget.Undoubtedly,itsatoughjob,asthemismatchedduowillhavetoputasidetheirgrudgesandraceagainsttheclockinanonstopconcertoforbulletsCanthehitmansbodyguardcarrythroughthemostimportantmissioninhiscareer?
+      </TextCmp>
+      <TextCmp as="p" style={{ maxWidth: '100%' }} wrap={args.wrap}>
+        The task seems simple: Bryce needs to transport him from point A to point B; nevertheless,
+        the trip to the Netherlands is long and hazardous, and Kincaid—as the only one with the guts
+        and enough hard evidence to testify against a tyrannical Belarusian dictator—is an obvious
+        target. Undoubtedly, it's a tough job, as the mismatched duo will have to put aside their
+        grudges, and race against the clock in a non-stop concerto for bullets. Can the hitman's
+        bodyguard carry through the most important mission in his career?
+      </TextCmp>
+    </Container>
 
     <Container indent="16px" resize="horizontal">
       <h2 style={{ marginBottom: 0 }}>Truncate</h2>

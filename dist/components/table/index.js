@@ -328,13 +328,13 @@ var S4=Object.create;var B=Object.defineProperty;var H4=Object.getOwnPropertyDes
     }
   }
 
-  &[data-word='break'] {
-    word-break: break-all;
+  &[data-wrap='all'] {
+    overflow-wrap: anywhere;
   }
-  &[data-word='keep'] {
-    word-break: keep-all;
+  &[data-wrap='word'] {
+    overflow-wrap: break-word;
   }
-`;function $a(o,{begin:e=0,end:l=0,limit:r=5}){return p.default.createElement(p.default.Fragment,null,o.length-(e+l)>r?p.default.createElement(p.default.Fragment,null,p.default.createElement("span",null,o.slice(0,o.length-l)),p.default.createElement("span",null,o.slice(-l))):p.default.createElement(p.default.Fragment,null,o))}var W3=(0,p.forwardRef)((R,k0)=>{var $=R,{as:o="span",children:e,clamp:l,content:r,hyphens:i="manual",space:c,truncate:s,word:g="normal"}=$,x=f($,["as","children","clamp","content","hyphens","space","truncate","word"]);let F=s instanceof Object&&("begin"in s||"end"in s),Z3=r&&F?$a(r,s):e,R4={"data-qa":`text-${o}`};return p.default.createElement(Fa,n(n({as:o,"data-clamp":l||null,"data-hyphens":i,"data-space":c||null,"data-truncate":Z3&&F?"smart":s?"simple":null,"data-word":g,ref:k0,style:{["--lines"]:l,["--chars-begin"]:F&&s instanceof Object&&(s==null?void 0:s.begin),["--chars-end"]:F&&s instanceof Object&&(s==null?void 0:s.end)}},R4),x),Z3)}),Fa=u4.default.span`
+`;function $a(o,{begin:e=0,end:l=0,limit:r=5}){return p.default.createElement(p.default.Fragment,null,o.length-(e+l)>r?p.default.createElement(p.default.Fragment,null,p.default.createElement("span",null,o.slice(0,o.length-l)),p.default.createElement("span",null,o.slice(-l))):p.default.createElement(p.default.Fragment,null,o))}var W3=(0,p.forwardRef)((R,k0)=>{var $=R,{as:o="span",children:e,clamp:l,content:r,hyphens:i="manual",space:c,truncate:s,wrap:g="normal"}=$,x=f($,["as","children","clamp","content","hyphens","space","truncate","wrap"]);let F=s instanceof Object&&("begin"in s||"end"in s),Z3=r&&F?$a(r,s):e,R4={"data-qa":`text-${o}`};return p.default.createElement(Fa,n(n({as:o,"data-clamp":l||null,"data-hyphens":i,"data-space":c||null,"data-truncate":Z3&&F?"smart":s?"simple":null,"data-wrap":g,ref:k0,style:{["--lines"]:l,["--chars-begin"]:F&&s instanceof Object&&(s==null?void 0:s.begin),["--chars-end"]:F&&s instanceof Object&&(s==null?void 0:s.end)}},R4),x),Z3)}),Fa=u4.default.span`
   ${q3};
 `;var z4=(0,d.forwardRef)((c,i)=>{var s=c,{align:o,justify:e,numeric:l="normal"}=s,r=f(s,["align","justify","numeric"]);return d.default.createElement(Ka,n({"data-align":o||null,"data-justify":e||null,"data-numeric":l||null,ref:i},r))}),Ka=J3.default.td`
   ${X};

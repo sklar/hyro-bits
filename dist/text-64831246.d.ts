@@ -31,9 +31,9 @@ interface TextProps extends HTMLAttributes<HTMLDivElement> {
      */
     truncate?: boolean | Partial<TruncateOptionType>;
     /**
-     * Word break
+     * Wrap text
      */
-    word?: 'normal' | 'break' | 'keep';
+    wrap?: 'normal' | 'all' | 'word';
 }
 /**
  * Text

@@ -1,5 +1,5 @@
 /** Components v5.5.1 */
-var A=Object.defineProperty;var s=Object.getOwnPropertySymbols;var b=Object.prototype.hasOwnProperty,f=Object.prototype.propertyIsEnumerable;var w=(e,n,a)=>n in e?A(e,n,{enumerable:!0,configurable:!0,writable:!0,value:a}):e[n]=a,m=(e,n)=>{for(var a in n||(n={}))b.call(n,a)&&w(e,a,n[a]);if(s)for(var a of s(n))f.call(n,a)&&w(e,a,n[a]);return e};var x=(e,n)=>{var a={};for(var t in e)b.call(e,t)&&n.indexOf(t)<0&&(a[t]=e[t]);if(e!=null&&s)for(var t of s(e))n.indexOf(t)<0&&f.call(e,t)&&(a[t]=e[t]);return a};import L from"@emotion/styled";import i,{forwardRef as M}from"react";import{css as H}from"@emotion/react";import{css as y}from"@emotion/react";import{keyframes as I}from"@emotion/react";var C=I`
+var A=Object.defineProperty;var s=Object.getOwnPropertySymbols;var w=Object.prototype.hasOwnProperty,f=Object.prototype.propertyIsEnumerable;var b=(e,n,a)=>n in e?A(e,n,{enumerable:!0,configurable:!0,writable:!0,value:a}):e[n]=a,m=(e,n)=>{for(var a in n||(n={}))w.call(n,a)&&b(e,a,n[a]);if(s)for(var a of s(n))f.call(n,a)&&b(e,a,n[a]);return e};var x=(e,n)=>{var a={};for(var t in e)w.call(e,t)&&n.indexOf(t)<0&&(a[t]=e[t]);if(e!=null&&s)for(var t of s(e))n.indexOf(t)<0&&f.call(e,t)&&(a[t]=e[t]);return a};import L from"@emotion/styled";import i,{forwardRef as M}from"react";import{css as H}from"@emotion/react";import{css as y}from"@emotion/react";import{keyframes as I}from"@emotion/react";var C=I`
   0%    { opacity: 0; }
   100%  { opacity: 1; }
 `;var u=y`
@@ -63,13 +63,13 @@ var A=Object.defineProperty;var s=Object.getOwnPropertySymbols;var b=Object.prot
     }
   }
 
-  &[data-word='break'] {
-    word-break: break-all;
+  &[data-wrap='all'] {
+    overflow-wrap: anywhere;
   }
-  &[data-word='keep'] {
-    word-break: keep-all;
+  &[data-wrap='word'] {
+    overflow-wrap: break-word;
   }
-`;function P(e,{begin:n=0,end:a=0,limit:t=5}){return i.createElement(i.Fragment,null,e.length-(n+a)>t?i.createElement(i.Fragment,null,i.createElement("span",null,e.slice(0,e.length-a)),i.createElement("span",null,e.slice(-a))):i.createElement(i.Fragment,null,e))}var S=M((j,z)=>{var d=j,{as:e="span",children:n,clamp:a,content:t,hyphens:v="manual",space:g,truncate:r,word:k="normal"}=d,O=x(d,["as","children","clamp","content","hyphens","space","truncate","word"]);let o=r instanceof Object&&("begin"in r||"end"in r),h=t&&o?P(t,r):n,E={"data-qa":`text-${e}`};return i.createElement($,m(m({as:e,"data-clamp":a||null,"data-hyphens":v,"data-space":g||null,"data-truncate":h&&o?"smart":r?"simple":null,"data-word":k,ref:z,style:{["--lines"]:a,["--chars-begin"]:o&&r instanceof Object&&(r==null?void 0:r.begin),["--chars-end"]:o&&r instanceof Object&&(r==null?void 0:r.end)}},E),O),h)}),$=L.span`
+`;function P(e,{begin:n=0,end:a=0,limit:t=5}){return i.createElement(i.Fragment,null,e.length-(n+a)>t?i.createElement(i.Fragment,null,i.createElement("span",null,e.slice(0,e.length-a)),i.createElement("span",null,e.slice(-a))):i.createElement(i.Fragment,null,e))}var S=M((j,E)=>{var d=j,{as:e="span",children:n,clamp:a,content:t,hyphens:v="manual",space:g,truncate:r,wrap:O="normal"}=d,z=x(d,["as","children","clamp","content","hyphens","space","truncate","wrap"]);let o=r instanceof Object&&("begin"in r||"end"in r),h=t&&o?P(t,r):n,k={"data-qa":`text-${e}`};return i.createElement($,m(m({as:e,"data-clamp":a||null,"data-hyphens":v,"data-space":g||null,"data-truncate":h&&o?"smart":r?"simple":null,"data-wrap":O,ref:E,style:{["--lines"]:a,["--chars-begin"]:o&&r instanceof Object&&(r==null?void 0:r.begin),["--chars-end"]:o&&r instanceof Object&&(r==null?void 0:r.end)}},k),z),h)}),$=L.span`
   ${c};
 `;export{S as Text,c as text};
 //# sourceMappingURL=index.js.map

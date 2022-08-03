@@ -13,7 +13,7 @@ export { N as Nav, b as NavItem, c as NavItemProps, a as NavProps } from './navi
 export { O as Overlay, a as OverlayProps } from './overlay-faa2d137';
 export { a as Status, b as StatusProps } from './status-2f788194';
 export { S as Switch, a as SwitchProps } from './switch-f63a0a6d';
-export { T as Text, a as TextProps } from './text-67e6dfbe';
+export { T as Text, a as TextProps } from './text-64831246';
 export { T as Textarea, a as TextareaProps } from './textarea-dc3402d3';
 export { T as Toast, a as ToastProps } from './toast-d1b56995';
 export { T as Tooltip, a as TooltipProps } from './tooltip-d2f3c06f';

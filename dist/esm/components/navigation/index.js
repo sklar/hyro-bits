@@ -221,13 +221,13 @@ var P3=Object.defineProperty;var N=Object.getOwnPropertySymbols;var N3=Object.pr
     }
   }
 
-  &[data-word='break'] {
-    word-break: break-all;
+  &[data-wrap='all'] {
+    overflow-wrap: anywhere;
   }
-  &[data-word='keep'] {
-    word-break: keep-all;
+  &[data-wrap='word'] {
+    overflow-wrap: break-word;
   }
-`;function wa(o,{begin:l=0,end:e=0,limit:r=5}){return m.createElement(m.Fragment,null,o.length-(l+e)>r?m.createElement(m.Fragment,null,m.createElement("span",null,o.slice(0,o.length-e)),m.createElement("span",null,o.slice(-e))):m.createElement(m.Fragment,null,o))}var k=ha((Ba,z0)=>{var E3=Ba,{as:o="span",children:l,clamp:e,content:r,hyphens:p="manual",space:v,truncate:s,word:d="normal"}=E3,g=f(E3,["as","children","clamp","content","hyphens","space","truncate","word"]);let P=s instanceof Object&&("begin"in s||"end"in s),k3=r&&P?wa(r,s):l,q5={"data-qa":`text-${o}`};return m.createElement(ua,n(n({as:o,"data-clamp":e||null,"data-hyphens":p,"data-space":v||null,"data-truncate":k3&&P?"smart":s?"simple":null,"data-word":d,ref:z0,style:{["--lines"]:e,["--chars-begin"]:P&&s instanceof Object&&(s==null?void 0:s.begin),["--chars-end"]:P&&s instanceof Object&&(s==null?void 0:s.end)}},q5),g),k3)}),ua=da.span`
+`;function wa(o,{begin:l=0,end:e=0,limit:r=5}){return m.createElement(m.Fragment,null,o.length-(l+e)>r?m.createElement(m.Fragment,null,m.createElement("span",null,o.slice(0,o.length-e)),m.createElement("span",null,o.slice(-e))):m.createElement(m.Fragment,null,o))}var k=ha((Ba,z0)=>{var E3=Ba,{as:o="span",children:l,clamp:e,content:r,hyphens:p="manual",space:v,truncate:s,wrap:d="normal"}=E3,g=f(E3,["as","children","clamp","content","hyphens","space","truncate","wrap"]);let P=s instanceof Object&&("begin"in s||"end"in s),k3=r&&P?wa(r,s):l,q5={"data-qa":`text-${o}`};return m.createElement(ua,n(n({as:o,"data-clamp":e||null,"data-hyphens":p,"data-space":v||null,"data-truncate":k3&&P?"smart":s?"simple":null,"data-wrap":d,ref:z0,style:{["--lines"]:e,["--chars-begin"]:P&&s instanceof Object&&(s==null?void 0:s.begin),["--chars-end"]:P&&s instanceof Object&&(s==null?void 0:s.end)}},q5),g),k3)}),ua=da.span`
   ${y3};
 `;import{css as xa}from"@emotion/react";var L3=xa`
   ${h};

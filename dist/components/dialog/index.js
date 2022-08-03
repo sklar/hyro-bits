@@ -435,13 +435,13 @@ var J4=Object.create;var N=Object.defineProperty,Q4=Object.defineProperties,j4=O
     }
   }
 
-  &[data-word='break'] {
-    word-break: break-all;
+  &[data-wrap='all'] {
+    overflow-wrap: anywhere;
   }
-  &[data-word='keep'] {
-    word-break: keep-all;
+  &[data-wrap='word'] {
+    overflow-wrap: break-word;
   }
-`;function mo(t,{begin:e=0,end:l=0,limit:n=5}){return w.default.createElement(w.default.Fragment,null,t.length-(e+l)>n?w.default.createElement(w.default.Fragment,null,w.default.createElement("span",null,t.slice(0,t.length-l)),w.default.createElement("span",null,t.slice(-l))):w.default.createElement(w.default.Fragment,null,t))}var b2=(0,w.forwardRef)((f,u)=>{var b=f,{as:t="span",children:e,clamp:l,content:n,hyphens:c="manual",space:v,truncate:i,word:m="normal"}=b,p=g(b,["as","children","clamp","content","hyphens","space","truncate","word"]);let M=i instanceof Object&&("begin"in i||"end"in i),V=n&&M?mo(n,i):e,Q={"data-qa":`text-${t}`};return w.default.createElement(uo,s(s({as:t,"data-clamp":l||null,"data-hyphens":c,"data-space":v||null,"data-truncate":V&&M?"smart":i?"simple":null,"data-word":m,ref:u,style:{["--lines"]:l,["--chars-begin"]:M&&i instanceof Object&&(i==null?void 0:i.begin),["--chars-end"]:M&&i instanceof Object&&(i==null?void 0:i.end)}},Q),p),V)}),uo=q4.default.span`
+`;function mo(t,{begin:e=0,end:l=0,limit:n=5}){return w.default.createElement(w.default.Fragment,null,t.length-(e+l)>n?w.default.createElement(w.default.Fragment,null,w.default.createElement("span",null,t.slice(0,t.length-l)),w.default.createElement("span",null,t.slice(-l))):w.default.createElement(w.default.Fragment,null,t))}var b2=(0,w.forwardRef)((f,u)=>{var b=f,{as:t="span",children:e,clamp:l,content:n,hyphens:c="manual",space:v,truncate:i,wrap:m="normal"}=b,p=g(b,["as","children","clamp","content","hyphens","space","truncate","wrap"]);let M=i instanceof Object&&("begin"in i||"end"in i),V=n&&M?mo(n,i):e,Q={"data-qa":`text-${t}`};return w.default.createElement(uo,s(s({as:t,"data-clamp":l||null,"data-hyphens":c,"data-space":v||null,"data-truncate":V&&M?"smart":i?"simple":null,"data-wrap":m,ref:u,style:{["--lines"]:l,["--chars-begin"]:M&&i instanceof Object&&(i==null?void 0:i.begin),["--chars-end"]:M&&i instanceof Object&&(i==null?void 0:i.end)}},Q),p),V)}),uo=q4.default.span`
   ${M2};
 `;var x=require("@emotion/react");var X4="/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */";var ho=require("@emotion/react");var O0=require("@emotion/react"),G0=O0.keyframes`
   0% {

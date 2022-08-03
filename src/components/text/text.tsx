@@ -50,9 +50,9 @@ export interface TextProps extends HTMLAttributes<HTMLDivElement> {
    */
   truncate?: boolean | Partial<TruncateOptionType>;
   /**
-   * Word break
+   * Wrap text
    */
-  word?: 'normal' | 'break' | 'keep';
+  wrap?: 'normal' | 'all' | 'word';
 }
 
 /**
@@ -68,7 +68,7 @@ export const Text = forwardRef<HTMLDivElement, TextProps>(
       hyphens = 'manual',
       space,
       truncate,
-      word = 'normal',
+      wrap = 'normal',
       ...props
     },
     ref
@@ -86,7 +86,7 @@ export const Text = forwardRef<HTMLDivElement, TextProps>(
         data-hyphens={hyphens}
         data-space={space || null}
         data-truncate={text && short ? 'smart' : truncate ? 'simple' : null}
-        data-word={word}
+        data-wrap={wrap}
         ref={ref}
         style={{
           ['--lines' as string]: clamp,
