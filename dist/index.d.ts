@@ -16,7 +16,7 @@ export { S as Switch, a as SwitchProps } from './switch-f63a0a6d';
 export { T as Text, a as TextProps } from './text-67e6dfbe';
 export { T as Textarea, a as TextareaProps } from './textarea-dc3402d3';
 export { T as Toast, a as ToastProps } from './toast-d1b56995';
-export { T as Tooltip, a as TooltipProps } from './tooltip-1f4eef98';
+export { T as Tooltip, a as TooltipProps } from './tooltip-d2f3c06f';
 import * as _emotion_react from '@emotion/react';
 export { b as AlignmentFlexboxType, A as AlignmentPrimaryType, c as AlignmentSecondaryType, a as AlignmentTertiaryType, D as DirectionType, I as InternalHTMLAttributes, P as PartialBy, S as SizeType, T as ThemeType, d as Values, V as VariantType } from './index-2e22dac1';
 import { Keyframes } from '@emotion/serialize';

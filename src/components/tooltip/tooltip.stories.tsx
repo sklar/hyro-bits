@@ -1,11 +1,11 @@
-import { Global } from '@emotion/react';
+import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import { Meta, Story } from '@storybook/react';
 import React from 'react';
 import { withDesign } from 'storybook-addon-designs';
 
 import { global, mapArgTypes } from '../../stories';
-import { Tooltip as Component, TooltipProps } from '../tooltip';
+import { CLASSNAME, global as tooltip, Tooltip as Component, TooltipProps } from '../tooltip';
 
 export default {
   title: 'Components/Tooltip',
@@ -13,7 +13,16 @@ export default {
   decorators: [
     (Story) => (
       <>
-        <Global styles={global} />
+        <Global
+          styles={[
+            global,
+            css`
+              .${CLASSNAME} {
+                ${tooltip};
+              }
+            `,
+          ]}
+        />
         <Container>
           <Story />
         </Container>

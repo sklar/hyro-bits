@@ -1,11 +1,11 @@
-import { css, Global } from '@emotion/react';
 import styled from '@emotion/styled';
 import RcTooltip from 'rc-tooltip';
 import React, { ReactElement, useMemo } from 'react';
 
-import { arrow, global, key, label, separator, shortcut, tooltip } from './tooltip.styles';
+import { arrow, key, label, separator, shortcut, tooltip } from './tooltip.styles';
 
-const CLASSNAME = 't00lt1p' as const;
+export const CLASSNAME = 't00lt1p' as const;
+
 const DELAY_ENTER = 0.4;
 const DELAY_LEAVE = 0.1;
 const SEPARATOR = '+';
@@ -67,7 +67,7 @@ export interface TooltipProps {
 
 /**
  * Tooltip wrapper.
- * TOTO: Replace `rc-tooltip` with some lightweight alternative, e.g. popper, tippy or tether.
+ * TODO: Replace `rc-tooltip` with some lightweight alternative, e.g. popper, tippy or tether.
  */
 export const Tooltip: React.FC<TooltipProps> = ({
   active,
@@ -99,7 +99,6 @@ export const Tooltip: React.FC<TooltipProps> = ({
 
   return (
     <>
-      <Global styles={globalStyle} />
       <RcTooltip
         arrowContent={<Arrow />}
         mouseEnterDelay={delayEnter}
@@ -129,12 +128,6 @@ export const Tooltip: React.FC<TooltipProps> = ({
     </>
   );
 };
-
-const globalStyle = css`
-  .${CLASSNAME} {
-    ${global};
-  }
-`;
 
 const Container = styled.div`
   ${tooltip};

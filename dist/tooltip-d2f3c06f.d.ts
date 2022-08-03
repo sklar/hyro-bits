@@ -1,5 +1,6 @@
 import React__default, { ReactElement } from 'react';
 
+declare const CLASSNAME: "t00lt1p";
 interface TooltipProps {
     /**
      * Children
@@ -52,8 +53,8 @@ interface TooltipProps {
 }
 /**
  * Tooltip wrapper.
- * TOTO: Replace `rc-tooltip` with some lightweight alternative, e.g. popper, tippy or tether.
+ * TODO: Replace `rc-tooltip` with some lightweight alternative, e.g. popper, tippy or tether.
  */
 declare const Tooltip: React__default.FC<TooltipProps>;
 
-export { Tooltip as T, TooltipProps as a };
+export { CLASSNAME as C, Tooltip as T, TooltipProps as a };
