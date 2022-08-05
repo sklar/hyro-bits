@@ -27,6 +27,7 @@ export { default as CommentLines } from './comment-lines';
 export { default as Cursor } from './cursor';
 export { default as Desert } from './desert';
 export { default as Document } from './document';
+export { default as DoorExit } from './door-exit';
 export { default as DoorOpen } from './door-open';
 export { default as Drop } from './drop';
 export { default as EllipsisHorizontal } from './ellipsis-horizontal';

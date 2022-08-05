@@ -59,6 +59,8 @@ declare const SvgDesert: () => JSX.Element;
 
 declare const SvgDocument: () => JSX.Element;
 
+declare const SvgDoorExit: () => JSX.Element;
+
 declare const SvgDoorOpen: () => JSX.Element;
 
 declare const SvgDrop: () => JSX.Element;
@@ -254,6 +256,7 @@ declare namespace BOLD {
     SvgCursor as Cursor,
     SvgDesert as Desert,
     SvgDocument as Document,
+    SvgDoorExit as DoorExit,
     SvgDoorOpen as DoorOpen,
     SvgDrop as Drop,
     SvgEllipsisHorizontal$1 as EllipsisHorizontal,
