@@ -1,4 +1,4 @@
-/** Components v6.0.0 */
+/** Components v6.1.0 */
 var x2=Object.defineProperty,N4=Object.defineProperties;var D4=Object.getOwnPropertyDescriptors;var J=Object.getOwnPropertySymbols;var z2=Object.prototype.hasOwnProperty,M2=Object.prototype.propertyIsEnumerable;var b2=(t,r,l)=>r in t?x2(t,r,{enumerable:!0,configurable:!0,writable:!0,value:l}):t[r]=l,s=(t,r)=>{for(var l in r||(r={}))z2.call(r,l)&&b2(t,l,r[l]);if(J)for(var l of J(r))M2.call(r,l)&&b2(t,l,r[l]);return t},Y0=(t,r)=>N4(t,D4(r));var f=(t,r)=>{var l={};for(var n in t)z2.call(t,n)&&r.indexOf(n)<0&&(l[n]=t[n]);if(t!=null&&J)for(var n of J(t))r.indexOf(n)<0&&M2.call(t,n)&&(l[n]=t[n]);return l};var A2=(t,r)=>{for(var l in r)x2(t,l,{get:r[l],enumerable:!0})};import{jsx as w}from"@emotion/react";import G0 from"@emotion/styled";import{useCallback as Ao,useEffect as Ro}from"react";import{jsx as L2}from"@emotion/react";import{kebabCase as Z4}from"case-anything";import{forwardRef as J4}from"react";import{css as K4}from"@emotion/react";import V2 from"@emotion/styled";import Q,{forwardRef as F4}from"react";import{css as S2,keyframes as G4}from"@emotion/react";import{css as R2}from"@emotion/react";import{keyframes as $4}from"@emotion/react";var S={easeInOut:"ease-in-out",easeInOutQuart:"cubic-bezier(0.770, 0.000, 0.175, 1.000)",easeOutCirc:"cubic-bezier(0.075, 0.820, 0.165, 1.000)",easeOutCubic:"cubic-bezier(0.215, 0.610, 0.355, 1.000)"},O4=$4`
   0%    { opacity: 0; }
   100%  { opacity: 1; }
@@ -507,6 +507,9 @@ var x2=Object.defineProperty,N4=Object.defineProperties;var D4=Object.getOwnProp
   &[data-active] {
     display: grid;
   }
+  &[data-backdrop='false'] {
+    pointer-events: none;
+  }
 `,_4=bo`
  0% {
    opacity: 0.5;
@@ -531,6 +534,9 @@ var x2=Object.defineProperty,N4=Object.defineProperties;var D4=Object.getOwnProp
 
   [data-active] & {
     animation: ${_4} 0.3s ${S.easeOutCirc} both;
+  }
+  [data-backdrop='false'] & {
+    pointer-events: auto;
   }
 
   [data-head] & {
@@ -614,7 +620,7 @@ var x2=Object.defineProperty,N4=Object.defineProperties;var D4=Object.getOwnProp
   &:is(:hover) {
     --button-color: ${e.TEXT_PRIMARY};
   }
-`;var Co=q=>{var X=q,{active:t=!1,backdrop:r=!0,bleed:l=!1,children:n,footer:d,header:c,index:i=10,justify:g="flex-end",onClose:v,rejectable:m=!0,size:p,theme:x,title:h}=X,y=f(X,["active","backdrop","bleed","children","footer","header","index","justify","onClose","rejectable","size","theme","title"]);let K0={"data-qa":"dialog"},W=Ao(Z=>{Z.key==="Escape"&&v()},[v]);return Ro(()=>{if(m)return document.addEventListener("keyup",W),()=>{document.removeEventListener("keyup",W)}},[v,W,m]),w(yo,{"data-active":t||null,"data-bleed":l||null,"data-foot":d?!0:null,"data-head":c||h?!0:null,"data-theme":x||null,style:{["--dialog-index"]:i}},r&&w(So,{"data-dialog":"backdrop",onClick:m?v:void 0}),w(Eo,Y0(s(s({},K0),y),{style:{["--dialog-size"]:p}}),(c||h)&&w("header",{css:p2,"data-dialog":"header","data-qa":"dialog-header"},c||w(s2,{as:"h1",clamp:1,css:f2},h)),w(Vo,{"data-dialog":"body","data-qa":"dialog-body"},n),d&&w(Q0,{as:"footer",css:m2,"data-dialog":"footer","data-qa":"dialog-footer",justify:g},d),m&&w(Ho,{"data-dialog":"control","data-qa":"button-close",onClick:v})))},yo=G0.div`
+`;var Co=q=>{var X=q,{active:t=!1,backdrop:r=!0,bleed:l=!1,children:n,footer:d,header:c,index:i=10,justify:g="flex-end",onClose:v,rejectable:m=!0,size:p,theme:x,title:h}=X,y=f(X,["active","backdrop","bleed","children","footer","header","index","justify","onClose","rejectable","size","theme","title"]);let K0={"data-qa":"dialog"},W=Ao(Z=>{Z.key==="Escape"&&v()},[v]);return Ro(()=>{if(m)return document.addEventListener("keyup",W),()=>{document.removeEventListener("keyup",W)}},[v,W,m]),w(yo,{"data-active":t||null,"data-backdrop":r,"data-bleed":l||null,"data-foot":d?!0:null,"data-head":c||h?!0:null,"data-theme":x||null,style:{["--dialog-index"]:i}},r&&w(So,{"data-dialog":"backdrop",onClick:m?v:void 0}),w(Eo,Y0(s(s({},K0),y),{style:{["--dialog-size"]:p}}),(c||h)&&w("header",{css:p2,"data-dialog":"header","data-qa":"dialog-header"},c||w(s2,{as:"h1",clamp:1,css:f2},h)),w(Vo,{"data-dialog":"body","data-qa":"dialog-body"},n),d&&w(Q0,{as:"footer",css:m2,"data-dialog":"footer","data-qa":"dialog-footer",justify:g},d),m&&w(Ho,{"data-dialog":"control","data-qa":"button-close",onClick:v})))},yo=G0.div`
   ${d2};
 `,So=G0.div`
   ${c2};

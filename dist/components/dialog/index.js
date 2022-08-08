@@ -1,4 +1,4 @@
-/** Components v6.0.0 */
+/** Components v6.1.0 */
 var j4=Object.create;var N=Object.defineProperty,a7=Object.defineProperties,o7=Object.getOwnPropertyDescriptor,t7=Object.getOwnPropertyDescriptors,e7=Object.getOwnPropertyNames,t0=Object.getOwnPropertySymbols,r7=Object.getPrototypeOf,t1=Object.prototype.hasOwnProperty,E2=Object.prototype.propertyIsEnumerable;var V2=(t,e,l)=>e in t?N(t,e,{enumerable:!0,configurable:!0,writable:!0,value:l}):t[e]=l,s=(t,e)=>{for(var l in e||(e={}))t1.call(e,l)&&V2(t,l,e[l]);if(t0)for(var l of t0(e))E2.call(e,l)&&V2(t,l,e[l]);return t},e1=(t,e)=>a7(t,t7(e)),H2=t=>N(t,"__esModule",{value:!0});var g=(t,e)=>{var l={};for(var n in t)t1.call(t,n)&&e.indexOf(n)<0&&(l[n]=t[n]);if(t!=null&&t0)for(var n of t0(t))e.indexOf(n)<0&&E2.call(t,n)&&(l[n]=t[n]);return l};var r1=(t,e)=>{for(var l in e)N(t,l,{get:e[l],enumerable:!0})},T2=(t,e,l,n)=>{if(e&&typeof e=="object"||typeof e=="function")for(let c of e7(e))!t1.call(t,c)&&(l||c!=="default")&&N(t,c,{get:()=>e[c],enumerable:!(n=o7(e,c))||n.enumerable});return t},o=(t,e)=>T2(H2(N(t!=null?j4(r7(t)):{},"default",!e&&t&&t.__esModule?{get:()=>t.default,enumerable:!0}:{value:t,enumerable:!0})),t),l7=(t=>(e,l)=>t&&t.get(e)||(l=T2(H2({}),e,1),t&&t.set(e,l),l))(typeof WeakMap!="undefined"?new WeakMap:0);var yo={};r1(yo,{Dialog:()=>J4,backdrop:()=>Y0,body:()=>Z0,control:()=>Q0,dialog:()=>q0,dialogAnimation:()=>C2,footer:()=>J0,header:()=>X0,title:()=>W0,wrapper:()=>U0});var z=require("@emotion/react"),J=o(require("@emotion/styled")),j0=require("react");var p1=require("@emotion/react"),$2=require("case-anything"),O2=require("react");var _2=require("@emotion/react"),i1=o(require("@emotion/styled")),C=o(require("react"));var D=require("@emotion/react");var l1=require("@emotion/react");var B2=require("@emotion/react"),H={easeInOut:"ease-in-out",easeInOutQuart:"cubic-bezier(0.770, 0.000, 0.175, 1.000)",easeOutCirc:"cubic-bezier(0.075, 0.820, 0.165, 1.000)",easeOutCubic:"cubic-bezier(0.215, 0.610, 0.355, 1.000)"},n7=B2.keyframes`
   0%    { opacity: 0; }
   100%  { opacity: 1; }
@@ -507,6 +507,9 @@ var j4=Object.create;var N=Object.defineProperty,a7=Object.defineProperties,o7=O
   &[data-active] {
     display: grid;
   }
+  &[data-backdrop='false'] {
+    pointer-events: none;
+  }
 `,C2=x.keyframes`
  0% {
    opacity: 0.5;
@@ -531,6 +534,9 @@ var j4=Object.create;var N=Object.defineProperty,a7=Object.defineProperties,o7=O
 
   [data-active] & {
     animation: ${C2} 0.3s ${H.easeOutCirc} both;
+  }
+  [data-backdrop='false'] & {
+    pointer-events: auto;
   }
 
   [data-head] & {
@@ -614,7 +620,7 @@ var j4=Object.create;var N=Object.defineProperty,a7=Object.defineProperties,o7=O
   &:is(:hover) {
     --button-color: ${r.TEXT_PRIMARY};
   }
-`;var J4=Q=>{var j=Q,{active:t=!1,backdrop:e=!0,bleed:l=!1,children:n,footer:c,header:v,index:i=10,justify:m="flex-end",onClose:p,rejectable:u=!0,size:f,theme:b,title:M}=j,V=g(j,["active","backdrop","bleed","children","footer","header","index","justify","onClose","rejectable","size","theme","title"]);let a1={"data-qa":"dialog"},a0=(0,j0.useCallback)(o0=>{o0.key==="Escape"&&p()},[p]);return(0,j0.useEffect)(()=>{if(u)return document.addEventListener("keyup",a0),()=>{document.removeEventListener("keyup",a0)}},[p,a0,u]),(0,z.jsx)(Mo,{"data-active":t||null,"data-bleed":l||null,"data-foot":c?!0:null,"data-head":v||M?!0:null,"data-theme":b||null,style:{["--dialog-index"]:i}},e&&(0,z.jsx)(bo,{"data-dialog":"backdrop",onClick:u?p:void 0}),(0,z.jsx)(Ao,e1(s(s({},a1),V),{style:{["--dialog-size"]:f}}),(v||M)&&(0,z.jsx)("header",{css:X0,"data-dialog":"header","data-qa":"dialog-header"},v||(0,z.jsx)(A2,{as:"h1",clamp:1,css:W0},M)),(0,z.jsx)(Ro,{"data-dialog":"body","data-qa":"dialog-body"},n),c&&(0,z.jsx)(g1,{as:"footer",css:J0,"data-dialog":"footer","data-qa":"dialog-footer",justify:m},c),u&&(0,z.jsx)(Co,{"data-dialog":"control","data-qa":"button-close",onClick:p})))},Mo=J.default.div`
+`;var J4=Q=>{var j=Q,{active:t=!1,backdrop:e=!0,bleed:l=!1,children:n,footer:c,header:v,index:i=10,justify:m="flex-end",onClose:p,rejectable:u=!0,size:f,theme:b,title:M}=j,V=g(j,["active","backdrop","bleed","children","footer","header","index","justify","onClose","rejectable","size","theme","title"]);let a1={"data-qa":"dialog"},a0=(0,j0.useCallback)(o0=>{o0.key==="Escape"&&p()},[p]);return(0,j0.useEffect)(()=>{if(u)return document.addEventListener("keyup",a0),()=>{document.removeEventListener("keyup",a0)}},[p,a0,u]),(0,z.jsx)(Mo,{"data-active":t||null,"data-backdrop":e,"data-bleed":l||null,"data-foot":c?!0:null,"data-head":v||M?!0:null,"data-theme":b||null,style:{["--dialog-index"]:i}},e&&(0,z.jsx)(bo,{"data-dialog":"backdrop",onClick:u?p:void 0}),(0,z.jsx)(Ao,e1(s(s({},a1),V),{style:{["--dialog-size"]:f}}),(v||M)&&(0,z.jsx)("header",{css:X0,"data-dialog":"header","data-qa":"dialog-header"},v||(0,z.jsx)(A2,{as:"h1",clamp:1,css:W0},M)),(0,z.jsx)(Ro,{"data-dialog":"body","data-qa":"dialog-body"},n),c&&(0,z.jsx)(g1,{as:"footer",css:J0,"data-dialog":"footer","data-qa":"dialog-footer",justify:m},c),u&&(0,z.jsx)(Co,{"data-dialog":"control","data-qa":"button-close",onClick:p})))},Mo=J.default.div`
   ${U0};
 `,bo=J.default.div`
   ${Y0};

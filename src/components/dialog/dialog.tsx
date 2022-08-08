@@ -116,6 +116,7 @@ export const Dialog: React.FC<DialogProps> = ({
   return (
     <Wrapper
       data-active={active || null}
+      data-backdrop={backdrop}
       data-bleed={bleed || null}
       data-foot={footer ? true : null}
       data-head={header || title ? true : null}

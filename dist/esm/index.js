@@ -1,4 +1,4 @@
-/** Components v6.0.0 */
+/** Components v6.1.0 */
 var Ta=Object.defineProperty,x6=Object.defineProperties;var w6=Object.getOwnPropertyDescriptors;var w0=Object.getOwnPropertySymbols;var Ea=Object.prototype.hasOwnProperty,Ra=Object.prototype.propertyIsEnumerable;var Ca=(o,r,l)=>r in o?Ta(o,r,{enumerable:!0,configurable:!0,writable:!0,value:l}):o[r]=l,i=(o,r)=>{for(var l in r||(r={}))Ea.call(r,l)&&Ca(o,l,r[l]);if(w0)for(var l of w0(r))Ra.call(r,l)&&Ca(o,l,r[l]);return o},b=(o,r)=>x6(o,w6(r));var f=(o,r)=>{var l={};for(var n in o)Ea.call(o,n)&&r.indexOf(n)<0&&(l[n]=o[n]);if(o!=null&&w0)for(var n of w0(o))r.indexOf(n)<0&&Ra.call(o,n)&&(l[n]=o[n]);return l};var Sa=(o,r)=>{for(var l in r)Ta(o,l,{get:r[l],enumerable:!0})};import{jsx as _a}from"@emotion/react";import{kebabCase as S6}from"case-anything";import{forwardRef as L6}from"react";import{css as z6}from"@emotion/react";import Ba from"@emotion/styled";import y0,{forwardRef as M6}from"react";import{css as ka,keyframes as y6}from"@emotion/react";import{css as La}from"@emotion/react";import{keyframes as b6}from"@emotion/react";var F={easeInOut:"ease-in-out",easeInOutQuart:"cubic-bezier(0.770, 0.000, 0.175, 1.000)",easeOutCirc:"cubic-bezier(0.075, 0.820, 0.165, 1.000)",easeOutCubic:"cubic-bezier(0.215, 0.610, 0.355, 1.000)"},y1=b6`
   0%    { opacity: 0; }
   100%  { opacity: 1; }
@@ -509,6 +509,9 @@ var Ta=Object.defineProperty,x6=Object.defineProperties;var w6=Object.getOwnProp
   &[data-active] {
     display: grid;
   }
+  &[data-backdrop='false'] {
+    pointer-events: none;
+  }
 `,Ke=c7`
  0% {
    opacity: 0.5;
@@ -533,6 +536,9 @@ var Ta=Object.defineProperty,x6=Object.defineProperties;var w6=Object.getOwnProp
 
   [data-active] & {
     animation: ${Ke} 0.3s ${F.easeOutCirc} both;
+  }
+  [data-backdrop='false'] & {
+    pointer-events: auto;
   }
 
   [data-head] & {
@@ -616,7 +622,7 @@ var Ta=Object.defineProperty,x6=Object.defineProperties;var w6=Object.getOwnProp
   &:is(:hover) {
     --button-color: ${e.TEXT_PRIMARY};
   }
-`;var Ye=w=>{var y=w,{active:o=!1,backdrop:r=!0,bleed:l=!1,children:n,footer:s,header:c,index:d=10,justify:m="flex-end",onClose:p,rejectable:v=!0,size:u,theme:g,title:x}=y,h=f(y,["active","backdrop","bleed","children","footer","header","index","justify","onClose","rejectable","size","theme","title"]);let R={"data-qa":"dialog"},A=d7($=>{$.key==="Escape"&&p()},[p]);return p7(()=>{if(v)return document.addEventListener("keyup",A),()=>{document.removeEventListener("keyup",A)}},[p,A,v]),L(f7,{"data-active":o||null,"data-bleed":l||null,"data-foot":s?!0:null,"data-head":c||x?!0:null,"data-theme":g||null,style:{["--dialog-index"]:d}},r&&L(m7,{"data-dialog":"backdrop",onClick:v?p:void 0}),L(v7,b(i(i({},R),h),{style:{["--dialog-size"]:u}}),(c||x)&&L("header",{css:_t,"data-dialog":"header","data-qa":"dialog-header"},c||L(S,{as:"h1",clamp:1,css:Dt},x)),L(u7,{"data-dialog":"body","data-qa":"dialog-body"},n),s&&L(C,{as:"footer",css:Ft,"data-dialog":"footer","data-qa":"dialog-footer",justify:m},s),v&&L(g7,{"data-dialog":"control","data-qa":"button-close",onClick:p})))},f7=p1.div`
+`;var Ye=w=>{var y=w,{active:o=!1,backdrop:r=!0,bleed:l=!1,children:n,footer:s,header:c,index:d=10,justify:m="flex-end",onClose:p,rejectable:v=!0,size:u,theme:g,title:x}=y,h=f(y,["active","backdrop","bleed","children","footer","header","index","justify","onClose","rejectable","size","theme","title"]);let R={"data-qa":"dialog"},A=d7($=>{$.key==="Escape"&&p()},[p]);return p7(()=>{if(v)return document.addEventListener("keyup",A),()=>{document.removeEventListener("keyup",A)}},[p,A,v]),L(f7,{"data-active":o||null,"data-backdrop":r,"data-bleed":l||null,"data-foot":s?!0:null,"data-head":c||x?!0:null,"data-theme":g||null,style:{["--dialog-index"]:d}},r&&L(m7,{"data-dialog":"backdrop",onClick:v?p:void 0}),L(v7,b(i(i({},R),h),{style:{["--dialog-size"]:u}}),(c||x)&&L("header",{css:_t,"data-dialog":"header","data-qa":"dialog-header"},c||L(S,{as:"h1",clamp:1,css:Dt},x)),L(u7,{"data-dialog":"body","data-qa":"dialog-body"},n),s&&L(C,{as:"footer",css:Ft,"data-dialog":"footer","data-qa":"dialog-footer",justify:m},s),v&&L(g7,{"data-dialog":"control","data-qa":"button-close",onClick:p})))},f7=p1.div`
   ${It};
 `,m7=p1.div`
   ${$t};

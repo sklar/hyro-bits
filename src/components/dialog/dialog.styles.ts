@@ -51,6 +51,9 @@ export const wrapper = css`
   &[data-active] {
     display: grid;
   }
+  &[data-backdrop='false'] {
+    pointer-events: none;
+  }
 `;
 
 /**
@@ -82,6 +85,9 @@ export const dialog = css`
 
   [data-active] & {
     animation: ${dialogAnimation} 0.3s ${EASING.easeOutCirc} both;
+  }
+  [data-backdrop='false'] & {
+    pointer-events: auto;
   }
 
   [data-head] & {
