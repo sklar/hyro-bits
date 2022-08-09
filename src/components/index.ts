@@ -10,7 +10,7 @@ export type { DialogProps } from './dialog';
 export { Divider } from './divider';
 export type { DividerProps } from './divider';
 
-export { Field, FieldLabel, FieldMessage, FieldText } from './field';
+export { Field, FieldHint, FieldLabel, FieldMessage, FieldText } from './field';
 export type { FieldMessageProps, FieldProps } from './field';
 
 export { Flex } from './flex';

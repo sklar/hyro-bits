@@ -17,6 +17,24 @@ export const field = css`
 `;
 
 /**
+ * Field hint
+ */
+export const hint = css`
+  ${labelToken};
+
+  --font-weight: 400;
+
+  font-style: normal;
+
+  &::after {
+    content: ')';
+  }
+  &::before {
+    content: '(';
+  }
+`;
+
+/**
  * Field label
  */
 export const label = css`

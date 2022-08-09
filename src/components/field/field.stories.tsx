@@ -5,6 +5,7 @@ import { withDesign } from 'storybook-addon-designs';
 import { Container, mapArgTypes } from '../../stories';
 import {
   Field as Component,
+  FieldHint,
   FieldLabel,
   FieldMessage,
   FieldMessageProps,
@@ -60,6 +61,7 @@ const Template: Story<FieldMessageProps> = (args) => (
       <Component>
         <FieldLabel>
           Label
+          <FieldHint text="Optional" />
           <Icon name="QuestionCircle" size="xs" />
         </FieldLabel>
         <FieldText>Text to explain what this action might do to your story</FieldText>

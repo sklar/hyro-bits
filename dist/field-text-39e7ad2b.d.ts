@@ -10,6 +10,14 @@ interface FieldProps extends FlexProps {
 }
 declare const Field: React__default.FC<FieldProps>;
 
+/**
+ * Field text
+ */
+interface FieldHintProps extends HTMLAttributes<HTMLSpanElement> {
+    text: string;
+}
+declare const FieldHint: React__default.VFC<FieldHintProps>;
+
 declare const FieldLabel: React__default.FC<FlexProps>;
 
 declare type FieldMessageTheme = Exclude<ThemeType, 'dark' | 'warning'>;
@@ -26,4 +34,4 @@ interface FieldTextProps extends HTMLAttributes<HTMLDivElement> {
 }
 declare const FieldText: React__default.FC<FieldTextProps>;
 
-export { Field as F, FieldProps as a, FieldLabel as b, FieldMessage as c, FieldMessageProps as d, FieldText as e };
+export { Field as F, FieldProps as a, FieldHint as b, FieldLabel as c, FieldMessage as d, FieldMessageProps as e, FieldText as f };
