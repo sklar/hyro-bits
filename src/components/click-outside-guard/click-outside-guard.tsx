@@ -31,7 +31,7 @@ export const ClickOutsideGuard = forwardRef<HTMLDivElement, ClickOutsideGuardPro
     };
 
     useEffect(() => {
-      if (listen && onClickOutside) {
+      if (listen) {
         document.addEventListener('mousedown', handleEvent, false);
         document.addEventListener('touchend', handleEvent, false);
         document.addEventListener('keyup', onKeyUp);

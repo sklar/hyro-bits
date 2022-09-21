@@ -2,7 +2,7 @@ import * as React from 'react';
 import React__default, { HTMLAttributes, ElementType } from 'react';
 import * as _emotion_styled from '@emotion/styled';
 import * as _emotion_react from '@emotion/react';
-import { V as VariantType } from './index-2e22dac1';
+import { V as VariantType } from './index-2e22dac1.js';
 
 interface MenuProps extends HTMLAttributes<HTMLDivElement> {
     /**

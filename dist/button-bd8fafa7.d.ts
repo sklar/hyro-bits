@@ -1,5 +1,5 @@
 import { ElementType, ComponentPropsWithRef, JSXElementConstructor, ComponentPropsWithoutRef, ReactNode, ReactElement } from 'react';
-import { S as SizeType, T as ThemeType, V as VariantType } from './index-2e22dac1';
+import { S as SizeType, T as ThemeType, V as VariantType } from './index-2e22dac1.js';
 
 declare type ExtendedProps<BaseProps = {}, OverrideProps = {}> = OverrideProps & Omit<BaseProps, keyof OverrideProps>;
 declare type PropsOf<C extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>> = JSX.LibraryManagedAttributes<C, ComponentPropsWithoutRef<C>>;

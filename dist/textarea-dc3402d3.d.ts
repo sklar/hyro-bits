@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { TextareaHTMLAttributes, ElementType } from 'react';
-import { I as InternalHTMLAttributes } from './index-2e22dac1';
+import { I as InternalHTMLAttributes } from './index-2e22dac1.js';
 
 interface TextareaProps extends InternalHTMLAttributes, TextareaHTMLAttributes<HTMLTextAreaElement> {
     /**

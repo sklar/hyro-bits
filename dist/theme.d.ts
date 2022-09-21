@@ -1,4 +1,4 @@
-import * as _emotion_react from '@emotion/react';
+import * as _emotion_utils from '@emotion/utils';
 
 declare const colors: {
     PRIMARY: string;
@@ -34,15 +34,15 @@ declare const colors: {
     WHITE: string;
 };
 
-declare const base: _emotion_react.SerializedStyles;
-declare const h1: _emotion_react.SerializedStyles;
-declare const h2: _emotion_react.SerializedStyles;
-declare const h3: _emotion_react.SerializedStyles;
-declare const h4: _emotion_react.SerializedStyles;
-declare const h5: _emotion_react.SerializedStyles;
-declare const paragraph: _emotion_react.SerializedStyles;
-declare const button: _emotion_react.SerializedStyles;
-declare const label: _emotion_react.SerializedStyles;
-declare const input: _emotion_react.SerializedStyles;
+declare const base: _emotion_utils.SerializedStyles;
+declare const h1: _emotion_utils.SerializedStyles;
+declare const h2: _emotion_utils.SerializedStyles;
+declare const h3: _emotion_utils.SerializedStyles;
+declare const h4: _emotion_utils.SerializedStyles;
+declare const h5: _emotion_utils.SerializedStyles;
+declare const paragraph: _emotion_utils.SerializedStyles;
+declare const button: _emotion_utils.SerializedStyles;
+declare const label: _emotion_utils.SerializedStyles;
+declare const input: _emotion_utils.SerializedStyles;
 
 export { base, button, colors, h1, h2, h3, h4, h5, input, label, paragraph };

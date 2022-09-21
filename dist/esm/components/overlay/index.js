@@ -1,12 +1,12 @@
-/** Components v6.1.1 */
-var f=Object.defineProperty,u=Object.defineProperties;var b=Object.getOwnPropertyDescriptors;var t=Object.getOwnPropertySymbols;var n=Object.prototype.hasOwnProperty,v=Object.prototype.propertyIsEnumerable;var y=(e,r,a)=>r in e?f(e,r,{enumerable:!0,configurable:!0,writable:!0,value:a}):e[r]=a,s=(e,r)=>{for(var a in r||(r={}))n.call(r,a)&&y(e,a,r[a]);if(t)for(var a of t(r))v.call(r,a)&&y(e,a,r[a]);return e},p=(e,r)=>u(e,b(r));var c=(e,r)=>{var a={};for(var o in e)n.call(e,o)&&r.indexOf(o)<0&&(a[o]=e[o]);if(e!=null&&t)for(var o of t(e))r.indexOf(o)<0&&v.call(e,o)&&(a[o]=e[o]);return a};import{jsx as O}from"@emotion/react";import{css as h,keyframes as g}from"@emotion/react";var x=g`
+/** Components v6.2.0 */
+import{jsx as v}from"@emotion/react";import{css as i,keyframes as n}from"@emotion/react";var r=n`
   0% {
     --overlay-alpha: 0%;
   }
   100% {
     --overlay-alpha: 50%;
   }
-`,l=h`
+`,e=i`
   @property --overlay-alpha {
     inherits: true;
     initial-value: 0%;
@@ -25,8 +25,8 @@ var f=Object.defineProperty,u=Object.defineProperties;var b=Object.getOwnPropert
   z-index: var(--overlay-index);
 
   &[data-active] {
-    animation: ${x} var(--overlay-duration) var(--overlay-easing) both;
+    animation: ${r} var(--overlay-duration) var(--overlay-easing) both;
     display: block;
   }
-`;var k=1,A=E=>{var i=E,{active:e=!1,index:r=k,onClick:a}=i,o=c(i,["active","index","onClick"]);return O("div",p(s({},o),{css:l,"data-active":e||null,style:{["--overlay-index"]:r},onClick:a}))};export{A as Overlay,l as overlay,x as overlayAnimation};
+`;var y=1,s=({active:a=!1,index:o=y,onClick:t,...l})=>v("div",{...l,css:e,"data-active":a||null,style:{["--overlay-index"]:o},onClick:t});export{s as Overlay,e as overlay,r as overlayAnimation};
 //# sourceMappingURL=index.js.map

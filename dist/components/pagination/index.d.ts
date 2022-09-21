@@ -1,5 +1,5 @@
 import React__default, { HTMLAttributes } from 'react';
-import * as _emotion_react from '@emotion/react';
+import * as _emotion_utils from '@emotion/utils';
 
 interface PaginationProps extends Omit<HTMLAttributes<HTMLElement>, 'onChange'> {
     /**
@@ -46,8 +46,8 @@ declare const usePagination: ({ boundaryCount, count, offset, page, siblingCount
     nextPageActive: boolean | undefined;
 };
 
-declare const item: _emotion_react.SerializedStyles;
-declare const spacer: _emotion_react.SerializedStyles;
-declare const pagination: _emotion_react.SerializedStyles;
+declare const item: _emotion_utils.SerializedStyles;
+declare const spacer: _emotion_utils.SerializedStyles;
+declare const pagination: _emotion_utils.SerializedStyles;
 
 export { Options, Pagination, PaginationProps, SPACER, item, pagination, spacer, usePagination };

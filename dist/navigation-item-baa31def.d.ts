@@ -1,5 +1,5 @@
 import React__default, { HTMLAttributes, ElementType, ReactNode, ReactElement } from 'react';
-import { S as StatusThemeType } from './status-2f788194';
+import { S as StatusThemeType } from './status-2f788194.js';
 
 interface NavProps extends HTMLAttributes<HTMLElement> {
     /**

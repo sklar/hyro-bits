@@ -2,7 +2,7 @@
 export const EMOTION_DISABLE_SSR =
   '/* emotion-disable-server-rendering-unsafe-selector-warning-please-do-not-use-this-the-warning-exists-for-a-reason */';
 
-export const splitPropsByKeys = <T, K extends (keyof T)[]>(props: T, keys: K) => {
+export const splitPropsByKeys = <T extends {}, K extends (keyof T)[]>(props: T, keys: K) => {
   type IncludedKeys = K[number];
   type ExcludedKeys = Exclude<keyof T, IncludedKeys>;
 

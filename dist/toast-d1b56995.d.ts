@@ -1,5 +1,5 @@
 import React__default, { HTMLAttributes } from 'react';
-import { T as ThemeType } from './index-2e22dac1';
+import { T as ThemeType } from './index-2e22dac1.js';
 
 declare type ToastTheme = Exclude<ThemeType, 'dark'>;
 declare type ToastVariant = 'snackbar' | 'toast';

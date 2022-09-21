@@ -1,6 +1,6 @@
-/** Components v6.1.1 */
-var Y=Object.create;var f=Object.defineProperty,B=Object.defineProperties,U=Object.getOwnPropertyDescriptor,H=Object.getOwnPropertyDescriptors,G=Object.getOwnPropertyNames,b=Object.getOwnPropertySymbols,X=Object.getPrototypeOf,T=Object.prototype.hasOwnProperty,I=Object.prototype.propertyIsEnumerable;var N=(r,e,t)=>e in r?f(r,e,{enumerable:!0,configurable:!0,writable:!0,value:t}):r[e]=t,n=(r,e)=>{for(var t in e||(e={}))T.call(e,t)&&N(r,t,e[t]);if(b)for(var t of b(e))I.call(e,t)&&N(r,t,e[t]);return r},m=(r,e)=>B(r,H(e)),_=r=>f(r,"__esModule",{value:!0});var z=(r,e)=>{var t={};for(var a in r)T.call(r,a)&&e.indexOf(a)<0&&(t[a]=r[a]);if(r!=null&&b)for(var a of b(r))e.indexOf(a)<0&&I.call(r,a)&&(t[a]=r[a]);return t};var W=(r,e)=>{for(var t in e)f(r,t,{get:e[t],enumerable:!0})},P=(r,e,t,a)=>{if(e&&typeof e=="object"||typeof e=="function")for(let i of G(e))!T.call(r,i)&&(t||i!=="default")&&f(r,i,{get:()=>e[i],enumerable:!(a=U(e,i))||a.enumerable});return r},F=(r,e)=>P(_(f(r!=null?Y(X(r)):{},"default",!e&&r&&r.__esModule?{get:()=>r.default,enumerable:!0}:{value:r,enumerable:!0})),r),q=(r=>(e,t)=>r&&r.get(e)||(t=P(_({}),e,1),r&&r.set(e,t),t))(typeof WeakMap!="undefined"?new WeakMap:0);var rr={};W(rr,{Range:()=>$,dot:()=>v,handle:()=>x,mark:()=>y,rail:()=>E,slider:()=>p,step:()=>R,track:()=>k,wrapper:()=>h});var w=require("@emotion/react"),M=require("rc-slider");var A=(r,e)=>{let t=Object.keys(r).filter(a=>!e.includes(a));return[e.reduce((a,i)=>(a[i]=r[i],a),{}),t.reduce((a,i)=>(a[i]=r[i],a),{})]};var Z=require("@emotion/react"),j=F(require("rc-slider"));var d=require("@emotion/react");var c={black:"#000000",blue:{denim:"#184ece",dodger:"#3370ff",ebony:"#1f222f",haiti:"#0f152e",hawkes:"#ecf1fe",oxford:"#3f485e",ribbon:"#004bff",ribbon1:"#1d61ff",science:"#0041dd",vulcan:"#131620"},current:"currentColor",gray:{botticelli:"#dbe4ee",cadet:"#b4bac8",fiord:"#3b4463",geyser:"#ced4e2",porcelain:"#f6f7f8",trout:"#545864",waterloo:"#757c91"},green:{caribbean:"#07d094"},orange:{amber:"#ffbe0b"},red:{radical:"#ff3b58"},transparent:"transparent",white:"#ffffff"},J=(r=>({DANGER:r.red.radical,NOTICE:r.blue.ribbon1,SUCCESS:r.green.caribbean,WARNING:r.orange.amber}))(c),V=(r=>({PRIMARY:r.blue.ribbon,SECONDARY:r.blue.hawkes,TERTIARY:r.gray.cadet,BACKGROUND_PRIMARY:r.white,BACKGROUND_SECONDARY:r.gray.porcelain,ELEMENT_PRIMARY:r.blue.ribbon,ELEMENT_SECONDARY:r.blue.hawkes,ELEMENT_TERTIARY:r.gray.cadet,ELEMENT_ACTIVE:r.blue.science,ELEMENT_DISABLED:r.gray.geyser,ELEMENT_FOCUS:r.blue.dodger,STROKE:r.gray.botticelli,TEXT_PRIMARY:r.blue.haiti,TEXT_SECONDARY:r.blue.hawkes,TEXT_TERTIARY:r.gray.cadet,DARK_TERTIARY:r.gray.waterloo,DARK_ELEMENT_TERTIARY:r.gray.waterloo,DARK_BACKGROUND_PRIMARY:r.blue.vulcan,DARK_BACKGROUND_SECONDARY:r.blue.ebony,DARK_ELEMENT_ACTIVE:r.blue.oxford,DARK_ELEMENT_DISABLED:r.gray.trout,DARK_ELEMENT_FOCUS:r.blue.denim,DARK_STROKE:r.gray.fiord}))(c),l=n(n({BLACK:c.black,CURRENT:c.current,TRANSPARENT:c.transparent,WHITE:c.white},J),V);var o=require("@emotion/react");var g=o.css`
-  --color: ${l.TEXT_PRIMARY};
+/** Components v6.2.0 */
+"use strict";var I=Object.create;var h=Object.defineProperty;var N=Object.getOwnPropertyDescriptor;var _=Object.getOwnPropertyNames;var P=Object.getPrototypeOf,D=Object.prototype.hasOwnProperty;var M=(r,e)=>{for(var t in e)h(r,t,{get:e[t],enumerable:!0})},k=(r,e,t,i)=>{if(e&&typeof e=="object"||typeof e=="function")for(let a of _(e))!D.call(r,a)&&a!==t&&h(r,a,{get:()=>e[a],enumerable:!(i=N(e,a))||i.enumerable});return r};var $=(r,e,t)=>(t=r!=null?I(P(r)):{},k(e||!r||!r.__esModule?h(t,"default",{value:r,enumerable:!0}):t,r)),C=r=>k(h({},"__esModule",{value:!0}),r);var H={};M(H,{Range:()=>A,dot:()=>g,handle:()=>b,mark:()=>m,rail:()=>u,slider:()=>n,step:()=>v,track:()=>x,wrapper:()=>c});module.exports=C(H);var E=require("@emotion/react"),z=require("rc-slider");var y=(r,e)=>{let t=Object.keys(r).filter(i=>!e.includes(i));return[e.reduce((i,a)=>(i[a]=r[a],i),{}),t.reduce((i,a)=>(i[a]=r[a],i),{})]};var B=require("@emotion/react"),U=$(require("rc-slider"));var s=require("@emotion/react");var l={black:"#000000",blue:{denim:"#184ece",dodger:"#3370ff",ebony:"#1f222f",haiti:"#0f152e",hawkes:"#ecf1fe",oxford:"#3f485e",ribbon:"#004bff",ribbon1:"#1d61ff",science:"#0041dd",vulcan:"#131620"},current:"currentColor",gray:{botticelli:"#dbe4ee",cadet:"#b4bac8",fiord:"#3b4463",geyser:"#ced4e2",porcelain:"#f6f7f8",trout:"#545864",waterloo:"#757c91"},green:{caribbean:"#07d094"},orange:{amber:"#ffbe0b"},red:{radical:"#ff3b58"},transparent:"transparent",white:"#ffffff"},L=(r=>({DANGER:r.red.radical,NOTICE:r.blue.ribbon1,SUCCESS:r.green.caribbean,WARNING:r.orange.amber}))(l),O=(r=>({PRIMARY:r.blue.ribbon,SECONDARY:r.blue.hawkes,TERTIARY:r.gray.cadet,BACKGROUND_PRIMARY:r.white,BACKGROUND_SECONDARY:r.gray.porcelain,ELEMENT_PRIMARY:r.blue.ribbon,ELEMENT_SECONDARY:r.blue.hawkes,ELEMENT_TERTIARY:r.gray.cadet,ELEMENT_ACTIVE:r.blue.science,ELEMENT_DISABLED:r.gray.geyser,ELEMENT_FOCUS:r.blue.dodger,STROKE:r.gray.botticelli,TEXT_PRIMARY:r.blue.haiti,TEXT_SECONDARY:r.blue.hawkes,TEXT_TERTIARY:r.gray.cadet,DARK_TERTIARY:r.gray.waterloo,DARK_ELEMENT_TERTIARY:r.gray.waterloo,DARK_BACKGROUND_PRIMARY:r.blue.vulcan,DARK_BACKGROUND_SECONDARY:r.blue.ebony,DARK_ELEMENT_ACTIVE:r.blue.oxford,DARK_ELEMENT_DISABLED:r.gray.trout,DARK_ELEMENT_FOCUS:r.blue.denim,DARK_STROKE:r.gray.fiord}))(l),d={BLACK:l.black,CURRENT:l.current,TRANSPARENT:l.transparent,WHITE:l.white,...L,...O};var o=require("@emotion/react");var p=o.css`
+  --color: ${d.TEXT_PRIMARY};
   --font-family: 'Inter', sans-serif;
   --font-size: ;
   --font-weight: 400;
@@ -14,45 +14,45 @@ var Y=Object.create;var f=Object.defineProperty,B=Object.defineProperties,U=Obje
   font-weight: var(--font-weight);
   letter-spacing: var(--letter-spacing);
   line-height: var(--line-height);
-`,u=o.css`
-  ${g};
+`,f=o.css`
+  ${p};
 
   --font-weight: 700;
   --letter-spacing: -0.01em;
 
   margin: 0;
-`,lr=o.css`
-  ${u};
+`,V=o.css`
+  ${f};
 
   --font-size: 18px;
   --line-height: calc(24 / 18);
-`,nr=o.css`
-  ${u};
+`,Q=o.css`
+  ${f};
 
   --font-size: 16px;
   --line-height: calc(24 / 16);
-`,cr=o.css`
-  ${u};
+`,Z=o.css`
+  ${f};
 
   --font-size: 14px;
   --line-height: calc(16 / 14);
-`,Q=o.css`
-  ${u};
+`,Y=o.css`
+  ${f};
 
   --font-size: 13px;
   --line-height: calc(16 / 13);
-`,pr=o.css`
-  ${Q};
+`,j=o.css`
+  ${Y};
 
   --font-weight: 600;
-`,D=o.css`
-  ${g};
+`,T=o.css`
+  ${p};
 
   --font-size: 13px;
   --font-weight: 500;
   --line-height: calc(16 / 13);
-`,hr=o.css`
-  ${g};
+`,rr=o.css`
+  ${p};
 
   --font-size: 14px;
   --font-weight: 600;
@@ -60,20 +60,20 @@ var Y=Object.create;var f=Object.defineProperty,B=Object.defineProperties,U=Obje
   --line-height: calc(16 / 14);
 
   text-decoration: none;
-`,fr=o.css`
-  ${g};
+`,er=o.css`
+  ${p};
 
   --font-size: 14px;
   --font-weight: 700;
   --letter-spacing: -0.01em;
   --line-height: calc(16 / 14);
-`,gr=o.css`
-  ${g};
+`,tr=o.css`
+  ${p};
 
   --font-size: 14px;
   --line-height: calc(16 / 14);
   --font-weight: 600;
-`;var v=d.css`
+`;var g=s.css`
   background-color: var(--slider-dot-color);
   border: var(--slider-border-size) solid var(--slider-dot-border-color);
   border-radius: 50%;
@@ -107,7 +107,7 @@ var Y=Object.create;var f=Object.defineProperty,B=Object.defineProperties,U=Obje
       --slider-dy: -50%;
     }
   }
-`,x=d.css`
+`,b=s.css`
   background-color: var(--slider-handle-color);
   border: var(--slider-border-size) solid var(--slider-handle-border-color);
   border-color: var(--slider-handle-border-color) !important; /* safeguard */
@@ -146,9 +146,9 @@ var Y=Object.create;var f=Object.defineProperty,B=Object.defineProperties,U=Obje
   [data-direction='vertical'][data-reverse] & {
     --slider-dy: -50%;
   }
-`,y=d.css`
+`,m=s.css`
   [class*='text'] {
-    ${D};
+    ${T};
 
     cursor: pointer;
     margin: 0 !important; /* safeguard */
@@ -219,7 +219,7 @@ var Y=Object.create;var f=Object.defineProperty,B=Object.defineProperties,U=Obje
       }
     }
   }
-`,E=d.css`
+`,u=s.css`
   background-color: var(--slider-rail-color);
   border-radius: inherit;
 
@@ -231,7 +231,7 @@ var Y=Object.create;var f=Object.defineProperty,B=Object.defineProperties,U=Obje
     height: 100%;
     width: var(--slider-rail-size);
   }
-`,R=d.css`
+`,v=s.css`
   [data-direction='horizontal'] & {
     height: var(--slider-dot-size);
     width: 100%;
@@ -240,7 +240,7 @@ var Y=Object.create;var f=Object.defineProperty,B=Object.defineProperties,U=Obje
     height: 100%;
     width: var(--slider-dot-size);
   }
-`,k=d.css`
+`,x=s.css`
   background-color: var(--slider-track-color);
   border-radius: inherit;
   left: auto; /* safeguard */
@@ -251,7 +251,7 @@ var Y=Object.create;var f=Object.defineProperty,B=Object.defineProperties,U=Obje
   [data-direction='vertical'] & {
     width: var(--slider-track-size);
   }
-`,p=d.css`
+`,n=s.css`
   align-items: center;
   background: none;
   border-radius: var(--slider-border-radius);
@@ -272,22 +272,22 @@ var Y=Object.create;var f=Object.defineProperty,B=Object.defineProperties,U=Obje
   }
 
   [class*='dot'] {
-    ${v};
+    ${g};
   }
   [class*='handle'] {
-    ${x};
+    ${b};
   }
   [class*='mark'] {
-    ${y};
+    ${m};
   }
   [class*='rail'] {
-    ${E};
+    ${u};
   }
   [class*='step'] {
-    ${R};
+    ${v};
   }
   [class*='track'] {
-    ${k};
+    ${x};
   }
 
   [data-direction='vertical'] & {
@@ -300,21 +300,21 @@ var Y=Object.create;var f=Object.defineProperty,B=Object.defineProperties,U=Obje
     opacity: 0.5;
     pointer-events: none;
   }
-`,h=d.css`
+`,c=s.css`
   --slider-border-radius: 1000px;
   --slider-border-size: 2px;
-  --slider-color-primary: ${l.ELEMENT_FOCUS};
-  --slider-color-secondary: ${l.STROKE};
+  --slider-color-primary: ${d.ELEMENT_FOCUS};
+  --slider-color-secondary: ${d.STROKE};
   --slider-dx: 0;
   --slider-dy: 0;
   --slider-size: 16px;
 
   --slider-dot-border-color: var(--slider-color-secondary);
-  --slider-dot-color: ${l.WHITE};
+  --slider-dot-color: ${d.WHITE};
   --slider-dot-size: calc(0.5 * var(--slider-size));
 
   --slider-handle-border-color: var(--slider-color-secondary);
-  --slider-handle-color: ${l.WHITE};
+  --slider-handle-color: ${d.WHITE};
   --slider-handle-size: var(--slider-size);
 
   --slider-mark-dx: ;
@@ -346,5 +346,5 @@ var Y=Object.create;var f=Object.defineProperty,B=Object.defineProperties,U=Obje
       padding-top: calc(0.5 * var(--slider-size));
     }
   }
-`;var $=er=>{var S=er,{bleed:r=!0,className:e,reverse:t,style:a,theme:i,vertical:K}=S,C=z(S,["bleed","className","reverse","style","theme","vertical"]);let[L,O]=A(C,["data-hover","data-qa"]);return(0,w.jsx)("div",m(n({},L),{className:e,css:h,"data-bleed":r,"data-direction":K?"vertical":"horizontal","data-reverse":t||null,"data-theme":i||null,style:a}),(0,w.jsx)(M.Range,m(n({},O),{css:p,reverse:t,vertical:K})))};module.exports=q(rr);0&&(module.exports={Range,dot,handle,mark,rail,slider,step,track,wrapper});
+`;var A=({bleed:r=!0,className:e,reverse:t,style:i,theme:a,vertical:R,...w})=>{let[K,S]=y(w,["data-hover","data-qa"]);return(0,E.jsx)("div",{...K,className:e,css:c,"data-bleed":r,"data-direction":R?"vertical":"horizontal","data-reverse":t||null,"data-theme":a||null,style:i},(0,E.jsx)(z.Range,{...S,css:n,reverse:t,vertical:R}))};0&&(module.exports={Range,dot,handle,mark,rail,slider,step,track,wrapper});
 //# sourceMappingURL=index.js.map

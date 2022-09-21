@@ -1,6 +1,6 @@
 import React__default, { ReactNode, HTMLAttributes, ReactElement } from 'react';
-import { A as AlignmentPrimaryType, D as DirectionType } from '../../index-2e22dac1';
-import * as _emotion_react from '@emotion/react';
+import { A as AlignmentPrimaryType, D as DirectionType } from '../../index-2e22dac1.js';
+import * as _emotion_utils from '@emotion/utils';
 
 /**
  * Table head
@@ -118,22 +118,22 @@ interface TrProps extends HTMLAttributes<HTMLTableRowElement> {
  */
 declare const Tr: React__default.ForwardRefExoticComponent<TrProps & React__default.RefAttributes<HTMLTableRowElement>>;
 
-declare const text: _emotion_react.SerializedStyles;
+declare const text: _emotion_utils.SerializedStyles;
 /**
  * Td
  */
-declare const td: _emotion_react.SerializedStyles;
+declare const td: _emotion_utils.SerializedStyles;
 /**
  * Th
  */
-declare const th: _emotion_react.SerializedStyles;
+declare const th: _emotion_utils.SerializedStyles;
 /**
  * Tr
  */
-declare const tr: _emotion_react.SerializedStyles;
+declare const tr: _emotion_utils.SerializedStyles;
 /**
  * Table
  */
-declare const table: _emotion_react.SerializedStyles;
+declare const table: _emotion_utils.SerializedStyles;
 
 export { Table, TableProps, Tbody, Td, Th, Thead, Tr, TrProps, table, td, text, th, tr };

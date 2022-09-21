@@ -1,5 +1,5 @@
 import React__default, { InputHTMLAttributes, ElementType, ReactElement } from 'react';
-import { I as InternalHTMLAttributes, S as SizeType } from './index-2e22dac1';
+import { I as InternalHTMLAttributes, S as SizeType } from './index-2e22dac1.js';
 
 interface InputProps extends InternalHTMLAttributes, Omit<InputHTMLAttributes<HTMLInputElement>, 'size'> {
     /**

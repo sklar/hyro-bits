@@ -1,10 +1,10 @@
 import { ReactElement, CSSProperties } from 'react';
 import { GroupBase, Props } from 'react-select';
 export { components as ReactSelectComponents, GroupBase as ReactSelectGroupBase, Props as ReactSelectProps } from 'react-select';
-import { I as InternalHTMLAttributes, S as SizeType } from '../../index-2e22dac1';
+import { I as InternalHTMLAttributes, S as SizeType } from '../../index-2e22dac1.js';
 import { AsyncProps } from 'react-select/async';
 export { AsyncProps as ReactAsyncSelectProps } from 'react-select/async';
-import * as _emotion_react from '@emotion/react';
+import * as _emotion_utils from '@emotion/utils';
 
 interface AsyncSelectProps<Option = unknown, IsMulti extends boolean = boolean, Group extends GroupBase<Option> = GroupBase<Option>> extends CustomSelectProps, InternalHTMLAttributes, AsyncProps<Option, IsMulti, Group> {
 }
@@ -23,37 +23,37 @@ declare const Select: <Option extends unknown = {
 /**
  * Container
  */
-declare const container: _emotion_react.SerializedStyles;
+declare const container: _emotion_utils.SerializedStyles;
 /**
  * Control
  */
-declare const control: _emotion_react.SerializedStyles;
+declare const control: _emotion_utils.SerializedStyles;
 /**
  * Values
  */
-declare const valueContainer: _emotion_react.SerializedStyles;
-declare const multiValue: _emotion_react.SerializedStyles;
-declare const singleValue: _emotion_react.SerializedStyles;
+declare const valueContainer: _emotion_utils.SerializedStyles;
+declare const multiValue: _emotion_utils.SerializedStyles;
+declare const singleValue: _emotion_utils.SerializedStyles;
 /**
  * Input
  */
-declare const placeholder: _emotion_react.SerializedStyles;
-declare const input: _emotion_react.SerializedStyles;
+declare const placeholder: _emotion_utils.SerializedStyles;
+declare const input: _emotion_utils.SerializedStyles;
 /**
  * Indicators
  */
-declare const indicatorsContainer: _emotion_react.SerializedStyles;
-declare const indicator: _emotion_react.SerializedStyles;
-declare const loadingIndicator: _emotion_react.SerializedStyles;
+declare const indicatorsContainer: _emotion_utils.SerializedStyles;
+declare const indicator: _emotion_utils.SerializedStyles;
+declare const loadingIndicator: _emotion_utils.SerializedStyles;
 /**
  * Menu
  */
-declare const menu: _emotion_react.SerializedStyles;
-declare const menuList: _emotion_react.SerializedStyles;
+declare const menu: _emotion_utils.SerializedStyles;
+declare const menuList: _emotion_utils.SerializedStyles;
 /**
  * Message
  */
-declare const message: _emotion_react.SerializedStyles;
+declare const message: _emotion_utils.SerializedStyles;
 declare const components: {};
 
 interface CustomSelectProps {

@@ -1,8 +1,8 @@
 import * as React$1 from 'react';
 import { ReactNode, Dispatch, FocusEventHandler, ChangeEventHandler, KeyboardEvent } from 'react';
-import { a as InputProps } from '../../input-9436dd9e';
-import * as _emotion_react from '@emotion/react';
-import '../../index-2e22dac1';
+import { a as InputProps } from '../../input-9436dd9e.js';
+import * as _emotion_utils from '@emotion/utils';
+import '../../index-2e22dac1.js';
 
 interface NumberInputStepperContainerProps {
     children: ReactNode;
@@ -87,7 +87,7 @@ declare function useNumberInput({ decimals, format, max, min, onBlur, onChange, 
     isInterimValueValid: boolean;
 };
 
-declare const input: _emotion_react.SerializedStyles;
-declare const stepperContainer: _emotion_react.SerializedStyles;
+declare const input: _emotion_utils.SerializedStyles;
+declare const stepperContainer: _emotion_utils.SerializedStyles;
 
 export { DecrementStepper, IncrementStepper, NumberInput, NumberInputProps, NumberInputStepperComponents, NumberInputStepperContainerProps, NumberInputStepperProps, Options, Stepper, input, stepperContainer, useNumberInput };

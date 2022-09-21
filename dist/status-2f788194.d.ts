@@ -1,5 +1,5 @@
 import React__default, { HTMLAttributes, ReactElement } from 'react';
-import { T as ThemeType } from './index-2e22dac1';
+import { T as ThemeType } from './index-2e22dac1.js';
 
 declare type StatusThemeType = Exclude<ThemeType, 'dark'>;
 interface StatusProps extends HTMLAttributes<HTMLSpanElement> {

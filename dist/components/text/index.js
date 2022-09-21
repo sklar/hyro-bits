@@ -1,22 +1,22 @@
-/** Components v6.1.1 */
-var S=Object.create;var s=Object.defineProperty;var $=Object.getOwnPropertyDescriptor;var j=Object.getOwnPropertyNames,l=Object.getOwnPropertySymbols,q=Object.getPrototypeOf,d=Object.prototype.hasOwnProperty,x=Object.prototype.propertyIsEnumerable;var y=(e,a,n)=>a in e?s(e,a,{enumerable:!0,configurable:!0,writable:!0,value:n}):e[a]=n,h=(e,a)=>{for(var n in a||(a={}))d.call(a,n)&&y(e,n,a[n]);if(l)for(var n of l(a))x.call(a,n)&&y(e,n,a[n]);return e};var u=e=>s(e,"__esModule",{value:!0});var T=(e,a)=>{var n={};for(var t in e)d.call(e,t)&&a.indexOf(t)<0&&(n[t]=e[t]);if(e!=null&&l)for(var t of l(e))a.indexOf(t)<0&&x.call(e,t)&&(n[t]=e[t]);return n};var D=(e,a)=>{for(var n in a)s(e,n,{get:a[n],enumerable:!0})},v=(e,a,n,t)=>{if(a&&typeof a=="object"||typeof a=="function")for(let o of j(a))!d.call(e,o)&&(n||o!=="default")&&s(e,o,{get:()=>a[o],enumerable:!(t=$(a,o))||t.enumerable});return e},g=(e,a)=>v(u(s(e!=null?S(q(e)):{},"default",!a&&e&&e.__esModule?{get:()=>e.default,enumerable:!0}:{value:e,enumerable:!0})),e),G=(e=>(a,n)=>e&&e.get(a)||(n=v(u({}),a,1),e&&e.set(a,n),n))(typeof WeakMap!="undefined"?new WeakMap:0);var X={};D(X,{Text:()=>I,text:()=>c});var A=g(require("@emotion/styled")),i=g(require("react"));var k=require("@emotion/react");var w=require("@emotion/react");var O=require("@emotion/react");var J=O.keyframes`
+/** Components v6.2.0 */
+"use strict";var E=Object.create;var p=Object.defineProperty;var k=Object.getOwnPropertyDescriptor;var A=Object.getOwnPropertyNames;var I=Object.getPrototypeOf,C=Object.prototype.hasOwnProperty;var H=(e,a)=>{for(var n in a)p(e,n,{get:a[n],enumerable:!0})},d=(e,a,n,i)=>{if(a&&typeof a=="object"||typeof a=="function")for(let o of A(a))!C.call(e,o)&&o!==n&&p(e,o,{get:()=>a[o],enumerable:!(i=k(a,o))||i.enumerable});return e};var h=(e,a,n)=>(n=e!=null?E(I(e)):{},d(a||!e||!e.__esModule?p(n,"default",{value:e,enumerable:!0}):n,e)),L=e=>d(p({},"__esModule",{value:!0}),e);var $={};H($,{Text:()=>u,text:()=>l});module.exports=L($);var y=h(require("@emotion/styled")),r=h(require("react"));var x=require("@emotion/react");var m=require("@emotion/react");var w=require("@emotion/react");var M=w.keyframes`
   0%    { opacity: 0; }
   100%  { opacity: 1; }
-`;var z=w.css`
+`;var f=m.css`
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: var(--lines, 1);
-`,E=w.css`
+`,b=m.css`
   display: inline-block;
   max-width: inherit;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   width: inherit;
-`;var c=k.css`
+`;var l=x.css`
   &[data-clamp] {
-    ${z};
+    ${f};
   }
 
   &[data-hyphens='auto'] {
@@ -37,7 +37,7 @@ var S=Object.create;var s=Object.defineProperty;var $=Object.getOwnPropertyDescr
   }
 
   &[data-truncate='simple'] {
-    ${E};
+    ${b};
   }
 
   &[data-truncate='smart'] {
@@ -69,7 +69,7 @@ var S=Object.create;var s=Object.defineProperty;var $=Object.getOwnPropertyDescr
   &[data-wrap='word'] {
     overflow-wrap: break-word;
   }
-`;function K(e,{begin:a=0,end:n=0,limit:t=5}){return i.default.createElement(i.default.Fragment,null,e.length-(a+n)>t?i.default.createElement(i.default.Fragment,null,i.default.createElement("span",null,e.slice(0,e.length-n)),i.default.createElement("span",null,e.slice(-n))):i.default.createElement(i.default.Fragment,null,e))}var I=(0,i.forwardRef)((Q,M)=>{var f=Q,{as:e="span",children:a,clamp:n,content:t,hyphens:o="manual",space:C,truncate:r,wrap:H="normal"}=f,L=T(f,["as","children","clamp","content","hyphens","space","truncate","wrap"]);let p=r instanceof Object&&("begin"in r||"end"in r),b=t&&p?K(t,r):a,P={"data-qa":`text-${e}`};return i.default.createElement(N,h(h({as:e,"data-clamp":n||null,"data-hyphens":o,"data-space":C||null,"data-truncate":b&&p?"smart":r?"simple":null,"data-wrap":H,ref:M,style:{["--lines"]:n,["--chars-begin"]:p&&r instanceof Object&&(r==null?void 0:r.begin),["--chars-end"]:p&&r instanceof Object&&(r==null?void 0:r.end)}},P),L),b)}),N=A.default.span`
-  ${c};
-`;module.exports=G(X);0&&(module.exports={Text,text});
+`;function P(e,{begin:a=0,end:n=0,limit:i=5}){return r.default.createElement(r.default.Fragment,null,e.length-(a+n)>i?r.default.createElement(r.default.Fragment,null,r.default.createElement("span",null,e.slice(0,e.length-n)),r.default.createElement("span",null,e.slice(-n))):r.default.createElement(r.default.Fragment,null,e))}var u=(0,r.forwardRef)(({as:e="span",children:a,clamp:n,content:i,hyphens:o="manual",space:T,truncate:t,wrap:v="normal",...g},O)=>{let s=t instanceof Object&&("begin"in t||"end"in t),c=i&&s?P(i,t):a,z={"data-qa":`text-${e}`};return r.default.createElement(S,{as:e,"data-clamp":n||null,"data-hyphens":o,"data-space":T||null,"data-truncate":c&&s?"smart":t?"simple":null,"data-wrap":v,ref:O,style:{["--lines"]:n,["--chars-begin"]:s&&t instanceof Object&&(t==null?void 0:t.begin),["--chars-end"]:s&&t instanceof Object&&(t==null?void 0:t.end)},...z,...g},c)}),S=y.default.span`
+  ${l};
+`;0&&(module.exports={Text,text});
 //# sourceMappingURL=index.js.map

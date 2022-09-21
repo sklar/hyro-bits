@@ -1,6 +1,6 @@
 import React__default, { HTMLAttributes } from 'react';
-import { F as FlexProps } from './flex-bfbe6ff8';
-import { T as ThemeType } from './index-2e22dac1';
+import { F as FlexProps } from './flex-bfbe6ff8.js';
+import { T as ThemeType } from './index-2e22dac1.js';
 
 interface FieldProps extends FlexProps {
     /**

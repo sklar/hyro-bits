@@ -1,7 +1,7 @@
-export { B as Button, a as ButtonProps } from '../../button-bd8fafa7';
+export { B as Button, a as ButtonProps } from '../../button-bd8fafa7.js';
 import { SerializedStyles } from '@emotion/react';
 import 'react';
-import '../../index-2e22dac1';
+import '../../index-2e22dac1.js';
 
 declare const button: SerializedStyles;
 /**

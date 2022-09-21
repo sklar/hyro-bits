@@ -1,5 +1,5 @@
 import React__default, { HTMLAttributes, ElementType, ReactNode } from 'react';
-import { c as AlignmentSecondaryType, b as AlignmentFlexboxType, A as AlignmentPrimaryType, a as AlignmentTertiaryType } from './index-2e22dac1';
+import { c as AlignmentSecondaryType, b as AlignmentFlexboxType, A as AlignmentPrimaryType, a as AlignmentTertiaryType } from './index-2e22dac1.js';
 
 interface FlexProps extends HTMLAttributes<HTMLElement> {
     /**

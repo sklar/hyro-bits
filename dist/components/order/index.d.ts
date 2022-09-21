@@ -1,6 +1,6 @@
 import React__default, { HTMLAttributes } from 'react';
-import { D as DirectionType, S as SizeType } from '../../index-2e22dac1';
-import * as _emotion_react from '@emotion/react';
+import { D as DirectionType, S as SizeType } from '../../index-2e22dac1.js';
+import * as _emotion_utils from '@emotion/utils';
 
 interface OrderProps extends HTMLAttributes<HTMLElement> {
     /**
@@ -17,6 +17,6 @@ interface OrderProps extends HTMLAttributes<HTMLElement> {
  */
 declare const Order: React__default.ForwardRefExoticComponent<OrderProps & React__default.RefAttributes<HTMLDivElement>>;
 
-declare const order: _emotion_react.SerializedStyles;
+declare const order: _emotion_utils.SerializedStyles;
 
 export { Order, OrderProps, order };

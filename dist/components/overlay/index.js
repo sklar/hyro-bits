@@ -1,12 +1,12 @@
-/** Components v6.1.1 */
-var l=Object.defineProperty,g=Object.defineProperties,O=Object.getOwnPropertyDescriptor,k=Object.getOwnPropertyDescriptors,A=Object.getOwnPropertyNames,i=Object.getOwnPropertySymbols;var y=Object.prototype.hasOwnProperty,c=Object.prototype.propertyIsEnumerable;var m=(e,r,a)=>r in e?l(e,r,{enumerable:!0,configurable:!0,writable:!0,value:a}):e[r]=a,d=(e,r)=>{for(var a in r||(r={}))y.call(r,a)&&m(e,a,r[a]);if(i)for(var a of i(r))c.call(r,a)&&m(e,a,r[a]);return e},x=(e,r)=>g(e,k(r)),E=e=>l(e,"__esModule",{value:!0});var f=(e,r)=>{var a={};for(var o in e)y.call(e,o)&&r.indexOf(o)<0&&(a[o]=e[o]);if(e!=null&&i)for(var o of i(e))r.indexOf(o)<0&&c.call(e,o)&&(a[o]=e[o]);return a};var L=(e,r)=>{for(var a in r)l(e,a,{get:r[a],enumerable:!0})},C=(e,r,a,o)=>{if(r&&typeof r=="object"||typeof r=="function")for(let t of A(r))!y.call(e,t)&&(a||t!=="default")&&l(e,t,{get:()=>r[t],enumerable:!(o=O(r,t))||o.enumerable});return e};var H=(e=>(r,a)=>e&&e.get(r)||(a=C(E({}),r,1),e&&e.set(r,a),a))(typeof WeakMap!="undefined"?new WeakMap:0);var P={};L(P,{Overlay:()=>h,overlay:()=>v,overlayAnimation:()=>s});var b=require("@emotion/react");var n=require("@emotion/react"),s=n.keyframes`
+/** Components v6.2.0 */
+"use strict";var n=Object.defineProperty;var p=Object.getOwnPropertyDescriptor;var c=Object.getOwnPropertyNames;var m=Object.prototype.hasOwnProperty;var d=(r,e)=>{for(var a in e)n(r,a,{get:e[a],enumerable:!0})},x=(r,e,a,t)=>{if(e&&typeof e=="object"||typeof e=="function")for(let o of c(e))!m.call(r,o)&&o!==a&&n(r,o,{get:()=>e[o],enumerable:!(t=p(e,o))||t.enumerable});return r};var f=r=>x(n({},"__esModule",{value:!0}),r);var b={};d(b,{Overlay:()=>s,overlay:()=>i,overlayAnimation:()=>v});module.exports=f(b);var y=require("@emotion/react");var l=require("@emotion/react"),v=l.keyframes`
   0% {
     --overlay-alpha: 0%;
   }
   100% {
     --overlay-alpha: 50%;
   }
-`,v=n.css`
+`,i=l.css`
   @property --overlay-alpha {
     inherits: true;
     initial-value: 0%;
@@ -25,8 +25,8 @@ var l=Object.defineProperty,g=Object.defineProperties,O=Object.getOwnPropertyDes
   z-index: var(--overlay-index);
 
   &[data-active] {
-    animation: ${s} var(--overlay-duration) var(--overlay-easing) both;
+    animation: ${v} var(--overlay-duration) var(--overlay-easing) both;
     display: block;
   }
-`;var M=1,h=t=>{var p=t,{active:e=!1,index:r=M,onClick:a}=p,o=f(p,["active","index","onClick"]);return(0,b.jsx)("div",x(d({},o),{css:v,"data-active":e||null,style:{["--overlay-index"]:r},onClick:a}))};module.exports=H(P);0&&(module.exports={Overlay,overlay,overlayAnimation});
+`;var u=1,s=({active:r=!1,index:e=u,onClick:a,...t})=>(0,y.jsx)("div",{...t,css:i,"data-active":r||null,style:{["--overlay-index"]:e},onClick:a});0&&(module.exports={Overlay,overlay,overlayAnimation});
 //# sourceMappingURL=index.js.map

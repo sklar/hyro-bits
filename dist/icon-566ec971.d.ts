@@ -1,5 +1,5 @@
 import React__default, { HTMLAttributes } from 'react';
-import { S as SizeType } from './index-2e22dac1';
+import { S as SizeType } from './index-2e22dac1.js';
 
 declare const SvgAlignBottom: () => JSX.Element;
 

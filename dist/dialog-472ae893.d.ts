@@ -1,5 +1,5 @@
 import React__default, { HTMLAttributes, ReactElement } from 'react';
-import { A as AlignmentPrimaryType, a as AlignmentTertiaryType, b as AlignmentFlexboxType } from './index-2e22dac1';
+import { A as AlignmentPrimaryType, a as AlignmentTertiaryType, b as AlignmentFlexboxType } from './index-2e22dac1.js';
 
 interface DialogProps extends HTMLAttributes<HTMLDivElement> {
     /**

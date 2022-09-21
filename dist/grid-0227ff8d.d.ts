@@ -1,5 +1,5 @@
 import React__default, { HTMLAttributes, ElementType, ReactNode } from 'react';
-import { A as AlignmentPrimaryType, c as AlignmentSecondaryType } from './index-2e22dac1';
+import { A as AlignmentPrimaryType, c as AlignmentSecondaryType } from './index-2e22dac1.js';
 
 interface GridProps extends HTMLAttributes<HTMLElement> {
     /**

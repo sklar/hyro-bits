@@ -1,5 +1,5 @@
 import React__default, { InputHTMLAttributes, ElementType } from 'react';
-import { I as InternalHTMLAttributes } from './index-2e22dac1';
+import { I as InternalHTMLAttributes } from './index-2e22dac1.js';
 
 interface SwitchProps extends InternalHTMLAttributes, InputHTMLAttributes<HTMLInputElement> {
     /**
