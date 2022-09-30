@@ -60,6 +60,7 @@ import { colors, h1 } from "purplex-components";
 | [Range](src/components/range/) | ⛔ | ✅ |
 | [Select](src/components/select/) | ⛔ | ✅ |
 | [Slider](src/components/slider/) | ⛔ | ✅ |
+| [Spinner](src/components/slider/) | ✅ | ✅ |
 | [Status](src/components/status/) | ✅ | ✅ |
 | [Switch](src/components/switch/) | ✅ | ✅ |
 | [Table](src/components/table/) | ⛔ | ✅ |
