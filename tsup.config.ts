@@ -28,6 +28,7 @@ export default defineConfig({
     'src/components/range/index.ts',
     'src/components/select/index.ts',
     'src/components/slider/index.ts',
+    'src/components/spinner/index.ts',
     'src/components/status/index.ts',
     'src/components/switch/index.ts',
     'src/components/table/index.ts',

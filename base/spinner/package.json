@@ -1,0 +1,5 @@
+{
+  "main": "../../dist/components/spinner/index.js",
+  "module": "../../dist/esm/components/spinner/index.js",
+  "types": "../../dist/components/spinner/index.d.ts"
+}

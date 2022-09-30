@@ -37,6 +37,9 @@ export type { NavItemProps, NavProps } from './navigation';
 export { Overlay } from './overlay';
 export type { OverlayProps } from './overlay';
 
+export { Spinner } from './spinner';
+export type { SpinnerProps } from './spinner';
+
 export { Status } from './status';
 export type { StatusProps } from './status';
 
