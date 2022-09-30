@@ -103,7 +103,7 @@
     "last 2 chrome versions"
   ],
   "engines": {
-    "node": ">=16.10"
+    "node": ">=16"
   },
   "volta": {
     "node": "16.17.0"
