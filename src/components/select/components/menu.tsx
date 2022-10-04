@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { css, jsx } from '@emotion/react';
+import { jsx } from '@emotion/react';
 import { GroupBase, MenuProps } from 'react-select';
 
 import { Menu as MenuDraft } from '../../menu';
@@ -17,6 +17,7 @@ export const Menu = <
     cx,
     innerProps,
     innerRef,
+    placement,
     theme,
     selectProps: { menu = 'absolute', ...selectProps },
     ...rest
@@ -26,14 +27,12 @@ export const Menu = <
     selectProps,
   };
   return (
-    <div ref={innerRef} {...innerProps}>
+    <div {...innerProps}>
       <MenuDraft
-        css={[
-          menuStyles,
-          css`
-            position: ${menu};
-          `,
-        ]}
+        css={menuStyles}
+        data-placement={placement}
+        data-position={menu}
+        ref={innerRef}
         {...menuProps}
       />
     </div>

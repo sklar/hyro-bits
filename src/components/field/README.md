@@ -5,6 +5,7 @@
 ```typescript
 import { 
   Field,
+  FieldHint,
   FieldProps,
   FieldLabel,
   FieldMessage,
@@ -16,6 +17,7 @@ import {
 
 import { 
   Field,
+  FieldHint,
   FieldProps,
   FieldLabel,
   FieldMessage,
@@ -24,6 +26,7 @@ import {
 
   // styles
   field,
+  hint,
   label,
   message,
   text

@@ -158,6 +158,20 @@ export const loadingIndicator = css`
 export const menu = css`
   --index: 2;
   --size: 100%;
+
+  &[data-placement='bottom'] {
+    top: 100%;
+  }
+  &[data-placement='top'] {
+    bottom: 100%;
+  }
+
+  &[data-position='absolute'] {
+    position: absolute;
+  }
+  &[data-position='static'] {
+    position: relative;
+  }
 `;
 
 export const menuList = css`
