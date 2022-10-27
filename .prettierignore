@@ -2,6 +2,7 @@
 # @see https://prettier.io/docs/en/ignore.html
 
 !.storybook
+.github/workflows
 
 *.css
 *.html

@@ -5,25 +5,31 @@ on:
     types: [created]
 
 jobs:
-  # compile:
-  #   runs-on: ubuntu-latest
-  #   steps:
-  #     - uses: actions/checkout@v2
-  #     - uses: actions/setup-node@v1
-  #       with:
-  #         node-version: 14
-  #     - run: yarn
-  #     - run: yarn compile
-  #     # - run: yarn test
-
-  publish:
-    # needs: compile
+  compile:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16]
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v3
         with:
-          node-version: 14
+          node-version: ${{ matrix.node }}
+          cache: yarn
+      - run: yarn
+      - run: yarn compile
+
+  publish:
+    needs: compile
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [16]
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node }}
           registry-url: https://npm.pkg.github.com/
       - run: yarn ci
       - run: yarn publish
