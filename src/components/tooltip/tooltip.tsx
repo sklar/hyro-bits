@@ -2,15 +2,29 @@ import styled from '@emotion/styled';
 import RcTooltip from 'rc-tooltip';
 import React, { ReactElement, useMemo } from 'react';
 
+import { Icon } from '../icon';
 import { arrow, key, label, separator, shortcut, tooltip } from './tooltip.styles';
 
-export const CLASSNAME = 't00lt1p' as const;
+export const CLASSNAME = 't00lt1p';
 
 const DELAY_ENTER = 0.4;
 const DELAY_LEAVE = 0.1;
-const SEPARATOR = '+';
-const SUPER_KEY = 'super';
-const SUPER_VALUE = navigator.platform.includes('Mac') ? '⌘' : 'Ctrl';
+
+enum KeyType {
+  SEPARATOR = '+',
+  SHIFT = 'shift',
+  SUPER = 'super',
+}
+
+const KeyReplacement: Record<string, ReactElement> = {
+  [KeyType.SEPARATOR]: <Icon name="Plus" />,
+  [KeyType.SHIFT]: <Icon name="Shift" size="xs" />,
+  [KeyType.SUPER]: navigator.platform.includes('Mac') ? (
+    <Icon name="Command" size="xs" />
+  ) : (
+    <>Ctrl</>
+  ),
+} as const;
 
 export interface TooltipProps {
   /**
@@ -67,7 +81,7 @@ export interface TooltipProps {
 
 /**
  * Tooltip wrapper.
- * TODO: Replace `rc-tooltip` with some lightweight alternative, e.g. popper, tippy or tether.
+ * TODO: Replace `rc-tooltip` with some lightweight alternative, e.g. floating-ui or tippy.
  */
 export const Tooltip: React.FC<TooltipProps> = ({
   active,
@@ -85,10 +99,18 @@ export const Tooltip: React.FC<TooltipProps> = ({
   const shortcuts = useMemo(
     () =>
       shortcut
-        .split(SEPARATOR)
-        .map((key, i) => <Key key={`key-${i}`}>{key.replace(SUPER_KEY, SUPER_VALUE)}</Key>)
+        .split(KeyType.SEPARATOR)
+        .map((key, i) => (
+          <Key key={`key-${i}`}>{KeyReplacement[key.toLowerCase().trim()] ?? key}</Key>
+        ))
         .reduce((acc: JSX.Element[], key, i) => {
-          return acc.length === 0 ? [key] : [...acc, <Separator key={`separator-${i}`} />, key];
+          return acc.length === 0
+            ? [key]
+            : [
+                ...acc,
+                <Separator key={`separator-${i}`}>{KeyReplacement[KeyType.SEPARATOR]}</Separator>,
+                key,
+              ];
         }, []),
     [shortcut]
   );

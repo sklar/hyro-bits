@@ -81,6 +81,7 @@ export { default as PlayCircle } from './play-circle';
 export { default as Play } from './play';
 export { default as PlusCircle } from './plus-circle';
 export { default as PlusSquare } from './plus-square';
+export { default as Plus } from './plus';
 export { default as Preview } from './preview';
 export { default as Projector } from './projector';
 export { default as Refresh } from './refresh';

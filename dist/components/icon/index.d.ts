@@ -1,4 +1,4 @@
-export { I as Icon, b as IconNameType, a as IconProps } from '../../icon-566ec971.js';
+export { I as Icon, b as IconNameType, a as IconProps } from '../../icon-a8d963bb.js';
 import * as _emotion_utils from '@emotion/utils';
 import 'react';
 import '../../index-2e22dac1.js';

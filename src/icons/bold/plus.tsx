@@ -1,0 +1,12 @@
+import * as React from 'react';
+
+const SvgPlus = () => (
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16">
+    <path
+      fill="currentColor"
+      d="M10.182 2.182a2.182 2.182 0 1 0-4.364 0v3.636H2.182a2.182 2.182 0 1 0 0 4.364h3.636v3.636a2.182 2.182 0 1 0 4.364 0v-3.636h3.636a2.182 2.182 0 0 0 0-4.364h-3.636V2.182z"
+    />
+  </svg>
+);
+
+export default SvgPlus;

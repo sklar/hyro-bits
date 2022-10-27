@@ -167,6 +167,8 @@ declare const SvgPlusCircle$1: () => JSX.Element;
 
 declare const SvgPlusSquare$1: () => JSX.Element;
 
+declare const SvgPlus$1: () => JSX.Element;
+
 declare const SvgPreview: () => JSX.Element;
 
 declare const SvgProjector: () => JSX.Element;
@@ -310,6 +312,7 @@ declare namespace BOLD {
     SvgPlay$1 as Play,
     SvgPlusCircle$1 as PlusCircle,
     SvgPlusSquare$1 as PlusSquare,
+    SvgPlus$1 as Plus,
     SvgPreview as Preview,
     SvgProjector as Projector,
     SvgRefresh as Refresh,
@@ -359,6 +362,8 @@ declare const SvgChevronRight: () => JSX.Element;
 declare const SvgClick: () => JSX.Element;
 
 declare const SvgCog: () => JSX.Element;
+
+declare const SvgCommand: () => JSX.Element;
 
 declare const SvgEllipsisHorizontal: () => JSX.Element;
 
@@ -424,6 +429,8 @@ declare const SvgQuestionCircle: () => JSX.Element;
 
 declare const SvgSearch: () => JSX.Element;
 
+declare const SvgShift: () => JSX.Element;
+
 declare const SvgSort: () => JSX.Element;
 
 declare const SvgStopCircle: () => JSX.Element;
@@ -455,6 +462,7 @@ declare namespace MINI {
     SvgChevronRight as ChevronRight,
     SvgClick as Click,
     SvgCog as Cog,
+    SvgCommand as Command,
     SvgEllipsisHorizontal as EllipsisHorizontal,
     SvgEllipsisVertical as EllipsisVertical,
     SvgEyeSlash as EyeSlash,
@@ -487,6 +495,7 @@ declare namespace MINI {
     SvgPlus as Plus,
     SvgQuestionCircle as QuestionCircle,
     SvgSearch as Search,
+    SvgShift as Shift,
     SvgSort as Sort,
     SvgStopCircle as StopCircle,
     SvgText as Text,

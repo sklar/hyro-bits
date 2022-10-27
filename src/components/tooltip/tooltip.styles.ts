@@ -2,17 +2,14 @@ import { css } from '@emotion/react';
 
 import { colors } from '../../colors';
 import { fadeInAnimation } from '../../styles';
-import { base } from '../../typography';
+import { paragraph } from '../../typography';
 
 export const global = css`
-  ${base};
+  ${paragraph};
 
-  --background-color: #020511;
-  --color: ${colors.WHITE};
-  --font-size: 12px;
-  --font-weight: 600;
+  --background-color: ${colors.TEXT_PRIMARY};
+  --color: #e9effe;
   --index: 1;
-  --line-height: calc(16 / 12);
 
   --arrow-bottom: auto;
   --arrow-left: auto;
@@ -22,9 +19,10 @@ export const global = css`
   --arrow-translate-x: 0;
   --arrow-translate-y: 0;
 
+  --key-background-color: #e9effe;
+  --key-font-weight: 600;
+  --key-color: ${colors.TEXT_PRIMARY};
   --key-size: 24px;
-
-  --separator-size: 8px;
 
   animation: ${fadeInAnimation} 0.2s 0.1s both;
   display: block;
@@ -66,10 +64,9 @@ export const global = css`
 export const tooltip = css`
   background-color: var(--background-color);
   border-radius: 6px;
-  color: ${colors.WHITE};
   isolation: isolate;
   max-width: var(--size);
-  padding: 10px;
+  padding: 8px 12px;
 
   &:not([data-active]) {
     pointer-events: none;
@@ -90,35 +87,37 @@ export const arrow = css`
   width: var(--arrow-size);
 `;
 
-export const label = css``;
+export const label = css`
+  align-self: center;
+`;
 
 export const shortcut = css`
   align-items: center;
   display: inline-flex;
   gap: 4px;
-  margin: -4px;
 
   [data-label] + & {
-    margin-left: 10px;
+    margin-left: 8px;
   }
 `;
 
 export const key = css`
-  background-color: #50525a;
+  ${paragraph};
+
+  --font-weight: var(--key-font-weight);
+
+  background-color: var(--key-background-color);
   border-radius: 4px;
   display: inline-grid;
-  font-family: inherit;
-  font-weight: 700;
   height: var(--key-size);
   min-width: var(--key-size);
-  padding-inline: 6px;
+  padding-inline: 4px;
   place-items: center;
   text-transform: capitalize;
 `;
 
 export const separator = css`
-  aspect-ratio: 1;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 8 8'%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-width='1.5' d='M4 1v6'/%3E%3Cpath stroke='%23fff' stroke-linecap='round' stroke-width='1.5' d='M7 4H1'/%3E%3C/svg%3E");
-  display: inline-block;
-  width: var(--separator-size);
+  [data-icon] {
+    --icon-size: 8px;
+  }
 `;

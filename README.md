@@ -35,7 +35,7 @@ import { ComponentName } from "purplex-components/base/<component-name>";
 import { Button, button, sizes } from "purplex-components/base/button";
 
 // Theme w/ color and typography tokens (not a theme provider)
-import { colors, h1 } from "purplex-components";
+import { colors, h1 } from "purplex-components/theme";
 ```
 ### 🍱 Components
 
