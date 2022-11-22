@@ -151,6 +151,10 @@ export const Tooltip: React.FC<TooltipProps> = ({
   );
 };
 
+Tooltip.defaultProps = {
+  disabled: !window.matchMedia('(hover: hover) and (pointer: fine)').matches,
+};
+
 const Container = styled.div`
   ${tooltip};
 `;
