@@ -10,6 +10,7 @@ export { default as Cog } from './cog';
 export { default as Command } from './command';
 export { default as EllipsisHorizontal } from './ellipsis-horizontal';
 export { default as EllipsisVertical } from './ellipsis-vertical';
+export { default as ExclamationCircle } from './exclamation-circle';
 export { default as EyeSlash } from './eye-slash';
 export { default as Eye } from './eye';
 export { default as Filter } from './filter';

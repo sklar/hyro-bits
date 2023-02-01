@@ -69,6 +69,8 @@ declare const SvgEllipsisHorizontal$1: () => JSX.Element;
 
 declare const SvgEllipsisVertical$1: () => JSX.Element;
 
+declare const SvgExclamationCircle$1: () => JSX.Element;
+
 declare const SvgExclamationTriangle: () => JSX.Element;
 
 declare const SvgEyeSlash$1: () => JSX.Element;
@@ -263,6 +265,7 @@ declare namespace BOLD {
     SvgDrop as Drop,
     SvgEllipsisHorizontal$1 as EllipsisHorizontal,
     SvgEllipsisVertical$1 as EllipsisVertical,
+    SvgExclamationCircle$1 as ExclamationCircle,
     SvgExclamationTriangle as ExclamationTriangle,
     SvgEyeSlash$1 as EyeSlash,
     SvgEye$1 as Eye,
@@ -369,6 +372,8 @@ declare const SvgEllipsisHorizontal: () => JSX.Element;
 
 declare const SvgEllipsisVertical: () => JSX.Element;
 
+declare const SvgExclamationCircle: () => JSX.Element;
+
 declare const SvgEyeSlash: () => JSX.Element;
 
 declare const SvgEye: () => JSX.Element;
@@ -465,6 +470,7 @@ declare namespace MINI {
     SvgCommand as Command,
     SvgEllipsisHorizontal as EllipsisHorizontal,
     SvgEllipsisVertical as EllipsisVertical,
+    SvgExclamationCircle as ExclamationCircle,
     SvgEyeSlash as EyeSlash,
     SvgEye as Eye,
     SvgFilter as Filter,
