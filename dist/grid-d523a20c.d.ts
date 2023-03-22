@@ -49,6 +49,7 @@ interface GridProps extends HTMLAttributes<HTMLElement> {
 }
 /**
  * Grid wrapper
+ * @deprecated
  */
 declare const Grid: React__default.ForwardRefExoticComponent<GridProps & React__default.RefAttributes<HTMLDivElement>>;
 

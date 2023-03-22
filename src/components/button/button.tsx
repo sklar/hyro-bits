@@ -76,6 +76,7 @@ type ButtonComponent = <C extends ElementType = 'button'>(props: ButtonProps<C>)
 
 /**
  * Button
+ * @deprecated
  */
 export const Button = forwardRef(
   <C extends ElementType = 'button'>(

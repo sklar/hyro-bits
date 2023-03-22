@@ -100,6 +100,9 @@ const tokens = ((c) => {
   };
 })(palette);
 
+/**
+ * @deprecated
+ */
 export const colors = {
   BLACK: palette.black,
   CURRENT: palette.current,

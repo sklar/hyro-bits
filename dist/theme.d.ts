@@ -1,5 +1,8 @@
 import * as _emotion_utils from '@emotion/utils';
 
+/**
+ * @deprecated
+ */
 declare const colors: {
     PRIMARY: string;
     SECONDARY: string;

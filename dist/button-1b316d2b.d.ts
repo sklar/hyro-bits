@@ -73,6 +73,7 @@ declare type ButtonProps<C extends ElementType> = PolymorphicComponentProps<C, S
 declare type ButtonComponent = <C extends ElementType = 'button'>(props: ButtonProps<C>) => ReactElement;
 /**
  * Button
+ * @deprecated
  */
 declare const Button: ButtonComponent;
 

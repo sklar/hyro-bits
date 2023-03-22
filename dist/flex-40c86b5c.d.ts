@@ -37,6 +37,7 @@ interface FlexProps extends HTMLAttributes<HTMLElement> {
 }
 /**
  * Flexbox wrapper.
+ * @deprecated
  */
 declare const Flex: React__default.ForwardRefExoticComponent<FlexProps & React__default.RefAttributes<HTMLDivElement>>;
 

@@ -46,6 +46,7 @@ export interface FlexProps extends HTMLAttributes<HTMLElement> {
 
 /**
  * Flexbox wrapper.
+ * @deprecated
  */
 export const Flex = forwardRef<HTMLDivElement, FlexProps>(
   ({ align, as = 'div', block, direction, gap, justify, wrap, ...props }, ref): JSX.Element => {

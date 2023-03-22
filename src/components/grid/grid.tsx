@@ -53,6 +53,7 @@ export interface GridProps extends HTMLAttributes<HTMLElement> {
 
 /**
  * Grid wrapper
+ * @deprecated
  */
 export const Grid = forwardRef<HTMLDivElement, GridProps>(
   (

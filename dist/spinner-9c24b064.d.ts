@@ -17,6 +17,7 @@ interface SpinnerProps extends HTMLAttributes<HTMLDivElement> {
 }
 /**
  * Spinner indicator.
+ * @deprecate
  */
 declare const Spinner: React__default.ForwardRefExoticComponent<SpinnerProps & React__default.RefAttributes<HTMLDivElement>>;
 

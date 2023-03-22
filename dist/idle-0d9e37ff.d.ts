@@ -28,6 +28,7 @@ interface IdleProps extends HTMLAttributes<HTMLDivElement> {
 }
 /**
  * Idle indicator.
+ * @deprecated
  */
 declare const Idle: React__default.ForwardRefExoticComponent<IdleProps & React__default.RefAttributes<HTMLDivElement>>;
 

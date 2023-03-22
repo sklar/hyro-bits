@@ -33,6 +33,7 @@ export interface IdleProps extends HTMLAttributes<HTMLDivElement> {
 
 /**
  * Idle indicator.
+ * @deprecated
  */
 export const Idle = forwardRef<HTMLDivElement, IdleProps>(
   (

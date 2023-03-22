@@ -50,6 +50,7 @@ export interface SpinnerProps extends HTMLAttributes<HTMLDivElement> {
 
 /**
  * Spinner indicator.
+ * @deprecate
  */
 export const Spinner = forwardRef<HTMLDivElement, SpinnerProps>(
   ({ color = 'currentColor', duration = 600, size = 'sm', style, ...props }, ref): JSX.Element => {
