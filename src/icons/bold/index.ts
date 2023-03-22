@@ -30,6 +30,7 @@ export { default as Document } from './document';
 export { default as DoorExit } from './door-exit';
 export { default as DoorOpen } from './door-open';
 export { default as Drop } from './drop';
+export { default as Duplicate } from './duplicate';
 export { default as EllipsisHorizontal } from './ellipsis-horizontal';
 export { default as EllipsisVertical } from './ellipsis-vertical';
 export { default as ExclamationCircle } from './exclamation-circle';

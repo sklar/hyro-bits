@@ -47,7 +47,7 @@ declare const SvgClick$1: () => JSX.Element;
 
 declare const SvgClock: () => JSX.Element;
 
-declare const SvgClone: () => JSX.Element;
+declare const SvgClone$1: () => JSX.Element;
 
 declare const SvgCog$1: () => JSX.Element;
 
@@ -64,6 +64,8 @@ declare const SvgDoorExit: () => JSX.Element;
 declare const SvgDoorOpen: () => JSX.Element;
 
 declare const SvgDrop: () => JSX.Element;
+
+declare const SvgDuplicate$1: () => JSX.Element;
 
 declare const SvgEllipsisHorizontal$1: () => JSX.Element;
 
@@ -254,7 +256,7 @@ declare namespace BOLD {
     SvgCalendar as Calendar,
     SvgClick$1 as Click,
     SvgClock as Clock,
-    SvgClone as Clone,
+    SvgClone$1 as Clone,
     SvgCog$1 as Cog,
     SvgCommentLines as CommentLines,
     SvgCursor as Cursor,
@@ -263,6 +265,7 @@ declare namespace BOLD {
     SvgDoorExit as DoorExit,
     SvgDoorOpen as DoorOpen,
     SvgDrop as Drop,
+    SvgDuplicate$1 as Duplicate,
     SvgEllipsisHorizontal$1 as EllipsisHorizontal,
     SvgEllipsisVertical$1 as EllipsisVertical,
     SvgExclamationCircle$1 as ExclamationCircle,
@@ -364,9 +367,13 @@ declare const SvgChevronRight: () => JSX.Element;
 
 declare const SvgClick: () => JSX.Element;
 
+declare const SvgClone: () => JSX.Element;
+
 declare const SvgCog: () => JSX.Element;
 
 declare const SvgCommand: () => JSX.Element;
+
+declare const SvgDuplicate: () => JSX.Element;
 
 declare const SvgEllipsisHorizontal: () => JSX.Element;
 
@@ -466,8 +473,10 @@ declare namespace MINI {
     SvgChevronDown as ChevronDown,
     SvgChevronRight as ChevronRight,
     SvgClick as Click,
+    SvgClone as Clone,
     SvgCog as Cog,
     SvgCommand as Command,
+    SvgDuplicate as Duplicate,
     SvgEllipsisHorizontal as EllipsisHorizontal,
     SvgEllipsisVertical as EllipsisVertical,
     SvgExclamationCircle as ExclamationCircle,
