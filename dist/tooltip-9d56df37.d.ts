@@ -1,11 +1,8 @@
+import { TooltipProps as TooltipProps$1 } from 'rc-tooltip/lib/Tooltip';
 import React__default, { ReactElement } from 'react';
 
 declare const CLASSNAME = "t00lt1p";
-interface TooltipProps {
-    /**
-     * Children
-     */
-    children?: ReactElement;
+interface TooltipProps extends Pick<TooltipProps$1, 'align' | 'children'> {
     /**
      * Content
      */

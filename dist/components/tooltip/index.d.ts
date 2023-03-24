@@ -1,5 +1,6 @@
-export { C as CLASSNAME, T as Tooltip, a as TooltipProps } from '../../tooltip-4c953709.js';
+export { C as CLASSNAME, T as Tooltip, a as TooltipProps } from '../../tooltip-9d56df37.js';
 import * as _emotion_utils from '@emotion/utils';
+import 'rc-tooltip/lib/Tooltip';
 import 'react';
 
 declare const global: _emotion_utils.SerializedStyles;

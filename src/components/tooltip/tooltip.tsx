@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import RcTooltip from 'rc-tooltip';
+import { TooltipProps as RcTooltipProps } from 'rc-tooltip/lib/Tooltip';
 import React, { ReactElement, useMemo } from 'react';
 
 import { Icon } from '../icon';
@@ -26,11 +27,7 @@ const KeyReplacement: Record<string, ReactElement> = {
   ),
 } as const;
 
-export interface TooltipProps {
-  /**
-   * Children
-   */
-  children?: ReactElement;
+export interface TooltipProps extends Pick<RcTooltipProps, 'align' | 'children'> {
   /**
    * Content
    */
