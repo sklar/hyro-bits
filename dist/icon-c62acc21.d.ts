@@ -43,6 +43,8 @@ declare const SvgBook: () => JSX.Element;
 
 declare const SvgCalendar: () => JSX.Element;
 
+declare const SvgChevronDown$1: () => JSX.Element;
+
 declare const SvgClick$1: () => JSX.Element;
 
 declare const SvgClock: () => JSX.Element;
@@ -254,6 +256,7 @@ declare namespace BOLD {
     SvgBars as Bars,
     SvgBook as Book,
     SvgCalendar as Calendar,
+    SvgChevronDown$1 as ChevronDown,
     SvgClick$1 as Click,
     SvgClock as Clock,
     SvgClone$1 as Clone,

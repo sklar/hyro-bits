@@ -19,6 +19,7 @@ export { default as Backward } from './backward';
 export { default as Bars } from './bars';
 export { default as Book } from './book';
 export { default as Calendar } from './calendar';
+export { default as ChevronDown } from './chevron-down';
 export { default as Click } from './click';
 export { default as Clock } from './clock';
 export { default as Clone } from './clone';
