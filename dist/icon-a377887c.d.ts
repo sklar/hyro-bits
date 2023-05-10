@@ -109,6 +109,8 @@ declare const SvgHand: () => JSX.Element;
 
 declare const SvgHeartbeatSquare: () => JSX.Element;
 
+declare const SvgImageAlt: () => JSX.Element;
+
 declare const SvgImage$1: () => JSX.Element;
 
 declare const SvgImages: () => JSX.Element;
@@ -184,6 +186,8 @@ declare const SvgRefresh: () => JSX.Element;
 declare const SvgSave: () => JSX.Element;
 
 declare const SvgSearch$1: () => JSX.Element;
+
+declare const SvgServerRemove: () => JSX.Element;
 
 declare const SvgShare: () => JSX.Element;
 
@@ -289,6 +293,7 @@ declare namespace BOLD {
     SvgGroupAdd$1 as GroupAdd,
     SvgHand as Hand,
     SvgHeartbeatSquare as HeartbeatSquare,
+    SvgImageAlt as ImageAlt,
     SvgImage$1 as Image,
     SvgImages as Images,
     SvgInfoCircle$1 as InfoCircle,
@@ -327,6 +332,7 @@ declare namespace BOLD {
     SvgRefresh as Refresh,
     SvgSave as Save,
     SvgSearch$1 as Search,
+    SvgServerRemove as ServerRemove,
     SvgShare as Share,
     SvgStickyNote as StickyNote,
     SvgStopCircle$1 as StopCircle,
