@@ -83,6 +83,10 @@ declare const SvgEye$1: () => JSX.Element;
 
 declare const SvgFilter$1: () => JSX.Element;
 
+declare const SvgFitScreen: () => JSX.Element;
+
+declare const SvgFitScreens: () => JSX.Element;
+
 declare const SvgFlash$1: () => JSX.Element;
 
 declare const SvgFolderOpen$1: () => JSX.Element;
@@ -280,6 +284,8 @@ declare namespace BOLD {
     SvgEyeSlash$1 as EyeSlash,
     SvgEye$1 as Eye,
     SvgFilter$1 as Filter,
+    SvgFitScreen as FitScreen,
+    SvgFitScreens as FitScreens,
     SvgFlash$1 as Flash,
     SvgFolderOpen$1 as FolderOpen,
     SvgFolder$1 as Folder,

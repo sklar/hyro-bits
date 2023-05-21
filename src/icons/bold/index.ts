@@ -39,6 +39,8 @@ export { default as ExclamationTriangle } from './exclamation-triangle';
 export { default as EyeSlash } from './eye-slash';
 export { default as Eye } from './eye';
 export { default as Filter } from './filter';
+export { default as FitScreen } from './fit-screen';
+export { default as FitScreens } from './fit-screens';
 export { default as Flash } from './flash';
 export { default as FolderOpen } from './folder-open';
 export { default as Folder } from './folder';

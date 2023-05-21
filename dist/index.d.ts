@@ -5,7 +5,7 @@ export { D as Divider, a as DividerProps } from './divider-5599b0fb.js';
 export { F as Field, b as FieldHint, c as FieldLabel, d as FieldMessage, e as FieldMessageProps, a as FieldProps, f as FieldText } from './field-text-b845dc9e.js';
 export { a as Flex, F as FlexProps } from './flex-40c86b5c.js';
 export { G as Grid, a as GridProps } from './grid-d523a20c.js';
-export { I as Icon, a as IconProps } from './icon-a377887c.js';
+export { I as Icon, a as IconProps } from './icon-61e22e8a.js';
 export { I as Idle, a as IdleProps } from './idle-0d9e37ff.js';
 export { I as Input, a as InputProps } from './input-9436dd9e.js';
 export { M as Menu, b as MenuDivider, c as MenuGroup, d as MenuGroupTitle, e as MenuItem, f as MenuItemProps, a as MenuProps, g as MenuTitle } from './menu-title-7e5f8740.js';
